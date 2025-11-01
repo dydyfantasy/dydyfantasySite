@@ -1,6 +1,7 @@
-import myPhoto from "../assets/PhotoPresentation.jpg";
+import myPhoto from "../assets/PhotoPresentation.webp";
 import { CheckIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import VideoPresentation from "./videoPresentation";
 
 const Presentation = () => {
 	return (
@@ -15,7 +16,8 @@ const Presentation = () => {
 				</div>
 				<div>
 					<h1 className="font-bold mb-4 title-site title-page">
-						Qui suis-je ?
+						Qui suis-je ? – Dydy Fantasy, animateur d’événements à Toulouse et
+						ses environs
 					</h1>
 					<p className="mb-4 text-gray-200 whitespace-pre-line">
 						Je suis <strong> DYDY FANTASY</strong>, ingénieur développeur le
@@ -27,10 +29,11 @@ const Presentation = () => {
 					</p>
 					<p className="mb-4 text-gray-200">
 						Passionné par la musique, les jeux et les rencontres, je crée des
-						moments inoubliables grâce à des quiz, des blind tests, et d'autres
-						animations sur mesure. J'adore mettre l'ambiance, créer et animer
-						des soirées où on rigole, on chante, on se challenge, mais surtout
-						où on repart avec de bons souvenirs et le sourire aux lèvres.
+						moments inoubliables grâce à des quiz, des blind tests, karaoké, et
+						d'autres animations sur mesure. J'adore mettre l'ambiance, créer et
+						animer des soirées où on rigole, on chante, on se challenge, mais
+						surtout où on repart avec de bons souvenirs et le sourire aux
+						lèvres.
 					</p>
 					<p className="mb-4 text-gray-200">
 						Que ce soit pour un bar, un restaurant ou une soirée privé, mon
@@ -46,7 +49,7 @@ const Presentation = () => {
 
 					<p className="text-gray-200">
 						N’hésitez pas à me contacter pour discuter de votre prochain
-						événement et créer ensemble une expérience unique !
+						événement et créer ensemble une animation à votre image !
 					</p>
 				</div>
 				<div>
@@ -73,6 +76,8 @@ const Presentation = () => {
 						</li>
 					</ul>
 				</div>
+				<VideoPresentation />
+
 				<Link
 					to="/contact"
 					className="inline-flex items-center justify-center bg-purple-500 hover:bg-purple-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-purple-400 transition-all duration-300">

@@ -1,39 +1,47 @@
 const OurApproach = () => {
 	const steps = [
 		{
-			title: "Premier contact - Découverte et échange",
-			description:
-				"🔹 Rencontre et échange pour comprendre vos besoins, vos objectifs et le public visé. \n🔹 Identification des contraintes, des envies et des idées pour l'évènement. \n🔹 Discussion sur le format de l'animation souhaitée : ponctuelle ou régulière.",
+			title: "Premier contact – Découverte et échange",
+			description: `🔹 Rencontre pour comprendre vos besoins, le public visé et vos envies. 
+🔹 Identification des contraintes et des idées pour créer votre animation parfaite. 
+🔹 Discussion sur le format : soirée ponctuelle ou animation récurrente.`,
 			icon: "👋",
-			color: "#F472B6", // rose-400
+			color: "#F472B6",
 		},
 		{
 			title: "Proposition et personnalisation",
-			description:
-				"🔹 Élaboration d'une proposition sur mesure : \n       • Prestation à l'unité \n       • Pack (lot de prestations) \n       • Abonnement (engagement sur plusieurs mois) \n🔹 Ajustement selon vos retours pour créer un évènement à votre image.",
+			description: `🔹 Élaboration d'une proposition sur mesure pour votre événement : 
+• Prestation à l'unité 
+• Pack d'animations 
+• Abonnement pour plusieurs soirées
+🔹 Ajustement selon vos retours pour une soirée sur mesure à Toulouse et ses environs.`,
 			icon: "📝",
-			color: "#fcf832ff", // rose-400
+			color: "#fcf832ff",
 		},
 		{
 			title: "Préparation et organisation",
-			description:
-				"🔹 Planification du déroulé : animations, timing, matériel nécessaire. \n🔹 Étroite collaboration entre les parties prenantes pour assurer le bon déroulé du jour J. \n🔹 Vérification des besoins techniques (audio / vidéo / matériel spécifique). \n🔹 Préparation d'une affiche publicitaire et communication sur les réseaux sociaux.",
+			description: `🔹 Planification complète du déroulé : animations, timing et matériel nécessaire. 
+🔹 Coordination avec vos équipes pour garantir une soirée fluide et mémorable. 
+🔹 Vérification technique : audio, vidéo et matériel spécifique. 
+🔹 Création de supports visuels et communication sur les réseaux sociaux.`,
 			icon: "🗂️",
-			color: "#38BDF8", // rose-400
+			color: "#38BDF8",
 		},
 		{
-			title: "Animation de l'évènement",
-			description:
-				"🔹 Mise en place. \n🔹 Gestion technique. \n🔹 Captation de photos et vidéos.",
+			title: "Animation de l'événement",
+			description: `🔹 Mise en place et gestion technique de l'animation.
+🔹 Captation photos et vidéos pour immortaliser votre soirée.
+🔹 Interaction avec le public pour créer une ambiance unique et conviviale.`,
 			icon: "🎉",
-			color: "#A3E635", // lime-400
+			color: "#A3E635",
 		},
 		{
 			title: "Débrief post-prestation",
-			description:
-				"Parce que l'amélioration continue fait partie de nos points forts, \nnous écoutons vos retours et adaptons nos prestations afin de mieux répondre à vos attentes.",
+			description: `🔹 Écoute de vos retours pour améliorer nos prestations.
+🔹 Ajustements pour vos prochaines animations.
+🔹 Toujours dans l'esprit de rendre chaque événement plus fun, mémorable et unique !`,
 			icon: "✅",
-			color: "#f89a20ff", // sky-400
+			color: "#f89a20ff",
 		},
 	];
 
@@ -41,9 +49,13 @@ const OurApproach = () => {
 		<section className="min-h-screen py-16 bg-gray-900 text-white">
 			<div className="max-w-4xl mx-auto px-4">
 				<h1 className="title-site title-page text-4xl font-bold mb-12 text-neon-pink text-center">
-					Notre approche
+					Notre approche – Dydy Fantasy, animateur d’événements à Toulouse
 				</h1>
-
+				<p className="text-center text-gray-300 mb-12 max-w-2xl mx-auto">
+					Découvrez notre méthode pour créer des animations sur mesure à
+					Toulouse et ses environs. Chaque étape est pensée pour vous garantir
+					une expérience mémorable, fun et conviviale !
+				</p>
 				<div className="relative flex flex-col gap-12">
 					{/* Ligne verticale */}
 					<div className="absolute left-5 top-0 bottom-0 w-2 bg-gray-700"></div>

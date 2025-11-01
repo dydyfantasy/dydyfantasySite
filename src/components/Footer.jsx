@@ -1,3 +1,5 @@
+import Reseaux from "./reseaux";
+
 const Footer = () => {
 	return (
 		<footer className="bg-gray-800 text-gray-200 p-8">
@@ -21,35 +23,35 @@ const Footer = () => {
 							<a
 								href="/qui-suis-je"
 								className="text-purple-400 hover:text-purple-300 hover:underline">
-								Qui suis-je ?
+								Découvrir Qui je suis
 							</a>
 						</li>
 						<li>
 							<a
 								href="/prestations"
 								className="text-purple-400 hover:text-purple-300 hover:underline">
-								Nos prestations
+								Voir nos prestations
 							</a>
 						</li>
 						<li>
 							<a
 								href="/notre-approche"
 								className="text-purple-400 hover:text-purple-300 hover:underline">
-								Notre approche
+								Explorer notre approche
 							</a>
 						</li>
 						<li>
 							<a
 								href="/contact"
 								className="text-purple-400 hover:text-purple-300 hover:underline">
-								Contact
+								Contactez-moi
 							</a>
 						</li>
 					</ul>
 				</div>
 
 				{/* Contact */}
-				<div>
+				<div className="flex flex-col gap-4">
 					<address className="not-italic text-sm space-y-1">
 						<p>
 							Adresse :{" "}
@@ -58,6 +60,9 @@ const Footer = () => {
 							</span>
 						</p>
 					</address>
+					<div className="flex justify-center item-center gap-4 mt-2">
+						<Reseaux />
+					</div>
 				</div>
 			</div>
 

@@ -5,11 +5,12 @@ function QuiSuisje() {
 		<>
 			<Helmet>
 				<title>
-					Dydy Fantasy – Animateur et passionné d’événements à Toulouse
+					Dydy Fantasy – Animateur professionnel et créateur d’expériences à
+					Toulouse et ses environs
 				</title>
 				<meta
 					name="description"
-					content="Découvrez Dydy Fantasy, animateur à Toulouse spécialisé en blind tests, quiz et animations sur mesure pour vos soirées et événements privés."
+					content="Découvrez Dydy Fantasy, animateur à Toulouse et ses environs spécialisé en blind tests, quiz et animations sur mesure pour vos soirées et événements privés."
 				/>
 				<link rel="canonical" href="https://www.dydyfantasy.fr/qui-suis-je" />
 			</Helmet>

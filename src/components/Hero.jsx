@@ -27,22 +27,22 @@ const Hero = () => {
 	];
 
 	return (
-		<section className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-black via-gray-900 to-gray-800 pt-8">
+		<section className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-black via-gray-900 to-gray-800">
 			<img
 				src={dydyImage}
 				alt="DYDY FANTASY"
 				className="absolute w-120 h-auto opacity-25"
-				fetchpriority="high"
+				fetchPriority="high"
 			/>
 			<NeonArcadeText text={"DYDY FANTASY"} />
 			<h1 className="sr-only"> Dydy fantasy</h1>
 
 			{/* Phrase d'accroche */}
 			<h2 className="relative soustitle text-center">
-				Bien plus qu'un animateur,{" "}
+				Bien plus qu’un animateur à Toulouse et ses environs,{" "}
 			</h2>
 			<h2 className="relative soustitle mb-5 text-center">
-				une expérience mémorable à Toulouse
+				des animations uniques pour vos soirées, mariages et événements.
 			</h2>
 
 			{/* Question */}
@@ -51,7 +51,7 @@ const Hero = () => {
 			</h2>
 
 			{/* Cartes */}
-			<div className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 md:gap-12 mb-6 md:mb-0 px-4 md:px-0">
+			<div className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 md:gap-12 px-4 md:px-0 mb-8">
 				{cards.map((card, index) => (
 					<Card
 						key={index}
@@ -61,6 +61,10 @@ const Hero = () => {
 					/>
 				))}
 			</div>
+			<h2 className="relative soustitlepurple mb-5 text-center">
+				Quiz, blind tests, soirées à thème ou anniversaires… vivez une
+				expérience animée et mémorable avec Dydy Fantasy !
+			</h2>
 		</section>
 	);
 };

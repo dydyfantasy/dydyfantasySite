@@ -6,7 +6,8 @@ const Prestations = () => {
 	const cards = [
 		{
 			title: "Types de prestations",
-			description: "Nous proposons divers types d'évènements : ",
+			description:
+				"Nous vous offrons une expérience complète : visibilité, captation et matériel professionnel pour vos événements animés : ",
 			icon: "🎉",
 			items: [
 				{
@@ -39,7 +40,7 @@ const Prestations = () => {
 		{
 			title: "Public visé",
 			description:
-				"Nous nous adaptons à tous types de clientèle et à tous vos besoins :",
+				"Nous nous adaptons à tous types de clientèle et à tous vos besoins:",
 			icon: "📣",
 			items: [
 				{
@@ -72,9 +73,27 @@ const Prestations = () => {
 		{
 			title: "Format",
 			description:
-				"Nous utilisons une plateforme développée sur mesure, accessible sur téléphone et sans limite du nombre d'utilisateurs.",
+				"Nous utilisons une plateforme développée sur mesure pour vos animations interactives, accessible sur téléphone et sans limite du nombre d'utilisateurs. Idéal pour vos soirées et événements à Toulouse et ses environs.",
 			icon: "🎮",
-			items: [],
+			items: [
+				{
+					text: (
+						<span>
+							Via l'application sur mesure{" "}
+							<a
+								href="https://dydyquiz.fr"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-purple-400 underline">
+								Dydy Quiz
+							</a>
+							, profitez de nos quiz, blind tests et autres animations
+							interactives !
+						</span>
+					),
+					icon: <CheckIcon className="w-5 h-5 flex-shrink-0 text-purple-400" />,
+				},
+			],
 			color: "green-500",
 		},
 		{
@@ -111,7 +130,7 @@ const Prestations = () => {
 		<section className="min-h-screen py-16 bg-gray-900 text-white">
 			<div className="max-w-5xl mx-auto flex flex-col">
 				<h1 className="title-site title-page font-bold text-center">
-					Nos prestations
+					Nos prestations d’animations et soirées à Toulouse et ses environs
 				</h1>
 				<PresentationCard cards={cards} />
 				<ZoneMap />

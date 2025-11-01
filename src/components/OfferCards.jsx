@@ -1,30 +1,38 @@
 const OfferCards = () => {
 	const cards = [
 		{
-			title: "Quiz interactif",
+			title: "Un quiz fun et interactif animé par Dydy Fantasy !",
 			description:
-				"Un quiz fun et interactif où le public devient acteur ! Parfait pour briser la glace et créer une ambiance inoubliable.\nAccessible via une plateforme sur téléphone ou avec des buzzers, sans restriction du nombre de participants.",
+				"Faites participer votre public grâce à une animation originale où chacun devient acteur. Idéal pour briser la glace et créer une ambiance inoubliable lors de vos soirées, mariages ou événements d’entreprise à Toulouse. Accessible via une plateforme sur téléphone ou avec des buzzers, sans limite de participants.",
 			icon: "🎤",
 			color: "red-500",
 		},
 		{
-			title: "Blind test musical",
+			title: "Un blind test musical 100 % digital, fluide et fun",
 			description:
-				"Digital, fluide et fun, avec un classement en temps réel, adapté à votre public.",
+				"L’animation s’adapte à votre public et à tous les types d’événements : soirée d’entreprise, anniversaire, mariage ou afterwork à Toulouse. Une expérience musicale conviviale et pleine d’énergie !",
 			icon: "🎶",
 			color: "blue-500",
 		},
 		{
 			title: "Jeux participatifs",
 			description:
-				"Des mini-jeux dynamiques, allant du loto à des karaokés endiablés, selon vos envies.",
+				"Du loto revisité au karaoké endiablé en passant par des soirées à thème sur mesure, chaque animation est pensée pour rassembler et faire rire votre public. L’idéal pour vos soirées à thème, fêtes ou événements d’entreprise.",
 			icon: "🏆",
 			color: "green-500",
+		},
+		{
+			title:
+				"Une animation personnalisée pour vos soirées à Toulouse et ses environs",
+			description:
+				"Mariage, entreprise, anniversaire ou fête entre amis : chaque événement est unique, et Dydy Fantasy crée une expérience à votre image. Quiz, blind test, karaoké ou activité sur mesure… tout est modulable selon vos envies !",
+			icon: "✨",
+			color: "yellow-400",
 		},
 	];
 	return (
 		<section className="pt-16 bg-gray-900">
-			<div className="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+			<div className="max-w-6xl mx-auto px-4 grid md:grid-cols-4 gap-8">
 				{cards.map((card, index) => (
 					<div
 						key={index}

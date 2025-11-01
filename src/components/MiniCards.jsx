@@ -12,28 +12,28 @@ import notreApproche from "../assets/NotreApproche.webp";
 const cards = [
 	{
 		title: "Qui suis-je ?",
-		subtitle: "Découvrez mon histoire",
+		subtitle: "Apprenez à connaître votre animateur à Toulouse et ses environs",
 		icon: UserCircleIcon,
 		background: quiSuisJe,
 		link: "/qui-suis-je",
 	},
 	{
 		title: "Nos prestations",
-		subtitle: "Ambiance sur mesure pour vos événements",
+		subtitle: "Animations, quiz et soirées sur mesure pour tous vos événements",
 		icon: SparklesIcon,
 		background: nosPrestation,
 		link: "/prestations",
 	},
 	{
 		title: "Notre approche",
-		subtitle: "Méthode et accompagnement personnalisés",
+		subtitle: "Une méthode d’animation conviviale et personnalisée",
 		icon: ArrowsPointingInIcon,
 		background: notreApproche,
 		link: "/notre-approche",
 	},
 	{
 		title: "Contact",
-		subtitle: "Demandez un devis ou plus d’infos",
+		subtitle: "Demandez un devis pour votre prochaine animation à Toulouse",
 		icon: PhoneIcon,
 		background: contactUs,
 		link: "/contact",
