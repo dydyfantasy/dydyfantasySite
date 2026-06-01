@@ -6,8 +6,9 @@ function WhatsAppButton() {
 			href="https://wa.me/33695953356?text=Bonjour%20Dydy%20Fantasy%20!%20Je%20souhaite%20en%20savoir%20plus."
 			target="_blank"
 			rel="noopener noreferrer"
-			className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center transition">
-			<FaWhatsapp className="w-10 h-10" />
+			aria-label="Contacter Dydy Fantasy sur WhatsApp"
+			className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg transition hover:bg-green-600 md:bottom-6 md:right-6 md:h-[72px] md:w-[72px]">
+			<FaWhatsapp className="h-8 w-8 md:h-10 md:w-10" />
 		</a>
 	);
 }

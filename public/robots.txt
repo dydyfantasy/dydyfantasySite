@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.dydyfantasy.fr/sitemap.xml
+Sitemap: https://dydyfantasy.fr/sitemap.xml

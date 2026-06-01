@@ -13,12 +13,7 @@
 .transform-style {
   transform-style: preserve-3d;
 }
-/* Flip au hover sur desktop uniquement */
-@media (hover: hover) and (pointer: fine) {
-  .flip-card-inner:hover {
-    transform: rotateY(180deg);
-  }
-}
+
 .title-site{
   font-family: Calibri;
   color: #32D3E7; /* affiche en couleur simple */
@@ -31,10 +26,15 @@
 
 }
 
+.textSizeMainPage{
+    font-family: Calibri;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+
 
 .soustitle{
   font-family: Calibri;
-  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
   color: transparent;
   color: #F28502; /* affiche en couleur simple */
   text-shadow:
@@ -48,11 +48,6 @@
   font-size: clamp(1.5rem, 2vw, 2rem);
   color: transparent;
   color: #E6007E;
-  text-shadow:
-    0 0 10px rgba(230, 0, 126, 0.8),
-    0 0 20px rgba(230, 0, 126, 0.6),
-    0 0 30px rgba(230, 0, 126, 0.4),
-    0 0 45px rgba(255, 100, 180, 0.3);
 }
 
 .glow-neon {

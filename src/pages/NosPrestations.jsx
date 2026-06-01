@@ -11,7 +11,7 @@ function NosPrestations() {
 					name="description"
 					content="Dydy Fantasy propose des animations et événements à Toulouse : blind tests, quiz, soirées, mariages et événements privés sur mesure."
 				/>
-				<link rel="canonical" href="https://www.dydyfantasy.fr/prestations" />
+				<link rel="canonical" href="https://dydyfantasy.fr/prestations" />
 			</Helmet>
 			<Prestations />
 		</>

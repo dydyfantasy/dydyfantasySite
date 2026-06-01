@@ -2,14 +2,12 @@
   RewriteEngine On
   RewriteBase /
 
-  # Forcer www et HTTPS (canonical URL)
-  RewriteCond %{HTTP_HOST} !^www\.dydyfantasy\.fr$ [NC]
-  RewriteRule ^(.*)$ https://www.dydyfantasy.fr/$1 [L,R=301]
+  # Forcer HTTPS et retirer le www
+  RewriteCond %{HTTPS} off [OR]
+  RewriteCond %{HTTP_HOST} ^www\.dydyfantasy\.fr$ [NC]
+  RewriteRule ^(.*)$ https://dydyfantasy.fr/$1 [L,R=301]
 
-  RewriteCond %{HTTPS} off
-  RewriteRule ^(.*)$ https://www.dydyfantasy.fr/$1 [L,R=301]
-
-  # Routes React (pour toutes les URLs qui ne sont pas des fichiers ou dossiers)
+  # Routes React : rediriger les URLs internes vers index.html
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^.*$ /index.html [L]

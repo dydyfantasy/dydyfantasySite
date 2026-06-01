@@ -9,6 +9,9 @@ import NosPrestations from "./pages/NosPrestations.jsx";
 import NotreApproche from "./pages/NotreApproche.jsx";
 import Contact from "./pages/Contact.jsx";
 import WhatsAppButton from "./components/WhatsAppButton.jsx";
+import Privacy from "./pages/Privacy.jsx";
+import FloatingNextEvent from "./components/FloatingNextEvent.jsx";
+import ScrollToHash from "./components/ScrollToHash.jsx";
 
 function App() {
 	return (
@@ -19,7 +22,7 @@ function App() {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Dydy Fantasy",
-      "image": "https://www.dydyfantasy.fr/dydy_fantasy_logo.webp",
+      "image": "https://dydyfantasy.fr/dydy_fantasy_logo.webp",
       "description": "Animateur et organisateur d'événements à Toulouse : blind tests, quiz et animations pour soirées, bars et événements privés.",
       "address": {
         "@type": "PostalAddress",
@@ -28,7 +31,7 @@ function App() {
         "postalCode": "31000",
         "addressCountry": "FR"
       },
-      "url": "https://www.dydyfantasy.fr/",
+      "url": "https://dydyfantasy.fr/",
       "sameAs": [
         "https://www.facebook.com/profile.php?id=61578462940099&locale=id_ID",
         "https://www.instagram.com/dydy_fantasy/"
@@ -61,13 +64,16 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="/qui-suis-je" element={<Quisuisje />} />
 					<Route path="/prestations" element={<NosPrestations />} />
-					<Route path="/notre-approche" element={<NotreApproche />} />
+					<Route path="/mon-approche" element={<NotreApproche />} />
 					<Route path="/contact" element={<Contact />} />
+					<Route path="/privacy" element={<Privacy />} />
 				</Routes>
 			</main>
 			<Footer />
 
+			<ScrollToHash />
 			<WhatsAppButton />
+			<FloatingNextEvent />
 		</>
 	);
 }
