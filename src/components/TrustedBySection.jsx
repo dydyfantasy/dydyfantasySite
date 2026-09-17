@@ -8,6 +8,12 @@ import {
 
 const clients = [
 	{
+		name: "Décathlon Escalquens",
+		type: "Évènement VitalSport",
+		location: "Escalquens (31)",
+		logo: "/clients/Decathlon.jpg",
+	},
+	{
 		name: "La Ville en Rose",
 		type: "Bar / restaurant",
 		location: "Colomiers (31)",
@@ -45,9 +51,27 @@ const clients = [
 	},
 	{
 		name: "Chez Granny",
-		type: "Restaurant",
+		type: "Restaurant/ bar",
 		location: "Cornebarrieu (31)",
 		logo: "/clients/Chez granny.png",
+	},
+	{
+		name: "L'entrepotes",
+		type: "Restaurant / bar",
+		location: "Gratentour (31)",
+		logo: "/clients/lentrepote.jpg",
+	},
+	{
+		name: "Lias vegas",
+		type: "Comité des fêtes de Lias",
+		location: "Lias (31)",
+		logo: "/clients/liasVegas.jpg",
+	},
+	{
+		name: "Comité des Giroussens",
+		type: "Comité des fêtes",
+		location: "Giroussens (82)",
+		logo: "/clients/girousens.jpg",
 	},
 ];
 

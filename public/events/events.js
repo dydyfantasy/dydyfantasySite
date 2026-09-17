@@ -1,4 +1,4 @@
-export const events = [
+window.DYDY_EVENTS = [
 	{
 		id: 1,
 		title: "Blind'Quiz + Karaoké",
@@ -69,9 +69,22 @@ export const events = [
 			"Soirée spéciale rhum avec dégustation, jeux interactifs et karaoké.",
 		publicEvent: true,
 		isNew: true,
+		poster: "events/18-juin-2026.webp",
 	},
 	{
 		id: 7,
+		title: "Blind'Quiz + Karaoké",
+		date: "2026-06-19",
+		hour: "20h00",
+		place: "La Ville en Rose",
+		city: "Colomiers (31)",
+		type: "Blind'Quiz + Karaoké",
+		description: "Soirée spéciale DANCEFLOOR",
+		publicEvent: true,
+		poster: "events/19-juin-2026.webp",
+	},
+	{
+		id: 8,
 		title: "Soirée spéciale Summer Love",
 		date: "2026-06-20",
 		hour: "20h00",
@@ -83,7 +96,7 @@ export const events = [
 		publicEvent: true,
 	},
 	{
-		id: 8,
+		id: 9,
 		title: "Blind'Quiz + Karaoké",
 		date: "2026-06-25",
 		hour: "20h00",
@@ -94,7 +107,7 @@ export const events = [
 		publicEvent: true,
 	},
 	{
-		id: 9,
+		id: 10,
 		title: "Blind'Quiz + Karaoké",
 		date: "2026-06-27",
 		hour: "19h30",

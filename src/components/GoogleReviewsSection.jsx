@@ -24,7 +24,7 @@ const GoogleReviewsSection = () => {
 					viewport={{ once: false, amount: 0.25 }}
 					transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
 					className="mb-10 text-center">
-					<div className="mb-4 inline-flex items-center gap-2 rounded-full border border-yellow-300/20 bg-yellow-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.25em] text-yellow-200">
+					<div className="mb-4 inliline-flex items-center gap-2 rounded-full border border-yellow-300/20 bg-yellow-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.25em] text-yellow-200">
 						<StarIcon className="h-4 w-4" />
 						Avis clients
 					</div>

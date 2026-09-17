@@ -11,7 +11,7 @@ import {
 	ChevronDownIcon,
 	ChevronUpIcon,
 } from "@heroicons/react/24/outline";
-import { events } from "../data/events";
+const events = window.DYDY_EVENTS || [];
 
 function getLocalDate(dateString) {
 	const [year, month, day] = dateString.split("-").map(Number);
