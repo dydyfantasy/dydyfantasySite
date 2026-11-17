@@ -17,13 +17,18 @@ import { PRESTATIONS, EVENEMENTS } from "../../data/navigation";
 const MENUS = [
 	{ id: "prestations", label: "Prestations", items: [...PRESTATIONS, { to: "/prestations", label: "Toutes les prestations", icon: Squares2X2Icon, color: "rgb(255 255 255 / 0.6)" }] },
 	{ id: "evenements", label: "Événements", items: EVENEMENTS },
+	{
+		id: "dydy",
+		label: "Dydy Fantasy",
+		items: [
+			{ to: "/qui-suis-je", label: "Qui suis-je ?", icon: UserCircleIcon, color: "#ff2fae" },
+			{ to: "/mon-approche", label: "Mon approche", icon: LightBulbIcon, color: "#7cff6b" },
+			{ to: "/galerie", label: "Galerie", icon: PhotoIcon, color: "#19d3f0" },
+		],
+	},
 ];
 
-const LINKS = [
-	{ to: "/qui-suis-je", label: "Qui suis-je ?", icon: UserCircleIcon, color: "#ff2fae" },
-	{ to: "/galerie", label: "Galerie", icon: PhotoIcon, color: "#19d3f0" },
-	{ to: "/#agenda", label: "Agenda", plain: true, icon: CalendarDaysIcon, color: "#ffc93c" },
-];
+const LINKS = [{ to: "/#agenda", label: "Agenda", plain: true, icon: CalendarDaysIcon, color: "#ffc93c" }];
 
 const navClass = ({ isActive }) =>
 	`rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
@@ -132,10 +137,11 @@ export default function LedHeader() {
 							{menu.items.map((p) => <IconLink key={p.to} {...p} big />)}
 						</div>
 					))}
-					<p className="mt-4 px-3 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">Dydy Fantasy</p>
-					{[...LINKS, { to: "/mon-approche", label: "Mon approche", icon: LightBulbIcon, color: "#7cff6b" }].map((l) => (
-						<IconLink key={l.to} {...l} big />
-					))}
+					<div className="mt-4 border-t border-white/10 pt-2">
+						{LINKS.map((l) => (
+							<IconLink key={l.to} {...l} big />
+						))}
+					</div>
 					<Link to="/contact" className="btn-neon mt-5 block rounded-xl bg-[var(--pink)] px-4 py-3 text-center font-bold text-white">
 						Demander mon devis
 					</Link>
