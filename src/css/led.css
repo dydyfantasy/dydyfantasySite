@@ -215,36 +215,32 @@
 	}
 }
 
-/* Faisceau de projecteur : cône qui descend et se balance */
-.beam {
+/* Traînée de lumière : bande diagonale fondue à toutes ses extrémités,
+   qui glisse et pivote lentement (transform uniquement) */
+.streak {
 	position: absolute;
-	width: 70vw;
-	max-width: 60rem;
-	height: 110vh;
-	margin-left: -35vw;
-	transform-origin: 50% 0;
-	background: conic-gradient(
-		from calc(var(--a, 180deg) - 12deg) at 50% 0%,
-		transparent 0deg,
-		color-mix(in srgb, var(--c) 14%, transparent) 12deg,
-		transparent 24deg
+	width: 130vw;
+	height: 26rem;
+	background: radial-gradient(
+		ellipse 50% 50% at 50% 50%,
+		color-mix(in srgb, var(--c) 16%, transparent) 0%,
+		color-mix(in srgb, var(--c) 6%, transparent) 45%,
+		transparent 70%
 	);
-	animation: beam-sway var(--d) ease-in-out infinite alternate;
+	transform: translate(-50%, -50%) rotate(var(--r));
+	animation: streak-drift var(--d) ease-in-out infinite alternate;
 }
 
-@keyframes beam-sway {
-	from {
-		transform: rotate(-9deg);
-	}
+@keyframes streak-drift {
 	to {
-		transform: rotate(9deg);
+		transform: translate(calc(-50% + 8vw), calc(-50% + 6vh)) rotate(calc(var(--r) + 8deg));
 	}
 }
 
 /* Version allégée sur mobile : moins de lumières, plus petites */
 @media (max-width: 767px) {
 	.spot[data-mobile-off],
-	.beam[data-mobile-off] {
+	.streak[data-mobile-off] {
 		display: none;
 	}
 
@@ -252,10 +248,9 @@
 		width: min(var(--s), 110vw);
 	}
 
-	.beam {
-		width: 120vw;
-		margin-left: -60vw;
-		height: 80vh;
+	.streak {
+		width: 160vw;
+		height: 16rem;
 	}
 }
 
@@ -315,10 +310,24 @@ a.board-row:hover {
 	background: rgb(25 211 240 / 0.06);
 }
 
-/* Cadre « téléphone néon » de la vidéo */
-.phone-frame {
-	background: linear-gradient(160deg, var(--cyan), #8b5cf6 50%, var(--pink));
-	box-shadow: 0 0 40px -8px var(--pink);
+/* Carrousel de photos */
+.carousel-track {
+	scrollbar-width: none;
+}
+
+.carousel-track::-webkit-scrollbar {
+	display: none;
+}
+
+.carousel-card {
+	border-radius: 1.1rem;
+	padding: 3px;
+	background: color-mix(in srgb, var(--c) 55%, transparent);
+	transition: transform 0.2s ease;
+}
+
+.carousel-card:hover {
+	transform: translateY(-3px);
 }
 
 /* Bloc final */
@@ -350,7 +359,7 @@ a.board-row:hover {
 	.answer-pop,
 	.live-dot,
 	.spot,
-	.beam,
+	.streak,
 	.is-chasing .answer-btn::after {
 		animation: none;
 	}

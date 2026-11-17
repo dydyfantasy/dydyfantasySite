@@ -8,7 +8,7 @@ import LedEvents from "../components/led/LedEvents";
 import LedAgenda from "../components/led/LedAgenda";
 import LedClients from "../components/led/LedClients";
 import LedReviews from "../components/led/LedReviews";
-import LedVideo from "../components/led/LedVideo";
+import LedAbout from "../components/led/LedAbout";
 import LedFinal from "../components/led/LedFinal";
 
 function Home() {
@@ -65,7 +65,7 @@ function Home() {
 			<LedAgenda />
 			<LedClients />
 			<LedReviews />
-			<LedVideo />
+			<LedAbout />
 			<LedFinal />
 		</div>
 	);
