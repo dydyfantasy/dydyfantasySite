@@ -1,19 +1,28 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
-import { Bars3Icon, XMarkIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import {
+	Bars3Icon,
+	XMarkIcon,
+	ChevronDownIcon,
+	Squares2X2Icon,
+	UserCircleIcon,
+	PhotoIcon,
+	CalendarDaysIcon,
+	LightBulbIcon,
+} from "@heroicons/react/24/outline";
 import logo480 from "../../assets/brand/logo-texte-480.webp";
 import { PRESTATIONS, EVENEMENTS } from "../../data/navigation";
 
 // Menus déroulants (contenu dans src/data/navigation.js)
 const MENUS = [
-	{ id: "prestations", label: "Prestations", items: [...PRESTATIONS, { to: "/prestations", label: "Toutes les prestations" }] },
+	{ id: "prestations", label: "Prestations", items: [...PRESTATIONS, { to: "/prestations", label: "Toutes les prestations", icon: Squares2X2Icon, color: "rgb(255 255 255 / 0.6)" }] },
 	{ id: "evenements", label: "Événements", items: EVENEMENTS },
 ];
 
 const LINKS = [
-	{ to: "/qui-suis-je", label: "Qui suis-je ?" },
-	{ to: "/galerie", label: "Galerie" },
-	{ to: "/#agenda", label: "Agenda", plain: true },
+	{ to: "/qui-suis-je", label: "Qui suis-je ?", icon: UserCircleIcon, color: "#ff2fae" },
+	{ to: "/galerie", label: "Galerie", icon: PhotoIcon, color: "#19d3f0" },
+	{ to: "/#agenda", label: "Agenda", plain: true, icon: CalendarDaysIcon, color: "#ffc93c" },
 ];
 
 const navClass = ({ isActive }) =>
@@ -21,11 +30,23 @@ const navClass = ({ isActive }) =>
 		isActive ? "text-[var(--cyan)]" : "text-white/80 hover:text-white"
 	}`;
 
-function MobileLink({ to, label, plain }) {
+// Lien avec icône colorée (menus déroulants et menu mobile)
+function IconLink({ to, label, plain, icon: Icon, color, big = false }) {
+	const cls = (isActive) => `flex items-center gap-3 ${big ? "text-base" : ""} ${navClass({ isActive })}`;
+	const content = (
+		<>
+			{Icon && (
+				<span className="menu-icon flex h-8 w-8 shrink-0 items-center justify-center rounded-lg" style={{ "--c": color }}>
+					<Icon aria-hidden="true" className="h-5 w-5" />
+				</span>
+			)}
+			{label}
+		</>
+	);
 	return plain ? (
-		<a href={to} className={`block text-base ${navClass({ isActive: false })}`}>{label}</a>
+		<a href={to} className={cls(false)}>{content}</a>
 	) : (
-		<NavLink to={to} end className={({ isActive }) => `block text-base ${navClass({ isActive })}`}>{label}</NavLink>
+		<NavLink to={to} end className={({ isActive }) => cls(isActive)}>{content}</NavLink>
 	);
 }
 
@@ -72,11 +93,9 @@ export default function LedHeader() {
 								<ChevronDownIcon className={`h-4 w-4 transition-transform ${dropdown === menu.id ? "rotate-180" : ""}`} />
 							</button>
 							{dropdown === menu.id && (
-								<div className="neon-card absolute left-0 top-full mt-2 w-64 rounded-2xl bg-[var(--ink)] p-2" style={{ "--c": "var(--cyan)" }}>
+								<div className="neon-card absolute left-0 top-full mt-2 w-72 rounded-2xl bg-[var(--ink)] p-2" style={{ "--c": "var(--cyan)" }}>
 									{menu.items.map((p) => (
-										<NavLink key={p.to} to={p.to} end className={({ isActive }) => `block ${navClass({ isActive })}`}>
-											{p.label}
-										</NavLink>
+										<IconLink key={p.to} {...p} />
 									))}
 								</div>
 							)}
@@ -110,11 +129,13 @@ export default function LedHeader() {
 					{MENUS.map((menu) => (
 						<div key={menu.id}>
 							<p className="mt-4 px-3 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">{menu.label}</p>
-							{menu.items.map((p) => <MobileLink key={p.to} {...p} />)}
+							{menu.items.map((p) => <IconLink key={p.to} {...p} big />)}
 						</div>
 					))}
 					<p className="mt-4 px-3 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">Dydy Fantasy</p>
-					{[...LINKS, { to: "/mon-approche", label: "Mon approche" }].map((l) => <MobileLink key={l.to} {...l} />)}
+					{[...LINKS, { to: "/mon-approche", label: "Mon approche", icon: LightBulbIcon, color: "#7cff6b" }].map((l) => (
+						<IconLink key={l.to} {...l} big />
+					))}
 					<Link to="/contact" className="btn-neon mt-5 block rounded-xl bg-[var(--pink)] px-4 py-3 text-center font-bold text-white">
 						Demander mon devis
 					</Link>

@@ -384,6 +384,14 @@ a.board-row:hover {
 	box-shadow: 0 0 18px -4px var(--c);
 }
 
+/* ---------- Icônes du menu ---------- */
+
+.menu-icon {
+	color: var(--c);
+	background: color-mix(in srgb, var(--c) 14%, transparent);
+	border: 1px solid color-mix(in srgb, var(--c) 35%, transparent);
+}
+
 /* ---------- Mascotte ---------- */
 
 /* Petit rebond, comme si elle sautait en rythme (transform uniquement) */
