@@ -24,13 +24,11 @@ const fadeUp = {
 		opacity: 0,
 		y: 45,
 		scale: 0.97,
-		filter: "blur(10px)",
 	},
 	visible: {
 		opacity: 1,
 		y: 0,
 		scale: 1,
-		filter: "blur(0px)",
 		transition: {
 			duration: 0.7,
 			ease: [0.16, 1, 0.3, 1],
@@ -42,12 +40,10 @@ const fadeLeft = {
 	hidden: {
 		opacity: 0,
 		x: -55,
-		filter: "blur(10px)",
 	},
 	visible: {
 		opacity: 1,
 		x: 0,
-		filter: "blur(0px)",
 		transition: {
 			duration: 0.75,
 			ease: [0.16, 1, 0.3, 1],
@@ -59,12 +55,10 @@ const fadeRight = {
 	hidden: {
 		opacity: 0,
 		x: 55,
-		filter: "blur(10px)",
 	},
 	visible: {
 		opacity: 1,
 		x: 0,
-		filter: "blur(0px)",
 		transition: {
 			duration: 0.75,
 			ease: [0.16, 1, 0.3, 1],
@@ -173,7 +167,7 @@ function FloatingBackground() {
 					repeat: Infinity,
 					ease: "easeInOut",
 				}}
-				className="absolute left-[-140px] top-16 h-96 w-96 rounded-full bg-pink-500/10 blur-3xl"
+				className="absolute left-[-140px] top-16 h-96 w-96 rounded-full bg-pink-500/10 hidden"
 			/>
 
 			<motion.div
@@ -187,7 +181,7 @@ function FloatingBackground() {
 					repeat: Infinity,
 					ease: "easeInOut",
 				}}
-				className="absolute right-[-160px] top-44 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl"
+				className="absolute right-[-160px] top-44 h-96 w-96 rounded-full bg-blue-500/10 hidden"
 			/>
 
 			<motion.div
@@ -201,7 +195,7 @@ function FloatingBackground() {
 					repeat: Infinity,
 					ease: "easeInOut",
 				}}
-				className="absolute bottom-10 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-purple-500/10 blur-3xl"
+				className="absolute bottom-10 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-purple-500/10 hidden"
 			/>
 
 			<div className="absolute inset-0 opacity-[0.06]">
@@ -236,7 +230,7 @@ function ScrollingBand() {
 				className="flex w-max items-center gap-4">
 				{words.map((word, index) => (
 					<div key={`${word}-${index}`} className="flex items-center gap-4">
-						<span className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
+						<span className="text-sm font-extrabold uppercase tracking-[0.22em] text-white/60">
 							{word}
 						</span>
 						<span className="h-2 w-2 rounded-full bg-pink-400 shadow-[0_0_18px_rgba(244,114,182,0.9)]" />
@@ -250,7 +244,7 @@ function ScrollingBand() {
 const Presentation = () => {
 	return (
 		<>
-			<section className="relative overflow-hidden bg-gray-900 text-white">
+			<section className="relative overflow-hidden bg-transparent text-white">
 				<div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pink-500/50 to-transparent" />
 
 				<FloatingBackground />
@@ -267,20 +261,20 @@ const Presentation = () => {
 									delay: 0.1,
 									ease: [0.16, 1, 0.3, 1],
 								}}
-								className="mb-5 inline-flex items-center gap-2 rounded-full border border-pink-300/20 bg-pink-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.25em] text-pink-200">
+								className="mb-5 inline-flex items-center gap-2 rounded-full border border-pink-300/20 bg-pink-400/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.25em] text-pink-200">
 								<UserCircleIcon className="h-4 w-4" />
 								Qui suis-je ?
 							</motion.div>
 
 							<motion.h1
-								initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-								animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+								initial={{ opacity: 0, y: 40 }}
+								animate={{ opacity: 1, y: 0 }}
 								transition={{
 									duration: 0.8,
 									delay: 0.15,
 									ease: [0.16, 1, 0.3, 1],
 								}}
-								className="max-w-4xl text-4xl font-black leading-tight tracking-tight md:text-6xl">
+								className="max-w-4xl text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
 								Derrière Dydy Fantasy, il y a une envie simple :
 								<span className="bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">
 									{" "}
@@ -321,14 +315,14 @@ const Presentation = () => {
 								className="mt-8 flex flex-col gap-3 sm:flex-row">
 								<Link
 									to="/contact"
-									className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-pink-600 to-purple-700 px-6 py-3 text-sm font-black text-white shadow-[0_0_28px_rgba(236,72,153,0.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_42px_rgba(236,72,153,0.65)]">
+									className="inline-flex items-center justify-center gap-2 rounded-2xl btn-neon bg-[var(--pink)] px-6 py-3 text-sm font-extrabold text-white shadow-[0_0_28px_rgba(236,72,153,0.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_42px_rgba(236,72,153,0.65)]">
 									<EnvelopeIcon className="h-5 w-5" />
 									Me contacter
 								</Link>
 
 								<Link
 									to="/prestations"
-									className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.055] px-6 py-3 text-sm font-black text-white/80 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-pink-300/30 hover:bg-pink-500/10 hover:text-white">
+									className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.055] px-6 py-3 text-sm font-extrabold text-white/80 transition-all duration-300 hover:-translate-y-1 hover:border-pink-300/30 hover:bg-pink-500/10 hover:text-white">
 									Voir mes prestations
 									<ArrowRightIcon className="h-4 w-4" />
 								</Link>
@@ -344,8 +338,8 @@ const Presentation = () => {
 										key={stat.label}
 										variants={fadeUp}
 										whileHover={{ y: -6, scale: 1.03 }}
-										className="rounded-2xl border border-white/10 bg-white/[0.045] p-4 text-center shadow-xl backdrop-blur-xl">
-										<p className="text-2xl font-black text-white">
+										className="rounded-2xl border border-white/10 bg-white/[0.045] p-4 text-center shadow-xl">
+										<p className="text-2xl font-extrabold text-white">
 											{stat.value}
 										</p>
 										<p className="mt-1 text-[11px] font-bold uppercase tracking-[0.16em] text-gray-400">
@@ -371,7 +365,7 @@ const Presentation = () => {
 									ease: "easeInOut",
 								}}
 								className="relative">
-								<div className="absolute -inset-5 rounded-[2.5rem] bg-gradient-to-br from-pink-500/25 via-purple-500/15 to-blue-500/25 blur-2xl" />
+								<div className="absolute -inset-5 rounded-[2.5rem] bg-gradient-to-br from-pink-500/25 via-purple-500/15 to-blue-500/25 hidden" />
 
 								<motion.div
 									whileHover={{
@@ -383,7 +377,7 @@ const Presentation = () => {
 										stiffness: 180,
 										damping: 18,
 									}}
-									className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-3 shadow-2xl backdrop-blur-xl">
+									className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-3 shadow-2xl">
 									<div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500" />
 
 									<img
@@ -396,8 +390,8 @@ const Presentation = () => {
 										initial={{ opacity: 0, y: 25 }}
 										animate={{ opacity: 1, y: 0 }}
 										transition={{ duration: 0.6, delay: 0.75 }}
-										className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-black/60 p-4 backdrop-blur-xl">
-										<p className="text-xs font-black uppercase tracking-[0.22em] text-pink-200">
+										className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/10 bg-black/60 p-4">
+										<p className="text-xs font-extrabold uppercase tracking-[0.22em] text-pink-200">
 											Dydy Fantasy
 										</p>
 										<p className="mt-1 text-sm text-gray-200">
@@ -431,16 +425,16 @@ const Presentation = () => {
 										stiffness: 260,
 										damping: 22,
 									}}
-									className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.045] p-6 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-pink-300/30 hover:bg-white/[0.075]">
+									className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.045] p-6 shadow-xl transition-all duration-300 hover:border-pink-300/30 hover:bg-white/[0.075]">
 									<div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500" />
-									<div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-pink-500/15 blur-3xl transition duration-500 group-hover:scale-125" />
+									<div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-pink-500/15 hidden transition duration-500 group-hover:scale-125" />
 
 									<div className="relative z-10">
 										<div className="grid h-14 w-14 place-items-center rounded-2xl bg-pink-500/15 text-pink-200">
 											<Icon className="h-7 w-7" />
 										</div>
 
-										<h2 className="mt-5 text-xl font-black text-white">
+										<h2 className="mt-5 text-xl font-extrabold text-white">
 											{service.title}
 										</h2>
 
@@ -461,12 +455,12 @@ const Presentation = () => {
 							whileInView="visible"
 							viewport={{ once: false, amount: 0.25 }}
 							className="text-center">
-							<div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-300/20 bg-purple-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.25em] text-purple-200">
+							<div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-300/20 bg-purple-400/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.25em] text-purple-200">
 								<RocketLaunchIcon className="h-4 w-4" />
 								Mon histoire
 							</div>
 
-							<h2 className="text-3xl font-black tracking-tight md:text-4xl">
+							<h2 className="text-3xl font-extrabold tracking-tight md:text-4xl">
 								Une animation pensée pour faire participer tout le monde.
 							</h2>
 						</motion.div>
@@ -484,12 +478,10 @@ const Presentation = () => {
 											initial={{
 												opacity: 0,
 												x: index % 2 === 0 ? -45 : 45,
-												filter: "blur(10px)",
 											}}
 											whileInView={{
 												opacity: 1,
 												x: 0,
-												filter: "blur(0px)",
 											}}
 											viewport={{ once: false, amount: 0.25 }}
 											transition={{
@@ -497,8 +489,8 @@ const Presentation = () => {
 												delay: index * 0.08,
 												ease: [0.16, 1, 0.3, 1],
 											}}
-											className="relative rounded-3xl border border-white/10 bg-white/[0.045] p-6 shadow-xl backdrop-blur-xl md:ml-16">
-											<div className="absolute -left-[4.6rem] top-6 hidden h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-gray-950 text-pink-200 shadow-[0_0_25px_rgba(236,72,153,0.35)] md:grid">
+											className="relative rounded-3xl border border-white/10 bg-white/[0.045] p-6 shadow-xl md:ml-16">
+											<div className="absolute -left-[4.6rem] top-6 hidden h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-transparent text-pink-200 shadow-[0_0_25px_rgba(236,72,153,0.35)] md:grid">
 												<Icon className="h-6 w-6" />
 											</div>
 
@@ -508,7 +500,7 @@ const Presentation = () => {
 												</div>
 
 												<div>
-													<h3 className="text-xl font-black text-white">
+													<h3 className="text-xl font-extrabold text-white">
 														{step.title}
 													</h3>
 													<p className="mt-2 text-sm leading-relaxed text-gray-400">
@@ -518,7 +510,7 @@ const Presentation = () => {
 											</div>
 
 											<div className="hidden md:block">
-												<h3 className="text-xl font-black text-white">
+												<h3 className="text-xl font-extrabold text-white">
 													{step.title}
 												</h3>
 												<p className="mt-2 text-sm leading-relaxed text-gray-400">
@@ -539,15 +531,15 @@ const Presentation = () => {
 							initial="hidden"
 							whileInView="visible"
 							viewport={{ once: false, amount: 0.2 }}
-							className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 shadow-xl backdrop-blur-xl md:p-8">
+							className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 shadow-xl md:p-8">
 							<div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
 
-							<div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-blue-200">
+							<div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-400/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-blue-200">
 								<ComputerDesktopIcon className="h-4 w-4" />
 								Mon côté développeur
 							</div>
 
-							<h2 className="text-2xl font-black text-white md:text-3xl">
+							<h2 className="text-2xl font-extrabold text-white md:text-3xl">
 								La technologie au service de l’ambiance.
 							</h2>
 
@@ -569,10 +561,10 @@ const Presentation = () => {
 							initial="hidden"
 							whileInView="visible"
 							viewport={{ once: false, amount: 0.2 }}
-							className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 shadow-xl backdrop-blur-xl md:p-8">
+							className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 shadow-xl md:p-8">
 							<div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-yellow-300" />
 
-							<div className="mb-4 inline-flex items-center gap-2 rounded-full border border-pink-300/20 bg-pink-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-pink-200">
+							<div className="mb-4 inline-flex items-center gap-2 rounded-full border border-pink-300/20 bg-pink-400/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-pink-200">
 								<MicrophoneIcon className="h-4 w-4" />
 								Mon côté animateur
 							</div>
@@ -605,12 +597,12 @@ const Presentation = () => {
 
 					{/* CTA */}
 					<motion.div
-						initial={{ opacity: 0, y: 45, scale: 0.96, filter: "blur(10px)" }}
-						whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+						initial={{ opacity: 0, y: 45, scale: 0.96 }}
+						whileInView={{ opacity: 1, y: 0, scale: 1 }}
 						viewport={{ once: false, amount: 0.25 }}
 						transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-						className="mt-20 overflow-hidden rounded-[2rem] border border-pink-300/20 bg-gradient-to-br from-pink-500/15 via-purple-500/10 to-blue-500/15 p-6 text-center shadow-2xl backdrop-blur-xl md:p-10">
-						<h2 className="text-3xl font-black text-white">
+						className="mt-20 overflow-hidden rounded-[2rem] border border-pink-300/20 bg-gradient-to-br from-pink-500/15 via-purple-500/10 to-blue-500/15 p-6 text-center shadow-2xl md:p-10">
+						<h2 className="text-3xl font-extrabold text-white">
 							Vous voulez créer une soirée qui marque les esprits ?
 						</h2>
 
@@ -621,7 +613,7 @@ const Presentation = () => {
 
 						<Link
 							to="/contact"
-							className="mt-7 inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-3 text-sm font-black text-gray-950 transition hover:-translate-y-1 hover:bg-pink-100">
+							className="mt-7 inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-3 text-sm font-extrabold text-gray-950 transition hover:-translate-y-1 hover:bg-pink-100">
 							<EnvelopeIcon className="h-5 w-5" />
 							Me contacter
 						</Link>

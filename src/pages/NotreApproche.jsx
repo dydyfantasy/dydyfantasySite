@@ -1,9 +1,11 @@
 import Seo from "../components/Seo";
+import StageLights from "../components/led/StageLights";
 import OurApproach from "../components/OurApproach";
 
 function NotreApproche() {
 	return (
-		<>
+		<div className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
+			<StageLights />
 			<Seo
 				path="/mon-approche"
 				title="Dydy Fantasy | Mon approche pour animer vos événements à Toulouse"
@@ -13,7 +15,7 @@ function NotreApproche() {
 			/>
 
 			<OurApproach />
-		</>
+		</div>
 	);
 }
 

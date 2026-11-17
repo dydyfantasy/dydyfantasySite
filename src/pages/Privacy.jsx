@@ -1,8 +1,10 @@
 import Seo from "../components/Seo";
+import StageLights from "../components/led/StageLights";
 
 function Privacy() {
 	return (
-		<>
+		<div className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
+			<StageLights />
 			<Seo
 				path="/privacy"
 				title="Politique de confidentialité | Dydy Quiz"
@@ -10,8 +12,8 @@ function Privacy() {
 				noindex
 			/>
 
-			<div className="min-h-screen bg-gray-900 text-white py-16 px-6">
-				<div className="max-w-4xl mx-auto bg-gray-800 rounded-2xl shadow-lg p-8 md:p-12">
+			<div className="min-h-screen bg-transparent text-white py-16 px-6">
+				<div className="neon-card max-w-4xl mx-auto rounded-3xl p-8 md:p-12">
 					<h1 className="text-3xl md:text-4xl font-bold mb-8">
 						Politique de confidentialité
 					</h1>
@@ -131,7 +133,7 @@ function Privacy() {
 					</section>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
 

@@ -21,13 +21,11 @@ const fadeUp = {
 		opacity: 0,
 		y: 45,
 		scale: 0.97,
-		filter: "blur(10px)",
 	},
 	visible: {
 		opacity: 1,
 		y: 0,
 		scale: 1,
-		filter: "blur(0px)",
 		transition: {
 			duration: 0.65,
 			ease: [0.16, 1, 0.3, 1],
@@ -39,12 +37,10 @@ const fadeLeft = {
 	hidden: {
 		opacity: 0,
 		x: -55,
-		filter: "blur(10px)",
 	},
 	visible: {
 		opacity: 1,
 		x: 0,
-		filter: "blur(0px)",
 		transition: {
 			duration: 0.75,
 			ease: [0.16, 1, 0.3, 1],
@@ -56,12 +52,10 @@ const fadeRight = {
 	hidden: {
 		opacity: 0,
 		x: 55,
-		filter: "blur(10px)",
 	},
 	visible: {
 		opacity: 1,
 		x: 0,
-		filter: "blur(0px)",
 		transition: {
 			duration: 0.75,
 			ease: [0.16, 1, 0.3, 1],
@@ -221,7 +215,7 @@ function FloatingBackground() {
 					repeat: Infinity,
 					ease: "easeInOut",
 				}}
-				className="absolute left-[-150px] top-20 h-96 w-96 rounded-full bg-pink-500/10 blur-3xl"
+				className="absolute left-[-150px] top-20 h-96 w-96 rounded-full bg-pink-500/10 hidden"
 			/>
 
 			<motion.div
@@ -235,7 +229,7 @@ function FloatingBackground() {
 					repeat: Infinity,
 					ease: "easeInOut",
 				}}
-				className="absolute right-[-160px] top-52 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl"
+				className="absolute right-[-160px] top-52 h-96 w-96 rounded-full bg-blue-500/10 hidden"
 			/>
 
 			<motion.div
@@ -249,7 +243,7 @@ function FloatingBackground() {
 					repeat: Infinity,
 					ease: "easeInOut",
 				}}
-				className="absolute bottom-20 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-purple-500/10 blur-3xl"
+				className="absolute bottom-20 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-purple-500/10 hidden"
 			/>
 
 			<div className="absolute inset-0 opacity-[0.06]">
@@ -285,7 +279,7 @@ function ScrollingBand() {
 			>
 				{words.map((word, index) => (
 					<div key={`${word}-${index}`} className="flex items-center gap-4">
-						<span className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
+						<span className="text-sm font-extrabold uppercase tracking-[0.22em] text-white/60">
 							{word}
 						</span>
 						<span className="h-2 w-2 rounded-full bg-pink-400 shadow-[0_0_18px_rgba(244,114,182,0.9)]" />
@@ -306,13 +300,11 @@ function StepCard({ step, index }) {
 				opacity: 0,
 				x: isEven ? -45 : 45,
 				y: 25,
-				filter: "blur(10px)",
 			}}
 			whileInView={{
 				opacity: 1,
 				x: 0,
 				y: 0,
-				filter: "blur(0px)",
 			}}
 			viewport={{ once: false, amount: 0.2 }}
 			transition={{
@@ -334,13 +326,13 @@ function StepCard({ step, index }) {
 				<motion.div
 					whileHover={{ y: -8, scale: 1.02 }}
 					transition={{ type: "spring", stiffness: 260, damping: 22 }}
-					className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.045] p-6 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-pink-300/30 hover:bg-white/[0.075]"
+					className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.045] p-6 shadow-xl transition-all duration-300 hover:border-pink-300/30 hover:bg-white/[0.075]"
 				>
 					<div
 						className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${step.gradient}`}
 					/>
 
-					<div className="pointer-events-none absolute -right-14 -top-14 h-40 w-40 rounded-full bg-pink-500/15 blur-3xl transition duration-500 group-hover:scale-125" />
+					<div className="pointer-events-none absolute -right-14 -top-14 h-40 w-40 rounded-full bg-pink-500/15 hidden transition duration-500 group-hover:scale-125" />
 
 					<div className="relative z-10">
 						<div className="flex items-start justify-between gap-4">
@@ -350,16 +342,16 @@ function StepCard({ step, index }) {
 								<Icon className="h-7 w-7 text-white" />
 							</div>
 
-							<span className="text-3xl font-black text-white/10">
+							<span className="text-3xl font-extrabold text-white/10">
 								{step.number}
 							</span>
 						</div>
 
-						<p className="mt-5 text-xs font-black uppercase tracking-[0.2em] text-white/45">
+						<p className="mt-5 text-xs font-extrabold uppercase tracking-[0.2em] text-white/45">
 							{step.subtitle}
 						</p>
 
-						<h2 className="mt-2 text-2xl font-black text-white">
+						<h2 className="mt-2 text-2xl font-extrabold text-white">
 							{step.title}
 						</h2>
 
@@ -387,7 +379,7 @@ function StepCard({ step, index }) {
 
 const OurApproach = () => {
 	return (
-		<section className="relative overflow-hidden bg-gray-900 text-white">
+		<section className="relative overflow-hidden bg-transparent text-white">
 			<div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pink-500/50 to-transparent" />
 
 			<FloatingBackground />
@@ -404,21 +396,21 @@ const OurApproach = () => {
 								delay: 0.1,
 								ease: [0.16, 1, 0.3, 1],
 							}}
-							className="mb-5 inline-flex items-center gap-2 rounded-full border border-pink-300/20 bg-pink-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.25em] text-pink-200"
+							className="mb-5 inline-flex items-center gap-2 rounded-full border border-pink-300/20 bg-pink-400/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.25em] text-pink-200"
 						>
 							<RocketLaunchIcon className="h-4 w-4" />
 							Mon approche
 						</motion.div>
 
 						<motion.h1
-							initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-							animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+							initial={{ opacity: 0, y: 40 }}
+							animate={{ opacity: 1, y: 0 }}
 							transition={{
 								duration: 0.8,
 								delay: 0.15,
 								ease: [0.16, 1, 0.3, 1],
 							}}
-							className="max-w-4xl text-4xl font-black leading-tight tracking-tight md:text-6xl"
+							className="max-w-4xl text-4xl font-extrabold leading-tight tracking-tight md:text-6xl"
 						>
 							Une animation réussie, ça se prépare
 							<span className="bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">
@@ -454,7 +446,7 @@ const OurApproach = () => {
 						>
 							<Link
 								to="/contact"
-								className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-pink-600 to-purple-700 px-6 py-3 text-sm font-black text-white shadow-[0_0_28px_rgba(236,72,153,0.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_42px_rgba(236,72,153,0.65)]"
+								className="inline-flex items-center justify-center gap-2 rounded-2xl btn-neon bg-[var(--pink)] px-6 py-3 text-sm font-extrabold text-white shadow-[0_0_28px_rgba(236,72,153,0.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_42px_rgba(236,72,153,0.65)]"
 							>
 								<EnvelopeIcon className="h-5 w-5" />
 								Me parler de mon événement
@@ -462,7 +454,7 @@ const OurApproach = () => {
 
 							<a
 								href="#methode"
-								className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.055] px-6 py-3 text-sm font-black text-white/80 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-pink-300/30 hover:bg-pink-500/10 hover:text-white"
+								className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.055] px-6 py-3 text-sm font-extrabold text-white/80 transition-all duration-300 hover:-translate-y-1 hover:border-pink-300/30 hover:bg-pink-500/10 hover:text-white"
 							>
 								Voir la méthode
 								<ArrowRightIcon className="h-4 w-4" />
@@ -476,10 +468,10 @@ const OurApproach = () => {
 						animate="visible"
 						className="relative"
 					>
-						<div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 shadow-2xl backdrop-blur-xl">
+						<div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 shadow-2xl">
 							<div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500" />
 
-							<div className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-pink-500/20 blur-3xl" />
+							<div className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-pink-500/20 hidden" />
 
 							<motion.div
 								animate={{
@@ -493,11 +485,11 @@ const OurApproach = () => {
 								}}
 								className="relative z-10 rounded-3xl border border-white/10 bg-black/25 p-6"
 							>
-								<p className="text-xs font-black uppercase tracking-[0.22em] text-pink-200">
+								<p className="text-xs font-extrabold uppercase tracking-[0.22em] text-pink-200">
 									Objectif
 								</p>
 
-								<h2 className="mt-3 text-3xl font-black text-white">
+								<h2 className="mt-3 text-3xl font-extrabold text-white">
 									Créer une expérience simple à comprendre, fun à vivre et facile
 									à partager.
 								</h2>
@@ -535,12 +527,12 @@ const OurApproach = () => {
 						viewport={{ once: false, amount: 0.25 }}
 						className="mb-10 text-center"
 					>
-						<div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-300/20 bg-purple-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.25em] text-purple-200">
+						<div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-300/20 bg-purple-400/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.25em] text-purple-200">
 							<SparklesIcon className="h-4 w-4" />
 							Ma priorité
 						</div>
 
-						<h2 className="text-3xl font-black tracking-tight md:text-4xl">
+						<h2 className="text-3xl font-extrabold tracking-tight md:text-4xl">
 							Une animation fluide, claire et adaptée.
 						</h2>
 					</motion.div>
@@ -560,7 +552,7 @@ const OurApproach = () => {
 									key={promise.title}
 									variants={fadeUp}
 									whileHover={{ y: -8, scale: 1.02 }}
-									className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.045] p-6 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-pink-300/30 hover:bg-white/[0.075]"
+									className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.045] p-6 shadow-xl transition-all duration-300 hover:border-pink-300/30 hover:bg-white/[0.075]"
 								>
 									<div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500" />
 
@@ -568,7 +560,7 @@ const OurApproach = () => {
 										<Icon className="h-7 w-7" />
 									</div>
 
-									<h3 className="mt-5 text-xl font-black text-white">
+									<h3 className="mt-5 text-xl font-extrabold text-white">
 										{promise.title}
 									</h3>
 
@@ -590,12 +582,12 @@ const OurApproach = () => {
 						viewport={{ once: false, amount: 0.25 }}
 						className="mb-12 text-center"
 					>
-						<div className="mb-4 inline-flex items-center gap-2 rounded-full border border-pink-300/20 bg-pink-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.25em] text-pink-200">
+						<div className="mb-4 inline-flex items-center gap-2 rounded-full border border-pink-300/20 bg-pink-400/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.25em] text-pink-200">
 							<ClipboardDocumentListIcon className="h-4 w-4" />
 							Ma méthode
 						</div>
 
-						<h2 className="text-3xl font-black tracking-tight md:text-4xl">
+						<h2 className="text-3xl font-extrabold tracking-tight md:text-4xl">
 							De l’idée à l’animation le jour J.
 						</h2>
 
@@ -618,16 +610,16 @@ const OurApproach = () => {
 
 				{/* CTA FINAL */}
 				<motion.div
-					initial={{ opacity: 0, y: 45, scale: 0.96, filter: "blur(10px)" }}
-					whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+					initial={{ opacity: 0, y: 45, scale: 0.96 }}
+					whileInView={{ opacity: 1, y: 0, scale: 1 }}
 					viewport={{ once: false, amount: 0.25 }}
 					transition={{
 						duration: 0.7,
 						ease: [0.16, 1, 0.3, 1],
 					}}
-					className="mt-20 overflow-hidden rounded-[2rem] border border-pink-300/20 bg-gradient-to-br from-pink-500/15 via-purple-500/10 to-blue-500/15 p-6 text-center shadow-2xl backdrop-blur-xl md:p-10"
+					className="mt-20 overflow-hidden rounded-[2rem] border border-pink-300/20 bg-gradient-to-br from-pink-500/15 via-purple-500/10 to-blue-500/15 p-6 text-center shadow-2xl md:p-10"
 				>
-					<h2 className="text-3xl font-black text-white">
+					<h2 className="text-3xl font-extrabold text-white">
 						Vous avez une idée de soirée ?
 					</h2>
 
@@ -638,7 +630,7 @@ const OurApproach = () => {
 
 					<Link
 						to="/contact"
-						className="mt-7 inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-3 text-sm font-black text-gray-950 transition hover:-translate-y-1 hover:bg-pink-100"
+						className="mt-7 inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-6 py-3 text-sm font-extrabold text-gray-950 transition hover:-translate-y-1 hover:bg-pink-100"
 					>
 						<EnvelopeIcon className="h-5 w-5" />
 						Me contacter

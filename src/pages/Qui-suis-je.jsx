@@ -1,9 +1,11 @@
 import Seo from "../components/Seo";
+import StageLights from "../components/led/StageLights";
 import Presentation from "../components/Presentation";
 
 function QuiSuisje() {
 	return (
-		<>
+		<div className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
+			<StageLights />
 			<Seo
 				path="/qui-suis-je"
 				title="Dydy Fantasy | Qui suis-je ? Animateur événementiel à Toulouse"
@@ -13,7 +15,7 @@ function QuiSuisje() {
 			/>
 
 			<Presentation />
-		</>
+		</div>
 	);
 }
 

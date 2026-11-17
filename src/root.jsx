@@ -5,6 +5,7 @@ import NextEventBubble from "./components/led/NextEventBubble.jsx";
 import ScrollToHash from "./components/ScrollToHash.jsx";
 import "@fontsource/sora/400.css";
 import "@fontsource/sora/600.css";
+import "@fontsource/sora/800.css";
 import "./index.css";
 import "./css/led.css";
 import "./App.css";

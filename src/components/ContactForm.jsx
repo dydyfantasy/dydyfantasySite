@@ -149,7 +149,7 @@ export default function ContactForm() {
 
 			<button
 				type="submit"
-				className="group inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-pink-600 to-purple-700 px-6 py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-[0_0_28px_rgba(236,72,153,0.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_42px_rgba(236,72,153,0.65)]">
+				className="group inline-flex w-full items-center justify-center gap-2 rounded-2xl btn-neon bg-[var(--pink)] px-6 py-4 text-sm font-extrabold uppercase tracking-[0.16em] text-white shadow-[0_0_28px_rgba(236,72,153,0.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_42px_rgba(236,72,153,0.65)]">
 				Envoyer ma demande
 				<PaperAirplaneIcon className="h-5 w-5 transition group-hover:translate-x-1" />
 			</button>
