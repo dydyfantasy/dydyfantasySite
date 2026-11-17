@@ -224,7 +224,7 @@
 	margin-left: -35vw;
 	transform-origin: 50% 0;
 	background: conic-gradient(
-		from 168deg at 50% 0%,
+		from calc(var(--a, 180deg) - 12deg) at 50% 0%,
 		transparent 0deg,
 		color-mix(in srgb, var(--c) 14%, transparent) 12deg,
 		transparent 24deg
@@ -234,10 +234,28 @@
 
 @keyframes beam-sway {
 	from {
-		transform: rotate(-14deg);
+		transform: rotate(-9deg);
 	}
 	to {
-		transform: rotate(14deg);
+		transform: rotate(9deg);
+	}
+}
+
+/* Version allégée sur mobile : moins de lumières, plus petites */
+@media (max-width: 767px) {
+	.spot[data-mobile-off],
+	.beam[data-mobile-off] {
+		display: none;
+	}
+
+	.spot {
+		width: min(var(--s), 110vw);
+	}
+
+	.beam {
+		width: 120vw;
+		margin-left: -60vw;
+		height: 80vh;
 	}
 }
 
