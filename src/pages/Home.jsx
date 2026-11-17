@@ -3,16 +3,15 @@ import "@fontsource/sora/400.css";
 import "@fontsource/sora/600.css";
 import "../css/led.css";
 import HeroLed from "../components/led/HeroLed";
-import MiniCards from "../components/MiniCards";
-import Reseaux from "../components/Reseaux";
-import VideoPresentation from "../components/VideoPresentation";
-import GoogleReviewsSection from "../components/GoogleReviewsSection";
-import AgendaSection from "../components/AgendaSection";
-import TrustedBySection from "../components/TrustedBySection";
+import LedAgenda from "../components/led/LedAgenda";
+import LedClients from "../components/led/LedClients";
+import LedReviews from "../components/led/LedReviews";
+import LedVideo from "../components/led/LedVideo";
+import LedFinal from "../components/led/LedFinal";
 
 function Home() {
 	return (
-		<div className="bg-gray-900">
+		<div className="led bg-[var(--ink)] text-white">
 			<Seo
 				path="/"
 				title="Dydy Fantasy | Blind test, quiz, karaoké et animation événementielle à Toulouse"
@@ -59,15 +58,11 @@ function Home() {
 
 			<HeroLed />
 
-			<MiniCards />
-			<AgendaSection />
-			<TrustedBySection />
-
-			<GoogleReviewsSection />
-
-			<VideoPresentation />
-
-			<Reseaux />
+			<LedAgenda />
+			<LedClients />
+			<LedReviews />
+			<LedVideo />
+			<LedFinal />
 		</div>
 	);
 }
