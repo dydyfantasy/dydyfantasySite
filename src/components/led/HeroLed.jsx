@@ -9,10 +9,12 @@ import {
 import scene640 from "../../assets/hero/hero-scene-640.webp";
 import scene1024 from "../../assets/hero/hero-scene-1024.webp";
 import scene1536 from "../../assets/hero/hero-scene-1536.webp";
-import quizIcon from "../../assets/icons/quiz.webp";
-import karaokeIcon from "../../assets/icons/karaoke.webp";
-import djIcon from "../../assets/icons/dj.webp";
-import feteIcon from "../../assets/icons/fete.webp";
+import {
+	MicrophoneIcon,
+	MusicalNoteIcon,
+	SparklesIcon as SparklesOutlineIcon,
+	TrophyIcon,
+} from "@heroicons/react/24/outline";
 // Provisoire : logo complet en attendant le logo « DYDY FANTASY » seul
 import logo from "/dydy_fantasy_logo-v3.webp";
 
@@ -23,7 +25,8 @@ const ANSWERS = [
 		letter: "A",
 		label: "Quiz / Blind test",
 		color: "#ff4d6d",
-		icon: quizIcon,
+		icon: TrophyIcon,
+		cta: "Découvrir le blind test",
 		text: "Une animation façon game show : vos invités participent en direct depuis leur téléphone ou avec des buzzers. Manches thématiques, scores en temps réel et ambiance garantie.",
 		href: "/prestations",
 	},
@@ -31,7 +34,8 @@ const ANSWERS = [
 		letter: "B",
 		label: "Karaoké",
 		color: "#3ddc84",
-		icon: karaokeIcon,
+		icon: MicrophoneIcon,
+		cta: "Découvrir le karaoké",
 		text: "Relances micro, duos, battles et playlists thématiques : des moments drôles et fédérateurs où tout le monde participe.",
 		href: "/prestations",
 	},
@@ -39,7 +43,8 @@ const ANSWERS = [
 		letter: "C",
 		label: "Soirée DJ",
 		color: "#19d3f0",
-		icon: djIcon,
+		icon: MusicalNoteIcon,
+		cta: "Découvrir la soirée DJ",
 		text: "Une sélection musicale adaptée à votre public, pensée pour accompagner les temps forts et faire monter l'ambiance au bon moment.",
 		href: "/prestations",
 	},
@@ -47,7 +52,8 @@ const ANSWERS = [
 		letter: "D",
 		label: "Sur mesure",
 		color: "#ffc93c",
-		icon: feteIcon,
+		icon: SparklesOutlineIcon,
+		cta: "Découvrir le sur-mesure",
 		text: "Loto revisité, murder party, escape game, jeux d'équipe ou soirée à thème : le format est personnalisé selon votre lieu, votre public et votre objectif.",
 		href: "/prestations",
 	},
@@ -124,38 +130,54 @@ export default function HeroLed() {
 						<span className="text-[var(--cyan)]">recherchez-vous&nbsp;?</span>
 					</h2>
 
-					<div className="mt-3 grid grid-cols-2 gap-2.5">
-						{ANSWERS.map((a) => (
+					<div
+						className={`mt-3 grid grid-cols-2 gap-2.5 ${selected ? "" : "is-chasing"}`}>
+						{ANSWERS.map((a, i) => (
 							<button
 								key={a.letter}
 								type="button"
 								aria-pressed={selected === a.letter}
 								onClick={() => setSelected(a.letter)}
-								style={{ "--c": a.color }}
+								style={{ "--c": a.color, "--i": i }}
 								className="answer-btn flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-3 text-left text-sm font-semibold md:text-[0.95rem]">
 								<span className="answer-letter flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold">
 									{a.letter}
 								</span>
-								<img src={a.icon} alt="" width="56" height="56" className="h-6 w-6 shrink-0 object-contain" />
+								<a.icon aria-hidden="true" className="answer-icon h-5 w-5 shrink-0" />
 								<span className="truncate">{a.label}</span>
 							</button>
 						))}
 					</div>
 
-					<div className="mt-3 min-h-[5.5rem] text-sm leading-relaxed" aria-live="polite">
+					<div className="mt-3 min-h-[9.5rem]" aria-live="polite">
 						{answer ? (
-							<div key={answer.letter} className="answer-pop">
-								<p className="text-white/85">{answer.text}</p>
-								<Link
-									to={answer.href}
-									className="mt-1.5 inline-flex items-center gap-1.5 font-semibold text-[var(--cyan)] hover:text-white">
-									Découvrir
-									<ArrowRightIcon className="h-4 w-4" />
-								</Link>
+							<div
+								key={answer.letter}
+								style={{ "--c": answer.color }}
+								className="answer-pop answer-panel rounded-2xl p-4">
+								<p className="answer-title text-sm font-bold uppercase tracking-wider">
+									{answer.letter} · {answer.label}
+								</p>
+								<p className="mt-1.5 text-[0.95rem] leading-relaxed text-white md:text-base">
+									{answer.text}
+								</p>
+								<div className="mt-3 flex flex-wrap items-center gap-2.5">
+									<Link
+										to={answer.href}
+										className="answer-cta inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-bold">
+										{answer.cta}
+										<ArrowRightIcon className="h-4 w-4" />
+									</Link>
+									<a
+										href="/contact"
+										className="inline-flex items-center gap-1.5 rounded-lg border border-white/25 px-4 py-2 text-sm font-semibold text-white hover:border-white/60">
+										Demander un devis
+									</a>
+								</div>
 							</div>
 						) : (
-							<p className="pt-1 text-white/55">
-								Choisissez une réponse pour découvrir l’expérience.
+							<p className="pt-1 text-sm text-white/60">
+								👆 Choisissez une réponse pour découvrir l’expérience.
 							</p>
 						)}
 					</div>

@@ -75,6 +75,62 @@
 	color: #05040a;
 }
 
+.answer-icon {
+	color: var(--c);
+}
+
+/* Chenillard « lumières de plateau » : tant qu'aucune réponse n'est choisie,
+   un halo passe d'une réponse à l'autre (opacity uniquement). */
+.answer-btn {
+	position: relative;
+}
+
+.is-chasing .answer-btn::after {
+	content: "";
+	position: absolute;
+	inset: -1.5px;
+	border-radius: inherit;
+	border: 1.5px solid var(--c);
+	box-shadow: 0 0 18px -2px var(--c);
+	opacity: 0;
+	pointer-events: none;
+	animation: chase 3.2s ease-in-out infinite;
+	animation-delay: calc(var(--i) * 0.8s);
+}
+
+@keyframes chase {
+	0%,
+	30%,
+	100% {
+		opacity: 0;
+	}
+	12% {
+		opacity: 1;
+	}
+}
+
+/* ---------- Encart de réponse ---------- */
+
+.answer-panel {
+	border: 1.5px solid var(--c);
+	background: color-mix(in srgb, var(--c) 14%, rgb(5 4 10 / 0.88));
+	box-shadow: 0 0 30px -10px var(--c);
+}
+
+.answer-title {
+	color: var(--c);
+}
+
+.answer-cta {
+	background: var(--c);
+	color: #05040a;
+	transition: transform 0.15s ease;
+}
+
+.answer-cta:hover {
+	transform: translateY(-1px);
+}
+
 .answer-pop {
 	animation: answer-pop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -123,7 +179,8 @@
 
 @media (prefers-reduced-motion: reduce) {
 	.light-beam,
-	.answer-pop {
+	.answer-pop,
+	.is-chasing .answer-btn::after {
 		animation: none;
 	}
 }
