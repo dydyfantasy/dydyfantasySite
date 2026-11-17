@@ -65,6 +65,8 @@ Champs d'un événement : `id`, `title`, `date` (`YYYY-MM-DD`, parsée en date l
 
 Build statique hébergé sur Apache. `public/.htaccess` (copié dans `build/client/`) force HTTPS + domaine sans www, redirige en 301 les anciennes adresses (`/notre-approche`) et les adresses avec `/` final, sert `<page>/index.html` pour `/<page>` (`DirectorySlash Off`), renvoie un vrai 404 (`ErrorDocument 404 /404/index.html`), et règle gzip et cache. `npm run preview` (vite preview) ne reproduit pas ces règles : il sert l’accueil pour toutes les adresses, d’où de fausses erreurs d’hydratation #418.
 
+Hébergement OVH mutualisé ; mise en ligne par WinSCP sur `ftp.cluster021.hosting.ovh.net` (et non cluster121, malgré ce qu'affiche une page de l'espace client), dossier `www`. ⚠️ `events.js` et les affiches sont souvent modifiés directement sur le serveur : les rapatrier dans `public/events/` avant chaque build, sinon l'envoi écrase l'agenda en ligne.
+
 **On met en ligne le contenu de `build/client/`.** `build/`, `dist/` et `.react-router/` sont ignorés par git. Les anciens builds (`dist old/`, `distold24/`) ont été retirés du dépôt ; ils restent dans l'historique git (commit `4a516dd`).
 
 ## Architecture cible du site
