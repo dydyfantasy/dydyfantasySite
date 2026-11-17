@@ -128,7 +128,7 @@ function NextEvent({ event }) {
 }
 
 // Ligne du tableau d'affichage
-function EventRow({ event, delay = 0 }) {
+function EventRow({ event, delay = 0, onOpen }) {
 	const p = dateParts(event.date);
 
 	return (
