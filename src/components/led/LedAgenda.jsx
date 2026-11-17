@@ -8,6 +8,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useEvents } from "../../hooks/useEvents";
 import SectionTitle from "./SectionTitle";
+import ScrollReveal from "./ScrollReveal";
 
 const VISIBLE_COUNT = 4;
 
@@ -125,7 +126,7 @@ function NextEvent({ event }) {
 }
 
 // Ligne du tableau d'affichage
-function EventRow({ event }) {
+function EventRow({ event, delay = 0 }) {
 	const p = dateParts(event.date);
 	const Wrapper = event.publicEvent ? "a" : "div";
 	const linkProps = event.publicEvent
@@ -133,7 +134,7 @@ function EventRow({ event }) {
 		: {};
 
 	return (
-		<li>
+		<ScrollReveal as="li" variant="right" delay={delay}>
 			<Wrapper
 				{...linkProps}
 				className="board-row grid grid-cols-[4.5rem_minmax(0,1fr)_auto] items-center gap-4 rounded-2xl px-4 py-3">
@@ -165,7 +166,7 @@ function EventRow({ event }) {
 					)}
 				</div>
 			</Wrapper>
-		</li>
+		</ScrollReveal>
 	);
 }
 
@@ -196,17 +197,17 @@ export default function LedAgenda() {
 						</p>
 					) : (
 						<div className="grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
-							<div>
+							<ScrollReveal variant="left">
 								<NextEvent event={next} />
 								<NextEventMap event={next} />
-							</div>
+							</ScrollReveal>
 							<div>
 							{others.length > 0 && (
 								<>
 								<p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-white/50">Ensuite</p>
 								<ul className="space-y-3">
-									{shown.map((e) => (
-										<EventRow key={e.id ?? `${e.date}-${e.place}`} event={e} />
+									{shown.map((e, i) => (
+										<EventRow key={e.id ?? `${e.date}-${e.place}`} event={e} delay={i * 80} />
 									))}
 								</ul>
 								</>

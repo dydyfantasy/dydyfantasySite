@@ -1,4 +1,5 @@
 import SectionTitle from "./SectionTitle";
+import ScrollReveal from "./ScrollReveal";
 
 // Mêmes clients que TrustedBySection (références réelles uniquement)
 const CLIENTS = [
@@ -27,7 +28,10 @@ export default function LedClients() {
 
 				<ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
 					{CLIENTS.map((c, i) => (
-						<li
+						<ScrollReveal
+							as="li"
+							variant="zoom"
+							delay={(i % 4) * 70}
 							key={c.name}
 							style={{ "--c": COLORS[i % COLORS.length] }}
 							className="neon-card neon-card-hover flex flex-col items-center rounded-2xl p-5 text-center">
@@ -41,7 +45,7 @@ export default function LedClients() {
 							/>
 							<p className="mt-3 font-bold leading-tight">{c.name}</p>
 							<p className="mt-1 text-xs text-white/60">{c.type}</p>
-						</li>
+						</ScrollReveal>
 					))}
 				</ul>
 			</div>

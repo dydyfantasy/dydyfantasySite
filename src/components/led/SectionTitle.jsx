@@ -1,7 +1,8 @@
+import ScrollReveal from "./ScrollReveal";
 // En-tête de section commun à l'accueil v2 : petit label rose + titre avec mot en cyan.
 export default function SectionTitle({ id, label, title, accent, children, center = false }) {
 	return (
-		<div className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
+		<ScrollReveal className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
 			<p
 				className={`flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)] ${
 					center ? "justify-center" : ""
@@ -13,6 +14,6 @@ export default function SectionTitle({ id, label, title, accent, children, cente
 				{title} {accent && <span className="text-[var(--cyan)]">{accent}</span>}
 			</h2>
 			{children && <p className="mt-3 text-base leading-relaxed text-white/70">{children}</p>}
-		</div>
+		</ScrollReveal>
 	);
 }

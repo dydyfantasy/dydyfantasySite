@@ -7,6 +7,7 @@ import {
 	ArrowRightIcon,
 } from "@heroicons/react/24/outline";
 import SectionTitle from "./SectionTitle";
+import ScrollReveal from "./ScrollReveal";
 
 // « Pour quel événement ? » : répond à « est-ce qu'il fait MON type d'événement ? »
 // et prépare les futures pages « Vos événements » (/evenements/mariage, etc.).
@@ -66,8 +67,8 @@ export default function LedEvents() {
 				</SectionTitle>
 
 				<ul className="mt-10 grid gap-5 sm:grid-cols-2">
-					{EVENTS.map((e) => (
-						<li key={e.title}>
+					{EVENTS.map((e, i) => (
+						<ScrollReveal as="li" key={e.title} delay={i * 90}>
 							<Link
 								to={e.href}
 								style={{ "--c": e.color }}
@@ -89,7 +90,7 @@ export default function LedEvents() {
 									</span>
 								</div>
 							</Link>
-						</li>
+						</ScrollReveal>
 					))}
 				</ul>
 			</div>

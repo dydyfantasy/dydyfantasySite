@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import ScrollReveal from "./ScrollReveal";
 
 const LINKS = [
 	{ to: "/qui-suis-je", label: "Qui suis-je ?" },
@@ -18,7 +19,7 @@ const SOCIALS = [
 export default function LedFinal() {
 	return (
 		<section aria-labelledby="final-titre" className="px-4 pb-24 pt-10">
-			<div className="final-panel mx-auto max-w-5xl overflow-hidden rounded-[2rem] px-6 py-14 text-center md:px-12">
+			<ScrollReveal variant="zoom" className="final-panel mx-auto max-w-5xl overflow-hidden rounded-[2rem] px-6 py-14 text-center md:px-12">
 				<h2 id="final-titre" className="text-3xl font-extrabold leading-tight md:text-5xl">
 					Prêt à faire <span className="text-[var(--pink)]">vibrer</span> votre{" "}
 					<span className="text-[var(--cyan)]">événement</span> ?
@@ -57,7 +58,7 @@ export default function LedFinal() {
 						</Link>
 					))}
 				</nav>
-			</div>
+			</ScrollReveal>
 		</section>
 	);
 }

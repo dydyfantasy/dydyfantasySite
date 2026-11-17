@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import SectionTitle from "./SectionTitle";
 import PhotoCarousel from "./PhotoCarousel";
+import ScrollReveal from "./ScrollReveal";
 
 // « Mais c'est qui Dydy Fantasy ? » : texte + carrousel de photos de soirées
 // (remplace l'ancienne vidéo de présentation).
@@ -24,9 +25,9 @@ export default function LedAbout() {
 					</div>
 				</div>
 
-				<div className="mt-10">
+				<ScrollReveal className="mt-10" delay={120}>
 					<PhotoCarousel />
-				</div>
+				</ScrollReveal>
 			</div>
 		</section>
 	);
