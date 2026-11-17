@@ -28,22 +28,22 @@ export default function NextEventBubble() {
 	const weekday = d.toLocaleDateString("fr-FR", { weekday: "short" }).replace(".", "");
 
 	return (
-		<div className="led next-bubble fixed bottom-4 left-4 z-50 w-[19rem] max-w-[calc(100vw-2rem)] rounded-2xl">
+		<div className="led next-bubble fixed bottom-4 left-4 z-50 w-[19rem] max-w-[calc(100vw-2rem)] rounded-2xl md:bottom-6 md:left-6 md:w-[25rem]">
 			<a
 				href="/#agenda"
-				className="flex items-center gap-3 rounded-2xl py-2 pl-2 pr-10 text-white"
+				className="flex items-center gap-3 rounded-2xl py-2 pl-2 pr-10 text-white md:gap-4 md:py-3 md:pl-3"
 				aria-label={`Prochaine soirée : ${next.title}, ${weekday} ${day} ${month} à ${next.hour}, ${next.place}. Voir l'agenda`}>
-				<span className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl bg-[var(--pink)] leading-none text-white">
-					<span className="text-lg font-extrabold">{day}</span>
-					<span className="text-[0.6rem] font-bold uppercase">{month}</span>
+				<span className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl bg-[var(--pink)] leading-none text-white md:h-16 md:w-16">
+					<span className="text-lg font-extrabold md:text-2xl">{day}</span>
+					<span className="text-[0.6rem] font-bold uppercase md:text-xs">{month}</span>
 				</span>
 				<span className="min-w-0 leading-tight">
 					<span className="flex items-center gap-1.5 text-[0.65rem] font-bold uppercase tracking-widest text-[var(--cyan)]">
 						<span className="live-dot h-1.5 w-1.5 rounded-full bg-[var(--cyan)]" />
 						Prochaine soirée
 					</span>
-					<span className="block truncate text-sm font-bold">{next.title}</span>
-					<span className="block truncate text-xs text-white/65">
+					<span className="block truncate text-sm font-bold md:text-base">{next.title}</span>
+					<span className="block truncate text-xs text-white/65 md:text-sm">
 						{weekday} · {next.hour} · {next.place}
 					</span>
 				</span>
