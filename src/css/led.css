@@ -384,6 +384,32 @@ a.board-row:hover {
 	box-shadow: 0 0 18px -4px var(--c);
 }
 
+/* ---------- Bande défilante des clients ---------- */
+
+.clients-marquee {
+	mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+
+.clients-track {
+	animation: clients-scroll 45s linear infinite;
+}
+
+.clients-marquee:hover .clients-track {
+	animation-play-state: paused;
+}
+
+@keyframes clients-scroll {
+	to {
+		/* une copie + l'écart entre les deux copies */
+		transform: translateX(calc(-50% - 0.5rem));
+	}
+}
+
+.client-chip {
+	border: 1.5px solid color-mix(in srgb, var(--c) 50%, transparent);
+	background: color-mix(in srgb, var(--c) 7%, #0b0912);
+}
+
 /* ---------- Apparitions au défilement (ScrollReveal) ---------- */
 
 .reveal {
@@ -425,7 +451,12 @@ a.board-row:hover {
 	.live-dot,
 	.spot,
 	.streak,
+	.clients-track,
 	.is-chasing .answer-btn::after {
 		animation: none;
+	}
+
+	.clients-marquee {
+		overflow-x: auto;
 	}
 }
