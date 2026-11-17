@@ -1,9 +1,11 @@
 import Seo from "../components/Seo";
-import "@fontsource/archivo-black";
+import "@fontsource/doto/900.css";
+import "@fontsource/sora/400.css";
+import "@fontsource/sora/600.css";
+import "@fontsource/sora/700.css";
 import "@fontsource/permanent-marker";
-import "../css/plateau.css";
-import HeroScene from "../components/plateau/HeroScene";
-import QuizPlateau from "../components/plateau/QuizPlateau";
+import "../css/led.css";
+import HeroLed from "../components/led/HeroLed";
 import MiniCards from "../components/MiniCards";
 import Reseaux from "../components/Reseaux";
 import VideoPresentation from "../components/VideoPresentation";
@@ -58,8 +60,7 @@ function Home() {
 				}}
 			/>
 
-			<HeroScene />
-			<QuizPlateau />
+			<HeroLed />
 
 			<MiniCards />
 			<AgendaSection />
