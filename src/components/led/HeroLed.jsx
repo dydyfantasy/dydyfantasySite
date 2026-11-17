@@ -3,7 +3,6 @@ import { Link } from "react-router";
 import {
 	ArrowRightIcon,
 	CalendarDaysIcon,
-	SparklesIcon,
 	StarIcon,
 } from "@heroicons/react/24/solid";
 import scene640 from "../../assets/hero/hero-scene-640.webp";
@@ -12,7 +11,7 @@ import scene1536 from "../../assets/hero/hero-scene-1536.webp";
 import {
 	MicrophoneIcon,
 	MusicalNoteIcon,
-	SparklesIcon as SparklesOutlineIcon,
+	PuzzlePieceIcon,
 	TrophyIcon,
 } from "@heroicons/react/24/outline";
 import logo480 from "../../assets/brand/logo-texte-480.webp";
@@ -52,7 +51,7 @@ const ANSWERS = [
 		letter: "D",
 		label: "Sur mesure",
 		color: "#ffc93c",
-		icon: SparklesOutlineIcon,
+		icon: PuzzlePieceIcon,
 		cta: "Découvrir le sur-mesure",
 		text: "Loto revisité, murder party, escape game, jeux d'équipe ou soirée à thème : le format est personnalisé selon votre lieu, votre public et votre objectif.",
 		href: "/prestations",
@@ -177,7 +176,7 @@ export default function HeroLed() {
 									<a
 										href="/contact"
 										className="inline-flex items-center gap-1.5 rounded-lg border border-white/25 px-4 py-2 text-sm font-semibold text-white hover:border-white/60">
-										Demander un devis
+										Demander mon devis
 									</a>
 								</div>
 							</div>
@@ -193,8 +192,8 @@ export default function HeroLed() {
 						<a
 							href="/contact"
 							className="btn-neon inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--pink)] px-6 py-3 font-bold text-white">
-							<SparklesIcon className="h-5 w-5" />
-							Demander un devis
+							Demander mon devis
+							<ArrowRightIcon className="h-5 w-5" />
 						</a>
 						<a
 							href="#agenda"

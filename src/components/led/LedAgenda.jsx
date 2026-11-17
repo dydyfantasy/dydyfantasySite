@@ -185,8 +185,8 @@ export default function LedAgenda() {
 	return (
 		<section id="agenda" aria-labelledby="agenda-titre" className="scroll-mt-24 px-4 py-20">
 			<div className="mx-auto max-w-6xl">
-				<SectionTitle id="agenda-titre" label="Agenda" title="Les prochaines" accent="soirées">
-					Blind tests, quiz et karaokés ouverts à tous dans les bars autour de Toulouse.
+				<SectionTitle id="agenda-titre" label="Agenda" title="Prochaines soirées blind test & karaoké" accent="autour de Toulouse">
+					Les soirées quiz, blind test et karaoké ouvertes à tous dans les bars et restaurants de la région toulousaine.
 				</SectionTitle>
 
 				<div className="mt-10 min-h-[22rem]">

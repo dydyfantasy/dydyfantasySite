@@ -3,6 +3,7 @@ import "@fontsource/sora/400.css";
 import "@fontsource/sora/600.css";
 import "../css/led.css";
 import HeroLed from "../components/led/HeroLed";
+import LedEvents from "../components/led/LedEvents";
 import LedAgenda from "../components/led/LedAgenda";
 import LedClients from "../components/led/LedClients";
 import LedReviews from "../components/led/LedReviews";
@@ -14,8 +15,8 @@ function Home() {
 		<div className="led bg-[var(--ink)] text-white">
 			<Seo
 				path="/"
-				title="Dydy Fantasy | Blind test, quiz, karaoké et animation événementielle à Toulouse"
-				description="Dydy Fantasy anime vos événements à Toulouse et en Occitanie : blind tests, quiz interactifs, karaokés, soirées privées, mariages et événements d’entreprise."
+				title="Animateur blind test, quiz, karaoké & DJ à Toulouse | Dydy Fantasy"
+				description="Animateur à Toulouse : blind test, quiz, karaoké et DJ pour mariages, anniversaires, entreprises et bars. 72 avis 5 étoiles. Demandez votre devis."
 				ogTitle="Dydy Fantasy | Animation événementielle à Toulouse"
 				ogDescription="Blind tests, quiz interactifs, karaokés et animations sur mesure pour vos événements à Toulouse et en Occitanie."
 			/>
@@ -58,6 +59,7 @@ function Home() {
 
 			<HeroLed />
 
+			<LedEvents />
 			<LedAgenda />
 			<LedClients />
 			<LedReviews />

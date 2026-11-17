@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { ArrowRightIcon, SparklesIcon } from "@heroicons/react/24/solid";
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import videoPresentation from "../../assets/C'est qui dydy fantasy.webm";
 import imagePresentation from "../../assets/C'est qui dydy fantasy image.webp";
 import SectionTitle from "./SectionTitle";
@@ -25,8 +25,8 @@ export default function LedVideo() {
 						<a
 							href="/contact"
 							className="btn-neon inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--pink)] px-6 py-3 font-bold text-white">
-							<SparklesIcon className="h-5 w-5" />
 							Discuter de mon événement
+							<ArrowRightIcon className="h-5 w-5" />
 						</a>
 					</div>
 				</div>

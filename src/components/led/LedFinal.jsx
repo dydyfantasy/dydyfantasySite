@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { SparklesIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 
 const LINKS = [
@@ -30,8 +30,8 @@ export default function LedFinal() {
 				<a
 					href="/contact"
 					className="btn-neon mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--pink)] px-8 py-4 text-lg font-bold text-white">
-					<SparklesIcon className="h-5 w-5" />
-					Demander un devis
+					Demander mon devis
+					<ArrowRightIcon className="h-5 w-5" />
 				</a>
 
 				<div className="mt-10 flex justify-center gap-4">

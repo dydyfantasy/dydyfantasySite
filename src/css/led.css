@@ -159,10 +159,9 @@
 
 /* ---------- Boutons ---------- */
 
+/* Bouton principal : rose plein, halo uniquement au survol */
 .btn-neon {
-	box-shadow:
-		0 0 0 1px rgb(255 255 255 / 0.15) inset,
-		0 0 24px -4px var(--pink);
+	box-shadow: 0 0 0 0 transparent;
 	transition:
 		transform 0.15s ease,
 		box-shadow 0.2s ease;
@@ -170,9 +169,7 @@
 
 .btn-neon:hover {
 	transform: translateY(-2px);
-	box-shadow:
-		0 0 0 1px rgb(255 255 255 / 0.25) inset,
-		0 0 36px 0 var(--pink);
+	box-shadow: 0 0 28px -4px var(--pink);
 }
 
 .btn-outline-neon {
@@ -220,6 +217,14 @@
 	transform: translateY(-3px);
 	border-color: var(--c);
 	box-shadow: 0 0 24px -6px var(--c);
+}
+
+/* Emplacement photo des tuiles « Vos événements » (sans photo : fond coloré) */
+.event-visual {
+	background:
+		radial-gradient(ellipse at 50% 120%, color-mix(in srgb, var(--c) 35%, transparent), transparent 70%),
+		color-mix(in srgb, var(--c) 8%, #0b0912);
+	border-bottom: 1px solid color-mix(in srgb, var(--c) 30%, transparent);
 }
 
 /* Ligne du tableau d'affichage de l'agenda */
