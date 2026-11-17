@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
 	ClockIcon,
 	LockClosedIcon,
 	MapPinIcon,
 	ArrowTopRightOnSquareIcon,
 	ChevronDownIcon,
+	ChevronRightIcon,
+	XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { useEvents } from "../../hooks/useEvents";
 import SectionTitle from "./SectionTitle";
@@ -128,16 +130,14 @@ function NextEvent({ event }) {
 // Ligne du tableau d'affichage
 function EventRow({ event, delay = 0 }) {
 	const p = dateParts(event.date);
-	const Wrapper = event.publicEvent ? "a" : "div";
-	const linkProps = event.publicEvent
-		? { href: mapsUrl(event), target: "_blank", rel: "noopener noreferrer" }
-		: {};
 
 	return (
 		<ScrollReveal as="li" variant="right" delay={delay}>
-			<Wrapper
-				{...linkProps}
-				className="board-row grid grid-cols-[4.5rem_minmax(0,1fr)_auto] items-center gap-4 rounded-2xl px-4 py-3">
+			<button
+				type="button"
+				onClick={() => onOpen(event)}
+				aria-haspopup="dialog"
+				className="board-row grid w-full grid-cols-[4.5rem_minmax(0,1fr)_auto] items-center gap-4 rounded-2xl px-4 py-3 text-left">
 				<div className="text-center leading-none">
 					<p className="text-[0.7rem] font-bold uppercase tracking-widest text-white/50">{p.weekday}</p>
 					<p className="glow-cyan text-3xl font-extrabold">{p.day}</p>
@@ -155,8 +155,8 @@ function EventRow({ event, delay = 0 }) {
 				<div className="text-sm text-white/50">
 					{event.publicEvent ? (
 						<span className="flex items-center gap-1.5 text-[var(--cyan)]">
-							<span className="sr-only">Itinéraire</span>
-							<ArrowTopRightOnSquareIcon className="h-5 w-5" />
+							<span className="hidden sm:inline">Détails</span>
+							<ChevronRightIcon className="h-5 w-5" />
 						</span>
 					) : (
 						<span className="flex items-center gap-1.5">
@@ -165,8 +165,90 @@ function EventRow({ event, delay = 0 }) {
 						</span>
 					)}
 				</div>
-			</Wrapper>
+			</button>
 		</ScrollReveal>
+	);
+}
+
+// Fiche d'un événement : <dialog> natif (accessible, Échap pour fermer).
+// La carte n'est chargée qu'à l'ouverture : aucun coût tant qu'on ne clique pas.
+function EventDialog({ event, onClose }) {
+	const ref = useRef(null);
+
+	useEffect(() => {
+		const dialog = ref.current;
+		if (event && dialog && !dialog.open) dialog.showModal();
+	}, [event]);
+
+	if (!event) return null;
+	const p = dateParts(event.date);
+
+	return (
+		<dialog
+			ref={ref}
+			onClose={onClose}
+			onClick={(e) => e.target === ref.current && ref.current.close()}
+			aria-labelledby="event-dialog-title"
+			className="event-dialog m-auto max-h-[90svh] w-[min(40rem,calc(100vw-2rem))] overflow-y-auto rounded-3xl p-0 text-white">
+			<div className="relative">
+				<button
+					type="button"
+					onClick={() => ref.current.close()}
+					aria-label="Fermer"
+					className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black/80">
+					<XMarkIcon className="h-6 w-6" />
+				</button>
+				{event.poster && (
+					<img src={event.poster} alt={`Affiche : ${event.title}`} className="max-h-[22rem] w-full bg-black object-contain" />
+				)}
+				<div className="space-y-4 p-6">
+					<div className="flex flex-wrap items-center gap-2">
+						<span className="rounded-full border border-[var(--pink)] px-3 py-1 text-xs font-bold uppercase tracking-widest text-[var(--pink)]">
+							{event.type || "Soirée"}
+						</span>
+						{event.isNew && <NewBadge />}
+					</div>
+					<h3 id="event-dialog-title" className="pr-10 text-2xl font-extrabold leading-tight">
+						{event.title}
+					</h3>
+					<ul className="space-y-2 text-white/85">
+						<li className="flex items-center gap-2 capitalize">
+							<ClockIcon className="h-5 w-5 text-[var(--cyan)]" />
+							{p.long} · {event.hour}
+						</li>
+						<li className="flex items-center gap-2">
+							<MapPinIcon className="h-5 w-5 text-[var(--cyan)]" />
+							{event.place} — {event.address || event.city}
+						</li>
+					</ul>
+					{event.description && <p className="text-white/75">{event.description}</p>}
+					{event.publicEvent ? (
+						<>
+							<iframe
+								title={`Carte : ${event.place}, ${event.city}`}
+								src={mapsEmbedUrl(event)}
+								loading="lazy"
+								referrerPolicy="no-referrer-when-downgrade"
+								className="block h-56 w-full rounded-2xl border-0"
+							/>
+							<a
+								href={mapsUrl(event)}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="btn-outline-neon inline-flex items-center gap-2 rounded-xl border border-[var(--cyan)] px-5 py-2.5 font-semibold text-[var(--cyan)]">
+								Itinéraire
+								<ArrowTopRightOnSquareIcon className="h-4 w-4" />
+							</a>
+						</>
+					) : (
+						<p className="flex items-center gap-2 text-sm text-white/60">
+							<LockClosedIcon className="h-4 w-4" />
+							Événement privé
+						</p>
+					)}
+				</div>
+			</div>
+		</dialog>
 	);
 }
 
@@ -174,6 +256,7 @@ function EventRow({ event, delay = 0 }) {
 export default function LedAgenda() {
 	const events = useEvents();
 	const [showAll, setShowAll] = useState(false);
+	const [opened, setOpened] = useState(null); // événement affiché dans la fiche
 
 	const today = new Date();
 	today.setHours(0, 0, 0, 0);
@@ -207,7 +290,7 @@ export default function LedAgenda() {
 								<p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-white/50">Ensuite</p>
 								<ul className="space-y-3">
 									{shown.map((e, i) => (
-										<EventRow key={e.id ?? `${e.date}-${e.place}`} event={e} delay={i * 80} />
+										<EventRow key={e.id ?? `${e.date}-${e.place}`} event={e} delay={i * 80} onOpen={setOpened} />
 									))}
 								</ul>
 								</>
@@ -226,6 +309,7 @@ export default function LedAgenda() {
 					)}
 				</div>
 			</div>
+			<EventDialog event={opened} onClose={() => setOpened(null)} />
 		</section>
 	);
 }
