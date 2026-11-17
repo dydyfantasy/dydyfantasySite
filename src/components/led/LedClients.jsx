@@ -19,7 +19,7 @@ const COLORS = ["var(--cyan)", "var(--pink)", "var(--gold)", "#7cff6b"];
 
 export default function LedClients() {
 	return (
-		<section aria-labelledby="clients-titre" className="section-alt px-4 py-20">
+		<section aria-labelledby="clients-titre" className="px-4 py-20">
 			<div className="mx-auto max-w-6xl">
 				<SectionTitle id="clients-titre" label="Références" title="Ils m'ont fait" accent="confiance">
 					Bars, restaurants, comités des fêtes et entreprises de Toulouse et alentours.

@@ -8,7 +8,7 @@ import SectionTitle from "./SectionTitle";
 // preload="none" : la vidéo (26 Mo) n'est téléchargée qu'au clic sur lecture.
 export default function LedVideo() {
 	return (
-		<section aria-labelledby="video-titre" className="section-alt px-4 py-20">
+		<section aria-labelledby="video-titre" className="px-4 py-20">
 			<div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-[minmax(0,1fr)_20rem] lg:grid-cols-[minmax(0,1fr)_22rem]">
 				<div>
 					<SectionTitle id="video-titre" label="Présentation" title="Mais c'est qui" accent="Dydy Fantasy ?">

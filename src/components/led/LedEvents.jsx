@@ -54,7 +54,7 @@ const EVENTS = [
 
 export default function LedEvents() {
 	return (
-		<section aria-labelledby="evenements-titre" className="section-alt px-4 py-20">
+		<section aria-labelledby="evenements-titre" className="px-4 py-20">
 			<div className="mx-auto max-w-6xl">
 				<SectionTitle
 					id="evenements-titre"

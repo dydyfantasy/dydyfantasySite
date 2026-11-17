@@ -185,16 +185,60 @@
 
 /* ---------- Sections de l'accueil ---------- */
 
-/* Rythme des fonds : une section sur deux légèrement violette, une avec halos colorés */
-.section-alt {
-	background: linear-gradient(180deg, #0c0918 0%, #140e26 50%, #0c0918 100%);
+/* Lumières de scène diffuses (composant StageLights) */
+.stage-lights {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	overflow: hidden;
+	pointer-events: none;
 }
 
-.section-glow {
-	background:
-		radial-gradient(ellipse at 15% 30%, rgb(255 201 60 / 0.1), transparent 45%),
-		radial-gradient(ellipse at 85% 70%, rgb(25 211 240 / 0.12), transparent 50%),
-		var(--ink);
+.spot {
+	position: absolute;
+	width: min(var(--s), 140vw);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: radial-gradient(
+		circle,
+		color-mix(in srgb, var(--c) 26%, transparent) 0%,
+		color-mix(in srgb, var(--c) 8%, transparent) 38%,
+		transparent 68%
+	);
+	transform: translate(-50%, -50%);
+	animation: spot-drift var(--d) ease-in-out infinite alternate;
+}
+
+@keyframes spot-drift {
+	to {
+		transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y)));
+	}
+}
+
+/* Faisceau de projecteur : cône qui descend et se balance */
+.beam {
+	position: absolute;
+	width: 70vw;
+	max-width: 60rem;
+	height: 110vh;
+	margin-left: -35vw;
+	transform-origin: 50% 0;
+	background: conic-gradient(
+		from 168deg at 50% 0%,
+		transparent 0deg,
+		color-mix(in srgb, var(--c) 14%, transparent) 12deg,
+		transparent 24deg
+	);
+	animation: beam-sway var(--d) ease-in-out infinite alternate;
+}
+
+@keyframes beam-sway {
+	from {
+		transform: rotate(-14deg);
+	}
+	to {
+		transform: rotate(14deg);
+	}
 }
 
 .glow-cyan {
@@ -287,6 +331,8 @@ a.board-row:hover {
 	.light-beam,
 	.answer-pop,
 	.live-dot,
+	.spot,
+	.beam,
 	.is-chasing .answer-btn::after {
 		animation: none;
 	}

@@ -3,6 +3,7 @@ import "@fontsource/sora/400.css";
 import "@fontsource/sora/600.css";
 import "../css/led.css";
 import HeroLed from "../components/led/HeroLed";
+import StageLights from "../components/led/StageLights";
 import LedEvents from "../components/led/LedEvents";
 import LedAgenda from "../components/led/LedAgenda";
 import LedClients from "../components/led/LedClients";
@@ -12,7 +13,8 @@ import LedFinal from "../components/led/LedFinal";
 
 function Home() {
 	return (
-		<div className="led bg-[var(--ink)] text-white">
+		<div className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
+			<StageLights />
 			<Seo
 				path="/"
 				title="Animateur blind test, quiz, karaoké & DJ à Toulouse | Dydy Fantasy"
