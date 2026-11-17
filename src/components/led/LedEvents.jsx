@@ -13,7 +13,7 @@ import ScrollReveal from "./ScrollReveal";
 // et prépare les futures pages « Vos événements » (/evenements/mariage, etc.).
 // Photos : renseigner `image` (import depuis src/assets) quand elles seront prêtes ;
 // sans image, la tuile affiche un fond coloré avec l'icône.
-// Liens : vers /contact tant que les pages dédiées n'existent pas.
+// Liens : vers les pages « Vos événements ».
 const EVENTS = [
 	{
 		title: "Mariage",
@@ -21,7 +21,7 @@ const EVENTS = [
 		color: "var(--pink)",
 		image: null,
 		text: "Blind test et quiz pour animer le repas, karaoké et DJ pour faire danser vos invités jusqu'au bout de la nuit.",
-		href: "/contact",
+		href: "/evenements/mariage",
 		cta: "Parler de mon mariage",
 	},
 	{
@@ -30,7 +30,7 @@ const EVENTS = [
 		color: "var(--cyan)",
 		image: null,
 		text: "Team building, séminaire, soirée d'entreprise ou journée événement : quiz en équipes, animation micro et speaker, puis DJ pour la soirée dansante.",
-		href: "/contact",
+		href: "/evenements/entreprise",
 		cta: "Organiser mon événement pro",
 	},
 	{
@@ -39,7 +39,7 @@ const EVENTS = [
 		color: "var(--gold)",
 		image: null,
 		text: "Un quiz ou un blind test sur mesure, du karaoké et un DJ pour faire danser : une soirée dont tout le monde se souviendra.",
-		href: "/contact",
+		href: "/evenements/anniversaire",
 		cta: "Préparer ma soirée",
 	},
 	{
@@ -48,7 +48,7 @@ const EVENTS = [
 		color: "#7cff6b",
 		image: null,
 		text: "Des soirées blind test et karaoké régulières qui remplissent votre établissement, comme à La Ville en Rose ou à la Taverne Heidelberg.",
-		href: "/contact",
+		href: "/evenements/bars-restaurants",
 		cta: "Programmer une soirée",
 	},
 ];

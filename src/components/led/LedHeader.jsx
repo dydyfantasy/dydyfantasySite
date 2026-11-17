@@ -2,17 +2,16 @@ import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import logo480 from "../../assets/brand/logo-texte-480.webp";
+import { PRESTATIONS, EVENEMENTS } from "../../data/navigation";
 
-// Menu « Prestations » : n'y mettre que des pages qui existent (sinon 404).
-// Ajouter Karaoké, DJ, Sur mesure, puis le menu « Événements » au fur et à mesure.
-const PRESTATIONS = [
-	{ to: "/prestations/blind-test-quiz", label: "Blind test & quiz" },
-	{ to: "/prestations", label: "Toutes les prestations" },
+// Menus déroulants (contenu dans src/data/navigation.js)
+const MENUS = [
+	{ id: "prestations", label: "Prestations", items: [...PRESTATIONS, { to: "/prestations", label: "Toutes les prestations" }] },
+	{ id: "evenements", label: "Événements", items: EVENEMENTS },
 ];
 
 const LINKS = [
 	{ to: "/qui-suis-je", label: "Qui suis-je ?" },
-	{ to: "/mon-approche", label: "Mon approche" },
 	{ to: "/#agenda", label: "Agenda", plain: true },
 ];
 
@@ -21,23 +20,31 @@ const navClass = ({ isActive }) =>
 		isActive ? "text-[var(--cyan)]" : "text-white/80 hover:text-white"
 	}`;
 
+function MobileLink({ to, label, plain }) {
+	return plain ? (
+		<a href={to} className={`block text-base ${navClass({ isActive: false })}`}>{label}</a>
+	) : (
+		<NavLink to={to} end className={({ isActive }) => `block text-base ${navClass({ isActive })}`}>{label}</NavLink>
+	);
+}
+
 export default function LedHeader() {
 	const [open, setOpen] = useState(false); // menu mobile
-	const [dropdown, setDropdown] = useState(false); // sous-menu Prestations (ordinateur)
-	const dropdownRef = useRef(null);
+	const [dropdown, setDropdown] = useState(null); // id du sous-menu ouvert (ordinateur)
+	const navRef = useRef(null);
 	const location = useLocation();
 
 	// Ferme les menus à chaque changement de page
 	useEffect(() => {
 		setOpen(false);
-		setDropdown(false);
+		setDropdown(null);
 	}, [location.pathname, location.hash]);
 
 	// Ferme le sous-menu au clic à l'extérieur
 	useEffect(() => {
 		if (!dropdown) return;
 		const onClick = (e) => {
-			if (dropdownRef.current && !dropdownRef.current.contains(e.target)) setDropdown(false);
+			if (navRef.current && !navRef.current.contains(e.target)) setDropdown(null);
 		};
 		document.addEventListener("pointerdown", onClick);
 		return () => document.removeEventListener("pointerdown", onClick);
@@ -51,41 +58,37 @@ export default function LedHeader() {
 				</Link>
 
 				{/* Ordinateur */}
-				<nav aria-label="Menu principal" className="hidden items-center gap-1 lg:flex">
-					<div ref={dropdownRef} className="relative">
-						<button
-							type="button"
-							aria-expanded={dropdown}
-							aria-haspopup="true"
-							onClick={() => setDropdown((v) => !v)}
-							className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-white/80 hover:text-white">
-							Prestations
-							<ChevronDownIcon className={`h-4 w-4 transition-transform ${dropdown ? "rotate-180" : ""}`} />
-						</button>
-						{dropdown && (
-							<div className="neon-card absolute left-0 top-full mt-2 w-60 rounded-2xl p-2" style={{ "--c": "var(--cyan)" }}>
-								{PRESTATIONS.map((p) => (
-									<NavLink key={p.to} to={p.to} end className={({ isActive }) => `block ${navClass({ isActive })}`}>
-										{p.label}
-									</NavLink>
-								))}
-							</div>
-						)}
-					</div>
+				<nav ref={navRef} aria-label="Menu principal" className="hidden items-center gap-1 lg:flex">
+					{MENUS.map((menu) => (
+						<div key={menu.id} className="relative">
+							<button
+								type="button"
+								aria-expanded={dropdown === menu.id}
+								aria-haspopup="true"
+								onClick={() => setDropdown((v) => (v === menu.id ? null : menu.id))}
+								className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-white/80 hover:text-white">
+								{menu.label}
+								<ChevronDownIcon className={`h-4 w-4 transition-transform ${dropdown === menu.id ? "rotate-180" : ""}`} />
+							</button>
+							{dropdown === menu.id && (
+								<div className="neon-card absolute left-0 top-full mt-2 w-64 rounded-2xl bg-[var(--ink)] p-2" style={{ "--c": "var(--cyan)" }}>
+									{menu.items.map((p) => (
+										<NavLink key={p.to} to={p.to} end className={({ isActive }) => `block ${navClass({ isActive })}`}>
+											{p.label}
+										</NavLink>
+									))}
+								</div>
+							)}
+						</div>
+					))}
 					{LINKS.map((l) =>
 						l.plain ? (
-							<a key={l.to} href={l.to} className={navClass({ isActive: false })}>
-								{l.label}
-							</a>
+							<a key={l.to} href={l.to} className={navClass({ isActive: false })}>{l.label}</a>
 						) : (
-							<NavLink key={l.to} to={l.to} className={navClass}>
-								{l.label}
-							</NavLink>
+							<NavLink key={l.to} to={l.to} className={navClass}>{l.label}</NavLink>
 						),
 					)}
-					<Link
-						to="/contact"
-						className="btn-neon ml-2 rounded-xl bg-[var(--pink)] px-4 py-2 text-sm font-bold text-white">
+					<Link to="/contact" className="btn-neon ml-2 rounded-xl bg-[var(--pink)] px-4 py-2 text-sm font-bold text-white">
 						Demander mon devis
 					</Link>
 				</nav>
@@ -102,28 +105,16 @@ export default function LedHeader() {
 			</div>
 
 			{open && (
-				<nav aria-label="Menu mobile" className="border-t border-white/10 px-4 pb-6 pt-2 lg:hidden">
-					<p className="mt-3 px-3 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">Prestations</p>
-					{PRESTATIONS.map((p) => (
-						<NavLink key={p.to} to={p.to} end className={({ isActive }) => `block text-base ${navClass({ isActive })}`}>
-							{p.label}
-						</NavLink>
+				<nav aria-label="Menu mobile" className="max-h-[calc(100svh-4.5rem)] overflow-y-auto border-t border-white/10 px-4 pb-6 pt-2 lg:hidden">
+					{MENUS.map((menu) => (
+						<div key={menu.id}>
+							<p className="mt-4 px-3 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">{menu.label}</p>
+							{menu.items.map((p) => <MobileLink key={p.to} {...p} />)}
+						</div>
 					))}
 					<p className="mt-4 px-3 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">Dydy Fantasy</p>
-					{LINKS.map((l) =>
-						l.plain ? (
-							<a key={l.to} href={l.to} className={`block text-base ${navClass({ isActive: false })}`}>
-								{l.label}
-							</a>
-						) : (
-							<NavLink key={l.to} to={l.to} className={({ isActive }) => `block text-base ${navClass({ isActive })}`}>
-								{l.label}
-							</NavLink>
-						),
-					)}
-					<Link
-						to="/contact"
-						className="btn-neon mt-5 block rounded-xl bg-[var(--pink)] px-4 py-3 text-center font-bold text-white">
+					{[...LINKS, { to: "/mon-approche", label: "Mon approche" }].map((l) => <MobileLink key={l.to} {...l} />)}
+					<Link to="/contact" className="btn-neon mt-5 block rounded-xl bg-[var(--pink)] px-4 py-3 text-center font-bold text-white">
 						Demander mon devis
 					</Link>
 				</nav>

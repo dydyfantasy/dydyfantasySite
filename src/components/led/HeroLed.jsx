@@ -35,8 +35,8 @@ const ANSWERS = [
 		color: "#3ddc84",
 		icon: MicrophoneIcon,
 		cta: "Découvrir le karaoké",
+		href: "/prestations/karaoke",
 		text: "Relances micro, duos, battles et playlists thématiques : des moments drôles et fédérateurs où tout le monde participe.",
-		href: "/prestations",
 	},
 	{
 		letter: "C",
@@ -44,8 +44,8 @@ const ANSWERS = [
 		color: "#19d3f0",
 		icon: MusicalNoteIcon,
 		cta: "Découvrir la soirée DJ",
+		href: "/prestations/dj",
 		text: "Une sélection musicale adaptée à votre public, pensée pour accompagner les temps forts et faire monter l'ambiance au bon moment.",
-		href: "/prestations",
 	},
 	{
 		letter: "D",
@@ -53,8 +53,8 @@ const ANSWERS = [
 		color: "#ffc93c",
 		icon: PuzzlePieceIcon,
 		cta: "Découvrir le sur-mesure",
+		href: "/prestations/sur-mesure",
 		text: "Loto revisité, murder party, escape game, jeux d'équipe ou soirée à thème : le format est personnalisé selon votre lieu, votre public et votre objectif.",
-		href: "/prestations",
 	},
 ];
 
