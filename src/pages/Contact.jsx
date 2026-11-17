@@ -42,7 +42,7 @@ function Contact() {
 			<StageLights />
 			<Seo
 				path="/contact"
-				title="Dydy Fantasy | Me contacter pour une animation à Toulouse"
+				title="Contact et devis animation à Toulouse | Dydy Fantasy"
 				description="Contactez Dydy Fantasy pour animer votre événement à Toulouse et en Occitanie : blind test, quiz interactif, karaoké, soirée privée, mariage ou événement professionnel."
 				ogTitle="Dydy Fantasy | Contact animation événementielle à Toulouse"
 				ogDescription="Parlez-moi de votre événement : blind test, quiz, karaoké ou animation sur mesure à Toulouse et en Occitanie."

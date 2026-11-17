@@ -88,7 +88,7 @@ gtag('config', '${GA_ID}');`,
 // Affiché pendant le chargement du JavaScript tant que les pages ne sont pas
 // pré-rendues (étape 4) : fond de la couleur du site, comme avant.
 export function HydrateFallback() {
-	return <div className="min-h-screen bg-gray-900" />;
+	return <div className="min-h-screen bg-[#05040a]" />;
 }
 
 // Ce qui entoure chaque page (remplace l'ancien App.jsx)
