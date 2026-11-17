@@ -8,7 +8,6 @@ import "@fontsource/sora/600.css";
 import "@fontsource/sora/800.css";
 import "./index.css";
 import "./css/led.css";
-import "./App.css";
 
 const GA_ID = "G-3ZFS6P50ML";
 

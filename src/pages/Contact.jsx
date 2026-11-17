@@ -1,139 +1,40 @@
-import Seo from "../components/Seo";
-import StageLights from "../components/led/StageLights";
-import { motion } from "motion/react";
+import { FaWhatsapp, FaFacebookF, FaInstagram } from "react-icons/fa";
 import {
-	ChatBubbleBottomCenterTextIcon,
-	ClockIcon,
-	EnvelopeIcon,
+	CheckIcon,
 	MapPinIcon,
 	SparklesIcon,
+	ClockIcon,
+	PhoneIcon,
+	DocumentTextIcon,
 } from "@heroicons/react/24/outline";
-import { FaWhatsapp, FaFacebookF, FaInstagram } from "react-icons/fa";
+import Seo from "../components/Seo";
+import StageLights from "../components/led/StageLights";
+import ScrollReveal from "../components/led/ScrollReveal";
 import ContactForm from "../components/ContactForm";
+import tete64 from "../assets/brand/perso-tete-64.webp";
+import tete128 from "../assets/brand/perso-tete-128.webp";
 
-const fadeUp = {
-	hidden: {
-		opacity: 0,
-		y: 45,
-		scale: 0.97,
-	},
-	visible: {
-		opacity: 1,
-		y: 0,
-		scale: 1,
-		transition: {
-			duration: 0.65,
-			ease: [0.16, 1, 0.3, 1],
-		},
-	},
-};
+// Textes repris de l'ancienne page Contact (zone mise à jour : Fonsorbes, rayon de 50 km).
 
-const fadeLeft = {
-	hidden: {
-		opacity: 0,
-		x: -55,
-	},
-	visible: {
-		opacity: 1,
-		x: 0,
-		transition: {
-			duration: 0.75,
-			ease: [0.16, 1, 0.3, 1],
-		},
-	},
-};
-
-const fadeRight = {
-	hidden: {
-		opacity: 0,
-		x: 55,
-	},
-	visible: {
-		opacity: 1,
-		x: 0,
-		transition: {
-			duration: 0.75,
-			ease: [0.16, 1, 0.3, 1],
-		},
-	},
-};
-
-const contactInfos = [
-	{
-		title: "Zone d’intervention",
-		text: "Toulouse, Haute-Garonne et Occitanie",
-		icon: MapPinIcon,
-	},
-	{
-		title: "Formats possibles",
-		text: "Blind test, quiz interactif, karaoké, soirée privée, mariage ou événement pro",
-		icon: SparklesIcon,
-	},
-	{
-		title: "Réponse",
-		text: "Je reviens vers vous rapidement pour échanger sur votre projet",
-		icon: ClockIcon,
-	},
+const CHECKLIST = [
+	"La date de l’événement",
+	"Le lieu ou la ville",
+	"Le nombre approximatif de participants",
+	"Le type d’animation souhaité",
+	"L’ambiance recherchée",
 ];
 
-function FloatingBackground() {
-	return (
-		<div className="pointer-events-none absolute inset-0 overflow-hidden">
-			<motion.div
-				animate={{
-					x: [0, 70, 0],
-					y: [0, -40, 0],
-					scale: [1, 1.15, 1],
-				}}
-				transition={{
-					duration: 13,
-					repeat: Infinity,
-					ease: "easeInOut",
-				}}
-				className="absolute left-[-150px] top-20 h-96 w-96 rounded-full bg-pink-500/10 hidden"
-			/>
+const INFOS = [
+	{ icon: MapPinIcon, color: "var(--cyan)", title: "Zone d’intervention", text: "Basé à Fonsorbes, dans un rayon de 50 km autour de Toulouse" },
+	{ icon: SparklesIcon, color: "var(--pink)", title: "Formats possibles", text: "Blind test, quiz interactif, karaoké, DJ, soirée privée, mariage ou événement pro" },
+	{ icon: ClockIcon, color: "var(--gold)", title: "Réponse", text: "Je reviens vers vous rapidement pour échanger sur votre projet" },
+];
 
-			<motion.div
-				animate={{
-					x: [0, -65, 0],
-					y: [0, 45, 0],
-					scale: [1, 1.18, 1],
-				}}
-				transition={{
-					duration: 15,
-					repeat: Infinity,
-					ease: "easeInOut",
-				}}
-				className="absolute right-[-160px] top-52 h-96 w-96 rounded-full bg-blue-500/10 hidden"
-			/>
-
-			<motion.div
-				animate={{
-					x: [0, 40, 0],
-					y: [0, 35, 0],
-					scale: [1, 1.12, 1],
-				}}
-				transition={{
-					duration: 17,
-					repeat: Infinity,
-					ease: "easeInOut",
-				}}
-				className="absolute bottom-20 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-purple-500/10 hidden"
-			/>
-
-			<div className="absolute inset-0 opacity-[0.06]">
-				<div
-					className="absolute inset-0"
-					style={{
-						backgroundImage:
-							"radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1.5px)",
-						backgroundSize: "22px 22px",
-					}}
-				/>
-			</div>
-		</div>
-	);
-}
+const DIRECT = [
+	{ name: "WhatsApp", url: "https://wa.me/33695953356?text=Bonjour%20Dydy%20Fantasy%20!%20Je%20souhaite%20en%20savoir%20plus.", Icon: FaWhatsapp, color: "#3ddc84" },
+	{ name: "Facebook", url: "https://facebook.com/profile.php?id=61578462940099", Icon: FaFacebookF, color: "var(--cyan)" },
+	{ name: "Instagram", url: "https://www.instagram.com/dydy_fantasy", Icon: FaInstagram, color: "var(--pink)" },
+];
 
 function Contact() {
 	return (
@@ -147,198 +48,103 @@ function Contact() {
 				ogDescription="Parlez-moi de votre événement : blind test, quiz, karaoké ou animation sur mesure à Toulouse et en Occitanie."
 			/>
 
-			<section className="relative min-h-screen overflow-hidden bg-transparent text-white">
-				<div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pink-500/50 to-transparent" />
+			{/* ---- En-tête ---- */}
+			<section className="px-4 pb-8 pt-10 md:pt-14">
+				<div className="mx-auto max-w-6xl">
+					<p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">
+						<span className="live-dot h-2 w-2 rounded-full bg-[var(--pink)]" aria-hidden="true" />
+						Contact
+					</p>
+					<h1 className="mt-3 max-w-4xl text-4xl font-extrabold leading-tight md:text-6xl">
+						Parlez-moi de votre événement,{" "}
+						<span className="text-[var(--cyan)]">je vous propose une animation adaptée.</span>
+					</h1>
+					<p className="mt-5 max-w-3xl text-lg leading-relaxed text-white/80">
+						Blind test, quiz interactif, karaoké, animation de bar, soirée privée, mariage ou événement
+						professionnel : envoyez-moi votre demande et je vous réponds avec une proposition claire.
+					</p>
+				</div>
+			</section>
 
-				<FloatingBackground />
+			{/* ---- Formulaire (priorité) + infos ---- */}
+			<section className="px-4 pb-24">
+				<div className="mx-auto grid max-w-6xl items-start gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)]">
+					{/* Formulaire */}
+					<ScrollReveal id="devis" className="neon-card scroll-mt-28 rounded-3xl p-6 md:p-8" style={{ "--c": "var(--pink)" }}>
+						<p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">
+							<DocumentTextIcon aria-hidden="true" className="h-4 w-4" />
+							Demande de devis
+						</p>
+						<h2 className="mt-2 text-2xl font-extrabold md:text-3xl">Expliquez-moi votre projet.</h2>
+						<p className="mt-2 text-white/70">
+							Plus vous me donnez d’informations, plus je pourrai vous proposer une animation adaptée.
+						</p>
+						<div className="mt-6">
+							<ContactForm />
+						</div>
+					</ScrollReveal>
 
-				<div className="relative z-10 mx-auto max-w-7xl px-4 py-16 md:py-20">
-					<div className="mb-12 text-center">
-						<motion.div
-							initial={{ opacity: 0, y: 20, scale: 0.9 }}
-							animate={{ opacity: 1, y: 0, scale: 1 }}
-							transition={{
-								duration: 0.55,
-								ease: [0.16, 1, 0.3, 1],
-							}}
-							className="mb-5 inline-flex items-center gap-2 rounded-full border border-pink-300/20 bg-pink-400/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.25em] text-pink-200">
-							<EnvelopeIcon className="h-4 w-4" />
-							Contact
-						</motion.div>
-
-						<motion.h1
-							initial={{ opacity: 0, y: 40 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{
-								duration: 0.8,
-								delay: 0.1,
-								ease: [0.16, 1, 0.3, 1],
-							}}
-							className="mx-auto max-w-4xl text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
-							Parlez-moi de votre événement,
-							<span className="bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">
-								{" "}
-								je vous propose une animation adaptée.
-							</span>
-						</motion.h1>
-
-						<motion.p
-							initial={{ opacity: 0, y: 30 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{
-								duration: 0.7,
-								delay: 0.25,
-								ease: [0.16, 1, 0.3, 1],
-							}}
-							className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-gray-300 md:text-lg">
-							Blind test, quiz interactif, karaoké, animation de bar, soirée
-							privée, mariage ou événement professionnel : envoyez-moi votre
-							demande et je vous réponds avec une proposition claire.
-						</motion.p>
-					</div>
-
-					<div className="grid grid-cols-1 gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-						{/* Colonne infos */}
-						<motion.aside
-							variants={fadeLeft}
-							initial="hidden"
-							animate="visible"
-							className="space-y-5">
-							<div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 shadow-2xl md:p-8">
-								<div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500" />
-
-								<div className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full bg-pink-500/20 hidden" />
-
-								<div className="relative z-10">
-									<div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-300/20 bg-purple-400/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-purple-200">
-										<ChatBubbleBottomCenterTextIcon className="h-4 w-4" />
-										Avant de m’écrire
-									</div>
-
-									<h2 className="text-2xl font-extrabold text-white md:text-3xl">
-										Quelques infos utiles à me donner.
-									</h2>
-
-									<ul className="mt-6 space-y-3">
-										{[
-											"La date de l’événement",
-											"Le lieu ou la ville",
-											"Le nombre approximatif de participants",
-											"Le type d’animation souhaité",
-											"L’ambiance recherchée",
-										].map((item) => (
-											<li
-												key={item}
-												className="flex items-start gap-3 text-sm text-gray-300">
-												<SparklesIcon className="mt-0.5 h-5 w-5 shrink-0 text-pink-300" />
-												<span>{item}</span>
-											</li>
-										))}
-									</ul>
+					{/* Colonne d'infos */}
+					<aside className="space-y-6 lg:sticky lg:top-24">
+						{/* Avant de m'écrire */}
+						<ScrollReveal variant="right" className="neon-card rounded-3xl p-6" style={{ "--c": "var(--cyan)" }}>
+							<div className="flex items-center gap-3">
+								<img src={tete64} srcSet={`${tete64} 1x, ${tete128} 2x`} alt="" width="64" height="64" className="h-11 w-11 rounded-full ring-2 ring-[var(--cyan)]" />
+								<div>
+									<h2 className="font-extrabold">Avant de m’écrire</h2>
+									<p className="text-sm text-white/65">Quelques infos utiles à me donner.</p>
 								</div>
 							</div>
+							<ul className="mt-4 space-y-2">
+								{CHECKLIST.map((item) => (
+									<li key={item} className="flex items-start gap-2 text-sm text-white/85">
+										<CheckIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-[var(--cyan)]" />
+										{item}
+									</li>
+								))}
+							</ul>
+						</ScrollReveal>
 
-							<motion.div
-								variants={{
-									hidden: {},
-									visible: {
-										transition: {
-											staggerChildren: 0.08,
-										},
-									},
-								}}
-								initial="hidden"
-								animate="visible"
-								className="grid grid-cols-1 gap-4">
-								{contactInfos.map((info) => {
-									const Icon = info.icon;
+						{/* Infos pratiques */}
+						<ScrollReveal variant="right" delay={100}>
+							<ul className="space-y-4">
+								{INFOS.map((info) => (
+									<li key={info.title} className="flex gap-3" style={{ "--c": info.color }}>
+										<span className="menu-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl">
+											<info.icon aria-hidden="true" className="h-5 w-5" />
+										</span>
+										<div>
+											<p className="font-bold">{info.title}</p>
+											<p className="text-sm text-white/70">{info.text}</p>
+										</div>
+									</li>
+								))}
+							</ul>
+						</ScrollReveal>
 
-									return (
-										<motion.div
-											key={info.title}
-											variants={fadeUp}
-											whileHover={{ y: -5, scale: 1.01 }}
-											className="rounded-3xl border border-white/10 bg-white/[0.045] p-5 shadow-xl transition-all duration-300 hover:border-pink-300/30 hover:bg-white/[0.075]">
-											<div className="flex items-start gap-4">
-												<div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-pink-500/15 text-pink-200">
-													<Icon className="h-6 w-6" />
-												</div>
-
-												<div>
-													<h3 className="font-extrabold text-white">
-														{info.title}
-													</h3>
-													<p className="mt-1 text-sm leading-relaxed text-gray-400">
-														{info.text}
-													</p>
-												</div>
-											</div>
-										</motion.div>
-									);
-								})}
-							</motion.div>
-
-							<div className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-1">
-								<a
-									href="https://wa.me/33695953356?text=Bonjour%20Dydy%20Fantasy%20!%20Je%20souhaite%20en%20savoir%20plus."
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center justify-center gap-2 rounded-2xl bg-green-500 px-5 py-3 text-sm font-extrabold text-white shadow-lg transition hover:-translate-y-1 hover:bg-green-600">
-									<FaWhatsapp className="h-5 w-5" />
-									WhatsApp
-								</a>
-
-								<a
-									href="https://facebook.com/profile.php?id=61578462940099"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.055] px-5 py-3 text-sm font-extrabold text-white/80 transition hover:-translate-y-1 hover:border-pink-300/30 hover:bg-pink-500/10 hover:text-white">
-									<FaFacebookF className="h-4 w-4" />
-									Facebook
-								</a>
-
-								<a
-									href="https://www.instagram.com/dydy_fantasy"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/[0.055] px-5 py-3 text-sm font-extrabold text-white/80 transition hover:-translate-y-1 hover:border-pink-300/30 hover:bg-pink-500/10 hover:text-white">
-									<FaInstagram className="h-4 w-4" />
-									Instagram
-								</a>
+						{/* Contact direct */}
+						<ScrollReveal variant="right" delay={200} className="border-t border-white/10 pt-6">
+							<p className="text-sm font-bold uppercase tracking-[0.2em] text-white/55">Ou directement</p>
+							<a href="tel:+33695953356" className="mt-3 flex items-center gap-2 text-lg font-bold hover:text-[var(--cyan)]">
+								<PhoneIcon aria-hidden="true" className="h-5 w-5 text-[var(--cyan)]" />
+								06 95 95 33 56
+							</a>
+							<div className="mt-4 flex gap-3">
+								{DIRECT.map((d) => (
+									<a
+										key={d.name}
+										href={d.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label={`Contacter Dydy Fantasy sur ${d.name}`}
+										style={{ "--c": d.color }}
+										className="social-btn flex h-12 w-12 items-center justify-center rounded-full">
+										<d.Icon className="h-5 w-5" />
+									</a>
+								))}
 							</div>
-						</motion.aside>
-
-						{/* Formulaire */}
-						<motion.div
-							variants={fadeRight}
-							initial="hidden"
-							animate="visible"
-							className="relative overflow-hidden rounded-[2rem] border border-pink-300/20 bg-white/[0.055] p-4 shadow-2xl md:p-6">
-							<div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500" />
-
-							<div className="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-pink-500/20 hidden" />
-							<div className="pointer-events-none absolute -bottom-20 -left-20 h-60 w-60 rounded-full bg-blue-500/15 hidden" />
-
-							<div className="relative z-10">
-								<div className="mb-6">
-									<p className="text-xs font-extrabold uppercase tracking-[0.22em] text-pink-200">
-										Demande de devis
-									</p>
-
-									<h2 className="mt-2 text-2xl font-extrabold text-white md:text-3xl">
-										Expliquez-moi votre projet.
-									</h2>
-
-									<p className="mt-3 text-sm leading-relaxed text-gray-400">
-										Plus vous me donnez d’informations, plus je pourrai vous
-										proposer une animation adaptée.
-									</p>
-								</div>
-
-								<ContactForm />
-							</div>
-						</motion.div>
-					</div>
+						</ScrollReveal>
+					</aside>
 				</div>
 			</section>
 		</div>

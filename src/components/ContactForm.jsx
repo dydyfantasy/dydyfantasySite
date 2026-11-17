@@ -1,9 +1,9 @@
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 
 const inputClass =
-	"w-full rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm text-white placeholder:text-gray-500 outline-none transition focus:border-pink-300/50 focus:bg-black/35 focus:ring-2 focus:ring-pink-500/25";
+	"w-full rounded-xl border border-white/15 bg-black/40 px-4 py-3 text-base text-white placeholder:text-white/35 outline-none transition focus:border-[var(--cyan)] focus:ring-2 focus:ring-[var(--cyan)]/30 [color-scheme:dark]";
 
-const labelClass = "mb-2 block text-sm font-bold text-gray-300";
+const labelClass = "mb-2 block text-sm font-semibold text-white/80";
 
 export default function ContactForm() {
 	return (
@@ -149,12 +149,12 @@ export default function ContactForm() {
 
 			<button
 				type="submit"
-				className="group inline-flex w-full items-center justify-center gap-2 rounded-2xl btn-neon bg-[var(--pink)] px-6 py-4 text-sm font-extrabold uppercase tracking-[0.16em] text-white shadow-[0_0_28px_rgba(236,72,153,0.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_42px_rgba(236,72,153,0.65)]">
+				className="btn-neon group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--pink)] px-6 py-4 text-base font-bold text-white">
 				Envoyer ma demande
 				<PaperAirplaneIcon className="h-5 w-5 transition group-hover:translate-x-1" />
 			</button>
 
-			<p className="text-center text-xs leading-relaxed text-gray-500">
+			<p className="text-center text-xs leading-relaxed text-white/45">
 				Les informations transmises servent uniquement à répondre à votre
 				demande d’animation.
 			</p>
