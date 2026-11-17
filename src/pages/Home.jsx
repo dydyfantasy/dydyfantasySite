@@ -1,9 +1,6 @@
 import Seo from "../components/Seo";
-import "@fontsource/doto/900.css";
 import "@fontsource/sora/400.css";
 import "@fontsource/sora/600.css";
-import "@fontsource/sora/700.css";
-import "@fontsource/permanent-marker";
 import "../css/led.css";
 import HeroLed from "../components/led/HeroLed";
 import MiniCards from "../components/MiniCards";

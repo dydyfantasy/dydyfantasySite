@@ -1,57 +1,18 @@
-import { useState } from "react";
-import { Link } from "react-router";
-import {
-	ArrowRightIcon,
-	CalendarDaysIcon,
-	SparklesIcon,
-	StarIcon,
-} from "@heroicons/react/24/solid";
+import { CalendarDaysIcon, SparklesIcon, StarIcon } from "@heroicons/react/24/solid";
+import Card from "../Card";
 import scene640 from "../../assets/hero/hero-scene-640.webp";
 import scene1024 from "../../assets/hero/hero-scene-1024.webp";
 import scene1536 from "../../assets/hero/hero-scene-1536.webp";
+// Provisoire : logo complet en attendant le logo « DYDY FANTASY » seul
+import logo from "/dydy_fantasy_logo-v3.webp";
 
-// Même contenu que l'ancien Hero ; les liens pointeront vers /prestations/...
-// quand ces pages existeront.
-const ANSWERS = [
-	{
-		letter: "A",
-		label: "Quiz / Blind test",
-		color: "#ff4d6d",
-		text: "Une animation façon game show : vos invités jouent depuis leur téléphone ou avec des buzzers. Manches thématiques, classements en direct et ambiance au micro.",
-		href: "/prestations",
-	},
-	{
-		letter: "B",
-		label: "Karaoké",
-		color: "#7cff6b",
-		text: "Micros ouverts, duos, battles et chansons cultes : une animation conviviale où tout le monde peut participer.",
-		href: "/prestations",
-	},
-	{
-		letter: "C",
-		label: "Soirée DJ",
-		color: "#19d3f0",
-		text: "Une programmation musicale adaptée à votre public et aux temps forts de l'événement, pour faire monter l'énergie au bon moment.",
-		href: "/prestations",
-	},
-	{
-		letter: "D",
-		label: "Sur mesure",
-		color: "#ffc93c",
-		text: "Je construis une animation adaptée à votre lieu, votre public et vos envies : jeux, soirée à thème ou combinaison de plusieurs formats.",
-		href: "/prestations",
-	},
-];
-
-const TICKER = [
-	"Blind test",
-	"Quiz",
-	"Karaoké",
-	"DJ",
-	"Soirées sur mesure",
-	"Toulouse",
-	"Haute-Garonne",
-	"Gers",
+// Cartes du quiz : identiques à l'ancien Hero (composant Card d'origine).
+// Les liens pointeront vers /prestations/... quand ces pages existeront.
+const cards = [
+	{ letter: "A", color: "red", front: "Quiz / Blind Test", href: "/prestations" },
+	{ letter: "B", color: "green", front: "Karaoké", href: "/prestations" },
+	{ letter: "C", color: "blue", front: "Soirée DJ", href: "/prestations" },
+	{ letter: "D", color: "yellow", front: "Évènement sur mesure", href: "/prestations" },
 ];
 
 function ScenePhoto({ className = "" }) {
@@ -59,7 +20,7 @@ function ScenePhoto({ className = "" }) {
 		<img
 			src={scene1536}
 			srcSet={`${scene640} 640w, ${scene1024} 1024w, ${scene1536} 1536w`}
-			sizes="(min-width: 768px) 60vw, 100vw"
+			sizes="(min-width: 768px) 55vw, 100vw"
 			width="1536"
 			height="1149"
 			alt="Dydy Fantasy de dos, veste à paillettes, aux platines face à une salle des fêtes pleine pendant une soirée blind test et karaoké"
@@ -70,19 +31,16 @@ function ScenePhoto({ className = "" }) {
 	);
 }
 
-// Hero de l'accueil : mur LED + quiz « Vous recherchez ? ».
-// Tout est visible dès le HTML pré-rendu (pas d'animation d'apparition) pour un LCP rapide.
+// Hero de l'accueil : logo, photo de scène façon écran LED, quiz « Vous recherchez ? ».
+// Visible dès le HTML pré-rendu (pas d'animation d'apparition sur le titre) pour un LCP rapide.
 export default function HeroLed() {
-	const [selected, setSelected] = useState(null);
-	const answer = ANSWERS.find((a) => a.letter === selected);
-
 	return (
 		<section className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
-			{/* ---- Photo « mur LED » (ordinateur : colonne droite fondue) ---- */}
+			{/* ---- Photo « écran LED » (ordinateur : colonne droite fondue) ---- */}
 			<div
 				aria-hidden="true"
-				className="absolute inset-y-0 right-0 -z-20 hidden w-[62%] md:block md:[mask-image:linear-gradient(90deg,transparent_0%,black_30%)]">
-				<ScenePhoto className="h-full w-full object-cover object-[0%_65%] saturate-[1.25]" />
+				className="absolute inset-y-0 right-0 -z-20 hidden w-[55%] md:block md:[mask-image:linear-gradient(90deg,transparent_0%,black_30%)]">
+				<ScenePhoto className="h-full w-full object-cover object-[8%_65%] saturate-[1.25]" />
 				<div className="led-pixels absolute inset-0" />
 				<div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(5_4_10/0.55),transparent_30%,transparent_70%,rgb(5_4_10/0.85))]" />
 				<div className="absolute inset-x-0 top-0 h-1/4 overflow-hidden">
@@ -99,32 +57,23 @@ export default function HeroLed() {
 				<div className="light-beam h-full w-[200%] -translate-x-1/4" />
 			</div>
 
-			<div className="mx-auto max-w-6xl px-4 pb-24 pt-8 md:pb-28 md:pt-12">
-				<div className="max-w-[40rem]">
-					{/* En direct */}
-					<p className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
-						<span className="eq flex h-3.5 items-end gap-[2px]" aria-hidden="true">
-							<span className="h-full" />
-							<span className="h-full" />
-							<span className="h-full" />
-							<span className="h-full" />
-						</span>
-						Animateur · Toulouse ouest
-					</p>
-
-					<h1 className="mt-5">
-						<span className="flex flex-wrap items-baseline gap-x-4 leading-none">
-							<span className="font-led led-glow-cyan text-[clamp(3.2rem,12vw,6.2rem)] tracking-tight">
-								DYDY
-							</span>
-							<span className="font-brush neon-pink -rotate-3 text-[clamp(2.8rem,10vw,5.2rem)]">
-								Fantasy
-							</span>
-						</span>
-						<span className="mt-3 block text-lg font-semibold text-white/85 md:text-xl">
-							Blind test, quiz, karaoké & DJ à Toulouse
-						</span>
+			<div className="mx-auto max-w-6xl px-4 pb-14 pt-8 md:pb-16 md:pt-12">
+				<div className="md:max-w-[52%]">
+					{/* Logo + titre SEO (le H1 est le texte, le logo une image) */}
+					<img
+						src={logo}
+						alt="Dydy Fantasy"
+						width="1782"
+						height="396"
+						className="h-auto w-full max-w-[34rem]"
+					/>
+					<h1 className="mt-4 text-xl font-semibold text-white/90 md:text-2xl">
+						Blind test, quiz, karaoké & DJ à Toulouse
 					</h1>
+					<p className="mt-2 max-w-xl text-sm leading-relaxed text-white/70 md:text-base">
+						Des animations interactives et sur mesure, pour que vos invités ne
+						soient pas seulement spectateurs.
+					</p>
 
 					{/* Photo sur mobile : écran LED encadré */}
 					<div className="led-border mt-5 md:hidden">
@@ -137,53 +86,29 @@ export default function HeroLed() {
 						</div>
 					</div>
 
-					{/* ---- Quiz ---- */}
-					<div className="led-border mt-7">
-						<div className="rounded-[1.15rem] bg-[var(--ink-2)] p-4 md:p-5">
-							<h2 className="text-xl font-bold leading-snug md:text-2xl">
-								Quel type d’animation{" "}
-								<span className="text-[var(--cyan)]">recherchez-vous&nbsp;?</span>
-							</h2>
+					{/* ---- Quiz : bloc et cartes d'origine ---- */}
+					<div className="mt-7 rounded-2xl border border-white/10 bg-black/40 px-4 py-4 md:px-6">
+						<p className="mb-1 text-xs font-black uppercase tracking-[0.2em] text-pink-300">
+							Question 01 / 01
+						</p>
+						<h2 className="text-2xl font-black tracking-tight text-white md:text-3xl">
+							Quel type d’animation recherchez-vous ?
+						</h2>
+						<p className="mt-1 text-sm text-gray-300">
+							Sélectionnez une réponse pour découvrir l'expérience.
+						</p>
+					</div>
 
-							<div className="mt-4 grid grid-cols-2 gap-3">
-								{ANSWERS.map((a) => (
-									<button
-										key={a.letter}
-										type="button"
-										aria-pressed={selected === a.letter}
-										onClick={() => setSelected(a.letter)}
-										style={{ "--c": a.color }}
-										className="led-tile flex items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-semibold md:text-base">
-										<span className="tile-letter font-led text-3xl leading-none md:text-4xl">
-											{a.letter}
-										</span>
-										<span className="leading-tight">{a.label}</span>
-									</button>
-								))}
+					<div className="relative z-20 mt-4 grid grid-cols-1 items-start gap-4 sm:grid-cols-2">
+						{cards.map((card) => (
+							<div key={card.letter} className="relative min-w-0 hover:z-30">
+								<Card {...card} />
 							</div>
-
-							<div className="mt-4 min-h-[5.5rem] text-sm leading-relaxed md:text-[0.95rem]" aria-live="polite">
-								{answer ? (
-									<div key={answer.letter} className="answer-pop">
-										<p className="text-white/85">{answer.text}</p>
-										<Link
-											to={answer.href}
-											className="mt-2 inline-flex items-center gap-1.5 font-semibold text-[var(--cyan)] hover:text-white">
-											Découvrir {answer.label.toLowerCase()}
-											<ArrowRightIcon className="h-4 w-4" />
-										</Link>
-									</div>
-								) : (
-									<p className="pt-2 text-white/60">
-										⚡ Choisissez une réponse pour découvrir l’expérience.
-									</p>
-								)}
-							</div>
-						</div>
+						))}
 					</div>
 
 					{/* Appels à l'action */}
-					<div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+					<div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
 						<a
 							href="/contact"
 							className="btn-neon inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--pink)] px-6 py-3.5 font-bold text-white">
@@ -207,26 +132,6 @@ export default function HeroLed() {
 							72 avis · 5/5
 						</a>
 					</div>
-				</div>
-			</div>
-
-			{/* ---- Bandeau façon enseigne LED ---- */}
-			<div className="absolute inset-x-0 bottom-0 border-y border-white/10 bg-black/70 py-2.5">
-				<div className="led-ticker" aria-hidden="true">
-					{[0, 1].map((copy) => (
-						<div key={copy} className="flex shrink-0">
-							{TICKER.map((item, i) => (
-								<span
-									key={`${copy}-${item}`}
-									className={`font-led flex items-center gap-5 px-5 text-lg uppercase md:text-xl ${
-										i % 2 === 0 ? "led-glow-cyan" : "neon-pink"
-									}`}>
-									{item}
-									<span className="text-white/40">•</span>
-								</span>
-							))}
-						</div>
-					))}
 				</div>
 			</div>
 		</section>
