@@ -1,5 +1,9 @@
 import Seo from "../components/Seo";
-import Hero from "../components/Hero";
+import "@fontsource/archivo-black";
+import "@fontsource/permanent-marker";
+import "../css/plateau.css";
+import HeroScene from "../components/plateau/HeroScene";
+import QuizPlateau from "../components/plateau/QuizPlateau";
 import MiniCards from "../components/MiniCards";
 import Reseaux from "../components/Reseaux";
 import VideoPresentation from "../components/VideoPresentation";
@@ -54,7 +58,8 @@ function Home() {
 				}}
 			/>
 
-			<Hero />
+			<HeroScene />
+			<QuizPlateau />
 
 			<MiniCards />
 			<AgendaSection />

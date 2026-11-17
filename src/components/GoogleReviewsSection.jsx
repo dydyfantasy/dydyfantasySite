@@ -9,7 +9,7 @@ import {
 
 const GoogleReviewsSection = () => {
 	return (
-		<section className="relative overflow-hidden bg-gray-900 px-4 py-16 text-white">
+		<section id="avis" className="relative scroll-mt-24 overflow-hidden bg-gray-900 px-4 py-16 text-white">
 			{/* Séparation douce */}
 			<div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
