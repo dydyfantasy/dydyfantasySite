@@ -41,7 +41,18 @@ React 19 + Vite 7 (JSX, pas de TypeScript), Tailwind CSS v4, React Router 7 en *
 - `Reveal.jsx` : wrapper d'animation d'apparition au scroll (motion `useInView`), réutilisé partout.
 - Le code des composants est exécuté dans Node.js à la compilation (génération HTML) : pas d’accès à `window`/`document`/`localStorage` pendant le rendu, uniquement dans `useEffect`. Les bibliothèques qui touchent `window` à l’import se chargent côté navigateur (ex. `ClientOnlyZoneMap.jsx` pour Leaflet).
 - **Pré-rendu** : `prerender` dans `react-router.config.js` liste les pages générées en HTML complet (`build/client/<page>/index.html`). Toute nouvelle page doit y être ajoutée, ainsi que dans `public/sitemap.xml`. `/404` est pré-rendu pour servir de page d’erreur Apache.
-- Les éléments animés avec `motion` (`initial` opacity 0) sont présents mais invisibles dans le HTML généré jusqu’à l’hydratation (impact LCP, à traiter en phase 3).
+- Les éléments animés avec `motion` (`initial` opacity 0) sont présents mais invisibles dans le HTML généré jusqu’à l’hydratation (impact LCP) : ne concerne plus que les anciennes pages pas encore refaites.
+
+### Refonte v2 (branche `design/accueil-v2`)
+
+Identité « soirée / LED » : fond sombre, néons cyan `#19d3f0` et rose `#ff2fae`, police Sora, styles partagés dans `src/css/led.css` (classe `.led` + variables `--ink`, `--cyan`, `--pink`, `--gold`). Pas de `filter: blur`/`backdrop-filter` animés ; animations en `transform`/`opacity` uniquement, toutes coupées par `prefers-reduced-motion`.
+
+- `src/components/led/` : `LedHeader` (menus « Prestations » / « Événements » avec icônes), `LedFooter`, `NextEventBubble`, `StageLights` (lumières de fond), `ScrollReveal` (apparition au défilement, un seul IntersectionObserver, contenu visible dans le HTML pré-rendu), `SectionTitle`, sections de l'accueil (`HeroLed`, `LedEvents`, `LedAgenda` + fiche `<dialog>`, `LedClients`, `LedReviews`, `LedAbout` + `PhotoCarousel`, `LedFinal` avec la mascotte).
+- `src/components/led/ServicePage.jsx` : **modèle commun** des pages de prestation et d'événement (hero + fil d'Ariane, points, formats, frise, inclus, FAQ, liens croisés, JSON-LD `Service` + `BreadcrumbList`). Pages dans `src/pages/prestations/` et `src/pages/evenements/` : uniquement du contenu passé en props.
+- `src/data/navigation.js` : **source unique** des pages prestations / événements (lien, libellé, icône, couleur) pour le menu, le pied de page et « À découvrir aussi ». Ajouter une page = l'ajouter ici + `src/routes.js` + `prerender` + `public/sitemap.xml`.
+- Photos déposées sans code : `src/assets/carrousel/` (carrousel de l'accueil) et `src/assets/galerie/<catégorie>/` (page `/galerie`), optimisées à la compilation par `vite-imagetools` ; le nom de fichier sert de texte alternatif (SEO).
+- Identité : `src/assets/brand/` (logo texte, mascotte, tête de la mascotte), favicon tête de la mascotte.
+- Ne jamais inventer de chiffres, références ou prestations : textes basés sur les infos réelles du site et de l'utilisateur.
 
 ### Agenda des événements (modifiable sans rebuild)
 
