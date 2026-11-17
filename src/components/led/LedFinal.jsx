@@ -18,7 +18,8 @@ const SOCIALS = [
 ];
 
 // Appel à l'action final, signé par la mascotte + liens internes (maillage SEO) + réseaux sociaux
-export default function LedFinal() {
+// title / text optionnels : permettent à une page d'utiliser sa propre conclusion
+export default function LedFinal({ title, text }) {
 	return (
 		<section aria-labelledby="final-titre" className="px-4 pb-24 pt-10">
 			<ScrollReveal
@@ -38,12 +39,16 @@ export default function LedFinal() {
 
 				<div>
 					<h2 id="final-titre" className="text-3xl font-extrabold leading-tight md:text-5xl">
-						Prêt à faire <span className="text-[var(--pink)]">vibrer</span> votre{" "}
-						<span className="text-[var(--cyan)]">événement</span> ?
+						{title ?? (
+							<>
+								Prêt à faire <span className="text-[var(--pink)]">vibrer</span> votre{" "}
+								<span className="text-[var(--cyan)]">événement</span> ?
+							</>
+						)}
 					</h2>
 					<p className="mt-4 max-w-xl text-white/75 max-md:mx-auto">
-						Parlez-moi de votre soirée : je vous propose une animation sur mesure pour votre lieu
-						et votre public.
+						{text ??
+							"Parlez-moi de votre soirée : je vous propose une animation sur mesure pour votre lieu et votre public."}
 					</p>
 					<a
 						href="/contact"

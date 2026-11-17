@@ -392,6 +392,27 @@ a.board-row:hover {
 	border: 1px solid color-mix(in srgb, var(--c) 35%, transparent);
 }
 
+/* ---------- Page Qui suis-je ---------- */
+
+/* Cadre dégradé néon du portrait et de la vidéo */
+.portrait-frame,
+.video-frame {
+	background: linear-gradient(160deg, var(--cyan), #8b5cf6 50%, var(--pink));
+	box-shadow: 0 0 40px -10px var(--pink);
+}
+
+.portrait-frame {
+	transform: rotate(-2deg);
+}
+
+/* Chiffres lumineux (couleur via --c) */
+.stat-value {
+	color: color-mix(in srgb, var(--c) 35%, white);
+	text-shadow:
+		0 0 6px var(--c),
+		0 0 24px color-mix(in srgb, var(--c) 55%, transparent);
+}
+
 /* ---------- Mascotte ---------- */
 
 /* Petit rebond, comme si elle sautait en rythme (transform uniquement) */
