@@ -1,12 +1,21 @@
-# React + Vite
+# Dydy Fantasy — site vitrine
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site de [dydyfantasy.fr](https://dydyfantasy.fr) : animateur événementiel à l'ouest de Toulouse (blind tests, quiz, karaoké, DJ, animations sur mesure).
 
-Currently, two official plugins are available:
+React 19 + Vite 7 + Tailwind CSS v4 + React Router 7.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Commandes
 
-## Expanding the ESLint configuration
+```bash
+npm install       # installer les dépendances
+npm run dev       # serveur de développement
+npm run build     # build de production
+npm run preview   # prévisualiser le build
+npm run lint      # vérifier le code
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Mettre à jour l'agenda
+
+Les événements sont dans `public/events/events.js` (affiches dans `public/events/`). Ce fichier peut être remplacé directement sur le serveur, sans recompiler le site.
+
+Voir `CLAUDE.md` pour l'architecture détaillée.

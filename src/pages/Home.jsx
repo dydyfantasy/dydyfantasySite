@@ -1,8 +1,8 @@
 import { Helmet } from "react-helmet";
 import Hero from "../components/Hero";
 import MiniCards from "../components/MiniCards";
-import Reseaux from "../components/reseaux";
-import VideoPresentation from "../components/videoPresentation";
+import Reseaux from "../components/Reseaux";
+import VideoPresentation from "../components/VideoPresentation";
 import GoogleReviewsSection from "../components/GoogleReviewsSection";
 import AgendaSection from "../components/AgendaSection";
 import TrustedBySection from "../components/TrustedBySection";

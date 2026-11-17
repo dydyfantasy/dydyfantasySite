@@ -17,7 +17,7 @@ import {
 	PlayCircleIcon,
 } from "@heroicons/react/24/outline";
 import myPhoto from "../assets/PhotoPresentation.webp";
-import VideoPresentation from "./videoPresentation";
+import VideoPresentation from "./VideoPresentation";
 
 const fadeUp = {
 	hidden: {
