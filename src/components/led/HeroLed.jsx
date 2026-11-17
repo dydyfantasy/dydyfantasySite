@@ -15,6 +15,8 @@ import {
 	TrophyIcon,
 } from "@heroicons/react/24/outline";
 import logo480 from "../../assets/brand/logo-texte-480.webp";
+import tete64 from "../../assets/brand/perso-tete-64.webp";
+import tete128 from "../../assets/brand/perso-tete-128.webp";
 import logo960 from "../../assets/brand/logo-texte-960.webp";
 
 // Les 4 réponses du quiz (textes repris des cartes d'origine).
@@ -127,10 +129,21 @@ export default function HeroLed() {
 					</p>
 
 					{/* ---- Quiz ---- */}
-					<p className="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">
-						<span className="live-dot h-2 w-2 rounded-full bg-[var(--pink)]" aria-hidden="true" />
-						Question 01 / 01
-					</p>
+					<div className="mt-8 flex items-center gap-3">
+						{/* La mascotte « pose » la question */}
+						<img
+							src={tete64}
+							srcSet={`${tete64} 1x, ${tete128} 2x`}
+							alt=""
+							width="64"
+							height="64"
+							className="h-12 w-12 rounded-full bg-[var(--ink)] ring-2 ring-[var(--pink)]"
+						/>
+						<p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">
+							<span className="live-dot h-2 w-2 rounded-full bg-[var(--pink)]" aria-hidden="true" />
+							Question 01 / 01
+						</p>
+					</div>
 					<h2 className="mt-2 text-2xl font-extrabold leading-tight md:text-3xl">
 						Quel type d’animation{" "}
 						<span className="text-[var(--cyan)]">recherchez-vous&nbsp;?</span>

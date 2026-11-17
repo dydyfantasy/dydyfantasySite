@@ -384,6 +384,24 @@ a.board-row:hover {
 	box-shadow: 0 0 18px -4px var(--c);
 }
 
+/* ---------- Mascotte ---------- */
+
+/* Petit rebond, comme si elle sautait en rythme (transform uniquement) */
+.mascot-bounce {
+	animation: mascot-bounce 2.4s ease-in-out infinite;
+	filter: drop-shadow(0 0 18px rgb(25 211 240 / 0.35));
+}
+
+@keyframes mascot-bounce {
+	0%,
+	100% {
+		transform: translateY(0) rotate(-2deg);
+	}
+	50% {
+		transform: translateY(-12px) rotate(2deg);
+	}
+}
+
 /* ---------- Bulle « prochaine soirée » ---------- */
 
 .next-bubble {
@@ -481,6 +499,7 @@ a.board-row:hover {
 	.spot,
 	.streak,
 	.clients-track,
+	.mascot-bounce,
 	.is-chasing .answer-btn::after {
 		animation: none;
 	}

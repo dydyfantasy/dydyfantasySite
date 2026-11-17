@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { PhoneIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import logo480 from "../../assets/brand/logo-texte-480.webp";
+import perso240 from "../../assets/brand/perso-240.webp";
 import { PRESTATIONS, EVENEMENTS } from "../../data/navigation";
 
 const SITE_LINKS = [
@@ -43,8 +44,9 @@ export default function LedFooter() {
 		<footer className="led border-t border-white/10 bg-[var(--ink)] px-4 pb-8 pt-14 text-white">
 			<div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
 				<div>
-					<Link to="/" aria-label="Dydy Fantasy, retour à l'accueil">
-						<img src={logo480} alt="Dydy Fantasy" width="480" height="86" className="h-9 w-auto" />
+					<Link to="/" aria-label="Dydy Fantasy, retour à l'accueil" className="flex items-end gap-3">
+						<img src={perso240} alt="" width="240" height="313" loading="lazy" className="h-20 w-auto" />
+						<img src={logo480} alt="Dydy Fantasy" width="480" height="86" className="mb-2 h-8 w-auto" />
 					</Link>
 					<p className="mt-4 max-w-xs text-sm leading-relaxed text-white/65">
 						Animateur blind test, quiz, karaoké et DJ à Toulouse : des soirées où le public joue,
