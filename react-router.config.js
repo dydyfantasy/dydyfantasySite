@@ -19,6 +19,7 @@ export default {
 		"/evenements/anniversaire",
 		"/evenements/bars-restaurants",
 		"/mon-approche",
+		"/galerie",
 		"/contact",
 		"/privacy",
 		"/404",

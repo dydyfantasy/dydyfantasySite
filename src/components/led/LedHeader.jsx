@@ -12,6 +12,7 @@ const MENUS = [
 
 const LINKS = [
 	{ to: "/qui-suis-je", label: "Qui suis-je ?" },
+	{ to: "/galerie", label: "Galerie" },
 	{ to: "/#agenda", label: "Agenda", plain: true },
 ];
 

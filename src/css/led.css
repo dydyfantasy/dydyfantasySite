@@ -431,6 +431,41 @@ a.board-row:hover {
 	animation: answer-pop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ---------- Galerie ---------- */
+
+.gallery-tile {
+	border: 1.5px solid color-mix(in srgb, var(--c) 40%, transparent);
+	transition:
+		border-color 0.2s ease,
+		box-shadow 0.2s ease;
+}
+
+.gallery-tile:hover {
+	border-color: var(--c);
+	box-shadow: 0 0 24px -6px var(--c);
+}
+
+.gallery-btn {
+	display: flex;
+	height: 2.75rem;
+	width: 2.75rem;
+	align-items: center;
+	justify-content: center;
+	border-radius: 9999px;
+	background: rgb(5 4 10 / 0.7);
+	color: #fff;
+	border: 1.5px solid rgb(255 255 255 / 0.3);
+}
+
+.gallery-btn:hover {
+	background: rgb(5 4 10 / 0.9);
+	border-color: var(--pink);
+}
+
+.gallery-dialog::backdrop {
+	background: rgb(5 4 10 / 0.92);
+}
+
 /* ---------- Bande défilante des clients ---------- */
 
 .clients-marquee {
