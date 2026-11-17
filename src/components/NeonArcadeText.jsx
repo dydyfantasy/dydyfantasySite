@@ -1,62 +1,44 @@
-// NeonText.jsx
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
+import "../css/NeonArcade.css";
 
-const NeonText = ({ text }) => {
-	const [litLetters, setLitLetters] = useState(
-		new Array(text.length).fill(false)
+/**
+ * Néon arcade utilisé dans le Hero du site vitrine.
+ * Délais déterministes : pas de Math.random() pendant le rendu React.
+ */
+export default function NeonArcadeText({ text, size = "large" }) {
+	const letters = useMemo(
+		() =>
+			Array.from(text).map((char, index) => {
+				const start = 0.25 + index * 0.12;
+				return {
+					char,
+					// On laisse l'allumage se terminer avant la respiration.
+					delays: `${start.toFixed(2)}s, ${(start + 1.65).toFixed(2)}s, ${(
+						12 +
+						((index * 7) % 9)
+					).toFixed(2)}s`,
+				};
+			}),
+		[text],
 	);
-	const [flicker, setFlicker] = useState(new Array(text.length).fill(false));
-
-	useEffect(() => {
-		let timeouts = [];
-
-		text.split("").forEach((char, index) => {
-			const delay = Math.random() * 2000;
-			const timeout = setTimeout(() => {
-				setLitLetters((prev) => {
-					const newState = [...prev];
-					newState[index] = true;
-					return newState;
-				});
-			}, delay);
-			timeouts.push(timeout);
-		});
-
-		// Effet scintillement
-		const flickerInterval = setInterval(() => {
-			setFlicker((prev) =>
-				prev.map(
-					(f, i) => (litLetters[i] ? Math.random() > 0.8 : false) // 20% de chance de scintiller
-				)
-			);
-		}, 200);
-
-		return () => {
-			timeouts.forEach(clearTimeout);
-			clearInterval(flickerInterval);
-		};
-	}, [text, litLetters]);
 
 	return (
-		<div className="flex flex-wrap justify-center text-center max-w-3xl mx-auto">
-			{text.split("").map((char, index) => (
+		<span
+			className={`retro-neon-line ${
+				size === "small" ? "retro-neon-small" : "retro-neon-large"
+			}`}>
+			<span className="sr-only">{text}</span>
+			{letters.map(({ char, delays }, index) => (
 				<span
-					key={index}
-					className={`titleNeon transition-all duration-800 ${
-						litLetters[index]
-							? flicker[index]
-								? "text-cyan-200 drop-shadow-[0_0_5px_cyan] drop-shadow-[0_0_10px_cyan]"
-								: "text-cyan-400 drop-shadow-[0_0_10px_cyan] drop-shadow-[0_0_20px_cyan]"
-							: "text-gray-800"
+					key={`${index}-${char}`}
+					aria-hidden="true"
+					className={`retro-neon-letter ${
+						char === " " ? "retro-neon-space" : ""
 					}`}
-					style={{
-						marginRight: char === " " ? "1rem" : "0",
-					}}>
-					{char}
+					style={{ animationDelay: delays }}>
+					{char === " " ? "\u00A0" : char}
 				</span>
 			))}
-		</div>
+		</span>
 	);
-};
-
-export default NeonText;
+}
