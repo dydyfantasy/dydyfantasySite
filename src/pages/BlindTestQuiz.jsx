@@ -19,8 +19,6 @@ import {
 import Seo from "../components/Seo";
 import StageLights from "../components/led/StageLights";
 import SectionTitle from "../components/led/SectionTitle";
-import LedAgenda from "../components/led/LedAgenda";
-import LedReviews from "../components/led/LedReviews";
 import LedFinal from "../components/led/LedFinal";
 
 const PAGE_URL = "https://dydyfantasy.fr/prestations/blind-test-quiz";
@@ -163,16 +161,6 @@ function DemoScreen() {
 	);
 }
 
-function IconTile({ item }) {
-	return (
-		<li className="neon-card rounded-3xl p-6" style={{ "--c": item.color }}>
-			<item.icon aria-hidden="true" className="h-8 w-8 text-[var(--c)]" />
-			<h3 className="mt-3 text-lg font-extrabold">{item.title}</h3>
-			<p className="mt-2 text-white/75">{item.text}</p>
-		</li>
-	);
-}
-
 export default function BlindTestQuiz() {
 	const jsonLd = [
 		{
@@ -237,7 +225,7 @@ export default function BlindTestQuiz() {
 									Demander mon devis
 									<ArrowRightIcon className="h-5 w-5" />
 								</Link>
-								<a href="#agenda" className="btn-outline-neon inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--cyan)] px-6 py-3.5 font-semibold text-[var(--cyan)]">
+								<a href="/#agenda" className="btn-outline-neon inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--cyan)] px-6 py-3.5 font-semibold text-[var(--cyan)]">
 									Venir tester en soirée
 								</a>
 							</div>
@@ -247,47 +235,69 @@ export default function BlindTestQuiz() {
 				</div>
 			</section>
 
-			{/* ---- Pour qui ---- */}
+			{/* ---- Pour qui : liste aérée, sans boîtes ---- */}
 			<section aria-labelledby="pour-qui" className="px-4 py-16">
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="pour-qui" label="Pour qui ?" title="Un blind test pour chaque" accent="événement">
 						Du bar de quartier au grand mariage, le quiz s'adapte à votre public et à votre lieu.
 					</SectionTitle>
-					<ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-						{AUDIENCES.map((item) => <IconTile key={item.title} item={item} />)}
+					<ul className="mt-10 grid gap-x-12 sm:grid-cols-2">
+						{AUDIENCES.map((item) => (
+							<li key={item.title} className="flex gap-4 border-t border-white/10 py-6" style={{ "--c": item.color }}>
+								<item.icon aria-hidden="true" className="h-8 w-8 shrink-0 text-[var(--c)]" />
+								<div>
+									<h3 className="text-lg font-extrabold">{item.title}</h3>
+									<p className="mt-1 text-white/75">{item.text}</p>
+								</div>
+							</li>
+						))}
 					</ul>
 				</div>
 			</section>
 
-			{/* ---- Formats ---- */}
+			{/* ---- Formats : titre à gauche, lignes numérotées à droite ---- */}
 			<section aria-labelledby="formats" className="px-4 py-16">
-				<div className="mx-auto max-w-6xl">
-					<SectionTitle id="formats" label="Les formats" title="Blind test, quiz ou" accent="les deux ?" />
-					<ul className="mt-10 grid gap-5 sm:grid-cols-2">
-						{FORMATS.map((item) => <IconTile key={item.title} item={item} />)}
-					</ul>
-				</div>
-			</section>
-
-			{/* ---- Déroulé ---- */}
-			<section aria-labelledby="deroule" className="px-4 py-16">
-				<div className="mx-auto max-w-6xl">
-					<SectionTitle id="deroule" label="Comment ça se passe" title="De votre idée au" accent="podium final" />
-					<ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-						{STEPS.map((s, i) => (
-							<li key={s.title} className="neon-card rounded-3xl p-6" style={{ "--c": ["var(--cyan)", "var(--pink)", "var(--gold)", "#7cff6b"][i] }}>
-								<p className="glow-cyan text-4xl font-extrabold">0{i + 1}</p>
-								<s.icon aria-hidden="true" className="mt-3 h-7 w-7 text-[var(--c)]" />
-								<h3 className="mt-2 text-lg font-extrabold">{s.title}</h3>
-								<p className="mt-1 text-white/75">{s.text}</p>
+				<div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+					<div className="lg:sticky lg:top-28 lg:self-start">
+						<SectionTitle id="formats" label="Les formats" title="Blind test, quiz ou" accent="les deux ?">
+							Quatre façons de jouer, à mélanger selon votre soirée.
+						</SectionTitle>
+					</div>
+					<ol>
+						{FORMATS.map((item, i) => (
+							<li key={item.title} className="format-row flex gap-5 border-b border-white/10 py-6 first:pt-0" style={{ "--c": item.color }}>
+								<span className="w-10 shrink-0 text-3xl font-extrabold text-[var(--c)]">0{i + 1}</span>
+								<div>
+									<h3 className="flex items-center gap-2 text-xl font-extrabold">
+										<item.icon aria-hidden="true" className="h-6 w-6 text-[var(--c)]" />
+										{item.title}
+									</h3>
+									<p className="mt-2 text-white/75">{item.text}</p>
+								</div>
 							</li>
 						))}
 					</ol>
 				</div>
 			</section>
 
-			<LedAgenda />
-			<LedReviews />
+			{/* ---- Déroulé : frise reliée par une ligne lumineuse ---- */}
+			<section aria-labelledby="deroule" className="px-4 py-16">
+				<div className="mx-auto max-w-6xl">
+					<SectionTitle id="deroule" label="Comment ça se passe" title="De votre idée au" accent="podium final" />
+					<ol className="timeline relative mt-12 grid gap-10 md:grid-cols-4 md:gap-6">
+						{STEPS.map((s, i) => (
+							<li key={s.title} className="relative pl-16 md:pl-0 md:pt-16" style={{ "--c": ["var(--cyan)", "var(--pink)", "var(--gold)", "#7cff6b"][i] }}>
+								<span className="timeline-dot absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-full">
+									<s.icon aria-hidden="true" className="h-6 w-6 text-[var(--c)]" />
+								</span>
+								<p className="text-sm font-bold uppercase tracking-widest text-[var(--c)]">Étape 0{i + 1}</p>
+								<h3 className="mt-1 text-lg font-extrabold">{s.title}</h3>
+								<p className="mt-1 text-white/75">{s.text}</p>
+							</li>
+						))}
+					</ol>
+				</div>
+			</section>
 
 			{/* ---- FAQ ---- */}
 			<section aria-labelledby="faq" className="px-4 py-16">
