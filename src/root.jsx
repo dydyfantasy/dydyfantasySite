@@ -1,7 +1,6 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
-import WhatsAppButton from "./components/WhatsAppButton.jsx";
 import FloatingNextEvent from "./components/FloatingNextEvent.jsx";
 import ScrollToHash from "./components/ScrollToHash.jsx";
 import "./index.css";
@@ -101,7 +100,6 @@ export default function Root() {
 			<Footer />
 
 			<ScrollToHash />
-			<WhatsAppButton />
 			<FloatingNextEvent />
 		</>
 	);

@@ -9,7 +9,7 @@ import {
 import { useEvents } from "../../hooks/useEvents";
 import SectionTitle from "./SectionTitle";
 
-const VISIBLE_COUNT = 5;
+const VISIBLE_COUNT = 4;
 
 function getLocalDate(dateString) {
 	const [year, month, day] = dateString.split("-").map(Number);
@@ -32,6 +32,28 @@ function mapsUrl(event) {
 	return `https://www.google.com/maps/search/?api=1&query=${query}`;
 }
 
+function mapsEmbedUrl(event) {
+	if (event.mapEmbedUrl) return event.mapEmbedUrl;
+	const query = encodeURIComponent(event.address || `${event.place}, ${event.city}`);
+	return `https://www.google.com/maps?q=${query}&output=embed`;
+}
+
+// Carte du lieu de la prochaine date, chargée seulement à l'approche (loading="lazy")
+function NextEventMap({ event }) {
+	if (!event.publicEvent || (!event.address && !event.place)) return null;
+	return (
+		<div className="neon-card mt-4 overflow-hidden rounded-3xl" style={{ "--c": "var(--cyan)" }}>
+			<iframe
+				title={`Carte : ${event.place}, ${event.city}`}
+				src={mapsEmbedUrl(event)}
+				loading="lazy"
+				referrerPolicy="no-referrer-when-downgrade"
+				className="block h-56 w-full border-0 md:h-64"
+			/>
+		</div>
+	);
+}
+
 function NewBadge() {
 	return (
 		<span className="rounded-full bg-[var(--gold)] px-2.5 py-0.5 text-[0.7rem] font-extrabold uppercase tracking-wider text-[var(--ink)]">
@@ -45,7 +67,7 @@ function NextEvent({ event }) {
 	const p = dateParts(event.date);
 
 	return (
-		<article className="neon-card grid overflow-hidden rounded-3xl md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]" style={{ "--c": "var(--pink)" }}>
+		<article className="neon-card grid overflow-hidden rounded-3xl sm:grid-cols-2" style={{ "--c": "var(--pink)" }}>
 			<div className="relative flex min-h-[14rem] items-center justify-center bg-black/40">
 				{event.poster ? (
 					<img
@@ -63,14 +85,14 @@ function NextEvent({ event }) {
 				)}
 			</div>
 
-			<div className="flex flex-col justify-center gap-4 p-6 md:p-8">
+			<div className="flex flex-col justify-center gap-4 p-6">
 				<div className="flex flex-wrap items-center gap-2">
 					<span className="rounded-full border border-[var(--pink)] px-3 py-1 text-xs font-bold uppercase tracking-widest text-[var(--pink)]">
 						Prochaine date
 					</span>
 					{event.isNew && <NewBadge />}
 				</div>
-				<h3 className="text-2xl font-extrabold leading-tight md:text-3xl">{event.title}</h3>
+				<h3 className="text-2xl font-extrabold leading-tight">{event.title}</h3>
 				<ul className="space-y-2 text-white/85">
 					<li className="flex items-center gap-2 capitalize">
 						<ClockIcon className="h-5 w-5 text-[var(--cyan)]" />
@@ -114,7 +136,7 @@ function EventRow({ event }) {
 		<li>
 			<Wrapper
 				{...linkProps}
-				className="board-row grid grid-cols-[4.5rem_minmax(0,1fr)] items-center gap-4 rounded-2xl px-4 py-3 md:grid-cols-[5rem_minmax(0,1fr)_auto]">
+				className="board-row grid grid-cols-[4.5rem_minmax(0,1fr)_auto] items-center gap-4 rounded-2xl px-4 py-3">
 				<div className="text-center leading-none">
 					<p className="text-[0.7rem] font-bold uppercase tracking-widest text-white/50">{p.weekday}</p>
 					<p className="glow-cyan text-3xl font-extrabold">{p.day}</p>
@@ -129,14 +151,16 @@ function EventRow({ event }) {
 						{event.place} — {event.city} · {event.hour}
 					</p>
 				</div>
-				<div className="hidden text-sm text-white/50 md:block">
+				<div className="text-sm text-white/50">
 					{event.publicEvent ? (
 						<span className="flex items-center gap-1.5 text-[var(--cyan)]">
-							Itinéraire <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+							<span className="sr-only">Itinéraire</span>
+							<ArrowTopRightOnSquareIcon className="h-5 w-5" />
 						</span>
 					) : (
 						<span className="flex items-center gap-1.5">
-							<LockClosedIcon className="h-4 w-4" /> Privé
+							<LockClosedIcon className="h-4 w-4" />
+							<span className="hidden sm:inline">Privé</span>
 						</span>
 					)}
 				</div>
@@ -171,25 +195,33 @@ export default function LedAgenda() {
 							Les prochaines dates arrivent bientôt. Suivez-moi sur Instagram pour ne rien rater !
 						</p>
 					) : (
-						<>
-							<NextEvent event={next} />
+						<div className="grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
+							<div>
+								<NextEvent event={next} />
+								<NextEventMap event={next} />
+							</div>
+							<div>
 							{others.length > 0 && (
-								<ul className="mt-6 space-y-3">
+								<>
+								<p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-white/50">Ensuite</p>
+								<ul className="space-y-3">
 									{shown.map((e) => (
 										<EventRow key={e.id ?? `${e.date}-${e.place}`} event={e} />
 									))}
 								</ul>
+								</>
 							)}
 							{others.length > VISIBLE_COUNT && (
 								<button
 									type="button"
 									onClick={() => setShowAll((v) => !v)}
-									className="mx-auto mt-6 flex items-center gap-2 rounded-xl border border-white/20 px-5 py-2.5 font-semibold text-white/85 hover:border-white/50">
+									className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 px-5 py-2.5 font-semibold text-white/85 hover:border-white/50">
 									{showAll ? "Voir moins" : `Voir toutes les dates (${others.length})`}
 									<ChevronDownIcon className={`h-4 w-4 transition-transform ${showAll ? "rotate-180" : ""}`} />
 								</button>
 							)}
-						</>
+							</div>
+						</div>
 					)}
 				</div>
 			</div>
