@@ -6,6 +6,7 @@ export default [
 	index("pages/Home.jsx"),
 	route("qui-suis-je", "pages/Qui-suis-je.jsx"),
 	route("prestations", "pages/NosPrestations.jsx"),
+	route("prestations/blind-test-quiz", "pages/BlindTestQuiz.jsx"),
 	route("mon-approche", "pages/NotreApproche.jsx"),
 	route("contact", "pages/Contact.jsx"),
 	route("privacy", "pages/Privacy.jsx"),

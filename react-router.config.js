@@ -10,6 +10,7 @@ export default {
 		"/",
 		"/qui-suis-je",
 		"/prestations",
+		"/prestations/blind-test-quiz",
 		"/mon-approche",
 		"/contact",
 		"/privacy",

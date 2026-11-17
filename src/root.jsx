@@ -1,9 +1,12 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
-import Header from "./components/Header.jsx";
+import LedHeader from "./components/led/LedHeader.jsx";
 import Footer from "./components/Footer.jsx";
 import FloatingNextEvent from "./components/FloatingNextEvent.jsx";
 import ScrollToHash from "./components/ScrollToHash.jsx";
+import "@fontsource/sora/400.css";
+import "@fontsource/sora/600.css";
 import "./index.css";
+import "./css/led.css";
 import "./App.css";
 
 const GA_ID = "G-3ZFS6P50ML";
@@ -92,7 +95,7 @@ export function HydrateFallback() {
 export default function Root() {
 	return (
 		<>
-			<Header />
+			<LedHeader />
 			<main>
 				{/* La page correspondant à l'adresse s'affiche ici */}
 				<Outlet />

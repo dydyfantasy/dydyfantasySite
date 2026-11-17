@@ -26,8 +26,8 @@ const ANSWERS = [
 		color: "#ff4d6d",
 		icon: TrophyIcon,
 		cta: "Découvrir le blind test",
+		href: "/prestations/blind-test-quiz",
 		text: "Une animation façon game show : vos invités participent en direct depuis leur téléphone ou avec des buzzers. Manches thématiques, scores en temps réel et ambiance garantie.",
-		href: "/prestations",
 	},
 	{
 		letter: "B",

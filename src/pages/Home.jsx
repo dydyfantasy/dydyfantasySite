@@ -1,7 +1,4 @@
 import Seo from "../components/Seo";
-import "@fontsource/sora/400.css";
-import "@fontsource/sora/600.css";
-import "../css/led.css";
 import HeroLed from "../components/led/HeroLed";
 import StageLights from "../components/led/StageLights";
 import LedEvents from "../components/led/LedEvents";
