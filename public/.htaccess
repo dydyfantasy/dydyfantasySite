@@ -7,11 +7,32 @@
   RewriteCond %{HTTP_HOST} ^www\.dydyfantasy\.fr$ [NC]
   RewriteRule ^(.*)$ https://dydyfantasy.fr/$1 [L,R=301]
 
-  # Routes React : rediriger les URLs internes vers index.html
+  # Anciennes adresses -> nouvelles (301 : Google transfère les acquis SEO)
+  RewriteRule ^notre-approche/?$ /mon-approche [R=301,L]
+
+  # Fichier technique de React Router, à ne pas exposer
+  RewriteRule ^__spa-fallback\.html$ - [R=404,L]
+
+  # Une seule version de chaque adresse : /contact/ -> /contact
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^.*$ /index.html [L]
+  RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+  # Pages pré-rendues : /contact sert contact/index.html (l'adresse reste /contact)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
+  RewriteRule ^(.+)$ $1/index.html [L]
 </IfModule>
+
+# Pas de redirection automatique /contact -> /contact/ (sinon conflit avec le canonical)
+<IfModule mod_dir.c>
+  DirectorySlash Off
+</IfModule>
+
+# Pas de liste des fichiers d'un dossier
+Options -Indexes
+
+# Toute adresse inconnue : vraie page 404 (code HTTP 404)
+ErrorDocument 404 /404/index.html
 
 # Ajouter HSTS pour la sécurité
 <IfModule mod_headers.c>
