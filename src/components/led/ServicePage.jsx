@@ -2,10 +2,7 @@ import { Link } from "react-router";
 import {
 	ArrowRightIcon,
 	ChevronDownIcon,
-	ChatBubbleLeftRightIcon,
-	PencilSquareIcon,
 	MicrophoneIcon,
-	SparklesIcon,
 	SpeakerWaveIcon,
 	DevicePhoneMobileIcon,
 	CameraIcon,
@@ -16,17 +13,13 @@ import StageLights from "./StageLights";
 import SectionTitle from "./SectionTitle";
 import ScrollReveal from "./ScrollReveal";
 import LedFinal from "./LedFinal";
+import { STEPS } from "../../data/steps";
 
 const SITE = "https://dydyfantasy.fr";
 const COLORS = ["var(--cyan)", "var(--pink)", "var(--gold)", "#7cff6b"];
 
-// Étapes communes à toutes les prestations (surchargeables via `steps`)
-const DEFAULT_STEPS = [
-	{ icon: ChatBubbleLeftRightIcon, title: "On échange", text: "Vous me présentez le lieu, le public, le type d'événement et l'ambiance souhaitée." },
-	{ icon: PencilSquareIcon, title: "Je prépare", text: "Je vous propose le format le plus adapté et je prépare l'animation sur mesure." },
-	{ icon: MicrophoneIcon, title: "J'anime", text: "Le jour J, je gère le rythme, les relances au micro et la participation du public." },
-	{ icon: SparklesIcon, title: "Souvenirs", text: "Vos invités repartent avec le sourire, et vous avec une soirée dont on parle encore." },
-];
+// Étapes communes : src/data/steps.js (surchargeables via `steps`)
+const DEFAULT_STEPS = STEPS;
 
 // Ce que la prestation peut inclure (repris du site actuel)
 const DEFAULT_INCLUDED = [

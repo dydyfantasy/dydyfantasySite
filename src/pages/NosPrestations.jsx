@@ -5,9 +5,6 @@ import {
 	SpeakerWaveIcon,
 	DevicePhoneMobileIcon,
 	CameraIcon,
-	ChatBubbleLeftRightIcon,
-	AdjustmentsHorizontalIcon,
-	SparklesIcon,
 	CheckBadgeIcon,
 	FlagIcon,
 } from "@heroicons/react/24/outline";
@@ -18,6 +15,7 @@ import ScrollReveal from "../components/led/ScrollReveal";
 import LedFinal from "../components/led/LedFinal";
 import ClientOnlyZoneMap from "../components/ClientOnlyZoneMap";
 import { PRESTATIONS, EVENEMENTS } from "../data/navigation";
+import { STEPS } from "../data/steps";
 
 // Page « sommaire » : aiguille vers les pages détaillées (le détail vit sur chaque page,
 // pour éviter le contenu en double). Textes repris de l'ancienne page Prestations.
@@ -61,11 +59,6 @@ const INCLUDED = [
 	{ icon: CameraIcon, title: "Contenus réseaux", text: "Selon la soirée, je peux produire quelques photos ou vidéos réutilisables pour votre communication." },
 ];
 
-const STEPS = [
-	{ icon: ChatBubbleLeftRightIcon, title: "On échange", text: "Vous me présentez le lieu, le public, le type d’événement et l’ambiance souhaitée." },
-	{ icon: AdjustmentsHorizontalIcon, title: "Je propose un format", text: "Je vous oriente vers le format le plus adapté : blind test, quiz, karaoké ou animation sur mesure." },
-	{ icon: SparklesIcon, title: "J’anime la soirée", text: "Le jour J, je m’occupe de l’animation, du rythme, de la participation et de l’ambiance." },
-];
 
 const COLORS = ["var(--cyan)", "var(--pink)", "var(--gold)", "#7cff6b"];
 
@@ -211,9 +204,9 @@ function NosPrestations() {
 			<section aria-labelledby="deroule" className="px-4 py-16">
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="deroule" label="Déroulé" title="Une organisation" accent="simple et claire." />
-					<ol className="timeline relative mt-12 grid gap-10 md:grid-cols-3 md:gap-6">
+					<ol className="timeline relative mt-12 grid gap-10 md:grid-cols-4 md:gap-6">
 						{STEPS.map((s, i) => (
-							<ScrollReveal as="li" key={s.title} delay={i * 100} className="relative pl-16 md:pl-0 md:pt-16" style={{ "--c": COLORS[i] }}>
+							<ScrollReveal as="li" key={s.title} delay={i * 100} className="relative pl-16 md:pl-0 md:pt-16" style={{ "--c": COLORS[i % 4] }}>
 								<span className="timeline-dot absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-full">
 									<s.icon aria-hidden="true" className="h-6 w-6 text-[var(--c)]" />
 								</span>

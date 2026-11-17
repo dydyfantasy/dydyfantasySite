@@ -85,7 +85,7 @@ const FORMATS = [
 
 const STEPS = [
 	{ icon: ChatBubbleLeftRightIcon, title: "On échange", text: "Vous me parlez de votre événement : lieu, public, ambiance souhaitée." },
-	{ icon: PencilSquareIcon, title: "Je prépare", text: "Je construis les manches et les thèmes adaptés à vos invités." },
+	{ icon: PencilSquareIcon, title: "On construit ensemble", text: "Je vous propose des manches et des thèmes, puis on les ajuste ensemble selon vos invités et vos envies." },
 	{ icon: DevicePhoneMobileIcon, title: "On joue", text: "Les joueurs répondent sur leur téléphone ou avec des buzzers, je mène le jeu au micro." },
 	{ icon: TrophyIcon, title: "Le podium", text: "Classement en direct, suspense jusqu'à la dernière question et victoire célébrée." },
 ];
