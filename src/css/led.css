@@ -1,81 +1,26 @@
 /* =========================================================
-   « Mur LED » — identité visuelle de l'accueil v2
-   Inspirée de l'écran LED « DYDY » de la régie et du logo
-   (cyan néon, rose pinceau, paillettes).
-   Perf : animations en transform/opacity uniquement,
-   pas de filter: blur ni de backdrop-filter.
+   Accueil v2 — hero photo + quiz
+   Couleurs du logo (cyan néon, rose) ; perf : animations en
+   transform/opacity uniquement, pas de filter: blur ni de
+   backdrop-filter.
    ========================================================= */
 
 .led {
 	--ink: #05040a;
-	--ink-2: #0d0b16;
 	--cyan: #19d3f0;
 	--pink: #ff2fae;
-	--violet: #8b5cf6;
 	--gold: #ffc93c;
-	--lime: #7cff6b;
 	font-family: "Sora", system-ui, sans-serif;
 }
 
-/* ---------- Titre ---------- */
-
-.led-glow-cyan {
-	color: #c9f7ff;
-	text-shadow:
-		0 0 4px var(--cyan),
-		0 0 14px var(--cyan),
-		0 0 38px rgb(25 211 240 / 0.55);
-}
-
-.neon-pink {
-	color: #ffe3f4;
-	text-shadow:
-		0 0 4px var(--pink),
-		0 0 14px var(--pink),
-		0 0 40px rgb(255 47 174 / 0.6);
-}
-
-/* ---------- Photo affichée « sur un mur LED » ---------- */
-
-.led-pixels {
-	background-image: radial-gradient(
-		circle,
-		transparent 0 1.15px,
-		rgb(5 4 10 / 0.62) 1.75px
-	);
-	background-size: 5px 5px;
-}
-
-/* Barre de balayage lumineuse qui descend sur l'écran */
-.led-scan {
-	background: linear-gradient(
-		180deg,
-		transparent,
-		rgb(25 211 240 / 0.14) 45%,
-		rgb(255 255 255 / 0.22) 50%,
-		rgb(255 47 174 / 0.14) 55%,
-		transparent
-	);
-	animation: led-scan 5.5s cubic-bezier(0.6, 0, 0.4, 1) infinite;
-}
-
-@keyframes led-scan {
-	from {
-		transform: translateY(-120%);
-	}
-	to {
-		transform: translateY(520%);
-	}
-}
-
-/* Faisceau de projecteur qui balaie le hero */
+/* Faisceau de projecteur qui balaie lentement le hero */
 .light-beam {
 	background: linear-gradient(
 		100deg,
 		transparent 35%,
-		rgb(25 211 240 / 0.08) 45%,
-		rgb(255 255 255 / 0.1) 50%,
-		rgb(255 47 174 / 0.08) 55%,
+		rgb(25 211 240 / 0.07) 45%,
+		rgb(255 255 255 / 0.08) 50%,
+		rgb(255 47 174 / 0.07) 55%,
 		transparent 65%
 	);
 	animation: light-beam 9s ease-in-out infinite;
@@ -91,34 +36,57 @@
 	}
 }
 
-/* ---------- Bordure LED animée (fait le tour du bloc) ---------- */
+/* ---------- Réponses du quiz ---------- */
 
-.led-border {
-	position: relative;
-	overflow: hidden;
-	padding: 2px;
-	border-radius: 1.25rem;
-	isolation: isolate;
+.answer-btn {
+	--c: var(--cyan);
+	border: 1.5px solid rgb(255 255 255 / 0.18);
+	background: rgb(5 4 10 / 0.55);
+	transition:
+		transform 0.15s ease,
+		border-color 0.2s ease,
+		background-color 0.2s ease,
+		box-shadow 0.2s ease;
 }
 
-.led-border::before {
-	content: "";
-	position: absolute;
-	inset: -150%;
-	z-index: -1;
-	background: conic-gradient(
-		var(--cyan),
-		var(--violet),
-		var(--pink),
-		var(--gold),
-		var(--cyan)
-	);
-	animation: led-spin 6s linear infinite;
+.answer-btn:hover {
+	transform: translateY(-1px);
+	border-color: var(--c);
+	box-shadow: 0 0 16px -4px var(--c);
 }
 
-@keyframes led-spin {
+.answer-btn:active {
+	transform: scale(0.98);
+}
+
+.answer-btn[aria-pressed="true"] {
+	border-color: var(--c);
+	background: color-mix(in srgb, var(--c) 22%, rgb(5 4 10 / 0.7));
+	box-shadow: 0 0 22px -2px var(--c);
+}
+
+.answer-btn:focus-visible {
+	outline: 2px solid #fff;
+	outline-offset: 3px;
+}
+
+.answer-letter {
+	background: var(--c);
+	color: #05040a;
+}
+
+.answer-pop {
+	animation: answer-pop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes answer-pop {
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
 	to {
-		transform: rotate(360deg);
+		opacity: 1;
+		transform: none;
 	}
 }
 
@@ -154,9 +122,8 @@
 /* ---------- Accessibilité : réduire les animations ---------- */
 
 @media (prefers-reduced-motion: reduce) {
-	.led-scan,
-	.led-border::before,
-	.light-beam {
+	.light-beam,
+	.answer-pop {
 		animation: none;
 	}
 }
