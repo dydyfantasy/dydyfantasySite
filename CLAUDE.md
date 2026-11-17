@@ -34,14 +34,14 @@ React 19 + Vite 7 (JSX, pas de TypeScript), Tailwind CSS v4, React Router 7 en *
 
 - `react-router.config.js` : `appDirectory: "src"`, `ssr: false`. Importer depuis `react-router` (plus `react-router-dom`).
 - `src/routes.js` : liste des routes (adresse -> fichier de `src/pages/`), dont `*` -> `NotFound.jsx`.
-- `src/root.jsx` : `Layout` = squelette HTML de toutes les pages (head commun : charset, viewport, favicon, JSON-LD `LocalBusiness`, Google Analytics, script de l’agenda) ; composant par défaut = Header + `<Outlet />` + Footer + widgets flottants (`WhatsAppButton`, `FloatingNextEvent`, `ScrollToHash`).
+- `src/root.jsx` : `Layout` = squelette HTML de toutes les pages (head commun : charset, viewport, favicon, JSON-LD `LocalBusiness`, Google Analytics, script de l’agenda) ; composant par défaut = `LedHeader` + `<Outlet />` + `LedFooter` + `ScrollToHash` + `NextEventBubble`.
 - `src/entry.client.jsx` : hydratation (`hydrateRoot` + `HydratedRouter`).
 - `src/pages/` : pages de route, composées de sections de `src/components/`. Chaque page contient exactement un `<Seo />` (`src/components/Seo.jsx` : title, description, canonical ou `noindex`, Open Graph). Balises natives React 19, placées automatiquement dans le `<head>` : pas de `react-helmet`, et ne pas remettre de `<title>`/description dans `root.jsx` (doublons).
 - Styles : surtout des classes Tailwind inline dans le JSX. Tailwind v4 est chargé par le plugin `@tailwindcss/vite` et `@import "tailwindcss"` dans `src/index.css` (pas de `tailwind.config.js` en v4). Quelques feuilles de style spécifiques dans `src/css/`.
-- `Reveal.jsx` : wrapper d'animation d'apparition au scroll (motion `useInView`), réutilisé partout.
+- Apparitions au défilement : `src/components/led/ScrollReveal.jsx` (pas de `motion`). `motion` ne sert plus qu'à `OurApproach.jsx` (page Mon approche).
 - Le code des composants est exécuté dans Node.js à la compilation (génération HTML) : pas d’accès à `window`/`document`/`localStorage` pendant le rendu, uniquement dans `useEffect`. Les bibliothèques qui touchent `window` à l’import se chargent côté navigateur (ex. `ClientOnlyZoneMap.jsx` pour Leaflet).
 - **Pré-rendu** : `prerender` dans `react-router.config.js` liste les pages générées en HTML complet (`build/client/<page>/index.html`). Toute nouvelle page doit y être ajoutée, ainsi que dans `public/sitemap.xml`. `/404` est pré-rendu pour servir de page d’erreur Apache.
-- Les éléments animés avec `motion` (`initial` opacity 0) sont présents mais invisibles dans le HTML généré jusqu’à l’hydratation (impact LCP) : ne concerne plus que les anciennes pages pas encore refaites.
+- Les éléments animés avec `motion` (`initial` opacity 0) sont invisibles dans le HTML généré jusqu’à l’hydratation : ne concerne plus que la page Mon approche.
 
 ### Refonte v2 (branche `design/accueil-v2`)
 
@@ -56,13 +56,13 @@ Identité « soirée / LED » : fond sombre, néons cyan `#19d3f0` et rose `#ff2
 
 ### Agenda des événements (modifiable sans rebuild)
 
-Les événements ne sont **pas** dans le bundle. `public/events/events.js` définit un global `window.DYDY_EVENTS = [...]`, chargé par une balise `<script>` classique dans `root.jsx` avant les scripts React. `AgendaSection.jsx` et `FloatingNextEvent.jsx` le lisent via le hook `src/hooks/useEvents.js` (`null` tant que non lu, puis tableau). L'agenda se met donc à jour sur le serveur en remplaçant uniquement ce fichier ; `.htaccess` désactive son cache.
+Les événements ne sont **pas** dans le bundle. `public/events/events.js` définit un global `window.DYDY_EVENTS = [...]`, chargé par une balise `<script>` classique dans `root.jsx` avant les scripts React. `LedAgenda.jsx` et `NextEventBubble.jsx` le lisent via le hook `src/hooks/useEvents.js` (`null` tant que non lu, puis tableau). L'agenda se met donc à jour sur le serveur en remplaçant uniquement ce fichier ; `.htaccess` désactive son cache.
 
 Champs d'un événement : `id`, `title`, `date` (`YYYY-MM-DD`, parsée en date locale), `hour` (ex. `"20h00"`), `place`, `city`, `address` (optionnel), `type`, `description`, `publicEvent` (false = événement privé, pas de lien carte), `isNew` (optionnel), `poster` (optionnel, chemin sous `/events/`). Les affiches vont dans `public/events/`.
 
 ### Assets
 
-- `public/` est servi à la racine : logos clients (`public/clients/`, référencés en chemin absolu depuis `TrustedBySection.jsx`), affiches d'événements, `robots.txt`, `sitemap.xml`, `.htaccess`.
+- `public/` est servi à la racine : logos clients (`public/clients/`, référencés en chemin absolu depuis `LedClients.jsx`), affiches d'événements, `robots.txt`, `sitemap.xml`, `.htaccess`.
 - `src/assets/` : images et vidéos importées par les composants (hashées par Vite).
 - Toute nouvelle route doit être ajoutée à `public/sitemap.xml`.
 
@@ -70,7 +70,7 @@ Champs d'un événement : `id`, `title`, `date` (`YYYY-MM-DD`, parsée en date l
 
 - Formulaire de contact (`ContactForm.jsx`) : envoi direct vers Formspree, pas de backend.
 - ID Google Analytics et données JSON-LD de l'entreprise : dans `root.jsx`.
-- `GoogleReviewsSection.jsx` utilise `react-google-reviews`.
+- `LedReviews.jsx` utilise `react-google-reviews` (widget Featurable, chargé côté navigateur ; récupération à la compilation prévue).
 
 ## Déploiement
 
