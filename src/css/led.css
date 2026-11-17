@@ -185,6 +185,18 @@
 
 /* ---------- Sections de l'accueil ---------- */
 
+/* Rythme des fonds : une section sur deux légèrement violette, une avec halos colorés */
+.section-alt {
+	background: linear-gradient(180deg, #0c0918 0%, #140e26 50%, #0c0918 100%);
+}
+
+.section-glow {
+	background:
+		radial-gradient(ellipse at 15% 30%, rgb(255 201 60 / 0.1), transparent 45%),
+		radial-gradient(ellipse at 85% 70%, rgb(25 211 240 / 0.12), transparent 50%),
+		var(--ink);
+}
+
 .glow-cyan {
 	color: #d4f8ff;
 	text-shadow:

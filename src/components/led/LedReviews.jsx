@@ -7,7 +7,7 @@ import SectionTitle from "./SectionTitle";
 // (Étape 5 prévue : récupérer les avis à la compilation pour les afficher sans attente.)
 export default function LedReviews() {
 	return (
-		<section id="avis" aria-labelledby="avis-titre" className="scroll-mt-24 px-4 py-20">
+		<section id="avis" aria-labelledby="avis-titre" className="section-glow scroll-mt-24 px-4 py-20">
 			<div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[18rem_minmax(0,1fr)] lg:items-center">
 				<div>
 					<SectionTitle id="avis-titre" label="Avis clients" title="Ils en" accent="parlent" />

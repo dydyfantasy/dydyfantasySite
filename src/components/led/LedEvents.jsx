@@ -28,7 +28,7 @@ const EVENTS = [
 		icon: BriefcaseIcon,
 		color: "var(--cyan)",
 		image: null,
-		text: "Team building, séminaire, soirée d'entreprise ou journée événement : quiz en équipes, animation micro et speaker.",
+		text: "Team building, séminaire, soirée d'entreprise ou journée événement : quiz en équipes, animation micro et speaker, puis DJ pour la soirée dansante.",
 		href: "/contact",
 		cta: "Organiser mon événement pro",
 	},
@@ -37,7 +37,7 @@ const EVENTS = [
 		icon: CakeIcon,
 		color: "var(--gold)",
 		image: null,
-		text: "Un quiz ou un blind test sur mesure, du karaoké et une ambiance festive pour une soirée dont tout le monde se souviendra.",
+		text: "Un quiz ou un blind test sur mesure, du karaoké et un DJ pour faire danser : une soirée dont tout le monde se souviendra.",
 		href: "/contact",
 		cta: "Préparer ma soirée",
 	},
@@ -54,7 +54,7 @@ const EVENTS = [
 
 export default function LedEvents() {
 	return (
-		<section aria-labelledby="evenements-titre" className="px-4 py-20">
+		<section aria-labelledby="evenements-titre" className="section-alt px-4 py-20">
 			<div className="mx-auto max-w-6xl">
 				<SectionTitle
 					id="evenements-titre"

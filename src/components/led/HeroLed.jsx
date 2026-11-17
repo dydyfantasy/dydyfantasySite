@@ -121,8 +121,9 @@ export default function HeroLed() {
 						Blind test, quiz, karaoké & DJ à Toulouse
 					</h1>
 					<p className="mt-2 text-sm leading-relaxed text-white/75 md:text-base">
-						Des animations interactives et sur mesure, pour que vos invités ne
-						soient pas seulement spectateurs.
+						Du quiz qui brise la glace au DJ set qui fait danser tout le monde :
+						des animations interactives où vos invités ne sont pas seulement
+						spectateurs.
 					</p>
 
 					{/* ---- Quiz ---- */}
