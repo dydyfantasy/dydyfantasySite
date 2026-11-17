@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import {
 	ArrowRightIcon,
 	CheckCircleIcon,
@@ -19,7 +19,7 @@ import {
 	CameraIcon,
 	SpeakerWaveIcon,
 } from "@heroicons/react/24/outline";
-import ZoneMap from "./ZoneMap";
+import ClientOnlyZoneMap from "./ClientOnlyZoneMap";
 
 const fadeUp = {
 	hidden: {
@@ -695,7 +695,7 @@ const Prestations = () => {
 						</p>
 					</div>
 
-					<ZoneMap />
+					<ClientOnlyZoneMap />
 				</motion.div>
 
 				{/* CTA FINAL */}

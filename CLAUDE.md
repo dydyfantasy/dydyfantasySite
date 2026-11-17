@@ -18,27 +18,31 @@ Zone d'intervention : basé à l'ouest de Toulouse ; Haute-Garonne, Gers voisin,
 ## Commandes
 
 ```bash
-npm run dev       # serveur de dev Vite
-npm run build     # build de production -> dist/
-npm run preview   # sert le dist/ compilé
+npm run dev       # serveur de dev (react-router dev)
+npm run build     # build de production -> build/client/
+npm run preview   # sert build/client/
 npm run lint      # ESLint (config flat dans eslint.config.js)
 ```
 
-Pas de suite de tests.
+Pas de suite de tests. Audits : `/bilan` (agents `audit-technique` et `audit-seo` dans `.claude/agents/`, rapports et historique dans `audits/`).
 
 ## Stack et architecture
 
-React 19 + Vite 7 (JSX, pas de TypeScript), Tailwind CSS v4, react-router-dom v7, `motion` pour les animations, `react-helmet` pour le SEO par page, `react-leaflet` pour la carte de zone d'intervention.
+React 19 + Vite 7 (JSX, pas de TypeScript), Tailwind CSS v4, React Router 7 en **mode framework** (`ssr: false`, site statique), `motion` pour les animations, `react-helmet` pour le SEO par page, `react-leaflet` pour la carte de zone d'intervention.
 
-- `src/main.jsx` monte `<App />` dans `BrowserRouter`. `src/App.jsx` contient les routes (`/`, `/qui-suis-je`, `/prestations`, `/mon-approche`, `/contact`, `/privacy`), le `<Helmet>` global (JSON-LD `LocalBusiness` + Google Analytics) et les widgets flottants globaux (`WhatsAppButton`, `FloatingNextEvent`, `ScrollToHash`).
+- `react-router.config.js` : `appDirectory: "src"`, `ssr: false`. Importer depuis `react-router` (plus `react-router-dom`).
+- `src/routes.js` : liste des routes (adresse -> fichier de `src/pages/`), dont `*` -> `NotFound.jsx`.
+- `src/root.jsx` : `Layout` = squelette HTML de toutes les pages (head, meta par défaut, JSON-LD `LocalBusiness`, Google Analytics, script de l’agenda) ; composant par défaut = Header + `<Outlet />` + Footer + widgets flottants (`WhatsAppButton`, `FloatingNextEvent`, `ScrollToHash`).
+- `src/entry.client.jsx` : hydratation (`hydrateRoot` + `HydratedRouter`).
 - `src/pages/` : pages de route, composées de sections de `src/components/`. Chaque page définit son `<title>` et ses meta via `react-helmet`.
 - Styles : surtout des classes Tailwind inline dans le JSX. Tailwind v4 est chargé par le plugin `@tailwindcss/vite` et `@import "tailwindcss"` dans `src/index.css` (pas de `tailwind.config.js` en v4). Quelques feuilles de style spécifiques dans `src/css/`.
 - `Reveal.jsx` : wrapper d'animation d'apparition au scroll (motion `useInView`), réutilisé partout.
-- SPA rendue côté client : le `index.html` servi ne contient que `<div id="root">`, tout le contenu et les meta sont injectés par JavaScript. À garder en tête pour toute question SEO.
+- Le code des composants est exécuté dans Node.js à la compilation (génération HTML) : pas d’accès à `window`/`document`/`localStorage` pendant le rendu, uniquement dans `useEffect`. Les bibliothèques qui touchent `window` à l’import se chargent côté navigateur (ex. `ClientOnlyZoneMap.jsx` pour Leaflet).
+- État actuel : mode SPA (un seul `index.html`, contenu injecté par JavaScript). Le pré-rendu par page est prévu (phase 1, étape 4).
 
 ### Agenda des événements (modifiable sans rebuild)
 
-Les événements ne sont **pas** dans le bundle. `public/events/events.js` définit un global `window.DYDY_EVENTS = [...]`, chargé par une balise `<script>` classique dans `index.html` avant le bundle React. `AgendaSection.jsx` et `FloatingNextEvent.jsx` lisent `window.DYDY_EVENTS`. L'agenda se met donc à jour sur le serveur en remplaçant uniquement ce fichier ; `.htaccess` désactive son cache.
+Les événements ne sont **pas** dans le bundle. `public/events/events.js` définit un global `window.DYDY_EVENTS = [...]`, chargé par une balise `<script>` classique dans `root.jsx` avant les scripts React. `AgendaSection.jsx` et `FloatingNextEvent.jsx` le lisent via le hook `src/hooks/useEvents.js` (`null` tant que non lu, puis tableau). L'agenda se met donc à jour sur le serveur en remplaçant uniquement ce fichier ; `.htaccess` désactive son cache.
 
 Champs d'un événement : `id`, `title`, `date` (`YYYY-MM-DD`, parsée en date locale), `hour` (ex. `"20h00"`), `place`, `city`, `address` (optionnel), `type`, `description`, `publicEvent` (false = événement privé, pas de lien carte), `isNew` (optionnel), `poster` (optionnel, chemin sous `/events/`). Les affiches vont dans `public/events/`.
 
@@ -51,14 +55,14 @@ Champs d'un événement : `id`, `title`, `date` (`YYYY-MM-DD`, parsée en date l
 ### Services externes
 
 - Formulaire de contact (`ContactForm.jsx`) : envoi direct vers Formspree, pas de backend.
-- ID Google Analytics et données JSON-LD de l'entreprise : dans `App.jsx`.
+- ID Google Analytics et données JSON-LD de l'entreprise : dans `root.jsx`.
 - `GoogleReviewsSection.jsx` utilise `react-google-reviews`.
 
 ## Déploiement
 
-Build statique hébergé sur Apache. `public/.htaccess` (copié dans `dist/`) force HTTPS + domaine sans www, réécrit les chemins inconnus vers `index.html` pour le routing client, et règle gzip et cache.
+Build statique hébergé sur Apache. `public/.htaccess` (copié dans `build/client/`) force HTTPS + domaine sans www, réécrit les chemins inconnus vers `index.html` pour le routing client, et règle gzip et cache.
 
-`dist/` est ignoré par git. Les anciens builds (`dist old/`, `distold24/`) ont été retirés du dépôt ; ils restent dans l'historique git (commit `4a516dd`).
+**On met en ligne le contenu de `build/client/`.** `build/`, `dist/` et `.react-router/` sont ignorés par git. Les anciens builds (`dist old/`, `distold24/`) ont été retirés du dépôt ; ils restent dans l'historique git (commit `4a516dd`).
 
 ## Architecture cible du site
 

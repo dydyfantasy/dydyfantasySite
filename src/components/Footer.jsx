@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import {
 	MapPinIcon,

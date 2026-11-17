@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useEvents } from "../hooks/useEvents";
 import {
 	CalendarDaysIcon,
 	ClockIcon,
@@ -11,7 +12,6 @@ import {
 	ChevronDownIcon,
 	ChevronUpIcon,
 } from "@heroicons/react/24/outline";
-const events = window.DYDY_EVENTS || [];
 
 function getLocalDate(dateString) {
 	const [year, month, day] = dateString.split("-").map(Number);
@@ -285,8 +285,23 @@ function NextEventMap({ event }) {
 	);
 }
 
+// Bloc neutre affiché tant que l'agenda n'est pas lu : évite d'afficher
+// un faux « aucune date » et limite le décalage de mise en page.
+function AgendaPlaceholder() {
+	return (
+		<section
+			id="agenda"
+			aria-busy="true"
+			className="min-h-[600px] scroll-mt-24 bg-gray-900"
+		/>
+	);
+}
+
 const AgendaSection = () => {
 	const [showAllEvents, setShowAllEvents] = useState(false);
+	const events = useEvents();
+
+	if (events === null) return <AgendaPlaceholder />;
 
 	const today = new Date();
 	today.setHours(0, 0, 0, 0);

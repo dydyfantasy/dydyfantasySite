@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useEvents } from "../hooks/useEvents";
 import {
 	CalendarDaysIcon,
 	ClockIcon,
@@ -8,8 +9,6 @@ import {
 	ArrowRightIcon,
 	SparklesIcon,
 } from "@heroicons/react/24/outline";
-
-const events = window.DYDY_EVENTS || [];
 
 function getLocalDate(dateString) {
 	const [year, month, day] = dateString.split("-").map(Number);
@@ -35,6 +34,9 @@ function formatDate(dateString) {
 
 const FloatingNextEvent = () => {
 	const [isVisible, setIsVisible] = useState(true);
+	const events = useEvents();
+
+	if (events === null) return null;
 
 	const today = new Date();
 	today.setHours(0, 0, 0, 0);
