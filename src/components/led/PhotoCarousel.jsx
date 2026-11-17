@@ -29,13 +29,25 @@ const PHOTOS = Object.keys(files)
 			.replace(/[-_]+/g, " ")}`,
 	}));
 
-const AUTOPLAY_MS = 4000;
+const AUTOPLAY_MS = 2500; // une photo toutes les 2,5 s
+const RESUME_MS = 5000; // reprise 5 s après la dernière interaction
 
 // Carrousel « pellicule » : défilement natif (scroll-snap), au doigt sur mobile,
-// flèches sur ordinateur, défilement automatique qui s'arrête dès que l'on interagit.
+// flèches sur ordinateur, défilement automatique mis en pause pendant l'interaction
+// puis relancé quelques secondes après.
 export default function PhotoCarousel() {
 	const trackRef = useRef(null);
 	const [paused, setPaused] = useState(false);
+	const resumeTimer = useRef(null);
+
+	// Pause pendant l'interaction, reprise automatique après RESUME_MS
+	const pauseThenResume = () => {
+		setPaused(true);
+		window.clearTimeout(resumeTimer.current);
+		resumeTimer.current = window.setTimeout(() => setPaused(false), RESUME_MS);
+	};
+
+	useEffect(() => () => window.clearTimeout(resumeTimer.current), []);
 
 	const scrollByCard = (direction) => {
 		const track = trackRef.current;
@@ -59,10 +71,9 @@ export default function PhotoCarousel() {
 	return (
 		<div
 			className="relative"
-			onPointerDown={() => setPaused(true)}
-			onMouseEnter={() => setPaused(true)}
-			onMouseLeave={() => setPaused(false)}
-			onFocus={() => setPaused(true)}>
+			onPointerDown={pauseThenResume}
+			onWheel={pauseThenResume}
+			onFocus={pauseThenResume}>
 			<ul
 				ref={trackRef}
 				aria-label="Photos de soirées Dydy Fantasy"
@@ -89,7 +100,10 @@ export default function PhotoCarousel() {
 				<div className="mt-4 hidden justify-end gap-2 md:flex">
 					<button
 						type="button"
-						onClick={() => scrollByCard(-1)}
+						onClick={() => {
+							pauseThenResume();
+							scrollByCard(-1);
+						}}
 						aria-label="Photo précédente"
 						className="social-btn flex h-11 w-11 items-center justify-center rounded-full"
 						style={{ "--c": "var(--cyan)" }}>
@@ -97,7 +111,10 @@ export default function PhotoCarousel() {
 					</button>
 					<button
 						type="button"
-						onClick={() => scrollByCard(1)}
+						onClick={() => {
+							pauseThenResume();
+							scrollByCard(1);
+						}}
 						aria-label="Photo suivante"
 						className="social-btn flex h-11 w-11 items-center justify-center rounded-full"
 						style={{ "--c": "var(--pink)" }}>
