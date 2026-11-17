@@ -44,7 +44,9 @@ export function Layout({ children }) {
 				<meta charSet="UTF-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				{/* title, description, canonical et Open Graph : fournis par chaque page via <Seo /> */}
-				<link rel="icon" type="image/png" href="/favicon.ico" />
+				<link rel="icon" href="/favicon.ico" sizes="48x48" />
+				<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+				<link rel="manifest" href="/site.webmanifest" />
 				<meta name="theme-color" content="#1e293b" />
 				<Meta />
 				<Links />

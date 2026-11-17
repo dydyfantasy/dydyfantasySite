@@ -40,8 +40,8 @@
 
 .answer-btn {
 	--c: var(--cyan);
-	border: 1.5px solid rgb(255 255 255 / 0.18);
-	background: rgb(5 4 10 / 0.55);
+	border: 1.5px solid color-mix(in srgb, var(--c) 55%, transparent);
+	background: color-mix(in srgb, var(--c) 9%, rgb(5 4 10 / 0.7));
 	transition:
 		transform 0.15s ease,
 		border-color 0.2s ease,
@@ -77,6 +77,17 @@
 
 .answer-icon {
 	color: var(--c);
+}
+
+/* Point « en direct » à côté de « Question 01 / 01 » */
+.live-dot {
+	animation: live-dot 1.4s ease-in-out infinite;
+}
+
+@keyframes live-dot {
+	50% {
+		opacity: 0.25;
+	}
 }
 
 /* Chenillard « lumières de plateau » : tant qu'aucune réponse n'est choisie,
@@ -180,6 +191,7 @@
 @media (prefers-reduced-motion: reduce) {
 	.light-beam,
 	.answer-pop,
+	.live-dot,
 	.is-chasing .answer-btn::after {
 		animation: none;
 	}

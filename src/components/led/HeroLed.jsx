@@ -15,8 +15,8 @@ import {
 	SparklesIcon as SparklesOutlineIcon,
 	TrophyIcon,
 } from "@heroicons/react/24/outline";
-// Provisoire : logo complet en attendant le logo « DYDY FANTASY » seul
-import logo from "/dydy_fantasy_logo-v3.webp";
+import logo480 from "../../assets/brand/logo-texte-480.webp";
+import logo960 from "../../assets/brand/logo-texte-960.webp";
 
 // Les 4 réponses du quiz (textes repris des cartes d'origine).
 // Les liens pointeront vers /prestations/... quand ces pages existeront.
@@ -110,10 +110,12 @@ export default function HeroLed() {
 				<div className="-mt-6 md:mt-0 md:ml-auto md:w-[50%] lg:w-[46%]">
 					{/* Logo + titre SEO (le H1 est le texte, le logo une image) */}
 					<img
-						src={logo}
+						src={logo960}
+						srcSet={`${logo480} 480w, ${logo960} 960w`}
+						sizes="(min-width: 768px) 30rem, 90vw"
 						alt="Dydy Fantasy"
-						width="1782"
-						height="396"
+						width="960"
+						height="173"
 						className="relative h-auto w-full max-w-[30rem]"
 					/>
 					<h1 className="mt-3 text-xl font-semibold text-white md:text-2xl">
@@ -125,13 +127,17 @@ export default function HeroLed() {
 					</p>
 
 					{/* ---- Quiz ---- */}
-					<h2 className="mt-7 text-lg font-bold md:text-xl">
+					<p className="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">
+						<span className="live-dot h-2 w-2 rounded-full bg-[var(--pink)]" aria-hidden="true" />
+						Question 01 / 01
+					</p>
+					<h2 className="mt-2 text-2xl font-extrabold leading-tight md:text-3xl">
 						Quel type d’animation{" "}
 						<span className="text-[var(--cyan)]">recherchez-vous&nbsp;?</span>
 					</h2>
 
 					<div
-						className={`mt-3 grid grid-cols-2 gap-2.5 ${selected ? "" : "is-chasing"}`}>
+						className={`mt-4 grid grid-cols-2 gap-3 ${selected ? "" : "is-chasing"}`}>
 						{ANSWERS.map((a, i) => (
 							<button
 								key={a.letter}
@@ -139,12 +145,12 @@ export default function HeroLed() {
 								aria-pressed={selected === a.letter}
 								onClick={() => setSelected(a.letter)}
 								style={{ "--c": a.color, "--i": i }}
-								className="answer-btn flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-3 text-left text-sm font-semibold md:text-[0.95rem]">
-								<span className="answer-letter flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold">
+								className="answer-btn flex items-center gap-3 rounded-2xl p-2.5 text-left text-sm font-bold uppercase tracking-wide md:p-3 md:text-base">
+								<span className="answer-letter flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-lg font-extrabold md:h-11 md:w-11">
 									{a.letter}
 								</span>
-								<a.icon aria-hidden="true" className="answer-icon h-5 w-5 shrink-0" />
-								<span className="truncate">{a.label}</span>
+								<span className="leading-tight">{a.label}</span>
+								<a.icon aria-hidden="true" className="answer-icon ml-auto hidden h-6 w-6 shrink-0 sm:block" />
 							</button>
 						))}
 					</div>
