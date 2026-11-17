@@ -1,35 +1,16 @@
-import { Helmet } from "react-helmet";
+import Seo from "../components/Seo";
 import Presentation from "../components/Presentation";
 
 function QuiSuisje() {
 	return (
 		<>
-			<Helmet>
-				<title>
-					Dydy Fantasy | Qui suis-je ? Animateur événementiel à Toulouse
-				</title>
-
-				<meta
-					name="description"
-					content="Découvrez Dydy Fantasy, animateur événementiel à Toulouse spécialisé en blind tests, quiz interactifs, karaokés et animations sur mesure pour soirées privées, bars, restaurants et événements professionnels."
-				/>
-
-				<link rel="canonical" href="https://dydyfantasy.fr/qui-suis-je" />
-
-				<meta
-					property="og:title"
-					content="Dydy Fantasy | Animateur événementiel à Toulouse"
-				/>
-
-				<meta
-					property="og:description"
-					content="Blind tests, quiz interactifs, karaokés et animations sur mesure pour vos événements à Toulouse et en Occitanie."
-				/>
-
-				<meta property="og:url" content="https://dydyfantasy.fr/qui-suis-je" />
-
-				<meta property="og:type" content="website" />
-			</Helmet>
+			<Seo
+				path="/qui-suis-je"
+				title="Dydy Fantasy | Qui suis-je ? Animateur événementiel à Toulouse"
+				description="Découvrez Dydy Fantasy, animateur événementiel à Toulouse spécialisé en blind tests, quiz interactifs, karaokés et animations sur mesure pour soirées privées, bars, restaurants et événements professionnels."
+				ogTitle="Dydy Fantasy | Animateur événementiel à Toulouse"
+				ogDescription="Blind tests, quiz interactifs, karaokés et animations sur mesure pour vos événements à Toulouse et en Occitanie."
+			/>
 
 			<Presentation />
 		</>

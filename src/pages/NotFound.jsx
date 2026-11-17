@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import Seo from "../components/Seo";
 import { Link } from "react-router";
 import {
 	HomeIcon,
@@ -15,10 +15,10 @@ const links = [
 function NotFound() {
 	return (
 		<>
-			<Helmet>
-				<title>Page introuvable | Dydy Fantasy</title>
-				<meta name="robots" content="noindex" />
-			</Helmet>
+			<Seo
+				title="Page introuvable | Dydy Fantasy"
+				noindex
+			/>
 
 			<section className="relative min-h-[70vh] overflow-hidden bg-gray-900 px-4 py-20 text-white">
 				<div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pink-500/50 to-transparent" />

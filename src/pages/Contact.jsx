@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import Seo from "../components/Seo";
 import { motion } from "motion/react";
 import {
 	ChatBubbleBottomCenterTextIcon,
@@ -143,29 +143,13 @@ function FloatingBackground() {
 function Contact() {
 	return (
 		<>
-			<Helmet>
-				<title>Dydy Fantasy | Me contacter pour une animation à Toulouse</title>
-
-				<meta
-					name="description"
-					content="Contactez Dydy Fantasy pour animer votre événement à Toulouse et en Occitanie : blind test, quiz interactif, karaoké, soirée privée, mariage ou événement professionnel."
-				/>
-
-				<link rel="canonical" href="https://dydyfantasy.fr/contact" />
-
-				<meta
-					property="og:title"
-					content="Dydy Fantasy | Contact animation événementielle à Toulouse"
-				/>
-
-				<meta
-					property="og:description"
-					content="Parlez-moi de votre événement : blind test, quiz, karaoké ou animation sur mesure à Toulouse et en Occitanie."
-				/>
-
-				<meta property="og:url" content="https://dydyfantasy.fr/contact" />
-				<meta property="og:type" content="website" />
-			</Helmet>
+			<Seo
+				path="/contact"
+				title="Dydy Fantasy | Me contacter pour une animation à Toulouse"
+				description="Contactez Dydy Fantasy pour animer votre événement à Toulouse et en Occitanie : blind test, quiz interactif, karaoké, soirée privée, mariage ou événement professionnel."
+				ogTitle="Dydy Fantasy | Contact animation événementielle à Toulouse"
+				ogDescription="Parlez-moi de votre événement : blind test, quiz, karaoké ou animation sur mesure à Toulouse et en Occitanie."
+			/>
 
 			<section className="relative min-h-screen overflow-hidden bg-gray-900 text-white">
 				<div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pink-500/50 to-transparent" />

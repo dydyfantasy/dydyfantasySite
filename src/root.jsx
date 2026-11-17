@@ -43,14 +43,7 @@ export function Layout({ children }) {
 			<head>
 				<meta charSet="UTF-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-				<title>
-					Dydy Fantasy | Animateur speaker d'événements à Toulouse – Mariages &
-					Anniversaires & Bar
-				</title>
-				<meta
-					name="description"
-					content="Dydy Fantasy, animateur d'événements professionnel à Toulouse, crée des expériences mémorables avec quiz, blind tests, karaokés et animations sur mesure pour mariages, anniversaires, soirées privées et événements d'entreprise."
-				/>
+				{/* title, description, canonical et Open Graph : fournis par chaque page via <Seo /> */}
 				<link rel="icon" type="image/png" href="/favicon.ico" />
 				<meta name="theme-color" content="#1e293b" />
 				<Meta />

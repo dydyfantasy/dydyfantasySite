@@ -13,6 +13,8 @@ Objectifs du site :
 - Valoriser photos, vidéos, événements réalisés et avis clients.
 - Donner une image professionnelle, moderne, dynamique et conviviale.
 
+Coordonnées de référence (à garder identiques partout : site, JSON-LD, fiche Google) : basé à **Fonsorbes (31470)**, tél. `+33 6 95 95 33 56`, réseaux : Facebook et Instagram uniquement. La fiche Google Business Profile est en **zone desservie** (adresse masquée, liste de villes autour de Toulouse et Toulouse) : le JSON-LD doit refléter la même liste dans `areaServed`, sans adresse de rue.
+
 Zone d'intervention : basé à l'ouest de Toulouse ; Haute-Garonne, Gers voisin, Tarn (clients existants). Ne pas inventer de références : citer uniquement des clients et prestations réelles (ex. Decathlon : animation micro / speaker d'une journée avec démos).
 
 ## Commandes
@@ -28,13 +30,13 @@ Pas de suite de tests. Audits : `/bilan` (agents `audit-technique` et `audit-seo
 
 ## Stack et architecture
 
-React 19 + Vite 7 (JSX, pas de TypeScript), Tailwind CSS v4, React Router 7 en **mode framework** (`ssr: false`, site statique), `motion` pour les animations, `react-helmet` pour le SEO par page, `react-leaflet` pour la carte de zone d'intervention.
+React 19 + Vite 7 (JSX, pas de TypeScript), Tailwind CSS v4, React Router 7 en **mode framework** (`ssr: false`, site statique), `motion` pour les animations, `react-leaflet` pour la carte de zone d'intervention.
 
 - `react-router.config.js` : `appDirectory: "src"`, `ssr: false`. Importer depuis `react-router` (plus `react-router-dom`).
 - `src/routes.js` : liste des routes (adresse -> fichier de `src/pages/`), dont `*` -> `NotFound.jsx`.
 - `src/root.jsx` : `Layout` = squelette HTML de toutes les pages (head, meta par défaut, JSON-LD `LocalBusiness`, Google Analytics, script de l’agenda) ; composant par défaut = Header + `<Outlet />` + Footer + widgets flottants (`WhatsAppButton`, `FloatingNextEvent`, `ScrollToHash`).
 - `src/entry.client.jsx` : hydratation (`hydrateRoot` + `HydratedRouter`).
-- `src/pages/` : pages de route, composées de sections de `src/components/`. Chaque page définit son `<title>` et ses meta via `react-helmet`.
+- `src/pages/` : pages de route, composées de sections de `src/components/`. Chaque page contient exactement un `<Seo />` (`src/components/Seo.jsx` : title, description, canonical ou `noindex`, Open Graph). Balises natives React 19, placées automatiquement dans le `<head>` : pas de `react-helmet`, et ne pas remettre de `<title>`/description dans `root.jsx` (doublons).
 - Styles : surtout des classes Tailwind inline dans le JSX. Tailwind v4 est chargé par le plugin `@tailwindcss/vite` et `@import "tailwindcss"` dans `src/index.css` (pas de `tailwind.config.js` en v4). Quelques feuilles de style spécifiques dans `src/css/`.
 - `Reveal.jsx` : wrapper d'animation d'apparition au scroll (motion `useInView`), réutilisé partout.
 - Le code des composants est exécuté dans Node.js à la compilation (génération HTML) : pas d’accès à `window`/`document`/`localStorage` pendant le rendu, uniquement dans `useEffect`. Les bibliothèques qui touchent `window` à l’import se chargent côté navigateur (ex. `ClientOnlyZoneMap.jsx` pour Leaflet).

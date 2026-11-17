@@ -1,18 +1,13 @@
 import Prestations from "../components/Prestations";
-import { Helmet } from "react-helmet";
+import Seo from "../components/Seo";
 function NosPrestations() {
 	return (
 		<>
-			<Helmet>
-				<title>
-					Dydy Fantasy – Animateur & Prestations d’Événements à Toulouse
-				</title>
-				<meta
-					name="description"
-					content="Dydy Fantasy propose des animations et événements à Toulouse : blind tests, quiz, soirées, mariages et événements privés sur mesure."
-				/>
-				<link rel="canonical" href="https://dydyfantasy.fr/prestations" />
-			</Helmet>
+			<Seo
+				path="/prestations"
+				title="Dydy Fantasy – Animateur & Prestations d’Événements à Toulouse"
+				description="Dydy Fantasy propose des animations et événements à Toulouse : blind tests, quiz, soirées, mariages et événements privés sur mesure."
+			/>
 			<Prestations />
 		</>
 	);

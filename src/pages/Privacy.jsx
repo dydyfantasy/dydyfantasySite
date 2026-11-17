@@ -1,16 +1,14 @@
-import { Helmet } from "react-helmet";
+import Seo from "../components/Seo";
 
 function Privacy() {
 	return (
 		<>
-			<Helmet>
-				<title>Politique de confidentialité | Dydy Quiz</title>
-				<meta
-					name="description"
-					content="Politique de confidentialité de l'application Dydy Quiz."
-				/>
-				<link rel="canonical" href="https://dydyfantasy.fr/privacy" />
-			</Helmet>
+			<Seo
+				path="/privacy"
+				title="Politique de confidentialité | Dydy Quiz"
+				description="Politique de confidentialité de l'application Dydy Quiz."
+				noindex
+			/>
 
 			<div className="min-h-screen bg-gray-900 text-white py-16 px-6">
 				<div className="max-w-4xl mx-auto bg-gray-800 rounded-2xl shadow-lg p-8 md:p-12">
