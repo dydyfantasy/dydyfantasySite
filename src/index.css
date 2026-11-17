@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+/* Site sombre : fond, barres de défilement et contrôles natifs en mode sombre,
+   pas de fond blanc lors du rebond de défilement sur mobile */
+html {
+	background: #05040a;
+	color-scheme: dark;
+}
+
+body {
+	background: #05040a;
+}
+
+/* Sélection de texte aux couleurs du site */
+::selection {
+	background: rgb(255 47 174 / 0.45);
+	color: #fff;
+}
+
+/* Navigation au clavier : contour bien visible (accessibilité) */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+	outline: 2px solid #19d3f0;
+	outline-offset: 3px;
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useEvents } from "../../hooks/useEvents";
 
@@ -12,8 +13,10 @@ function getLocalDate(dateString) {
 export default function NextEventBubble() {
 	const events = useEvents();
 	const [closed, setClosed] = useState(false);
+	const { pathname } = useLocation();
 
-	if (!events || closed) return null;
+	// Masquée sur la page Contact (elle recouvrirait le formulaire sur mobile)
+	if (!events || closed || pathname === "/contact") return null;
 
 	const today = new Date();
 	today.setHours(0, 0, 0, 0);

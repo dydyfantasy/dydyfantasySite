@@ -37,7 +37,8 @@ const navClass = ({ isActive }) =>
 
 // Lien avec icône colorée (menus déroulants et menu mobile)
 function IconLink({ to, label, plain, icon: Icon, color, big = false }) {
-	const cls = (isActive) => `flex items-center gap-3 ${big ? "text-base" : ""} ${navClass({ isActive })}`;
+	const cls = (isActive) =>
+		`flex items-center gap-3 hover:bg-white/[0.06] ${big ? "text-base" : ""} ${navClass({ isActive })} ${isActive ? "bg-white/[0.06]" : ""}`;
 	const content = (
 		<>
 			{Icon && (
@@ -59,7 +60,41 @@ export default function LedHeader() {
 	const [open, setOpen] = useState(false); // menu mobile
 	const [dropdown, setDropdown] = useState(null); // id du sous-menu ouvert (ordinateur)
 	const navRef = useRef(null);
+	const closeTimer = useRef(null);
 	const location = useLocation();
+
+	// Rubrique de la page courante (pour allumer « Prestations », « Événements »…)
+	const activeMenu = MENUS.find((m) => m.items.some((p) => p.to === location.pathname))?.id;
+
+	// Ouverture au survol (souris) avec un petit délai à la fermeture
+	const hoverOpen = (id) => {
+		window.clearTimeout(closeTimer.current);
+		setDropdown(id);
+	};
+	const hoverClose = () => {
+		window.clearTimeout(closeTimer.current);
+		closeTimer.current = window.setTimeout(() => setDropdown(null), 150);
+	};
+
+	// Échap ferme les menus
+	useEffect(() => {
+		const onKey = (e) => {
+			if (e.key === "Escape") {
+				setDropdown(null);
+				setOpen(false);
+			}
+		};
+		document.addEventListener("keydown", onKey);
+		return () => document.removeEventListener("keydown", onKey);
+	}, []);
+
+	// Menu mobile ouvert : la page derrière ne défile plus
+	useEffect(() => {
+		document.body.style.overflow = open ? "hidden" : "";
+		return () => {
+			document.body.style.overflow = "";
+		};
+	}, [open]);
 
 	// Ferme les menus à chaque changement de page
 	useEffect(() => {
@@ -87,18 +122,25 @@ export default function LedHeader() {
 				{/* Ordinateur */}
 				<nav ref={navRef} aria-label="Menu principal" className="hidden items-center gap-1 lg:flex">
 					{MENUS.map((menu) => (
-						<div key={menu.id} className="relative">
+						<div
+							key={menu.id}
+							className="relative"
+							// survol uniquement à la souris (au doigt, c'est le clic qui ouvre)
+							onPointerEnter={(e) => e.pointerType === "mouse" && hoverOpen(menu.id)}
+							onPointerLeave={(e) => e.pointerType === "mouse" && hoverClose()}>
 							<button
 								type="button"
 								aria-expanded={dropdown === menu.id}
 								aria-haspopup="true"
 								onClick={() => setDropdown((v) => (v === menu.id ? null : menu.id))}
-								className="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-white/80 hover:text-white">
+								className={`flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
+									activeMenu === menu.id || dropdown === menu.id ? "text-[var(--cyan)]" : "text-white/80 hover:text-white"
+								}`}>
 								{menu.label}
 								<ChevronDownIcon className={`h-4 w-4 transition-transform ${dropdown === menu.id ? "rotate-180" : ""}`} />
 							</button>
 							{dropdown === menu.id && (
-								<div className="neon-card absolute left-0 top-full mt-2 w-72 rounded-2xl bg-[var(--ink)] p-2" style={{ "--c": "var(--cyan)" }}>
+								<div className="dropdown-panel absolute left-0 top-full mt-2 w-72 rounded-2xl p-2">
 									{menu.items.map((p) => (
 										<IconLink key={p.to} {...p} />
 									))}

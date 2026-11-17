@@ -384,6 +384,36 @@ a.board-row:hover {
 	box-shadow: 0 0 18px -4px var(--c);
 }
 
+/* ---------- Liste déroulante du menu ---------- */
+
+.dropdown-panel {
+	background: #0b0912;
+	border: 1.5px solid color-mix(in srgb, var(--cyan) 45%, transparent);
+	box-shadow:
+		0 24px 48px -12px rgb(0 0 0 / 0.8),
+		0 0 28px -10px var(--cyan);
+	animation: dropdown-in 0.18s ease-out;
+}
+
+/* Zone tampon invisible entre le bouton et la liste (le survol ne se perd pas) */
+.dropdown-panel::before {
+	content: "";
+	position: absolute;
+	inset: -0.6rem 0 auto 0;
+	height: 0.6rem;
+}
+
+@keyframes dropdown-in {
+	from {
+		opacity: 0;
+		transform: translateY(-6px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
 /* ---------- Icônes du menu ---------- */
 
 .menu-icon {
@@ -572,6 +602,7 @@ a.board-row:hover {
 	.light-beam,
 	.answer-pop,
 	.live-dot,
+	.dropdown-panel,
 	.spot,
 	.streak,
 	.clients-track,

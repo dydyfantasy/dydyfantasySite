@@ -42,7 +42,7 @@ export default function LedFooter() {
 	const year = new Date().getFullYear();
 
 	return (
-		<footer className="led border-t border-white/10 bg-[var(--ink)] px-4 pb-8 pt-14 text-white">
+		<footer className="led border-t border-white/10 bg-[var(--ink)] px-4 pb-28 pt-14 text-white md:pb-8">
 			<div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
 				<div>
 					<Link to="/" aria-label="Dydy Fantasy, retour à l'accueil" className="flex items-end gap-3">
