@@ -46,7 +46,7 @@ const AUDIENCES = [
 		icon: BriefcaseIcon,
 		color: "var(--cyan)",
 		title: "Entreprises & team building",
-		text: "Un quiz en équipes pour fédérer vos collaborateurs lors d'un séminaire ou d'une soirée d'entreprise.",
+		text: "Un quiz en équipes pour fédérer vos collaborateurs lors d’un séminaire ou d’une soirée d’entreprise.",
 	},
 	{
 		icon: CakeIcon,
@@ -61,7 +61,7 @@ const FORMATS = [
 		icon: MusicalNoteIcon,
 		color: "var(--pink)",
 		title: "Blind test musical",
-		text: "Extraits musicaux à reconnaître : tubes des années 80 à aujourd'hui, génériques, musiques de films… Les thèmes s'adaptent à votre public.",
+		text: "Extraits musicaux à reconnaître : tubes des années 80 à aujourd’hui, génériques, musiques de films… Les thèmes s’adaptent à votre public.",
 	},
 	{
 		icon: LightBulbIcon,
@@ -78,8 +78,8 @@ const FORMATS = [
 	{
 		icon: MicrophoneIcon,
 		color: "#7cff6b",
-		title: "Blind'Quiz + Karaoké",
-		text: "Le format star de mes soirées : on s'échauffe avec le blind quiz, puis la soirée se termine en karaoké géant.",
+		title: "Blind’Quiz + Karaoké",
+		text: "Le format star de mes soirées : on s’échauffe avec le blind quiz, puis la soirée se termine en karaoké géant.",
 	},
 ];
 
@@ -87,30 +87,30 @@ const STEPS = [
 	{ icon: ChatBubbleLeftRightIcon, title: "On échange", text: "Vous me parlez de votre événement : lieu, public, ambiance souhaitée." },
 	{ icon: PencilSquareIcon, title: "On construit ensemble", text: "Je vous propose des manches et des thèmes, puis on les ajuste ensemble selon vos invités et vos envies." },
 	{ icon: DevicePhoneMobileIcon, title: "On joue", text: "Les joueurs répondent sur leur téléphone ou avec des buzzers, je mène le jeu au micro." },
-	{ icon: TrophyIcon, title: "Le podium", text: "Classement en direct, suspense jusqu'à la dernière question et victoire célébrée." },
+	{ icon: TrophyIcon, title: "Le podium", text: "Classement en direct, suspense jusqu’à la dernière question et victoire célébrée." },
 ];
 
 // À VÉRIFIER / COMPLÉTER par Dydy (aucune donnée précise inventée ici)
 const FAQ = [
 	{
 		q: "Combien de personnes peuvent participer ?",
-		a: "Le format s'adapte à votre événement, du petit groupe entre amis à la grande salle. Les joueurs peuvent jouer seuls ou en équipes. Dites-moi votre nombre d'invités, je vous propose la formule adaptée.",
+		a: "Le format s’adapte à votre événement, du petit groupe entre amis à la grande salle. Les joueurs peuvent jouer seuls ou en équipes. Dites-moi votre nombre d’invités, je vous propose la formule adaptée.",
 	},
 	{
 		q: "Comment les joueurs répondent-ils ?",
-		a: "Selon la formule, depuis leur téléphone ou avec des buzzers. Les scores s'affichent en direct pour garder le suspense jusqu'au bout.",
+		a: "Selon la formule, depuis leur téléphone ou avec des buzzers. Les scores s’affichent en direct pour garder le suspense jusqu’au bout.",
 	},
 	{
 		q: "Peut-on personnaliser les questions ?",
-		a: "Oui : thèmes au choix, manches sur les mariés, sur votre entreprise ou sur la personne fêtée. C'est souvent le moment préféré des invités.",
+		a: "Oui : thèmes au choix, manches sur les mariés, sur votre entreprise ou sur la personne fêtée. C’est souvent le moment préféré des invités.",
 	},
 	{
 		q: "Où intervenez-vous ?",
-		a: "Je suis basé à Fonsorbes, à l'ouest de Toulouse, et j'interviens à Toulouse, en Haute-Garonne, dans le Gers et dans le Tarn. Pour d'autres lieux, contactez-moi.",
+		a: "Je suis basé à Fonsorbes, à l’ouest de Toulouse, et j’interviens à Toulouse, en Haute-Garonne, dans le Gers et dans le Tarn. Pour d’autres lieux, contactez-moi.",
 	},
 	{
 		q: "Peut-on combiner le blind test avec un karaoké ou un DJ ?",
-		a: "Oui, c'est même le format le plus demandé : blind quiz pour lancer la soirée, puis karaoké ou DJ pour faire danser tout le monde.",
+		a: "Oui, c’est même le format le plus demandé : blind quiz pour lancer la soirée, puis karaoké ou DJ pour faire danser tout le monde.",
 	},
 ];
 
@@ -146,7 +146,7 @@ function DemoScreen() {
 					answer.correct ? (
 						<span className="text-[#7cff6b]">Bonne réponse ! +10 points pour votre équipe 🎉</span>
 					) : (
-						<span className="text-[var(--gold)]">Raté ! C'était Stromae. Pas de panique, on se rattrape à la prochaine.</span>
+						<span className="text-[var(--gold)]">Raté ! C’était Stromae. Pas de panique, on se rattrape à la prochaine.</span>
 					)
 				) : (
 					<span className="text-white/55">À vous de jouer : choisissez une réponse.</span>
@@ -176,7 +176,7 @@ export default function BlindTestQuiz() {
 			}
 			intro="Une soirée façon jeu télé où vos invités ne regardent pas : ils jouent. Buzzers ou téléphone, manches thématiques, scores en direct et ambiance au micro, pour un bar, un mariage, une entreprise ou un anniversaire."
 			aside={<DemoScreen />}
-			pointsTitle={{ label: "Pour qui ?", title: "Un blind test pour chaque", accent: "événement", text: "Du bar de quartier au grand mariage, le quiz s'adapte à votre public et à votre lieu." }}
+			pointsTitle={{ label: "Pour qui ?", title: "Un blind test pour chaque", accent: "événement", text: "Du bar de quartier au grand mariage, le quiz s’adapte à votre public et à votre lieu." }}
 			points={AUDIENCES}
 			formatsTitle={{ label: "Les formats", title: "Blind test, quiz ou", accent: "les deux ?", text: "Quatre façons de jouer, à mélanger selon votre soirée." }}
 			formats={FORMATS}

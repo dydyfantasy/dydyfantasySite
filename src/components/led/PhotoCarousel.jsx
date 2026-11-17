@@ -33,14 +33,14 @@ const AUTOPLAY_MS = 2500; // une photo toutes les 2,5 s
 const RESUME_MS = 5000; // reprise 5 s après la dernière interaction
 
 // Carrousel « pellicule » : défilement natif (scroll-snap), au doigt sur mobile,
-// flèches sur ordinateur, défilement automatique mis en pause pendant l'interaction
+// flèches sur ordinateur, défilement automatique mis en pause pendant l’interaction
 // puis relancé quelques secondes après.
 export default function PhotoCarousel() {
 	const trackRef = useRef(null);
 	const [paused, setPaused] = useState(false);
 	const resumeTimer = useRef(null);
 
-	// Pause pendant l'interaction, reprise automatique après RESUME_MS
+	// Pause pendant l’interaction, reprise automatique après RESUME_MS
 	const pauseThenResume = () => {
 		setPaused(true);
 		window.clearTimeout(resumeTimer.current);

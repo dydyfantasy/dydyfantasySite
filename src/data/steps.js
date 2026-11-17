@@ -1,4 +1,4 @@
-// Déroulé commun d'une prestation : met en avant la co-construction avec le client.
+// Déroulé commun d’une prestation : met en avant la co-construction avec le client.
 // Utilisé par la page Prestations et par le modèle ServicePage.
 import {
 	ChatBubbleLeftRightIcon,

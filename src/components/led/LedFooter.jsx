@@ -45,7 +45,7 @@ export default function LedFooter() {
 		<footer className="led border-t border-white/10 bg-[var(--ink)] px-4 pb-28 pt-14 text-white md:pb-8">
 			<div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
 				<div>
-					<Link to="/" aria-label="Dydy Fantasy, retour à l'accueil" className="flex items-end gap-3">
+					<Link to="/" aria-label="Dydy Fantasy, retour à l’accueil" className="flex items-end gap-3">
 						<img src={perso240} alt="" width="240" height="313" loading="lazy" className="h-20 w-auto" />
 						<img src={logo480} alt="Dydy Fantasy" width="480" height="86" className="mb-2 h-8 w-auto" />
 					</Link>
@@ -86,7 +86,7 @@ export default function LedFooter() {
 
 			<div className="mx-auto mt-12 flex max-w-6xl flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/45 sm:flex-row sm:justify-between">
 				<p>© {year} Dydy Fantasy · Animation événementielle à Toulouse</p>
-				<Link to="/privacy" className="hover:text-white/80">Confidentialité de l'application Dydy Quiz</Link>
+				<Link to="/privacy" className="hover:text-white/80">Confidentialité de l’application Dydy Quiz</Link>
 			</div>
 		</footer>
 	);

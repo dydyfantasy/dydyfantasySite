@@ -8,7 +8,7 @@ function Privacy() {
 			<Seo
 				path="/privacy"
 				title="Politique de confidentialité | Dydy Quiz"
-				description="Politique de confidentialité de l'application Dydy Quiz."
+				description="Politique de confidentialité de l’application Dydy Quiz."
 				noindex
 			/>
 

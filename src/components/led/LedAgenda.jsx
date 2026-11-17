@@ -41,7 +41,7 @@ function mapsEmbedUrl(event) {
 	return `https://www.google.com/maps?q=${query}&output=embed`;
 }
 
-// Carte du lieu de la prochaine date, chargée seulement à l'approche (loading="lazy")
+// Carte du lieu de la prochaine date, chargée seulement à l’approche (loading="lazy")
 function NextEventMap({ event }) {
 	if (!event.publicEvent || (!event.address && !event.place)) return null;
 	return (
@@ -127,7 +127,7 @@ function NextEvent({ event }) {
 	);
 }
 
-// Ligne du tableau d'affichage
+// Ligne du tableau d’affichage
 function EventRow({ event, delay = 0, onOpen }) {
 	const p = dateParts(event.date);
 
@@ -170,8 +170,8 @@ function EventRow({ event, delay = 0, onOpen }) {
 	);
 }
 
-// Fiche d'un événement : <dialog> natif (accessible, Échap pour fermer).
-// La carte n'est chargée qu'à l'ouverture : aucun coût tant qu'on ne clique pas.
+// Fiche d’un événement : <dialog> natif (accessible, Échap pour fermer).
+// La carte n’est chargée qu’à l’ouverture : aucun coût tant qu’on ne clique pas.
 function EventDialog({ event, onClose }) {
 	const ref = useRef(null);
 

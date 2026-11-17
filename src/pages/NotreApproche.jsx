@@ -21,7 +21,7 @@ import SectionTitle from "../components/led/SectionTitle";
 import ScrollReveal from "../components/led/ScrollReveal";
 import LedFinal from "../components/led/LedFinal";
 
-// Textes repris de l'ancienne page (OurApproach.jsx). Seules les étapes 02 et 03
+// Textes repris de l’ancienne page (OurApproach.jsx). Seules les étapes 02 et 03
 // ont été complétées pour souligner la co-construction (« ensemble »).
 
 const COLORS = ["var(--cyan)", "var(--pink)", "var(--gold)", "#7cff6b", "#8b5cf6", "#ff4d6d"];
@@ -92,7 +92,7 @@ function NotreApproche() {
 			<StageLights />
 			<Seo
 				path="/mon-approche"
-				title="Mon approche de l'animation à Toulouse | Dydy Fantasy"
+				title="Mon approche de l’animation à Toulouse | Dydy Fantasy"
 				description="Découvrez l’approche Dydy Fantasy à Toulouse : écoute, personnalisation, préparation et animation interactive pour vos soirées, blind tests, quiz, karaokés et événements sur mesure."
 				ogTitle="Dydy Fantasy | Mon approche d’animation événementielle"
 				ogDescription="Une méthode simple, claire et personnalisée pour créer une animation interactive, conviviale et adaptée à votre public."

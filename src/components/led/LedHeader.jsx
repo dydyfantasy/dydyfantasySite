@@ -102,7 +102,7 @@ export default function LedHeader() {
 		setDropdown(null);
 	}, [location.pathname, location.hash]);
 
-	// Ferme le sous-menu au clic à l'extérieur
+	// Ferme le sous-menu au clic à l’extérieur
 	useEffect(() => {
 		if (!dropdown) return;
 		const onClick = (e) => {
@@ -115,7 +115,7 @@ export default function LedHeader() {
 	return (
 		<header className="led sticky top-0 z-[100] border-b border-white/10 bg-[var(--ink)]/95 text-white">
 			<div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-				<Link to="/" aria-label="Dydy Fantasy, retour à l'accueil" className="shrink-0">
+				<Link to="/" aria-label="Dydy Fantasy, retour à l’accueil" className="shrink-0">
 					<img src={logo480} alt="Dydy Fantasy" width="480" height="86" className="h-8 w-auto md:h-9" />
 				</Link>
 
@@ -125,7 +125,7 @@ export default function LedHeader() {
 						<div
 							key={menu.id}
 							className="relative"
-							// survol uniquement à la souris (au doigt, c'est le clic qui ouvre)
+							// survol uniquement à la souris (au doigt, c’est le clic qui ouvre)
 							onPointerEnter={(e) => e.pointerType === "mouse" && hoverOpen(menu.id)}
 							onPointerLeave={(e) => e.pointerType === "mouse" && hoverClose()}>
 							<button

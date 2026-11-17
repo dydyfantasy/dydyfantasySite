@@ -32,11 +32,11 @@ export default function Anniversaire() {
 			}
 			intro="30 ans, 40 ans, 50 ans ou simple envie de faire la fête : un quiz sur la personne fêtée, un blind test qui fait chanter tout le monde, du karaoké et un DJ pour danser. Une soirée dont tout le monde se souviendra."
 			color="var(--gold)"
-			pointsTitle={{ label: "L'idée", title: "Une soirée qui", accent: "vous ressemble" }}
+			pointsTitle={{ label: "L’idée", title: "Une soirée qui", accent: "vous ressemble" }}
 			points={[
 				{ icon: CakeIcon, color: "var(--gold)", title: "La personne fêtée au centre", text: "Des questions et des souvenirs que seuls les proches connaissent." },
 				{ icon: UsersIcon, color: "var(--pink)", title: "Tous les invités embarqués", text: "Famille, amis, collègues : chacun participe, même ceux qui ne se connaissent pas." },
-				{ icon: HomeIcon, color: "var(--cyan)", title: "Chez vous ou en salle", text: "Je m'adapte à votre lieu : salle des fêtes, restaurant, maison." },
+				{ icon: HomeIcon, color: "var(--cyan)", title: "Chez vous ou en salle", text: "Je m’adapte à votre lieu : salle des fêtes, restaurant, maison." },
 				{ icon: GiftIcon, color: "#7cff6b", title: "Une surprise réussie", text: "On peut tout préparer en secret avec vous pour une soirée surprise." },
 			]}
 			formatsTitle={{ label: "Les formats", title: "À combiner pour une", accent: "soirée complète" }}
@@ -44,13 +44,13 @@ export default function Anniversaire() {
 				{ icon: TrophyIcon, title: "Quiz sur la personne fêtée", text: "Anecdotes, photos, souvenirs : qui la connaît le mieux ?" },
 				{ icon: MusicalNoteIcon, title: "Blind test", text: "Les tubes de son époque et de ses goûts pour faire chanter toute la salle." },
 				{ icon: MicrophoneIcon, title: "Karaoké", text: "Les chansons cultes en duo ou en chœur." },
-				{ icon: SparklesIcon, title: "DJ", text: "Pour faire danser vos invités jusqu'au bout de la soirée." },
+				{ icon: SparklesIcon, title: "DJ", text: "Pour faire danser vos invités jusqu’au bout de la soirée." },
 			]}
 			related={relatedTo(PATH)}
 			faq={[
 				{ q: "Peut-on préparer une soirée surprise ?", a: "Oui, on prépare tout ensemble en toute discrétion, y compris les questions sur la personne fêtée." },
 				{ q: "Intervenez-vous à domicile ?", a: "Oui, selon la place disponible ; on fait le point ensemble sur le lieu et le matériel nécessaire." },
-				{ q: "Où intervenez-vous ?", a: "Basé à Fonsorbes, à l'ouest de Toulouse, j'interviens à Toulouse, en Haute-Garonne, dans le Gers et dans le Tarn." },
+				{ q: "Où intervenez-vous ?", a: "Basé à Fonsorbes, à l’ouest de Toulouse, j’interviens à Toulouse, en Haute-Garonne, dans le Gers et dans le Tarn." },
 			]}
 		/>
 	);

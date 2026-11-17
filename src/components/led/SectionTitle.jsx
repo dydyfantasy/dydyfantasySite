@@ -1,5 +1,5 @@
 import ScrollReveal from "./ScrollReveal";
-// En-tête de section commun à l'accueil v2 : petit label rose + titre avec mot en cyan.
+// En-tête de section commun à l’accueil v2 : petit label rose + titre avec mot en cyan.
 export default function SectionTitle({ id, label, title, accent, children, center = false }) {
 	return (
 		<ScrollReveal className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>

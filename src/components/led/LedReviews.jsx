@@ -4,7 +4,7 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import SectionTitle from "./SectionTitle";
 import ScrollReveal from "./ScrollReveal";
 
-// Avis Google : note réelle (72 avis, 5/5) + carrousel Featurable.
+// Avis Google : note réelle (4,9/5, plus de 70 avis au 18/11/2026) + carrousel Featurable.
 // (Étape 5 prévue : récupérer les avis à la compilation pour les afficher sans attente.)
 export default function LedReviews() {
 	return (
@@ -13,13 +13,13 @@ export default function LedReviews() {
 				<div>
 					<SectionTitle id="avis-titre" label="Avis clients" title="Ils en" accent="parlent" />
 					<ScrollReveal variant="zoom" delay={100} className="neon-card mt-6 rounded-3xl p-6 text-center" style={{ "--c": "var(--gold)" }}>
-						<p className="glow-gold text-6xl font-extrabold leading-none">5,0</p>
-						<p className="mt-2 flex justify-center text-[var(--gold)]" aria-label="5 étoiles sur 5">
+						<p className="glow-gold text-6xl font-extrabold leading-none">4,9</p>
+						<p className="mt-2 flex justify-center text-[var(--gold)]" aria-label="Note de 4,9 sur 5">
 							{[0, 1, 2, 3, 4].map((i) => (
 								<StarIcon key={i} className="h-6 w-6" />
 							))}
 						</p>
-						<p className="mt-2 font-semibold text-white/80">72 avis Google</p>
+						<p className="mt-2 font-semibold text-white/80">Plus de 70 avis Google</p>
 					</ScrollReveal>
 				</div>
 

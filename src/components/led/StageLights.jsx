@@ -1,4 +1,4 @@
-// Lumières de scène diffuses derrière toute la page d'accueil :
+// Lumières de scène diffuses derrière toute la page d’accueil :
 // taches colorées qui dérivent lentement + traînées de lumière diagonales (rayons dans la fumée).
 // Purement décoratif (aria-hidden). Positions en % de la hauteur de la page.
 // mobileOff : lumière masquée sur mobile (version allégée, moins de mémoire graphique).

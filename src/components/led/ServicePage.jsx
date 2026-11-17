@@ -46,14 +46,14 @@ function PhotoSlot({ image, alt, color = "var(--pink)" }) {
 }
 
 /**
- * Modèle de page de prestation / d'événement (même structure SEO partout).
- * Contenu passé en props ; les sections vides ne s'affichent pas.
+ * Modèle de page de prestation / d’événement (même structure SEO partout).
+ * Contenu passé en props ; les sections vides ne s’affichent pas.
  */
 export default function ServicePage({
 	path,
 	seo, // { title, description, ogTitle }
-	breadcrumb, // [{ name, to }] sans l'accueil ni la page courante
-	name, // nom court de la page (fil d'Ariane, schema)
+	breadcrumb, // [{ name, to }] sans l’accueil ni la page courante
+	name, // nom court de la page (fil d’Ariane, schema)
 	title, // contenu JSX du H1
 	intro,
 	aside, // élément affiché à droite du hero (sinon emplacement photo)
@@ -98,7 +98,7 @@ export default function ServicePage({
 			{/* ---- Hero ---- */}
 			<section className="px-4 pb-16 pt-8 md:pt-12">
 				<div className="mx-auto max-w-6xl">
-					<nav aria-label="Fil d'Ariane" className="text-sm text-white/55">
+					<nav aria-label="Fil d’Ariane" className="text-sm text-white/55">
 						<ol className="flex flex-wrap items-center gap-1.5">
 							{crumbs.map((c, i) => (
 								<li key={c.to} className="flex items-center gap-1.5">
@@ -123,7 +123,7 @@ export default function ServicePage({
 									<ArrowRightIcon className="h-5 w-5" />
 								</Link>
 								<a href="/#agenda" className="btn-outline-neon inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--cyan)] px-6 py-3.5 font-semibold text-[var(--cyan)]">
-									Voir l'agenda
+									Voir l’agenda
 								</a>
 							</div>
 						</div>

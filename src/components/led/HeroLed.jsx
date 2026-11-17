@@ -19,7 +19,7 @@ import tete64 from "../../assets/brand/perso-tete-64.webp";
 import tete128 from "../../assets/brand/perso-tete-128.webp";
 import logo960 from "../../assets/brand/logo-texte-960.webp";
 
-// Les 4 réponses du quiz (textes repris des cartes d'origine).
+// Les 4 réponses du quiz (textes repris des cartes d’origine).
 // Les liens pointeront vers /prestations/... quand ces pages existeront.
 const ANSWERS = [
 	{
@@ -47,7 +47,7 @@ const ANSWERS = [
 		icon: MusicalNoteIcon,
 		cta: "Découvrir la soirée DJ",
 		href: "/prestations/dj",
-		text: "Une sélection musicale adaptée à votre public, pensée pour accompagner les temps forts et faire monter l'ambiance au bon moment.",
+		text: "Une sélection musicale adaptée à votre public, pensée pour accompagner les temps forts et faire monter l’ambiance au bon moment.",
 	},
 	{
 		letter: "D",
@@ -56,7 +56,7 @@ const ANSWERS = [
 		icon: PuzzlePieceIcon,
 		cta: "Découvrir le sur-mesure",
 		href: "/prestations/sur-mesure",
-		text: "Loto revisité, murder party, escape game, jeux d'équipe ou soirée à thème : le format est personnalisé selon votre lieu, votre public et votre objectif.",
+		text: "Loto revisité, murder party, escape game, jeux d’équipe ou soirée à thème : le format est personnalisé selon votre lieu, votre public et votre objectif.",
 	},
 ];
 
@@ -76,7 +76,7 @@ function ScenePhoto({ className = "" }) {
 	);
 }
 
-// Hero de l'accueil : photo pleine largeur (Dydy à gauche), texte et quiz à droite
+// Hero de l’accueil : photo pleine largeur (Dydy à gauche), texte et quiz à droite
 // sur la zone du public. Visible dès le HTML pré-rendu pour un LCP rapide.
 export default function HeroLed() {
 	const [selected, setSelected] = useState(null);
@@ -98,7 +98,7 @@ export default function HeroLed() {
 				/>
 			</div>
 
-			{/* Lumières d'ambiance (dégradés fixes, pas de flou) */}
+			{/* Lumières d’ambiance (dégradés fixes, pas de flou) */}
 			<div
 				aria-hidden="true"
 				className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_85%_15%,rgb(25_211_240/0.16),transparent_45%),radial-gradient(ellipse_at_70%_100%,rgb(255_47_174/0.18),transparent_50%)]"
@@ -201,7 +201,7 @@ export default function HeroLed() {
 						)}
 					</div>
 
-					{/* Appels à l'action */}
+					{/* Appels à l’action */}
 					<div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
 						<a
 							href="/contact"
@@ -213,7 +213,7 @@ export default function HeroLed() {
 							href="#agenda"
 							className="btn-outline-neon inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--cyan)] px-6 py-3 font-semibold text-[var(--cyan)]">
 							<CalendarDaysIcon className="h-5 w-5" />
-							Voir l'agenda
+							Voir l’agenda
 						</a>
 					</div>
 					<a
@@ -224,7 +224,7 @@ export default function HeroLed() {
 								<StarIcon key={i} className="h-4 w-4" />
 							))}
 						</span>
-						72 avis Google · 5/5
+						4,9/5 · +70 avis Google
 					</a>
 				</div>
 			</div>

@@ -14,7 +14,7 @@ import { relatedTo } from "../../data/navigation";
 const PATH = "/evenements/mariage";
 
 // Page à fort enjeu (« animateur mariage toulouse », « dj mariage toulouse »).
-// À enrichir : photos de mariages, témoignages de mariés, déroulé type d'une soirée.
+// À enrichir : photos de mariages, témoignages de mariés, déroulé type d’une soirée.
 export default function Mariage() {
 	return (
 		<ServicePage
@@ -31,7 +31,7 @@ export default function Mariage() {
 					Animateur & DJ <span className="text-[var(--pink)]">mariage</span> à Toulouse
 				</>
 			}
-			intro="Un mariage où vos invités ne font pas que regarder : un quiz sur les mariés pendant le repas, un blind test qui fait chanter toutes les générations, puis un DJ pour danser jusqu'au bout de la nuit."
+			intro="Un mariage où vos invités ne font pas que regarder : un quiz sur les mariés pendant le repas, un blind test qui fait chanter toutes les générations, puis un DJ pour danser jusqu’au bout de la nuit."
 			color="var(--pink)"
 			pointsTitle={{ label: "Pourquoi moi", title: "Un mariage qui", accent: "fait participer" }}
 			points={[
@@ -45,7 +45,7 @@ export default function Mariage() {
 				{ icon: TrophyIcon, title: "Quiz des mariés", text: "Qui connaît le mieux les mariés ? Un quiz en équipes de tables entre deux plats." },
 				{ icon: MusicalNoteIcon, title: "Blind test", text: "Des tubes de toutes les époques pour faire chanter la salle avant la soirée dansante." },
 				{ icon: MicrophoneIcon, title: "Karaoké", text: "Duos des mariés, chansons cultes en chœur : le moment où tout le monde se lâche." },
-				{ icon: SparklesIcon, title: "Soirée DJ", text: "Une sélection musicale adaptée à vos invités pour danser jusqu'au bout de la nuit." },
+				{ icon: SparklesIcon, title: "Soirée DJ", text: "Une sélection musicale adaptée à vos invités pour danser jusqu’au bout de la nuit." },
 			]}
 			related={relatedTo(PATH)}
 			faq={[

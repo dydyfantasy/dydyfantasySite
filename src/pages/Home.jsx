@@ -15,7 +15,7 @@ function Home() {
 			<Seo
 				path="/"
 				title="Animateur blind test, quiz, karaoké & DJ à Toulouse | Dydy Fantasy"
-				description="Animateur à Toulouse : blind test, quiz, karaoké et DJ pour mariages, anniversaires, entreprises et bars. 72 avis 5 étoiles. Demandez votre devis."
+				description="Animateur à Toulouse : blind test, quiz, karaoké et DJ pour mariages, anniversaires, entreprises et bars. Plus de 70 avis Google. Demandez votre devis."
 				ogTitle="Dydy Fantasy | Animation événementielle à Toulouse"
 				ogDescription="Blind tests, quiz interactifs, karaokés et animations sur mesure pour vos événements à Toulouse et en Occitanie."
 			/>

@@ -2,7 +2,7 @@
 // Utilisée par le menu, le pied de page et les liens « À découvrir aussi ».
 // Toute page ajoutée ici doit aussi exister dans src/routes.js,
 // react-router.config.js (prerender) et public/sitemap.xml.
-// Icônes et couleurs : les mêmes que le quiz de l'accueil (A rouge, B vert, C cyan, D or).
+// Icônes et couleurs : les mêmes que le quiz de l’accueil (A rouge, B vert, C cyan, D or).
 import {
 	TrophyIcon,
 	MicrophoneIcon,

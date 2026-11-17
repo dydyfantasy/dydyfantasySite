@@ -17,8 +17,8 @@ const SOCIALS = [
 	{ name: "Instagram", url: "https://www.instagram.com/dydy_fantasy", Icon: FaInstagram, color: "var(--pink)" },
 ];
 
-// Appel à l'action final, signé par la mascotte + liens internes (maillage SEO) + réseaux sociaux
-// title / text optionnels : permettent à une page d'utiliser sa propre conclusion
+// Appel à l’action final, signé par la mascotte + liens internes (maillage SEO) + réseaux sociaux
+// title / text optionnels : permettent à une page d’utiliser sa propre conclusion
 export default function LedFinal({ title, text }) {
 	return (
 		<section aria-labelledby="final-titre" className="px-4 pb-24 pt-10">

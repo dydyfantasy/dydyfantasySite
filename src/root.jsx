@@ -17,7 +17,7 @@ const localBusinessJsonLd = {
 	name: "Dydy Fantasy",
 	image: "https://dydyfantasy.fr/dydy_fantasy_logo.webp",
 	description:
-		"Animateur et organisateur d'événements à Toulouse : blind tests, quiz et animations pour soirées, bars et événements privés.",
+		"Animateur et organisateur d’événements à Toulouse : blind tests, quiz et animations pour soirées, bars et événements privés.",
 	address: {
 		"@type": "PostalAddress",
 		addressLocality: "Toulouse",
@@ -38,7 +38,7 @@ const localBusinessJsonLd = {
 	},
 };
 
-// Squelette HTML commun à toutes les pages (remplace l'ancien index.html)
+// Squelette HTML commun à toutes les pages (remplace l’ancien index.html)
 export function Layout({ children }) {
 	return (
 		<html lang="fr">
@@ -91,13 +91,13 @@ export function HydrateFallback() {
 	return <div className="min-h-screen bg-[#05040a]" />;
 }
 
-// Ce qui entoure chaque page (remplace l'ancien App.jsx)
+// Ce qui entoure chaque page (remplace l’ancien App.jsx)
 export default function Root() {
 	return (
 		<>
 			<LedHeader />
 			<main>
-				{/* La page correspondant à l'adresse s'affiche ici */}
+				{/* La page correspondant à l’adresse s’affiche ici */}
 				<Outlet />
 			</main>
 			<LedFooter />

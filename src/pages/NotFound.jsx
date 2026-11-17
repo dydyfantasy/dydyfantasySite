@@ -6,7 +6,7 @@ import perso240 from "../assets/brand/perso-240.webp";
 import perso440 from "../assets/brand/perso-440.webp";
 
 const LINKS = [
-	{ to: "/", label: "Retour à l'accueil", icon: HomeIcon, color: "var(--cyan)" },
+	{ to: "/", label: "Retour à l’accueil", icon: HomeIcon, color: "var(--cyan)" },
 	{ to: "/prestations/blind-test-quiz", label: "Voir mes prestations", icon: MusicalNoteIcon, color: "var(--gold)" },
 	{ to: "/contact", label: "Demander mon devis", icon: EnvelopeIcon, color: "var(--pink)" },
 ];

@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 
 // Apparition au défilement, légère : opacity + transform uniquement (pas de flou),
 // un seul IntersectionObserver partagé pour toute la page.
-// - Le contenu est visible dans le HTML pré-rendu (SEO, sans JS) : il n'est « armé »
-//   (caché) qu'après le montage dans le navigateur.
-// - L'animation se rejoue quand on remonte puis redescend (dynamique voulue).
+// - Le contenu est visible dans le HTML pré-rendu (SEO, sans JS) : il n’est « armé »
+//   (caché) qu’après le montage dans le navigateur.
+// - L’animation se rejoue quand on remonte puis redescend (dynamique voulue).
 // - Variantes : "up" (défaut), "left", "right", "zoom". Délai en ms pour les cascades.
 
 let observer = null;

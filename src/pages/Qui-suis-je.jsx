@@ -24,7 +24,7 @@ import tete128 from "../assets/brand/perso-tete-128.webp";
 import videoPresentation from "../assets/C'est qui dydy fantasy.webm";
 import videoPoster from "../assets/C'est qui dydy fantasy image.webp";
 
-// Textes repris mot pour mot de l'ancienne page (Presentation.jsx) ; seule la mise en scène change.
+// Textes repris mot pour mot de l’ancienne page (Presentation.jsx) ; seule la mise en scène change.
 
 const STATS = [
 	{ value: "Live", label: "animation au micro", color: "var(--pink)" },
@@ -66,7 +66,7 @@ function QuiSuisje() {
 				ogDescription="Blind tests, quiz interactifs, karaokés et animations sur mesure pour vos événements à Toulouse et en Occitanie."
 			/>
 
-			{/* ---- Hero : l'accroche + le portrait ---- */}
+			{/* ---- Hero : l’accroche + le portrait ---- */}
 			<section className="px-4 pb-16 pt-10 md:pt-14">
 				<div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
 					<div>
@@ -233,7 +233,7 @@ function QuiSuisje() {
 				<div className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-[minmax(0,1fr)_18rem]">
 					<SectionTitle id="action" label="En vidéo" title="Mais c’est qui" accent="Dydy Fantasy ?" />
 					<ScrollReveal variant="zoom" className="video-frame mx-auto w-full max-w-[18rem] rounded-[2.2rem] p-2">
-						{/* preload="none" : la vidéo n'est téléchargée qu'au clic sur lecture */}
+						{/* preload="none" : la vidéo n’est téléchargée qu’au clic sur lecture */}
 						<video
 							src={videoPresentation}
 							controls

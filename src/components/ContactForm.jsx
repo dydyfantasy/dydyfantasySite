@@ -57,7 +57,7 @@ export default function ContactForm() {
 			<div className="grid grid-cols-1 gap-5 md:grid-cols-2">
 				<div>
 					<label htmlFor="email" className={labelClass}>
-						Email *
+						E-mail *
 					</label>
 					<input
 						id="email"

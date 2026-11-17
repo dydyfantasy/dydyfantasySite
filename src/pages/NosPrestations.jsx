@@ -18,7 +18,7 @@ import { PRESTATIONS, EVENEMENTS } from "../data/navigation";
 import { STEPS } from "../data/steps";
 
 // Page « sommaire » : aiguille vers les pages détaillées (le détail vit sur chaque page,
-// pour éviter le contenu en double). Textes repris de l'ancienne page Prestations.
+// pour éviter le contenu en double). Textes repris de l’ancienne page Prestations.
 
 const byPath = (list, to) => list.find((p) => p.to === to);
 
@@ -35,8 +35,8 @@ const FORMATS = [
 	},
 	{
 		...byPath(PRESTATIONS, "/prestations/dj"),
-		text: "Une sélection musicale adaptée à votre public et aux temps forts de votre événement, pour faire monter l'énergie au bon moment.",
-		tags: ["Mariages", "Soirées privées", "Soirées d'entreprise"],
+		text: "Une sélection musicale adaptée à votre public et aux temps forts de votre événement, pour faire monter l’énergie au bon moment.",
+		tags: ["Mariages", "Soirées privées", "Soirées d’entreprise"],
 	},
 	{
 		...byPath(PRESTATIONS, "/prestations/sur-mesure"),
@@ -219,7 +219,7 @@ function NosPrestations() {
 				</div>
 			</section>
 
-			{/* ---- Zone d'intervention ---- */}
+			{/* ---- Zone d’intervention ---- */}
 			<section aria-labelledby="zone" className="px-4 py-16">
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="zone" label="Zone d’intervention" title="J’interviens dans un rayon de" accent="50 km autour de Toulouse.">

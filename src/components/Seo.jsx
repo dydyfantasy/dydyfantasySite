@@ -1,4 +1,4 @@
-// Balises SEO d'une page : React 19 les place automatiquement dans le <head>,
+// Balises SEO d’une page : React 19 les place automatiquement dans le <head>,
 // y compris dans le HTML généré à la compilation.
 // Chaque page doit avoir exactement un <Seo />.
 
@@ -13,7 +13,7 @@ export default function Seo({
 	ogDescription,
 	noindex = false,
 }) {
-	// path absent (ex. page 404) : pas d'URL canonique ni d'og:url
+	// path absent (ex. page 404) : pas d’URL canonique ni d’og:url
 	const url = path ? SITE_URL + path : null;
 	const shareDescription = ogDescription ?? description;
 

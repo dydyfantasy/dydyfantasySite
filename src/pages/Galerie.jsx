@@ -137,7 +137,7 @@ export default function Galerie() {
 			<section className="px-4 pb-10 pt-10 md:pt-14">
 				<div className="mx-auto max-w-6xl">
 					<h1 className="text-4xl font-extrabold leading-tight md:text-5xl">
-						Galerie : l'ambiance des <span className="text-[var(--pink)]">soirées</span>{" "}
+						Galerie : l’ambiance des <span className="text-[var(--pink)]">soirées</span>{" "}
 						<span className="text-[var(--cyan)]">Dydy Fantasy</span>
 					</h1>
 					<p className="mt-4 max-w-2xl text-lg text-white/75">

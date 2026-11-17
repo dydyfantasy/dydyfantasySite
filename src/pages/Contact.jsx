@@ -14,7 +14,7 @@ import ContactForm from "../components/ContactForm";
 import tete64 from "../assets/brand/perso-tete-64.webp";
 import tete128 from "../assets/brand/perso-tete-128.webp";
 
-// Textes repris de l'ancienne page Contact (zone mise à jour : Fonsorbes, rayon de 50 km).
+// Textes repris de l’ancienne page Contact (zone mise à jour : Fonsorbes, rayon de 50 km).
 
 const CHECKLIST = [
 	"La date de l’événement",
@@ -84,9 +84,9 @@ function Contact() {
 						</div>
 					</ScrollReveal>
 
-					{/* Colonne d'infos */}
+					{/* Colonne d’infos */}
 					<aside className="space-y-6 lg:sticky lg:top-24">
-						{/* Avant de m'écrire */}
+						{/* Avant de m’écrire */}
 						<ScrollReveal variant="right" className="neon-card rounded-3xl p-6" style={{ "--c": "var(--cyan)" }}>
 							<div className="flex items-center gap-3">
 								<img src={tete64} srcSet={`${tete64} 1x, ${tete128} 2x`} alt="" width="64" height="64" className="h-11 w-11 rounded-full ring-2 ring-[var(--cyan)]" />

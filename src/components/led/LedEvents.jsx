@@ -9,10 +9,10 @@ import {
 import SectionTitle from "./SectionTitle";
 import ScrollReveal from "./ScrollReveal";
 
-// « Pour quel événement ? » : répond à « est-ce qu'il fait MON type d'événement ? »
+// « Pour quel événement ? » : répond à « est-ce qu’il fait MON type d’événement ? »
 // et prépare les futures pages « Vos événements » (/evenements/mariage, etc.).
 // Photos : renseigner `image` (import depuis src/assets) quand elles seront prêtes ;
-// sans image, la tuile affiche un fond coloré avec l'icône.
+// sans image, la tuile affiche un fond coloré avec l’icône.
 // Liens : vers les pages « Vos événements ».
 const EVENTS = [
 	{
@@ -20,7 +20,7 @@ const EVENTS = [
 		icon: HeartIcon,
 		color: "var(--pink)",
 		image: null,
-		text: "Blind test et quiz pour animer le repas, karaoké et DJ pour faire danser vos invités jusqu'au bout de la nuit.",
+		text: "Blind test et quiz pour animer le repas, karaoké et DJ pour faire danser vos invités jusqu’au bout de la nuit.",
 		href: "/evenements/mariage",
 		cta: "Parler de mon mariage",
 	},
@@ -29,7 +29,7 @@ const EVENTS = [
 		icon: BriefcaseIcon,
 		color: "var(--cyan)",
 		image: null,
-		text: "Team building, séminaire, soirée d'entreprise ou journée événement : quiz en équipes, animation micro et speaker, puis DJ pour la soirée dansante.",
+		text: "Team building, séminaire, soirée d’entreprise ou journée événement : quiz en équipes, animation micro et speaker, puis DJ pour la soirée dansante.",
 		href: "/evenements/entreprise",
 		cta: "Organiser mon événement pro",
 	},
@@ -62,7 +62,7 @@ export default function LedEvents() {
 					label="Vos événements"
 					title="Une animation pour chaque événement"
 					accent="à Toulouse">
-					Mariage, entreprise, anniversaire ou soirée dans votre bar : je m'adapte à votre public
+					Mariage, entreprise, anniversaire ou soirée dans votre bar : je m’adapte à votre public
 					et à votre lieu, en Haute-Garonne, dans le Gers et le Tarn.
 				</SectionTitle>
 
@@ -73,7 +73,7 @@ export default function LedEvents() {
 								to={e.href}
 								style={{ "--c": e.color }}
 								className="neon-card neon-card-hover group flex h-full flex-col overflow-hidden rounded-3xl">
-								{/* Emplacement photo (vide pour l'instant) */}
+								{/* Emplacement photo (vide pour l’instant) */}
 								<div className="event-visual relative flex aspect-[16/7] items-center justify-center">
 									{e.image ? (
 										<img src={e.image} alt={e.title} loading="lazy" className="h-full w-full object-cover" />
