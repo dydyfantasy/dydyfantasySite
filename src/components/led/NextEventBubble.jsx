@@ -28,7 +28,7 @@ export default function NextEventBubble() {
 	const weekday = d.toLocaleDateString("fr-FR", { weekday: "short" }).replace(".", "");
 
 	return (
-		<div className="led next-bubble fixed bottom-4 left-4 z-50 w-[19rem] max-w-[calc(100vw-2rem)] rounded-2xl md:bottom-6 md:left-6 md:w-[25rem]">
+		<div className="led next-bubble fixed bottom-4 right-4 z-50 w-[19rem] max-w-[calc(100vw-2rem)] rounded-2xl md:bottom-6 md:right-6 md:w-[25rem]">
 			<a
 				href="/#agenda"
 				className="flex items-center gap-3 rounded-2xl py-2 pl-2 pr-10 text-white md:gap-4 md:py-3 md:pl-3"
