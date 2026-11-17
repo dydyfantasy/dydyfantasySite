@@ -15,7 +15,7 @@ Objectifs du site :
 
 Coordonnées de référence (à garder identiques partout : site, JSON-LD, fiche Google) : basé à **Fonsorbes (31470)**, tél. `+33 6 95 95 33 56`, réseaux : Facebook et Instagram uniquement. La fiche Google Business Profile est en **zone desservie** (adresse masquée, liste de villes autour de Toulouse et Toulouse) : le JSON-LD doit refléter la même liste dans `areaServed`, sans adresse de rue.
 
-Zone d'intervention : basé à l'ouest de Toulouse ; Haute-Garonne, Gers voisin, Tarn (clients existants). Ne pas inventer de références : citer uniquement des clients et prestations réelles (ex. Decathlon : animation micro / speaker d'une journée avec démos).
+Zone d'intervention : basé à Fonsorbes (ouest de Toulouse), déplacements dans un rayon d'environ 50 km ; Haute-Garonne, Gers voisin, Tarn (clients existants). Ne pas inventer de références : citer uniquement des clients et prestations réelles (ex. Decathlon : animation micro / speaker d'une journée avec démos).
 
 ## Commandes
 

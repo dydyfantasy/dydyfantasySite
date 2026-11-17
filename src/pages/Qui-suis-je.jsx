@@ -163,8 +163,9 @@ function QuiSuisje() {
 								))}
 							</ul>
 							<p className="mt-4 text-sm text-white/65">
-								Basé à Toulouse, je me déplace aussi à Blagnac, Colomiers, Tournefeuille, Balma,
-								Ramonville, Saint-Orens et plus largement en Occitanie.
+								Basé à Fonsorbes, à l’ouest de Toulouse, je me déplace dans un rayon d’environ 50 km :
+								Toulouse, Blagnac, Colomiers, Tournefeuille, Balma, Ramonville, Saint-Orens, le Gers et
+								le Tarn voisins.
 							</p>
 						</ScrollReveal>
 					</div>
