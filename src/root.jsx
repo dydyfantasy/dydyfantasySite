@@ -1,7 +1,7 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import LedHeader from "./components/led/LedHeader.jsx";
-import Footer from "./components/Footer.jsx";
-import FloatingNextEvent from "./components/FloatingNextEvent.jsx";
+import LedFooter from "./components/led/LedFooter.jsx";
+import NextEventBubble from "./components/led/NextEventBubble.jsx";
 import ScrollToHash from "./components/ScrollToHash.jsx";
 import "@fontsource/sora/400.css";
 import "@fontsource/sora/600.css";
@@ -100,10 +100,10 @@ export default function Root() {
 				{/* La page correspondant à l'adresse s'affiche ici */}
 				<Outlet />
 			</main>
-			<Footer />
+			<LedFooter />
 
 			<ScrollToHash />
-			<FloatingNextEvent />
+			<NextEventBubble />
 		</>
 	);
 }

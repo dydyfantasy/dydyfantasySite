@@ -384,6 +384,19 @@ a.board-row:hover {
 	box-shadow: 0 0 18px -4px var(--c);
 }
 
+/* ---------- Bulle « prochaine soirée » ---------- */
+
+.next-bubble {
+	border: 1.5px solid color-mix(in srgb, var(--pink) 55%, transparent);
+	background: rgb(11 9 18 / 0.94);
+	box-shadow: 0 0 28px -8px var(--pink);
+	transition: transform 0.2s ease;
+}
+
+.next-bubble:hover {
+	transform: translateY(-2px);
+}
+
 /* ---------- Fiche événement (dialog) ---------- */
 
 .event-dialog {
