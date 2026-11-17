@@ -8,7 +8,7 @@
   RewriteRule ^(.*)$ https://dydyfantasy.fr/$1 [L,R=301]
 
   # Anciennes adresses -> nouvelles (301 : Google transfère les acquis SEO)
-  RewriteRule ^notre-approche/?$ /mon-approche [R=301,L]
+  RewriteRule ^notre-approche/?$ https://dydyfantasy.fr/mon-approche [R=301,L]
 
   # Fichier technique de React Router, à ne pas exposer
   RewriteRule ^__spa-fallback\.html$ - [R=404,L]
@@ -42,7 +42,7 @@ ErrorDocument 404 /404/index.html
 # --- Compression Gzip ---
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
-  AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript text/javascript application/json
   AddOutputFilterByType DEFLATE image/svg+xml
   BrowserMatch ^Mozilla/4 gzip-only-text/html
   BrowserMatch ^Mozilla/4\.0[678] no-gzip
@@ -52,10 +52,24 @@ ErrorDocument 404 /404/index.html
 # --- Cache pour fichiers statiques ---
 <IfModule mod_expires.c>
   ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
   ExpiresByType image/webp "access plus 1 year"
   ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType video/webm "access plus 1 year"
   ExpiresByType text/css "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+</IfModule>
+
+# Fichiers de /assets/ : leur nom change à chaque compilation (ex. root-DxGYNvJ9.css),
+# on peut donc les garder en cache 1 an sans risque
+<IfModule mod_headers.c>
+  <If "%{REQUEST_URI} =~ m#^/assets/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
 </IfModule>
 <IfModule mod_headers.c>
   <Files "events.js">
