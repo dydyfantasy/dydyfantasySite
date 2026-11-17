@@ -413,6 +413,18 @@ a.board-row:hover {
 		0 0 24px color-mix(in srgb, var(--c) 55%, transparent);
 }
 
+/* Frise verticale (page Mon approche) */
+.method-line::before {
+	content: "";
+	position: absolute;
+	left: 1.75rem;
+	top: 0.5rem;
+	bottom: 0.5rem;
+	width: 2px;
+	background: linear-gradient(180deg, var(--cyan), var(--pink), var(--gold), #7cff6b, #8b5cf6, #ff4d6d);
+	opacity: 0.6;
+}
+
 /* ---------- Mascotte ---------- */
 
 /* Petit rebond, comme si elle sautait en rythme (transform uniquement) */

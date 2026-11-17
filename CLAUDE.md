@@ -30,7 +30,7 @@ Pas de suite de tests. Audits : `/bilan` (agents `audit-technique` et `audit-seo
 
 ## Stack et architecture
 
-React 19 + Vite 7 (JSX, pas de TypeScript), Tailwind CSS v4, React Router 7 en **mode framework** (`ssr: false`, site statique), `motion` pour les animations, `react-leaflet` pour la carte de zone d'intervention.
+React 19 + Vite 7 (JSX, pas de TypeScript), Tailwind CSS v4, React Router 7 en **mode framework** (`ssr: false`, site statique), `react-leaflet` pour la carte de zone d'intervention.
 
 - `react-router.config.js` : `appDirectory: "src"`, `ssr: false`. Importer depuis `react-router` (plus `react-router-dom`).
 - `src/routes.js` : liste des routes (adresse -> fichier de `src/pages/`), dont `*` -> `NotFound.jsx`.
@@ -38,7 +38,7 @@ React 19 + Vite 7 (JSX, pas de TypeScript), Tailwind CSS v4, React Router 7 en *
 - `src/entry.client.jsx` : hydratation (`hydrateRoot` + `HydratedRouter`).
 - `src/pages/` : pages de route, composées de sections de `src/components/`. Chaque page contient exactement un `<Seo />` (`src/components/Seo.jsx` : title, description, canonical ou `noindex`, Open Graph). Balises natives React 19, placées automatiquement dans le `<head>` : pas de `react-helmet`, et ne pas remettre de `<title>`/description dans `root.jsx` (doublons).
 - Styles : surtout des classes Tailwind inline dans le JSX. Tailwind v4 est chargé par le plugin `@tailwindcss/vite` et `@import "tailwindcss"` dans `src/index.css` (pas de `tailwind.config.js` en v4). Quelques feuilles de style spécifiques dans `src/css/`.
-- Apparitions au défilement : `src/components/led/ScrollReveal.jsx` (pas de `motion`). `motion` ne sert plus qu'à `OurApproach.jsx` (page Mon approche).
+- Apparitions au défilement : `src/components/led/ScrollReveal.jsx`. La bibliothèque `motion` a été retirée : animations en CSS uniquement.
 - Le code des composants est exécuté dans Node.js à la compilation (génération HTML) : pas d’accès à `window`/`document`/`localStorage` pendant le rendu, uniquement dans `useEffect`. Les bibliothèques qui touchent `window` à l’import se chargent côté navigateur (ex. `ClientOnlyZoneMap.jsx` pour Leaflet).
 - **Pré-rendu** : `prerender` dans `react-router.config.js` liste les pages générées en HTML complet (`build/client/<page>/index.html`). Toute nouvelle page doit y être ajoutée, ainsi que dans `public/sitemap.xml`. `/404` est pré-rendu pour servir de page d’erreur Apache.
 - Les éléments animés avec `motion` (`initial` opacity 0) sont invisibles dans le HTML généré jusqu’à l’hydratation : ne concerne plus que la page Mon approche.
