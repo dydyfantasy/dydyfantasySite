@@ -41,7 +41,6 @@ React 19 + Vite 7 (JSX, pas de TypeScript), Tailwind CSS v4, React Router 7 en *
 - Apparitions au défilement : `src/components/led/ScrollReveal.jsx`. La bibliothèque `motion` a été retirée : animations en CSS uniquement.
 - Le code des composants est exécuté dans Node.js à la compilation (génération HTML) : pas d’accès à `window`/`document`/`localStorage` pendant le rendu, uniquement dans `useEffect`. Les bibliothèques qui touchent `window` à l’import se chargent côté navigateur (ex. `ClientOnlyZoneMap.jsx` pour Leaflet).
 - **Pré-rendu** : `prerender` dans `react-router.config.js` liste les pages générées en HTML complet (`build/client/<page>/index.html`). Toute nouvelle page doit y être ajoutée, ainsi que dans `public/sitemap.xml`. `/404` est pré-rendu pour servir de page d’erreur Apache.
-- Les éléments animés avec `motion` (`initial` opacity 0) sont invisibles dans le HTML généré jusqu’à l’hydratation : ne concerne plus que la page Mon approche.
 
 ### Refonte v2 (branche `design/accueil-v2`)
 
