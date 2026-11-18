@@ -37,7 +37,7 @@ export default function Entreprise() {
 			points={[
 				{ icon: UsersIcon, color: "var(--cyan)", title: "Fédérer les équipes", text: "Un quiz en équipes où services et collègues se mélangent et s’affrontent dans la bonne humeur." },
 				{ icon: PresentationChartBarIcon, color: "var(--pink)", title: "Séminaires", text: "Une pause interactive pour relancer l’énergie entre deux sessions de travail." },
-				{ icon: BuildingOffice2Icon, color: "var(--gold)", title: "Journées événement", text: "Animateur micro et speaker pour présenter, rythmer et faire participer le public, comme pour Décathlon." },
+				{ icon: BuildingOffice2Icon, color: "var(--gold)", title: "Journées événement", text: "Animateur micro et speaker pour présenter, rythmer et faire participer le public toute la journée, comme pour Décathlon." },
 				{ icon: SparklesIcon, color: "#7cff6b", title: "Soirées d’entreprise", text: "Blind test, karaoké et DJ pour fêter une réussite ou la fin d’année." },
 			]}
 			formatsTitle={{ label: "Les formats", title: "Du quiz au", accent: "dancefloor" }}

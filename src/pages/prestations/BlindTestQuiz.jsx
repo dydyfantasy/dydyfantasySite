@@ -94,7 +94,7 @@ const STEPS = [
 const FAQ = [
 	{
 		q: "Combien de personnes peuvent participer ?",
-		a: "Le format s’adapte à votre événement, du petit groupe entre amis à la grande salle. Les joueurs peuvent jouer seuls ou en équipes. Dites-moi votre nombre d’invités, je vous propose la formule adaptée.",
+		a: "Du petit groupe entre amis jusqu’à 200 personnes, et même des événements publics sur toute une journée. Les joueurs jouent seuls ou en équipes. Dites-moi votre nombre d’invités, je vous propose la formule adaptée.",
 	},
 	{
 		q: "Comment les joueurs répondent-ils ?",

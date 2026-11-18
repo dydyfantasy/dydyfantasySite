@@ -31,7 +31,7 @@ export default function BarsRestaurants() {
 					Soirées <span className="text-[#7cff6b]">blind test & karaoké</span> pour bars et restaurants
 				</>
 			}
-			intro="Des soirées régulières ou ponctuelles qui remplissent votre salle en semaine et fidélisent vos clients. C’est le cœur de mon activité, avec des soirées chaque semaine dans les établissements de la région toulousaine."
+			intro="Des soirées régulières ou ponctuelles qui remplissent votre salle en semaine et fidélisent vos clients. C’est le cœur de mon activité : je suis animateur résident dans 3 bars autour de Toulouse, avec 12 à 15 soirées par mois."
 			color="#7cff6b"
 			pointsTitle={{ label: "Pour votre établissement", title: "Une soirée qui", accent: "fait venir du monde" }}
 			points={[
@@ -49,7 +49,7 @@ export default function BarsRestaurants() {
 			]}
 			related={relatedTo(PATH)}
 			faq={[
-				{ q: "Dans quels établissements animez-vous déjà ?", a: "Notamment La Ville en Rose à Colomiers, la Taverne Heidelberg à Blagnac, Le Cul de Bouteille à Aussonne et La Table Ronde dans le Tarn." },
+				{ q: "Dans quels établissements animez-vous déjà ?", a: "Je suis animateur résident dans 3 bars autour de Toulouse, et j’anime notamment à La Ville en Rose à Colomiers, la Taverne Heidelberg à Blagnac, Le Cul de Bouteille à Aussonne et La Table Ronde dans le Tarn." },
 				{ q: "Faut-il du matériel sur place ?", a: "Non, j’apporte tout : sono, lumières, machine à fumée, micros, écran et vidéoprojecteur. Mes devis sont tout compris." },
 				{ q: "Proposez-vous des soirées régulières ?", a: "Oui, c’est le format idéal pour fidéliser votre clientèle : hebdomadaire, mensuel ou ponctuel selon vos besoins." },
 			]}

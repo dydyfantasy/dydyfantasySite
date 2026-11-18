@@ -75,7 +75,7 @@ const PROMISES = [
 	{ icon: LightBulbIcon, title: "Une animation claire", text: "Les règles sont simples, le public comprend vite et peut participer sans prise de tête." },
 	{ icon: AdjustmentsHorizontalIcon, title: "Une ambiance adaptée", text: "Je module le rythme selon le public : calme, familial, festif, compétitif ou complètement décalé." },
 	{ icon: HandRaisedIcon, title: "Une vraie interaction", text: "Le but n’est pas seulement de lancer un jeu, mais de faire vivre un moment collectif." },
-	{ icon: DevicePhoneMobileIcon, title: "Un format moderne", text: "Je peux intégrer des outils interactifs, des scores, des buzzers, des écrans et des supports personnalisés." },
+	{ icon: DevicePhoneMobileIcon, title: "Un format moderne", text: "Je peux intégrer des outils interactifs, des scores, des buzzers, des écrans et des supports personnalisés, à commencer par Dydy Quiz, l’appli que j’ai développée.", to: "/dydy-quiz" },
 ];
 
 const RESULTS = [
@@ -184,7 +184,7 @@ function NotreApproche() {
 							<ScrollReveal as="li" key={p.title} delay={(i % 2) * 90} className="flex gap-4 border-t border-white/10 py-6" style={{ "--c": COLORS[i] }}>
 								<p.icon aria-hidden="true" className="h-8 w-8 shrink-0 text-[var(--c)]" />
 								<div>
-									<h3 className="text-lg font-extrabold">{p.title}</h3>
+									<h3 className="text-lg font-extrabold">{p.to ? (<Link to={p.to} className="underline decoration-[var(--c)] underline-offset-4 hover:text-[var(--c)]">{p.title}</Link>) : p.title}</h3>
 									<p className="mt-1 text-white/75">{p.text}</p>
 								</div>
 							</ScrollReveal>

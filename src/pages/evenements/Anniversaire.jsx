@@ -6,6 +6,7 @@ import {
 	UsersIcon,
 	SparklesIcon,
 	GiftIcon,
+	CameraIcon,
 	HomeIcon,
 } from "@heroicons/react/24/outline";
 import ServicePage from "../../components/led/ServicePage";
@@ -42,6 +43,7 @@ export default function Anniversaire() {
 			formatsTitle={{ label: "Les formats", title: "À combiner pour une", accent: "soirée complète" }}
 			formats={[
 				{ icon: TrophyIcon, title: "Quiz sur la personne fêtée", text: "Anecdotes, photos, souvenirs : qui la connaît le mieux ?" },
+				{ icon: CameraIcon, title: "Challenge Photo & sondages", text: "Avec Dydy Quiz, vos invités relèvent des défis photo et votent en direct depuis leur téléphone, résultats sur grand écran." },
 				{ icon: MusicalNoteIcon, title: "Blind test", text: "Les tubes de son époque et de ses goûts pour faire chanter toute la salle." },
 				{ icon: MicrophoneIcon, title: "Karaoké", text: "Les chansons cultes en duo ou en chœur." },
 				{ icon: SparklesIcon, title: "DJ", text: "Pour faire danser vos invités jusqu’au bout de la soirée." },
