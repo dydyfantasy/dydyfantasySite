@@ -1,11 +1,47 @@
-import { ReactGoogleReviews } from "react-google-reviews";
-import "react-google-reviews/dist/index.css";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { StarIcon } from "@heroicons/react/24/solid";
 import SectionTitle from "./SectionTitle";
 import ScrollReveal from "./ScrollReveal";
 
+// Le carrousel Featurable est chargé UNIQUEMENT dans le navigateur, quand on approche de la section :
+// - il calcule le nombre d'avis visibles d'après la vraie largeur de l'écran (pré-rendu dans Node.js,
+//   sans écran, il affichait 3 colonnes de 84 px sur mobile) ;
+// - ses ~45 Ko de JavaScript ne pèsent plus sur le chargement de l'accueil.
+const ReviewsWidget = lazy(() => import("./ReviewsWidget"));
+
+function LazyReviewsWidget() {
+	const ref = useRef(null);
+	const [show, setShow] = useState(false);
+
+	useEffect(() => {
+		const el = ref.current;
+		if (!el) return;
+		const io = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					setShow(true);
+					io.disconnect();
+				}
+			},
+			{ rootMargin: "600px 0px" },
+		);
+		io.observe(el);
+		return () => io.disconnect();
+	}, []);
+
+	return (
+		// Hauteur réservée pour éviter que la page « saute » à l'arrivée du widget
+		<div ref={ref} className="min-h-[24rem]">
+			{show && (
+				<Suspense fallback={null}>
+					<ReviewsWidget />
+				</Suspense>
+			)}
+		</div>
+	);
+}
+
 // Avis Google : note réelle (4,9/5, plus de 70 avis au 18/11/2026) + carrousel Featurable.
-// (Étape 5 prévue : récupérer les avis à la compilation pour les afficher sans attente.)
 export default function LedReviews() {
 	return (
 		<section id="avis" aria-labelledby="avis-titre" className="scroll-mt-24 px-4 py-20">
@@ -24,11 +60,7 @@ export default function LedReviews() {
 				</div>
 
 				<ScrollReveal variant="right" delay={150} className="neon-card min-w-0 rounded-3xl p-3 md:p-5" style={{ "--c": "var(--cyan)" }}>
-					<ReactGoogleReviews
-						layout="carousel"
-						featurableId="07455073-608e-491d-94e1-433314951082"
-						theme="dark"
-					/>
+					<LazyReviewsWidget />
 				</ScrollReveal>
 			</div>
 		</section>

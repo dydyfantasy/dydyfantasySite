@@ -70,7 +70,7 @@ Champs d'un événement : `id`, `title`, `date` (`YYYY-MM-DD`, parsée en date l
 
 - Formulaire de contact (`ContactForm.jsx`) : envoi direct vers Formspree, pas de backend.
 - ID Google Analytics et données JSON-LD de l'entreprise : dans `root.jsx`.
-- `LedReviews.jsx` utilise `react-google-reviews` (widget Featurable, chargé côté navigateur ; récupération à la compilation prévue).
+- `LedReviews.jsx` charge le widget `react-google-reviews` (Featurable) uniquement dans le navigateur, à l’approche de la section (`ReviewsWidget.jsx`, import différé). **Version figée à 1.7.4** : la 1.9.0 affiche 3 colonnes de 84 px sur mobile. Ne pas mettre à jour sans vérifier le rendu mobile.
 
 ## Déploiement
 
