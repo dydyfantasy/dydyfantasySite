@@ -21,7 +21,7 @@ export default function Entreprise() {
 			path={PATH}
 			name="Entreprise & team building"
 			seo={{
-				title: "Team building & animation d’entreprise à Toulouse | Dydy Fantasy",
+				title: "Team building & animateur micro à Toulouse | Dydy Fantasy",
 				description:
 					"Team building quiz, animation de séminaire, animateur micro et soirée d’entreprise à Toulouse. Référence : animation speaker pour Décathlon. Devis rapide.",
 			}}

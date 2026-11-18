@@ -7,7 +7,7 @@ function Privacy() {
 			<StageLights />
 			<Seo
 				path="/privacy"
-				title="Politique de confidentialité | Dydy Quiz"
+				title="Confidentialité de l’appli Dydy Quiz | Dydy Fantasy"
 				description="Politique de confidentialité de l’application Dydy Quiz."
 				noindex
 			/>

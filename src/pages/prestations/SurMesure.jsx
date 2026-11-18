@@ -20,7 +20,7 @@ export default function SurMesure() {
 			path={PATH}
 			name="Animation sur mesure"
 			seo={{
-				title: "Animation sur mesure à Toulouse : soirée à thème | Dydy Fantasy",
+				title: "Animation sur mesure à Toulouse | Dydy Fantasy",
 				description:
 					"Animation sur mesure à Toulouse : loto revisité, murder party, jeux d’équipe, soirée à thème. Un format créé pour votre lieu, votre public et votre objectif.",
 			}}

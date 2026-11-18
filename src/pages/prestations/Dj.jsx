@@ -21,7 +21,7 @@ export default function Dj() {
 			path={PATH}
 			name="DJ"
 			seo={{
-				title: "DJ à Toulouse et dans le Gers : mariage, soirée | Dydy Fantasy",
+				title: "DJ mariage et soirée à Toulouse & Gers | Dydy Fantasy",
 				description:
 					"DJ animateur à Toulouse, en Haute-Garonne et dans le Gers : mariages, anniversaires, soirées d’entreprise et bars. Musique adaptée à votre public, devis rapide.",
 			}}

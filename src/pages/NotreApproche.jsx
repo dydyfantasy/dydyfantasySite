@@ -93,7 +93,7 @@ function NotreApproche() {
 			<Seo
 				path="/mon-approche"
 				title="Mon approche de l’animation à Toulouse | Dydy Fantasy"
-				description="Découvrez l’approche Dydy Fantasy à Toulouse : écoute, personnalisation, préparation et animation interactive pour vos soirées, blind tests, quiz, karaokés et événements sur mesure."
+				description="Mon approche de l’animation à Toulouse : écoute, préparation sur mesure et soirée interactive. Quiz, blind test, karaoké et DJ, tout le matériel fourni."
 				ogTitle="Dydy Fantasy | Mon approche d’animation événementielle"
 				ogDescription="Une méthode simple, claire et personnalisée pour créer une animation interactive, conviviale et adaptée à votre public."
 			/>

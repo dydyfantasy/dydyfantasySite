@@ -56,7 +56,7 @@ function QuiSuisje() {
 			<Seo
 				path="/qui-suis-je"
 				title="Qui suis-je ? Animateur et DJ à Toulouse | Dydy Fantasy"
-				description="Découvrez Dydy Fantasy, animateur événementiel à Toulouse spécialisé en blind tests, quiz interactifs, karaokés et animations sur mesure pour soirées privées, bars, restaurants et événements professionnels."
+				description="Dydy Fantasy, animateur et DJ près de Toulouse : blind tests, quiz, karaokés et soirées sur mesure. Résident dans 3 bars, plus de 150 soirées animées."
 				ogTitle="Dydy Fantasy | Animateur événementiel à Toulouse"
 				ogDescription="Blind tests, quiz interactifs, karaokés et animations sur mesure pour vos événements à Toulouse et en Occitanie."
 			/>

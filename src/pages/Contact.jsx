@@ -43,7 +43,7 @@ function Contact() {
 			<Seo
 				path="/contact"
 				title="Contact et devis animation à Toulouse | Dydy Fantasy"
-				description="Contactez Dydy Fantasy pour animer votre événement à Toulouse et en Occitanie : blind test, quiz interactif, karaoké, soirée privée, mariage ou événement professionnel."
+				description="Demandez votre devis d’animation à Toulouse : blind test, quiz, karaoké, DJ, mariage ou entreprise. Devis tout compris, réponse sous 24 h."
 				ogTitle="Dydy Fantasy | Contact animation événementielle à Toulouse"
 				ogDescription="Parlez-moi de votre événement : blind test, quiz, karaoké ou animation sur mesure à Toulouse et en Occitanie."
 			/>

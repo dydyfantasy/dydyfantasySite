@@ -21,7 +21,7 @@ export default function Anniversaire() {
 			path={PATH}
 			name="Anniversaire & soirée privée"
 			seo={{
-				title: "Animation anniversaire & soirée privée à Toulouse | Dydy Fantasy",
+				title: "Animation anniversaire à Toulouse & Gers | Dydy Fantasy",
 				description:
 					"Animateur pour anniversaire et soirée privée à Toulouse et dans le Gers : quiz sur la personne fêtée, blind test, karaoké et DJ. Une soirée inoubliable.",
 			}}

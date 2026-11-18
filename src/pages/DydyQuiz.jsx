@@ -76,8 +76,8 @@ export default function DydyQuiz() {
 			<StageLights />
 			<Seo
 				path="/dydy-quiz"
-				title="Dydy Quiz : animations interactives sur smartphone | Dydy Fantasy"
-				description="Dydy Quiz, l’appli développée par Dydy Fantasy : quiz, blind test, sondages et défis photo sur smartphone via un QR code, scores en direct. Utilisée dans plus de 150 soirées."
+				title="Dydy Quiz : quiz et blind test sur smartphone | Dydy Fantasy"
+				description="Dydy Quiz, l’appli maison de Dydy Fantasy : quiz, blind test, sondages et défis photo sur smartphone via QR code. Utilisée dans plus de 150 soirées."
 				ogTitle="Dydy Quiz : toute la salle joue depuis son téléphone"
 			/>
 
