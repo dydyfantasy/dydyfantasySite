@@ -36,9 +36,8 @@ function PhotoSlot({ image, alt, color = "var(--pink)" }) {
 			{image ? (
 				<img src={image} alt={alt} className="aspect-[4/3] w-full object-cover" />
 			) : (
-				<div className="event-visual flex aspect-[4/3] flex-col items-center justify-center gap-2 text-white/40">
-					<PhotoIcon aria-hidden="true" className="h-12 w-12 text-[var(--c)] opacity-70" />
-					<span className="text-xs uppercase tracking-widest">Photo à venir</span>
+				<div aria-hidden="true" className="event-visual flex aspect-[4/3] items-center justify-center">
+					<PhotoIcon className="h-14 w-14 text-[var(--c)] opacity-70" />
 				</div>
 			)}
 		</div>
@@ -79,7 +78,7 @@ export default function ServicePage({
 			serviceType: name,
 			url,
 			description: seo.description,
-			provider: { "@type": "LocalBusiness", name: "Dydy Fantasy", url: `${SITE}/` },
+			provider: { "@id": `${SITE}/#entreprise` },
 			areaServed: ["Toulouse", "Haute-Garonne", "Gers", "Tarn"],
 		},
 		{

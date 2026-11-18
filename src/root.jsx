@@ -11,31 +11,45 @@ import "./css/led.css";
 
 const GA_ID = "G-3ZFS6P50ML";
 
+// Fiche entreprise unique pour Google (doit rester cohérente avec la fiche Google Business Profile :
+// zone desservie, adresse masquée -> ville seulement). Les pages de prestation y renvoient via "@id".
+// À affiner : liste exacte des villes de la zone desservie de la fiche Google.
 const localBusinessJsonLd = {
 	"@context": "https://schema.org",
 	"@type": "LocalBusiness",
+	"@id": "https://dydyfantasy.fr/#entreprise",
 	name: "Dydy Fantasy",
-	image: "https://dydyfantasy.fr/dydy_fantasy_logo.webp",
+	url: "https://dydyfantasy.fr/",
+	image: "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+	logo: "https://dydyfantasy.fr/icon-512.png",
 	description:
-		"Animateur et organisateur d’événements à Toulouse : blind tests, quiz et animations pour soirées, bars et événements privés.",
+		"Animateur et DJ à Toulouse : blind tests, quiz interactifs, karaokés et animations sur mesure pour mariages, entreprises, anniversaires, bars et restaurants.",
+	telephone: "+33695953356",
 	address: {
 		"@type": "PostalAddress",
-		addressLocality: "Toulouse",
+		addressLocality: "Fonsorbes",
+		postalCode: "31470",
 		addressRegion: "Occitanie",
-		postalCode: "31000",
 		addressCountry: "FR",
 	},
-	url: "https://dydyfantasy.fr/",
-	sameAs: [
-		"https://www.facebook.com/profile.php?id=61578462940099&locale=id_ID",
-		"https://www.instagram.com/dydy_fantasy/",
-	],
-	priceRange: "€",
 	geo: {
 		"@type": "GeoCoordinates",
-		latitude: 43.6045,
-		longitude: 1.444,
+		latitude: 43.5356,
+		longitude: 1.2317,
 	},
+	areaServed: [
+		{
+			"@type": "GeoCircle",
+			geoMidpoint: { "@type": "GeoCoordinates", latitude: 43.6047, longitude: 1.4442 },
+			geoRadius: 50000,
+		},
+		{ "@type": "City", name: "Toulouse" },
+		{ "@type": "AdministrativeArea", name: "Haute-Garonne" },
+		{ "@type": "AdministrativeArea", name: "Gers" },
+		{ "@type": "AdministrativeArea", name: "Tarn" },
+	],
+	sameAs: ["https://facebook.com/profile.php?id=61578462940099", "https://www.instagram.com/dydy_fantasy"],
+	priceRange: "€",
 };
 
 // Squelette HTML commun à toutes les pages (remplace l’ancien index.html)

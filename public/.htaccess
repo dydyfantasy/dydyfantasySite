@@ -15,7 +15,7 @@
 
   # Une seule version de chaque adresse : /contact/ -> /contact
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule ^(.+)/$ /$1 [R=301,L]
+  RewriteRule ^(.+)/$ https://dydyfantasy.fr/$1 [R=301,L]
 
   # Pages pré-rendues : /contact sert contact/index.html (l'adresse reste /contact)
   RewriteCond %{REQUEST_FILENAME} !-f
@@ -70,6 +70,12 @@ ErrorDocument 404 /404/index.html
   <If "%{REQUEST_URI} =~ m#^/assets/#">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </If>
+</IfModule>
+# Agenda : jamais en cache (on coupe aussi la règle générale des .js de mod_expires)
+<IfModule mod_expires.c>
+  <Files "events.js">
+    ExpiresActive Off
+  </Files>
 </IfModule>
 <IfModule mod_headers.c>
   <Files "events.js">
