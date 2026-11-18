@@ -88,6 +88,8 @@ export default function PhotoCarousel() {
 							srcSet={photo.srcSet}
 							sizes="(min-width: 1024px) 31vw, (min-width: 640px) 46vw, 78vw"
 							alt={photo.alt}
+							width="900"
+							height="1125"
 							loading="lazy"
 							decoding="async"
 							className="aspect-[4/5] w-full rounded-2xl object-cover"

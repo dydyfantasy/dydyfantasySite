@@ -67,7 +67,9 @@ function ScenePhoto({ className = "" }) {
 		<img
 			src={scene1536}
 			srcSet={`${scene640} 640w, ${scene768} 768w, ${scene1024} 1024w, ${scene1536} 1536w`}
-			sizes="100vw"
+			// Mobile : on annonce 87vw au lieu de 100vw pour qu’un écran haute densité (x3) prenne
+			// la version 1024 (162 Ko) plutôt que 1536 (314 Ko) : différence invisible, image principale plus rapide.
+			sizes="(max-width: 767px) 87vw, 100vw"
 			width="1536"
 			height="1149"
 			alt="Dydy Fantasy de dos, veste à paillettes, aux platines face à une salle des fêtes pleine pendant une soirée blind test et karaoké"
