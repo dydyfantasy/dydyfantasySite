@@ -43,7 +43,7 @@ export default function Entreprise() {
 			formatsTitle={{ label: "Les formats", title: "Du quiz au", accent: "dancefloor" }}
 			formats={[
 				{ icon: TrophyIcon, title: "Quiz team building", text: "Des manches en équipes, éventuellement sur votre entreprise ou votre secteur, avec classement en direct." },
-				{ icon: DevicePhoneMobileIcon, title: "Quiz sur téléphone", text: "Avec l’application Dydy Quiz, chacun joue depuis son smartphone : simple, rapide, sans matériel à distribuer." },
+				{ icon: DevicePhoneMobileIcon, title: "Quiz sur téléphone", text: "Avec Dydy Quiz, l’appli que j’ai développée, chacun joue depuis son smartphone via un QR code : quiz, sondages en direct, classement sur grand écran. Rien à installer ni à distribuer." },
 				{ icon: MicrophoneIcon, title: "Animation micro & speaker", text: "Présentation de démonstrations, annonces et animation du public lors de vos événements." },
 				{ icon: MusicalNoteIcon, title: "Soirée blind test, karaoké & DJ", text: "Pour clôturer la journée dans une ambiance festive." },
 			]}

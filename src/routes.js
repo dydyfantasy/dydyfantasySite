@@ -16,6 +16,7 @@ export default [
 	route("evenements/bars-restaurants", "pages/evenements/BarsRestaurants.jsx"),
 	route("mon-approche", "pages/NotreApproche.jsx"),
 	route("galerie", "pages/Galerie.jsx"),
+	route("dydy-quiz", "pages/DydyQuiz.jsx"),
 	route("contact", "pages/Contact.jsx"),
 	route("privacy", "pages/Privacy.jsx"),
 	// Toute adresse inconnue

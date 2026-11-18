@@ -29,6 +29,8 @@ export const EVENEMENTS = [
 ];
 
 // Liens « À découvrir aussi » : toutes les pages sauf la page courante
+export const APP = { to: "/dydy-quiz", label: "Dydy Quiz, mon appli" };
+
 export function relatedTo(path) {
-	return [...PRESTATIONS, ...EVENEMENTS].filter((p) => p.to !== path);
+	return [...PRESTATIONS, ...EVENEMENTS, APP].filter((p) => p.to !== path);
 }

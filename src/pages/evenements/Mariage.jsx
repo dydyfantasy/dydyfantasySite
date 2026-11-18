@@ -7,6 +7,7 @@ import {
 	SparklesIcon,
 	ChatBubbleLeftRightIcon,
 	CameraIcon,
+	PhotoIcon,
 } from "@heroicons/react/24/outline";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
@@ -45,6 +46,7 @@ export default function Mariage() {
 				{ icon: TrophyIcon, title: "Quiz des mariés", text: "Qui connaît le mieux les mariés ? Un quiz en équipes de tables entre deux plats." },
 				{ icon: MusicalNoteIcon, title: "Blind test", text: "Des tubes de toutes les époques pour faire chanter la salle avant la soirée dansante." },
 				{ icon: MicrophoneIcon, title: "Karaoké", text: "Duos des mariés, chansons cultes en chœur : le moment où tout le monde se lâche." },
+				{ icon: PhotoIcon, title: "Challenge Photo", text: "Des défis photo à relever par vos invités avec Dydy Quiz : les photos s’affichent sur l’écran avec les scores en direct. Des souvenirs garantis." },
 				{ icon: SparklesIcon, title: "Soirée DJ", text: "Une sélection musicale adaptée à vos invités pour danser jusqu’au bout de la nuit." },
 			]}
 			related={relatedTo(PATH)}

@@ -24,8 +24,8 @@ const DEFAULT_STEPS = STEPS;
 // Ce que la prestation peut inclure (repris du site actuel)
 const DEFAULT_INCLUDED = [
 	{ icon: MicrophoneIcon, title: "Animation au micro", text: "Rythme, relances, explications et ambiance tout au long de la prestation." },
-	{ icon: SpeakerWaveIcon, title: "Matériel selon le format", text: "Ordinateur, micros, système son, écran ou vidéoprojecteur." },
-	{ icon: DevicePhoneMobileIcon, title: "Application Dydy Quiz", text: "Pour les formats interactifs, les joueurs participent depuis leur téléphone." },
+	{ icon: SpeakerWaveIcon, title: "Matériel complet fourni", text: "Sono, lumières, machine à fumée, écran et vidéoprojecteur : j’apporte toujours tout. Devis tout compris, sans mauvaise surprise." },
+	{ icon: DevicePhoneMobileIcon, title: "Application Dydy Quiz", text: "Mon appli maison : un QR code, et les joueurs participent depuis leur téléphone.", to: "/dydy-quiz" },
 	{ icon: CameraIcon, title: "Contenus réseaux", text: "Selon la soirée, quelques photos ou vidéos réutilisables pour votre communication." },
 ];
 
@@ -209,7 +209,15 @@ export default function ServicePage({
 								<ScrollReveal as="li" key={item.title} delay={(i % 2) * 90} className="flex gap-4 border-t border-white/10 py-6" style={{ "--c": COLORS[i % 4] }}>
 									<item.icon aria-hidden="true" className="h-7 w-7 shrink-0 text-[var(--c)]" />
 									<div>
-										<h3 className="font-extrabold">{item.title}</h3>
+										<h3 className="font-extrabold">
+											{item.to ? (
+												<Link to={item.to} className="underline decoration-[var(--c)] underline-offset-4 hover:text-[var(--c)]">
+													{item.title}
+												</Link>
+											) : (
+												item.title
+											)}
+										</h3>
 										<p className="mt-1 text-white/75">{item.text}</p>
 									</div>
 								</ScrollReveal>

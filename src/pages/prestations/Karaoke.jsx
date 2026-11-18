@@ -49,7 +49,7 @@ export default function Karaoke() {
 			related={relatedTo(PATH)}
 			faq={[
 				{ q: "Faut-il savoir chanter ?", a: "Pas du tout ! Le karaoké est fait pour s’amuser. Duos et chansons en chœur permettent à chacun de participer à son rythme." },
-				{ q: "Quel matériel apportez-vous ?", a: "Selon le format : micros, système son, écran ou vidéoprojecteur pour afficher les paroles. On fait le point ensemble selon votre lieu." },
+				{ q: "Quel matériel apportez-vous ?", a: "Tout : micros, sono, lumières, machine à fumée, et écran ou vidéoprojecteur pour afficher les paroles. Mes devis sont tout compris." },
 				{ q: "Peut-on combiner avec un blind test ou un DJ ?", a: "Oui, c’est même le format le plus demandé : blind quiz pour lancer la soirée, karaoké, puis DJ pour danser." },
 				{ q: "Où intervenez-vous ?", a: "Basé à Fonsorbes, à l’ouest de Toulouse, j’interviens à Toulouse, en Haute-Garonne, dans le Gers et dans le Tarn." },
 			]}

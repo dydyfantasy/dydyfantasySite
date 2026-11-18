@@ -20,6 +20,7 @@ export default {
 		"/evenements/bars-restaurants",
 		"/mon-approche",
 		"/galerie",
+		"/dydy-quiz",
 		"/contact",
 		"/privacy",
 		"/404",

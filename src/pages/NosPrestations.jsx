@@ -54,7 +54,7 @@ const AUDIENCES = [
 
 const INCLUDED = [
 	{ icon: MicrophoneIcon, title: "Animation au micro", text: "Je gère le rythme, les relances, les explications et l’ambiance tout au long de la prestation." },
-	{ icon: SpeakerWaveIcon, title: "Matériel possible", text: "Selon le format, je peux venir avec ordinateur, micros, système son, écran ou vidéoprojecteur." },
+	{ icon: SpeakerWaveIcon, title: "Matériel complet fourni", text: "Sono, lumières, machine à fumée, écran et vidéoprojecteur : j’apporte toujours tout. Devis tout compris, sans mauvaise surprise." },
 	{ icon: DevicePhoneMobileIcon, title: "Application Dydy Quiz", text: "Pour les formats interactifs, les participants peuvent jouer directement depuis leur téléphone." },
 	{ icon: CameraIcon, title: "Contenus réseaux", text: "Selon la soirée, je peux produire quelques photos ou vidéos réutilisables pour votre communication." },
 ];

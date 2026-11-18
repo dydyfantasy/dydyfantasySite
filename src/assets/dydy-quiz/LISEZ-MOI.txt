@@ -1,0 +1,4 @@
+Déposez ici les captures d'écran de Dydy Quiz (png, jpg, webp).
+Ordre = ordre alphabétique : préfixez par 01-, 02-…
+Le nom du fichier sert de description : ex. 01-ecran-classement-en-direct.png
+Les captures de téléphone (format vertical) s'affichent dans un cadre de smartphone.

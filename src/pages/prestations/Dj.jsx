@@ -32,7 +32,7 @@ export default function Dj() {
 					<span className="text-[var(--pink)]">Gers</span>
 				</>
 			}
-			intro="Une sélection musicale adaptée à votre public et aux temps forts de votre événement, pour faire monter l’énergie au bon moment. Et parce que je suis aussi animateur, je sais embarquer la salle au micro quand il le faut."
+			intro="DJ généraliste et électro : une sélection musicale adaptée à votre public et aux temps forts de votre événement, pour faire monter l’énergie au bon moment. Et parce que je suis aussi animateur, je sais embarquer la salle au micro quand il le faut."
 			color="var(--cyan)"
 			pointsTitle={{ label: "Pour qui ?", title: "Un DJ pour faire danser", accent: "tout le monde" }}
 			points={[
@@ -50,8 +50,8 @@ export default function Dj() {
 			]}
 			related={relatedTo(PATH)}
 			faq={[
-				{ q: "Quels styles de musique passez-vous ?", a: "La sélection s’adapte à votre public : on en parle ensemble avant l’événement pour lister vos incontournables et ce que vous ne voulez pas entendre." },
-				{ q: "Venez-vous avec le matériel ?", a: "Selon le format : système son, micros et ordinateur. On fait le point selon votre lieu et le nombre d’invités." },
+				{ q: "Quels styles de musique passez-vous ?", a: "Généraliste et électro, avec une sélection adaptée à votre public : on en parle ensemble avant l’événement pour lister vos incontournables et ce que vous ne voulez pas entendre." },
+				{ q: "Venez-vous avec le matériel ?", a: "Oui, toujours : sono, lumières, machine à fumée, micros, écran et vidéoprojecteur. Mes devis sont tout compris." },
 				{ q: "Intervenez-vous dans le Gers ?", a: "Oui. Basé à Fonsorbes, à l’ouest de Toulouse, j’interviens à Toulouse, en Haute-Garonne, dans le Gers et dans le Tarn." },
 				{ q: "Peut-on ajouter un blind test ou un karaoké ?", a: "Oui, c’est ma spécialité : un jeu pour lancer la soirée, puis le DJ set pour faire danser tout le monde." },
 			]}

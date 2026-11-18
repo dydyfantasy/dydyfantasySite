@@ -426,7 +426,8 @@ a.board-row:hover {
 
 /* Cadre dégradé néon du portrait et de la vidéo */
 .portrait-frame,
-.video-frame {
+.video-frame,
+.phone-shot {
 	background: linear-gradient(160deg, var(--cyan), #8b5cf6 50%, var(--pink));
 	box-shadow: 0 0 40px -10px var(--pink);
 }

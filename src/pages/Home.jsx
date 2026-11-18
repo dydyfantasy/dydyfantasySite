@@ -1,7 +1,9 @@
 import Seo from "../components/Seo";
 import HeroLed from "../components/led/HeroLed";
 import StageLights from "../components/led/StageLights";
+import LedStats from "../components/led/LedStats";
 import LedEvents from "../components/led/LedEvents";
+import LedApp from "../components/led/LedApp";
 import LedAgenda from "../components/led/LedAgenda";
 import LedClients from "../components/led/LedClients";
 import LedReviews from "../components/led/LedReviews";
@@ -21,8 +23,10 @@ function Home() {
 			/>
 
 			<HeroLed />
+			<LedStats />
 
 			<LedEvents />
+			<LedApp />
 			<LedAgenda />
 			<LedClients />
 			<LedReviews />

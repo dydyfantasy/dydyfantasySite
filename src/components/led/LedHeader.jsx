@@ -9,6 +9,7 @@ import {
 	PhotoIcon,
 	CalendarDaysIcon,
 	LightBulbIcon,
+	DevicePhoneMobileIcon,
 } from "@heroicons/react/24/outline";
 import logo480 from "../../assets/brand/logo-texte-480.webp";
 import { PRESTATIONS, EVENEMENTS } from "../../data/navigation";
@@ -23,6 +24,7 @@ const MENUS = [
 		items: [
 			{ to: "/qui-suis-je", label: "Qui suis-je ?", icon: UserCircleIcon, color: "#ff2fae" },
 			{ to: "/mon-approche", label: "Mon approche", icon: LightBulbIcon, color: "#7cff6b" },
+			{ to: "/dydy-quiz", label: "Dydy Quiz, mon appli", icon: DevicePhoneMobileIcon, color: "#ffc93c" },
 			{ to: "/galerie", label: "Galerie", icon: PhotoIcon, color: "#19d3f0" },
 		],
 	},

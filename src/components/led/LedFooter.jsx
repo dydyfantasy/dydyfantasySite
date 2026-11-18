@@ -8,6 +8,7 @@ import { PRESTATIONS, EVENEMENTS } from "../../data/navigation";
 const SITE_LINKS = [
 	{ to: "/qui-suis-je", label: "Qui suis-je ?" },
 	{ to: "/mon-approche", label: "Mon approche" },
+	{ to: "/dydy-quiz", label: "Dydy Quiz, mon appli" },
 	{ to: "/galerie", label: "Galerie photos & vidéos" },
 	{ to: "/#agenda", label: "Agenda", plain: true },
 	{ to: "/contact", label: "Contact & devis" },

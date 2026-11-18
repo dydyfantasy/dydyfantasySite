@@ -45,6 +45,7 @@ export default function SurMesure() {
 				{ icon: PuzzlePieceIcon, title: "Murder party & escape game", text: "Une enquête ou des énigmes à résoudre en équipes pendant la soirée." },
 				{ icon: UserGroupIcon, title: "Jeux d’équipe", text: "Défis, manches et classement en direct pour créer de l’émulation." },
 				{ icon: SparklesIcon, title: "Soirée à thème", text: "Années 80, cinéma, séries… un univers complet, de la musique aux questions." },
+				{ icon: HeartIcon, title: "Soirée célibataires", text: "Avec la Match Machine de Dydy Quiz, un algorithme de rencontre qui crée des duos entre participants, puis un DJ set pour faire danser tout le monde." },
 			]}
 			related={relatedTo(PATH)}
 			faq={[

@@ -27,7 +27,7 @@ const CHECKLIST = [
 const INFOS = [
 	{ icon: MapPinIcon, color: "var(--cyan)", title: "Zone d’intervention", text: "Basé à Fonsorbes, dans un rayon de 50 km autour de Toulouse" },
 	{ icon: SparklesIcon, color: "var(--pink)", title: "Formats possibles", text: "Blind test, quiz interactif, karaoké, DJ, soirée privée, mariage ou événement pro" },
-	{ icon: ClockIcon, color: "var(--gold)", title: "Réponse", text: "Je reviens vers vous rapidement pour échanger sur votre projet" },
+	{ icon: ClockIcon, color: "var(--gold)", title: "Réponse sous 24 h", text: "Je reviens vers vous sous 24 h pour échanger sur votre projet, avec un devis tout compris" },
 ];
 
 const DIRECT = [

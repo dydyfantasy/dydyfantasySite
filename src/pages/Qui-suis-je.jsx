@@ -17,6 +17,7 @@ import StageLights from "../components/led/StageLights";
 import SectionTitle from "../components/led/SectionTitle";
 import ScrollReveal from "../components/led/ScrollReveal";
 import LedFinal from "../components/led/LedFinal";
+import LedStats from "../components/led/LedStats";
 import portraitSrcSet from "../assets/PhotoPresentation.webp?w=480;900&format=webp&quality=80&as=srcset";
 import portrait from "../assets/PhotoPresentation.webp?w=900&format=webp&quality=80";
 import tete64 from "../assets/brand/perso-tete-64.webp";
@@ -25,12 +26,6 @@ import videoPresentation from "../assets/C'est qui dydy fantasy.webm";
 import videoPoster from "../assets/C'est qui dydy fantasy image.webp";
 
 // Textes repris mot pour mot de l’ancienne page (Presentation.jsx) ; seule la mise en scène change.
-
-const STATS = [
-	{ value: "Live", label: "animation au micro", color: "var(--pink)" },
-	{ value: "31", label: "Toulouse & alentours", color: "var(--cyan)" },
-	{ value: "100%", label: "ambiance interactive", color: "var(--gold)" },
-];
 
 const IDEAS = [
 	{ icon: LightBulbIcon, title: "Une idée simple", text: "Créer des soirées où les invités ne restent pas spectateurs, mais deviennent acteurs de l’ambiance." },
@@ -124,16 +119,7 @@ function QuiSuisje() {
 			</section>
 
 			{/* ---- Chiffres ---- */}
-			<section aria-label="En chiffres" className="px-4 py-10">
-				<ul className="mx-auto grid max-w-4xl grid-cols-3 gap-4 text-center">
-					{STATS.map((s, i) => (
-						<ScrollReveal as="li" key={s.label} variant="zoom" delay={i * 100} style={{ "--c": s.color }}>
-							<p className="stat-value text-4xl font-extrabold md:text-6xl">{s.value}</p>
-							<p className="mt-1 text-sm text-white/65 md:text-base">{s.label}</p>
-						</ScrollReveal>
-					))}
-				</ul>
-			</section>
+			<LedStats />
 
 			{/* ---- Les deux casquettes ---- */}
 			<section aria-labelledby="casquettes" className="px-4 py-16">
@@ -148,6 +134,13 @@ function QuiSuisje() {
 							<p className="mt-4 text-white/80">
 								Mon métier de développeur me permet d’imaginer des animations plus interactives : quiz en
 								direct, scores, buzzers, écrans, mécaniques de jeu et formats personnalisés.
+							</p>
+							<p className="mt-3 text-white/80">
+								C’est comme ça que j’ai développé moi-même{" "}
+								<Link to="/dydy-quiz" className="font-semibold text-[var(--cyan)] underline underline-offset-4 hover:text-white">
+									Dydy Quiz
+								</Link>
+								, l’appli qui fait jouer vos invités depuis leur téléphone.
 							</p>
 						</ScrollReveal>
 

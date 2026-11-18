@@ -56,6 +56,7 @@ export default function LedFinal({ title, text }) {
 						Demander mon devis
 						<ArrowRightIcon className="h-5 w-5" />
 					</a>
+					<p className="mt-3 text-sm text-white/65">Réponse sous 24 h · Devis tout compris</p>
 
 					<div className="mt-8 flex justify-center gap-4 md:justify-start">
 						{SOCIALS.map((social) => (

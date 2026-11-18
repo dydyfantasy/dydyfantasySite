@@ -50,7 +50,7 @@ export default function BarsRestaurants() {
 			related={relatedTo(PATH)}
 			faq={[
 				{ q: "Dans quels établissements animez-vous déjà ?", a: "Notamment La Ville en Rose à Colomiers, la Taverne Heidelberg à Blagnac, Le Cul de Bouteille à Aussonne et La Table Ronde dans le Tarn." },
-				{ q: "Faut-il du matériel sur place ?", a: "Selon le format, je viens avec ordinateur, micros, système son et écran. On fait le point selon votre salle." },
+				{ q: "Faut-il du matériel sur place ?", a: "Non, j’apporte tout : sono, lumières, machine à fumée, micros, écran et vidéoprojecteur. Mes devis sont tout compris." },
 				{ q: "Proposez-vous des soirées régulières ?", a: "Oui, c’est le format idéal pour fidéliser votre clientèle : hebdomadaire, mensuel ou ponctuel selon vos besoins." },
 			]}
 		/>

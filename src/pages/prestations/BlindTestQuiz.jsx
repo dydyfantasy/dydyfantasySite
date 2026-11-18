@@ -98,7 +98,7 @@ const FAQ = [
 	},
 	{
 		q: "Comment les joueurs répondent-ils ?",
-		a: "Selon la formule, depuis leur téléphone ou avec des buzzers. Les scores s’affichent en direct pour garder le suspense jusqu’au bout.",
+		a: "Depuis leur téléphone, en scannant un QR code : c’est Dydy Quiz, l’appli que j’ai développée. Questions en audio, vidéo ou image, sondages en direct, et les scores s’affichent sur grand écran pour garder le suspense jusqu’au bout.",
 	},
 	{
 		q: "Peut-on personnaliser les questions ?",
