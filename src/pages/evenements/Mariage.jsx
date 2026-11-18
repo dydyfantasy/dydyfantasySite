@@ -54,7 +54,7 @@ export default function Mariage() {
 				{ q: "À quel moment du mariage intervenez-vous ?", a: "Selon vos envies : pendant le repas pour les jeux, puis en soirée pour le karaoké et le DJ. On construit le déroulé ensemble." },
 				{ q: "Les jeux sont-ils adaptés à tous les âges ?", a: "Oui, je mélange les thèmes et les époques pour que chaque génération ait sa chance." },
 				{ q: "Intervenez-vous hors de Toulouse ?", a: "Oui : Haute-Garonne, Gers et Tarn. Basé à Fonsorbes, je me déplace dans les domaines et salles de la région." },
-				{ q: "Combien d’invités pouvez-vous animer ?", a: "Jusqu’à 200 invités, avec tout le matériel fourni : sono, lumières, machine à fumée, écran et vidéoprojecteur. Le devis est tout compris." },
+				{ q: "Combien d’invités pouvez-vous animer ?", a: "J’ai déjà animé des événements de 200 invités, et je peux aller au-delà, avec tout le matériel fourni : sono, lumières, machine à fumée, écran et vidéoprojecteur. Le devis est tout compris." },
 				{ q: "Quand faut-il réserver ?", a: "Le plus tôt possible : les dates de mariage partent vite, surtout au printemps et en été. Contactez-moi avec votre date." },
 			]}
 		/>
