@@ -1,5 +1,8 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { StarIcon } from "@heroicons/react/24/solid";
+// Styles du widget chargés AVEC la page (et non avec le widget différé) : ils sont prêts
+// avant que le carrousel ne mesure sa largeur.
+import "react-google-reviews/dist/index.css";
 import SectionTitle from "./SectionTitle";
 import ScrollReveal from "./ScrollReveal";
 
