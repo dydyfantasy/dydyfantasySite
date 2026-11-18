@@ -75,16 +75,22 @@ export function Layout({ children }) {
 				/>
 
 				{/* Google Analytics */}
-				<script
-					async
-					src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-				/>
+				{/* Google Analytics chargé APRÈS l'affichage de la page (ne concurrence plus la photo
+				    et le contenu). Les événements sont mis en file dans dataLayer en attendant. */}
 				<script
 					dangerouslySetInnerHTML={{
 						__html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '${GA_ID}');`,
+gtag('config', '${GA_ID}');
+window.addEventListener('load', function () {
+  setTimeout(function () {
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_ID}';
+    document.head.appendChild(s);
+  }, 1500);
+});`,
 					}}
 				/>
 			</head>

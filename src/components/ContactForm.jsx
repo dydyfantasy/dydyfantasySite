@@ -154,7 +154,7 @@ export default function ContactForm() {
 				<PaperAirplaneIcon className="h-5 w-5 transition group-hover:translate-x-1" />
 			</button>
 
-			<p className="text-center text-xs leading-relaxed text-white/45">
+			<p className="text-center text-xs leading-relaxed text-white/65">
 				Les informations transmises servent uniquement à répondre à votre
 				demande d’animation.
 			</p>

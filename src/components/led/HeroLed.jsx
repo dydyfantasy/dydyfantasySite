@@ -6,6 +6,7 @@ import {
 	StarIcon,
 } from "@heroicons/react/24/solid";
 import scene640 from "../../assets/hero/hero-scene-640.webp";
+import scene768 from "../../assets/hero/hero-scene-768.webp";
 import scene1024 from "../../assets/hero/hero-scene-1024.webp";
 import scene1536 from "../../assets/hero/hero-scene-1536.webp";
 import {
@@ -17,6 +18,7 @@ import {
 import logo480 from "../../assets/brand/logo-texte-480.webp";
 import tete64 from "../../assets/brand/perso-tete-64.webp";
 import tete128 from "../../assets/brand/perso-tete-128.webp";
+import logo640 from "../../assets/brand/logo-texte-640.webp";
 import logo960 from "../../assets/brand/logo-texte-960.webp";
 
 // Les 4 réponses du quiz (textes repris des cartes d’origine).
@@ -64,7 +66,7 @@ function ScenePhoto({ className = "" }) {
 	return (
 		<img
 			src={scene1536}
-			srcSet={`${scene640} 640w, ${scene1024} 1024w, ${scene1536} 1536w`}
+			srcSet={`${scene640} 640w, ${scene768} 768w, ${scene1024} 1024w, ${scene1536} 1536w`}
 			sizes="100vw"
 			width="1536"
 			height="1149"
@@ -112,8 +114,8 @@ export default function HeroLed() {
 					{/* Logo + titre SEO (le H1 est le texte, le logo une image) */}
 					<img
 						src={logo960}
-						srcSet={`${logo480} 480w, ${logo960} 960w`}
-						sizes="(min-width: 768px) 30rem, 90vw"
+						srcSet={`${logo480} 480w, ${logo640} 640w, ${logo960} 960w`}
+						sizes="(min-width: 768px) 30rem, 85vw"
 						alt="Dydy Fantasy"
 						width="960"
 						height="173"

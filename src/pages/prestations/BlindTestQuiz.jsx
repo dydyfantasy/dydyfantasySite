@@ -149,7 +149,7 @@ function DemoScreen() {
 						<span className="text-[var(--gold)]">Raté ! C’était Stromae. Pas de panique, on se rattrape à la prochaine.</span>
 					)
 				) : (
-					<span className="text-white/55">À vous de jouer : choisissez une réponse.</span>
+					<span className="text-white/65">À vous de jouer : choisissez une réponse.</span>
 				)}
 			</p>
 		</div>

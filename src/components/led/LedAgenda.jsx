@@ -139,7 +139,7 @@ function EventRow({ event, delay = 0, onOpen }) {
 				aria-haspopup="dialog"
 				className="board-row grid w-full grid-cols-[4.5rem_minmax(0,1fr)_auto] items-center gap-4 rounded-2xl px-4 py-3 text-left">
 				<div className="text-center leading-none">
-					<p className="text-[0.7rem] font-bold uppercase tracking-widest text-white/50">{p.weekday}</p>
+					<p className="text-[0.7rem] font-bold uppercase tracking-widest text-white/65">{p.weekday}</p>
 					<p className="glow-cyan text-3xl font-extrabold">{p.day}</p>
 					<p className="text-xs font-bold uppercase tracking-widest text-[var(--pink)]">{p.month}</p>
 				</div>
@@ -152,7 +152,7 @@ function EventRow({ event, delay = 0, onOpen }) {
 						{event.place} — {event.city} · {event.hour}
 					</p>
 				</div>
-				<div className="text-sm text-white/50">
+				<div className="text-sm text-white/65">
 					{event.publicEvent ? (
 						<span className="flex items-center gap-1.5 text-[var(--cyan)]">
 							<span className="hidden sm:inline">Détails</span>
@@ -287,7 +287,7 @@ export default function LedAgenda() {
 							<div>
 							{others.length > 0 && (
 								<>
-								<p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-white/50">Ensuite</p>
+								<p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-white/65">Ensuite</p>
 								<ul className="space-y-3">
 									{shown.map((e, i) => (
 										<EventRow key={e.id ?? `${e.date}-${e.place}`} event={e} delay={i * 80} onOpen={setOpened} />

@@ -14,7 +14,7 @@ export default function LedReviews() {
 					<SectionTitle id="avis-titre" label="Avis clients" title="Ils en" accent="parlent" />
 					<ScrollReveal variant="zoom" delay={100} className="neon-card mt-6 rounded-3xl p-6 text-center" style={{ "--c": "var(--gold)" }}>
 						<p className="glow-gold text-6xl font-extrabold leading-none">4,9</p>
-						<p className="mt-2 flex justify-center text-[var(--gold)]" aria-label="Note de 4,9 sur 5">
+						<p className="mt-2 flex justify-center text-[var(--gold)]" role="img" aria-label="Note de 4,9 sur 5">
 							{[0, 1, 2, 3, 4].map((i) => (
 								<StarIcon key={i} className="h-6 w-6" />
 							))}

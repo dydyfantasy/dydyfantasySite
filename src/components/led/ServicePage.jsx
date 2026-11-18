@@ -97,7 +97,7 @@ export default function ServicePage({
 			{/* ---- Hero ---- */}
 			<section className="px-4 pb-16 pt-8 md:pt-12">
 				<div className="mx-auto max-w-6xl">
-					<nav aria-label="Fil d’Ariane" className="text-sm text-white/55">
+					<nav aria-label="Fil d’Ariane" className="text-sm text-white/65">
 						<ol className="flex flex-wrap items-center gap-1.5">
 							{crumbs.map((c, i) => (
 								<li key={c.to} className="flex items-center gap-1.5">
@@ -243,7 +243,7 @@ export default function ServicePage({
 			{related.length > 0 && (
 				<section aria-labelledby="related" className="px-4 py-10">
 					<div className="mx-auto max-w-6xl">
-						<h2 id="related" className="text-sm font-bold uppercase tracking-[0.25em] text-white/50">À découvrir aussi</h2>
+						<h2 id="related" className="text-sm font-bold uppercase tracking-[0.25em] text-white/65">À découvrir aussi</h2>
 						<ul className="mt-4 flex flex-wrap gap-3">
 							{related.map((r, i) => (
 								<li key={r.to}>

@@ -124,7 +124,7 @@ function Contact() {
 
 						{/* Contact direct */}
 						<ScrollReveal variant="right" delay={200} className="border-t border-white/10 pt-6">
-							<p className="text-sm font-bold uppercase tracking-[0.2em] text-white/55">Ou directement</p>
+							<p className="text-sm font-bold uppercase tracking-[0.2em] text-white/65">Ou directement</p>
 							<a href="tel:+33695953356" className="mt-3 flex items-center gap-2 text-lg font-bold hover:text-[var(--cyan)]">
 								<PhoneIcon aria-hidden="true" className="h-5 w-5 text-[var(--cyan)]" />
 								06 95 95 33 56

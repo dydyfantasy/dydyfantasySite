@@ -84,7 +84,7 @@ export default function LedFooter() {
 				<Column title="Dydy Fantasy" links={SITE_LINKS} />
 			</div>
 
-			<div className="mx-auto mt-12 flex max-w-6xl flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/45 sm:flex-row sm:justify-between">
+			<div className="mx-auto mt-12 flex max-w-6xl flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/65 sm:flex-row sm:justify-between">
 				<p>© {year} Dydy Fantasy · Animation événementielle à Toulouse</p>
 				<Link to="/privacy" className="hover:text-white/80">Confidentialité de l’application Dydy Quiz</Link>
 			</div>

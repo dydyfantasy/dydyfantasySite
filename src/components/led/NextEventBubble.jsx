@@ -36,7 +36,7 @@ export default function NextEventBubble() {
 				href="/#agenda"
 				className="flex items-center gap-3 rounded-2xl py-2 pl-2 pr-10 text-white md:gap-4 md:py-3 md:pl-3"
 				aria-label={`Prochaine soirée : ${next.title}, ${weekday} ${day} ${month} à ${next.hour}, ${next.place}. Voir l’agenda`}>
-				<span className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl bg-[var(--pink)] leading-none text-white md:h-16 md:w-16">
+				<span className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl bg-[var(--pink)] leading-none text-[var(--ink)] md:h-16 md:w-16">
 					<span className="text-lg font-extrabold md:text-2xl">{day}</span>
 					<span className="text-[0.6rem] font-bold uppercase md:text-xs">{month}</span>
 				</span>
