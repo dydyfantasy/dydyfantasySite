@@ -24,7 +24,7 @@ Déposez simplement les fichiers (jpg, png, webp) dans le bon dossier. Pas besoi
 | Où sur le site | Dossier | Règle de nom |
 |---|---|---|
 | Accueil, tuiles « Vos événements » | `src/assets/evenements/` | Commence par `mariage`, `entreprise`, `anniversaire` ou `bars` (une photo par tuile, en paysage) |
-| Accueil, carrousel « Mais c'est qui Dydy Fantasy ? » | `src/assets/carrousel/` | Ordre = ordre alphabétique : commencez par `04-`, `05-`… |
+| Accueil, carrousel de secours de « Mais c'est qui Dydy Fantasy ? » (affiché seulement si aucune vidéo n'est marquée `accueil`) | `src/assets/carrousel/` | Ordre = ordre alphabétique : commencez par `04-`, `05-`… |
 | Page Galerie (photos **et vidéos**) | `src/assets/galerie/mariages/`, `entreprises/`, `anniversaires/`, `bars/`, `soirees/` | Libre (descriptif). Vidéos : voir plus bas |
 | Page Dydy Quiz, captures de l'appli | `src/assets/dydy-quiz/` | Ordre alphabétique : `01-`, `02-`… |
 
@@ -52,7 +52,7 @@ Les vidéos marchent aussi sans `npm run videos`, elles sont juste plus lourdes 
 
 La commande crée aussi, dans `src/assets/galerie-apercus/`, une image d'aperçu par vidéo (vignettes de la galerie). **Ce dossier est automatique : n'y touchez pas.**
 
-### Choisir les vidéos montrées sur l'accueil (section « En images »)
+
 
 Ajoutez `accueil` au début du nom de la vidéo dans la galerie, ex. `karaoke-ville-en-rose.mp4` → `accueil-karaoke-ville-en-rose.mp4`, puis tapez `npm run videos`.
 

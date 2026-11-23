@@ -3,9 +3,10 @@ import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import SectionTitle from "./SectionTitle";
 import PhotoCarousel from "./PhotoCarousel";
 import ScrollReveal from "./ScrollReveal";
+import GalleryClips, { CLIPS } from "./GalleryClips";
 
-// « Mais c’est qui Dydy Fantasy ? » : texte + carrousel de photos de soirées
-// (remplace l’ancienne vidéo de présentation).
+// « Mais c’est qui Dydy Fantasy ? » : texte + extraits vidéo de vraies soirées (galerie).
+// S’il n’y a aucune vidéo marquée « accueil », le carrousel de photos (src/assets/carrousel/) prend le relais.
 export default function LedAbout() {
 	return (
 		<section aria-labelledby="about-titre" className="px-4 py-20">
@@ -22,12 +23,26 @@ export default function LedAbout() {
 							En savoir plus sur moi
 							<ArrowRightIcon className="h-4 w-4" />
 						</Link>
+						{CLIPS.length > 0 && (
+							<Link
+								to="/galerie"
+								className="btn-outline-neon inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--pink)] px-6 py-3 font-semibold text-[var(--pink)]">
+								Voir la galerie
+								<ArrowRightIcon className="h-4 w-4" />
+							</Link>
+						)}
 					</div>
 				</div>
 
-				<ScrollReveal className="mt-10" delay={120}>
-					<PhotoCarousel />
-				</ScrollReveal>
+				<div className="mt-10">
+					{CLIPS.length > 0 ? (
+						<GalleryClips />
+					) : (
+						<ScrollReveal delay={120}>
+							<PhotoCarousel />
+						</ScrollReveal>
+					)}
+				</div>
 			</div>
 		</section>
 	);
