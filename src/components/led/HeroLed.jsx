@@ -34,7 +34,7 @@ const ANSWERS = [
 		icon: TrophyIcon,
 		cta: "Découvrir le blind test",
 		href: "/prestations/blind-test-quiz",
-		text: "Une animation façon game show : vos invités participent en direct depuis leur téléphone grâce à Dydy Quiz, mon appli maison, ou avec des buzzers. Manches thématiques, scores en temps réel et ambiance garantie.",
+		text: "Une animation façon game show : vos invités participent en direct depuis leur téléphone, qui devient leur buzzer grâce à Dydy Quiz, mon appli maison. Manches thématiques, scores en temps réel et ambiance garantie.",
 	},
 	{
 		letter: "B",
@@ -175,9 +175,8 @@ export default function HeroLed() {
 						Blind test, quiz, karaoké & DJ à Toulouse
 					</h1>
 					<p className="mt-2 text-sm leading-relaxed text-white/75 md:text-base">
-						Du quiz qui brise la glace au DJ set qui fait danser tout le monde :
-						des animations interactives où vos invités ne sont pas seulement
-						spectateurs.
+						Quiz, blind test, karaoké et DJ dans la même soirée : vos invités ne
+						regardent pas la fête, ils la font.
 					</p>
 
 					{/* ---- Quiz ---- */}

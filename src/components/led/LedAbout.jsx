@@ -12,8 +12,8 @@ export default function LedAbout() {
 			<div className="mx-auto max-w-6xl">
 				<div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
 					<SectionTitle id="about-titre" label="Présentation" title="Mais c’est qui" accent="Dydy Fantasy ?">
-						Animateur et DJ basé à l’ouest de Toulouse : je transforme vos soirées en vrais
-						moments interactifs, où le public joue, chante et danse.
+						Animateur et DJ basé à Fonsorbes, à l’ouest de Toulouse. Résident dans 3 bars, je fais
+						jouer, chanter et danser plus de 12 soirées par mois.
 					</SectionTitle>
 					<div className="flex shrink-0 flex-col gap-3 sm:flex-row">
 						<Link

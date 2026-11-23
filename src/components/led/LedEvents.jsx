@@ -49,7 +49,7 @@ const EVENTS = [
 		word: "Mariage",
 		icon: HeartIcon,
 		color: "var(--pink)",
-		text: "Blind test et quiz pour animer le repas, karaoké et DJ pour faire danser vos invités jusqu’au bout de la nuit.",
+		text: "Quiz sur les mariés pendant le repas, Challenge Photo entre les tables, puis karaoké et DJ jusqu’au bout de la nuit.",
 		href: "/evenements/mariage",
 		cta: "Parler de mon mariage",
 	},
@@ -69,7 +69,7 @@ const EVENTS = [
 		word: "Anniversaire",
 		icon: CakeIcon,
 		color: "var(--gold)",
-		text: "Un quiz ou un blind test sur mesure, du karaoké et un DJ pour faire danser : une soirée dont tout le monde se souviendra.",
+		text: "Un quiz sur la personne fêtée, du karaoké et un DJ : le cadeau, c’est la soirée.",
 		href: "/evenements/anniversaire",
 		cta: "Préparer ma soirée",
 	},
@@ -124,7 +124,7 @@ export default function LedEvents() {
 					title="Une animation pour chaque événement"
 					accent="à Toulouse">
 					Mariage, entreprise, anniversaire ou soirée dans votre bar : je m’adapte à votre public
-					et à votre lieu, en Haute-Garonne, dans le Gers et le Tarn.
+					et à votre lieu, autour de Toulouse et partout en Occitanie : Haute-Garonne, Gers, Tarn.
 				</SectionTitle>
 
 				<ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

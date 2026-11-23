@@ -13,6 +13,8 @@ const CLIENTS = [
 	{ name: "L’entrepotes", type: "Restaurant / bar", location: "Gratentour (31)", logo: "/clients/lentrepote.jpg" },
 	{ name: "Lias Vegas", type: "Comité des fêtes", location: "Lias (32)", logo: "/clients/liasVegas.jpg" },
 	{ name: "Comité des fêtes de Giroussens", type: "Association", location: "Giroussens (81)", logo: "/clients/girousens.jpg" },
+	{ name: "Biergarten by Saint-Orens", type: "Biergarten / bar", location: "Saint-Orens-de-Gameville (31)", logo: "/clients/biergarten.webp" },
+	{ name: "L’Fest", type: "Comité des fêtes", location: "Labastide-Beauvoir (31)", logo: "/clients/lfest.png" },
 ];
 
 const COLORS = ["var(--cyan)", "var(--pink)", "var(--gold)", "#7cff6b"];
@@ -20,14 +22,22 @@ const COLORS = ["var(--cyan)", "var(--pink)", "var(--gold)", "#7cff6b"];
 function ClientChip({ client, color }) {
 	return (
 		<div className="client-chip flex shrink-0 items-center gap-3 rounded-full py-2 pl-2 pr-5" style={{ "--c": color }}>
-			<img
-				src={client.logo}
-				alt={`Logo ${client.name}`}
-				loading="lazy"
-				width="48"
-				height="48"
-				className="h-12 w-12 rounded-full bg-white object-contain"
-			/>
+			{client.logo ? (
+				<img
+					src={client.logo}
+					alt={`Logo ${client.name}`}
+					loading="lazy"
+					width="48"
+					height="48"
+					className="h-12 w-12 rounded-full bg-white object-contain"
+				/>
+			) : (
+				<span
+					aria-hidden="true"
+					className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-white text-xl font-extrabold text-[#05040a]">
+					{client.name.replace(/^L’/, "").charAt(0)}
+				</span>
+			)}
 			<div className="leading-tight">
 				<p className="font-bold">{client.name}</p>
 				<p className="text-xs text-white/60">
