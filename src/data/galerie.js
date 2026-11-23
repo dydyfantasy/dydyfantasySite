@@ -15,7 +15,8 @@ export const COLORS = ["var(--cyan)", "var(--pink)", "var(--gold)", "#7cff6b"];
 
 const posterFiles = import.meta.glob("../assets/galerie-apercus/*/*.jpg", {
 	eager: true,
-	query: { format: "webp", quality: "72" },
+	// metadata : { src, width, height } (dimensions déclarées = pas de décalage de la page au chargement)
+	query: { format: "webp", quality: "72", as: "metadata" },
 	import: "default",
 });
 const clipFiles = import.meta.glob("../assets/galerie-apercus/*/*.mp4", {
@@ -27,10 +28,11 @@ const clipFiles = import.meta.glob("../assets/galerie-apercus/*/*.mp4", {
 // « …/bars/accueil-karaoke-ville-en-rose.mp4 » -> « bars/accueil-karaoke-ville-en-rose »
 const key = (path) => path.split("/").slice(-2).join("/").replace(/\.[^.]+$/, "");
 const byKey = (files) => Object.fromEntries(Object.entries(files).map(([p, url]) => [key(p), url]));
-const POSTERS = byKey(posterFiles);
+const POSTER_META = byKey(posterFiles);
 
-/** Image d’aperçu d’une vidéo de la galerie (chemin du fichier de la vidéo) */
-export const posterFor = (path) => POSTERS[key(path)];
+/** Image d’aperçu d’une vidéo de la galerie : { src, width, height } ou undefined */
+export const posterMeta = (path) => POSTER_META[key(path)];
+const POSTERS = Object.fromEntries(Object.entries(POSTER_META).map(([k, m]) => [k, m.src]));
 
 /** Catégorie + texte alternatif tirés du nom de fichier (« accueil » et numéro d’ordre retirés) */
 export function describe(path) {

@@ -5,7 +5,7 @@ import StageLights from "../components/led/StageLights";
 import SectionTitle from "../components/led/SectionTitle";
 import ScrollReveal from "../components/led/ScrollReveal";
 import LedFinal from "../components/led/LedFinal";
-import { CATEGORY_LABELS, COLORS, describe, posterFor } from "../data/galerie";
+import { CATEGORY_LABELS, COLORS, describe, posterMeta } from "../data/galerie";
 
 // Galerie : tout fichier déposé dans src/assets/galerie/<catégorie>/ apparaît ici.
 // Photos optimisées à la compilation (vite-imagetools) ; vidéos servies telles quelles
@@ -15,9 +15,10 @@ const thumbs = import.meta.glob("../assets/galerie/*/*.{jpg,jpeg,png,webp,JPG,JP
 	query: { w: "480;900", format: "webp", quality: "78", as: "srcset" },
 	import: "default",
 });
+// metadata : { src, width, height } → dimensions déclarées sur les vignettes (pas de saut de mise en page)
 const mediums = import.meta.glob("../assets/galerie/*/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
 	eager: true,
-	query: { w: "900", format: "webp", quality: "78" },
+	query: { w: "900", format: "webp", quality: "78", as: "metadata" },
 	import: "default",
 });
 const larges = import.meta.glob("../assets/galerie/*/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
@@ -36,11 +37,16 @@ const MEDIA = [
 		type: "image",
 		path,
 		srcSet: thumbs[path],
-		src: mediums[path],
+		src: mediums[path].src,
+		width: mediums[path].width,
+		height: mediums[path].height,
 		large: larges[path],
 		...describe(path),
 	})),
-	...Object.keys(videos).map((path) => ({ type: "video", path, src: videos[path], poster: posterFor(path), ...describe(path) })),
+	...Object.keys(videos).map((path) => {
+		const p = posterMeta(path);
+		return { type: "video", path, src: videos[path], poster: p?.src, width: p?.width, height: p?.height, ...describe(path) };
+	}),
 ].sort((a, b) => a.path.localeCompare(b.path));
 
 const CATEGORIES = [...new Set(MEDIA.map((m) => m.category))];
@@ -171,14 +177,24 @@ export default function Galerie() {
 												srcSet={m.srcSet}
 												sizes="(min-width: 768px) 33vw, 50vw"
 												alt={m.alt}
+												width={m.width}
+												height={m.height}
 												loading="lazy"
 												decoding="async"
-												className="w-full transition-transform duration-500 group-hover:scale-105"
+												className="h-auto w-full transition-transform duration-500 group-hover:scale-105"
 											/>
 										) : (
 											<>
 												{m.poster ? (
-													<img src={m.poster} alt={m.alt} loading="lazy" decoding="async" className="w-full" />
+													<img
+														src={m.poster}
+														alt={m.alt}
+														width={m.width}
+														height={m.height}
+														loading="lazy"
+														decoding="async"
+														className="h-auto w-full"
+													/>
 												) : (
 													<video src={m.src} muted playsInline preload="metadata" className="w-full" />
 												)}
