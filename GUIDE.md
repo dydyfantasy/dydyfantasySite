@@ -52,7 +52,7 @@ Les vidéos marchent aussi sans `npm run videos`, elles sont juste plus lourdes 
 
 La commande crée aussi, dans `src/assets/galerie-apercus/`, une image d'aperçu par vidéo (vignettes de la galerie). **Ce dossier est automatique : n'y touchez pas.**
 
-
+### Choisir les vidéos montrées sur l'accueil (« Mais c'est qui Dydy Fantasy ? »)
 
 Ajoutez `accueil` au début du nom de la vidéo dans la galerie, ex. `karaoke-ville-en-rose.mp4` → `accueil-karaoke-ville-en-rose.mp4`, puis tapez `npm run videos`.
 
