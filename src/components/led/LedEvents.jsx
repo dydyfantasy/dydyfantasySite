@@ -85,18 +85,28 @@ const EVENTS = [
 	},
 ];
 
-// Place de chaque tuile dans la grille sur grand écran (même ordre que EVENTS)
-const LAYOUT = ["lg:row-span-2", "lg:col-span-2", "", ""];
+// Place de chaque tuile dans la grille (même ordre que EVENTS) : toutes les photos sont en paysage.
+// Mariage = grande tuile en vedette ; sur tablette, les bars prennent aussi toute la largeur
+// (pas de tuile orpheline). Les tuiles pleine largeur passent en « photo à gauche, texte à droite ».
+const LAYOUT = ["sm:col-span-2 lg:col-span-3", "", "", "sm:col-span-2 lg:col-span-1"];
+const SIDE_BY_SIDE = [
+	"md:grid md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]",
+	"",
+	"",
+	"md:grid md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:flex",
+];
 
-// Inclinaison 3D qui suit la souris (ordinateur uniquement ; rien au toucher)
+// Inclinaison 3D qui suit la souris (ordinateur uniquement ; rien au toucher).
+// Amplitude réduite sur les tuiles larges pour que les bords ne bougent pas trop.
 function tilt(event) {
 	if (event.pointerType !== "mouse") return;
 	const card = event.currentTarget;
 	const r = card.getBoundingClientRect();
+	const amp = Math.min(10, 4000 / r.width);
 	const x = (event.clientX - r.left) / r.width - 0.5;
 	const y = (event.clientY - r.top) / r.height - 0.5;
-	card.style.setProperty("--ry", `${(x * 10).toFixed(2)}deg`);
-	card.style.setProperty("--rx", `${(-y * 10).toFixed(2)}deg`);
+	card.style.setProperty("--ry", `${(x * amp).toFixed(2)}deg`);
+	card.style.setProperty("--rx", `${(-y * amp).toFixed(2)}deg`);
 }
 
 function untilt(event) {
@@ -117,55 +127,61 @@ export default function LedEvents() {
 					et à votre lieu, en Haute-Garonne, dans le Gers et le Tarn.
 				</SectionTitle>
 
-				{/* Grille « bento » : le mariage en grande tuile, l’entreprise en tuile large */}
 				<ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 					{EVENTS.map((e, i) => {
 						const photo = photoFor(e.slug);
+						const featured = i === 0;
 						return (
-						<ScrollReveal as="li" key={e.title} delay={i * 90} className={LAYOUT[i]}>
-							<Link
-								to={e.href}
-								style={{ "--c": e.color }}
-								onPointerMove={tilt}
-								onPointerLeave={untilt}
-								className="flyer-card group flex h-full flex-col overflow-hidden rounded-3xl">
-								{/* Flyer : mot géant en filigrane, projecteur qui balaie, icône en enseigne néon (photo plus tard) */}
-								<div
-									data-word={e.word}
-									className={`event-stage flyer-word relative flex h-44 items-center justify-center overflow-hidden md:h-52 ${i === 0 ? "lg:h-auto lg:flex-1" : ""}`}
-									style={{ "--sway-delay": `${i * -1.7}s` }}>
-									{photo ? (
-										<>
-											{/* Photo teintée de la couleur de l’événement, mot géant par-dessus */}
-											<img
-												src={photo.src}
-												srcSet={photo.srcSet}
-												sizes="(min-width: 640px) 50vw, 100vw"
-												alt={photo.alt}
-												loading="lazy"
-												decoding="async"
-												className="flyer-photo absolute inset-0 h-full w-full object-cover"
-											/>
-											<span aria-hidden="true" className="flyer-tint absolute inset-0" />
-										</>
-									) : (
-										<>
-											<span aria-hidden="true" className="stage-cone" />
-											<span aria-hidden="true" className="stage-floor" />
-											<e.icon aria-hidden="true" className="neon-icon relative z-[2] h-20 w-20 md:h-24 md:w-24" />
-										</>
-									)}
-								</div>
-								<div className={`flex flex-col p-6 ${i === 0 ? "" : "flex-1"}`}>
-									<h3 className="text-2xl font-extrabold leading-tight">{e.title}</h3>
-									<p className="mt-2 flex-1 text-white/75">{e.text}</p>
-									<span className="mt-4 inline-flex items-center gap-1.5 font-semibold text-[var(--c)]">
-										{e.cta}
-										<ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-									</span>
-								</div>
-							</Link>
-						</ScrollReveal>
+							<ScrollReveal as="li" key={e.title} delay={i * 90} className={LAYOUT[i]}>
+								<Link
+									to={e.href}
+									style={{ "--c": e.color }}
+									onPointerMove={tilt}
+									onPointerLeave={untilt}
+									className={`flyer-card group flex h-full flex-col overflow-hidden rounded-3xl ${SIDE_BY_SIDE[i]}`}>
+									{/* Scène en paysage (3:2) : la photo, ou le projecteur + l’icône en enseigne néon */}
+									<div
+										className="event-stage relative flex aspect-[3/2] items-center justify-center overflow-hidden"
+										style={{ "--sway-delay": `${i * -1.7}s` }}>
+										{photo ? (
+											<>
+												<img
+													src={photo.src}
+													srcSet={photo.srcSet}
+													sizes={featured ? "(min-width: 768px) 60vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 640px) 60vw, 100vw"}
+													alt={photo.alt}
+													loading="lazy"
+													decoding="async"
+													className="flyer-photo absolute inset-0 h-full w-full object-cover"
+												/>
+												<span aria-hidden="true" className="flyer-tint absolute inset-0" />
+											</>
+										) : (
+											<>
+												<span aria-hidden="true" className="stage-cone" />
+												<span aria-hidden="true" className="stage-floor" />
+												<e.icon
+													aria-hidden="true"
+													className={`neon-icon relative h-20 w-20 md:h-24 md:w-24 ${featured ? "lg:h-36 lg:w-36" : ""}`}
+												/>
+											</>
+										)}
+									</div>
+									{/* Texte, avec le mot géant en filigrane derrière (la photo reste nette) */}
+									<div
+										data-word={e.word}
+										className={`flyer-word relative flex flex-1 flex-col overflow-hidden p-6 ${
+											featured ? "md:justify-center md:p-8 lg:p-10" : i === 3 ? "md:justify-center lg:justify-start" : ""
+										}`}>
+										<h3 className={`text-2xl font-extrabold leading-tight ${featured ? "lg:text-4xl" : ""}`}>{e.title}</h3>
+										<p className={`mt-2 flex-1 text-white/75 ${featured ? "md:flex-none lg:text-lg" : i === 3 ? "md:flex-none lg:flex-1" : ""}`}>{e.text}</p>
+										<span className="mt-4 inline-flex items-center gap-1.5 font-semibold text-[var(--c)]">
+											{e.cta}
+											<ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+										</span>
+									</div>
+								</Link>
+							</ScrollReveal>
 						);
 					})}
 				</ul>
