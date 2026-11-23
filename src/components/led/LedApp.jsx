@@ -9,6 +9,8 @@ import { getVideo } from "./videoAssets";
 
 // Vidéo de 15 s déposée dans src/assets/videos/dydy-quiz-accueil.mp4 : remplace l’aperçu animé
 const VIDEO = getVideo("dydy-quiz-accueil");
+// Version portrait (téléphone), facultative : dydy-quiz-accueil-mobile.mp4
+const VIDEO_MOBILE = getVideo("dydy-quiz-accueil-mobile");
 
 const STEPS = [
 	{ icon: QrCodeIcon, color: "var(--cyan)", title: "Un QR code", text: "Chacun scanne avec son téléphone, rien à installer." },
@@ -58,9 +60,13 @@ export default function LedApp() {
 					<ScrollReveal variant="right" delay={150}>
 						{VIDEO ? (
 							<figure>
-								<div className="big-screen rounded-2xl p-[3px]">
+								<div
+									className={`big-screen rounded-2xl p-[3px] ${
+										VIDEO_MOBILE ? "mx-auto max-w-[21rem] md:max-w-none" : ""
+									}`}>
 									<LoopVideo
 										video={VIDEO}
+										mobile={VIDEO_MOBILE}
 										label="Dydy Quiz en soirée : les invités jouent sur leur téléphone, le classement s’affiche sur grand écran"
 										className="rounded-[0.9rem]"
 									/>
