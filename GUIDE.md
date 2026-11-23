@@ -1,0 +1,95 @@
+# Gérer mon site sans Claude
+
+Recettes pas à pas pour les mises à jour courantes. Tout se fait dans le dossier du projet, ouvert dans VS Code.
+
+## Les 3 commandes à connaître
+
+Dans le terminal de VS Code (menu Terminal → Nouveau terminal) :
+
+| Commande | À quoi ça sert |
+|---|---|
+| `npm run dev -- --host` | Voir le site en direct sur le PC **et sur le téléphone** (même wifi, adresse « Network » affichée). Ctrl+C pour arrêter. |
+| `npm run videos` | Alléger les vidéos déposées (voir plus bas). |
+| `npm run build` | Fabriquer le site à mettre en ligne, dans `build/client/`. |
+
+Après chaque modification, vérifiez avec `npm run dev -- --host` avant de mettre en ligne.
+
+---
+
+## Ajouter des photos
+
+Déposez simplement les fichiers (jpg, png, webp) dans le bon dossier. Pas besoin de les redimensionner : le site les optimise tout seul.
+**Le nom du fichier sert de description pour Google** : décrivez ce qu'on voit, en minuscules avec des tirets, ex. `bars-soiree-quiz-colomiers.jpg` (pas `IMG_4521.jpg`).
+
+| Où sur le site | Dossier | Règle de nom |
+|---|---|---|
+| Accueil, tuiles « Vos événements » | `src/assets/evenements/` | Commence par `mariage`, `entreprise`, `anniversaire` ou `bars` (une photo par tuile, en paysage) |
+| Accueil, carrousel « Mais c'est qui Dydy Fantasy ? » | `src/assets/carrousel/` | Ordre = ordre alphabétique : commencez par `04-`, `05-`… |
+| Page Galerie | `src/assets/galerie/mariages/`, `entreprises/`, `anniversaires/`, `bars/`, `soirees/` | Libre (descriptif) |
+| Page Dydy Quiz, captures de l'appli | `src/assets/dydy-quiz/` | Ordre alphabétique : `01-`, `02-`… |
+
+⚠️ Ne mettez dans ces dossiers **que** les photos à afficher (pas de brouillons ni de copies) : tout ce qui s'y trouve apparaît sur le site.
+
+Vie privée : de dos ou de loin, c'est l'idéal. Visages reconnaissables = accord des personnes. Pas d'enfants reconnaissables.
+
+## Ajouter ou changer une vidéo
+
+1. Déposez la vidéo dans `src/assets/videos/` avec **exactement** ce nom (en écrasant l'ancienne) :
+   - `dydy-quiz-accueil.mp4` : boucle de l'accueil, format paysage, sans son ;
+   - `dydy-quiz-accueil-mobile.mp4` : même boucle en portrait, pour les téléphones ;
+   - `dydy-quiz-presentation.mp4` : vidéo « C'est quoi Dydy Quiz ? » de la page Dydy Quiz, avec le son.
+2. Image d'attente (affichée avant le chargement) : même nom en `.jpg`, ex. `dydy-quiz-accueil.jpg`.
+3. Conseillé : tapez `npm run videos`. La commande allège les nouvelles vidéos et range vos originaux dans `medias-sources/videos/` (jamais publié). On peut la relancer sans risque.
+   - Message « fichier bloqué » : arrêtez `npm run dev` (Ctrl+C) et relancez `npm run videos`.
+
+Les vidéos marchent aussi sans `npm run videos`, elles sont juste plus lourdes à charger.
+
+## Ajouter une référence client (bandeau « Ils m'ont fait confiance »)
+
+1. Déposez le logo (carré si possible, jpg / png / webp) dans `public/clients/`, ex. `mon-client.png`.
+2. Ouvrez `src/components/led/LedClients.jsx` et ajoutez une ligne dans la liste `CLIENTS`, sur le modèle des autres :
+
+```js
+{ name: "Nom du client", type: "Bar / restaurant", location: "Ville (31)", logo: "/clients/mon-client.png" },
+```
+
+Gardez bien les guillemets, les virgules et l'accolade. Sans logo, supprimez simplement `logo: "…"` : l'initiale s'affiche à la place.
+
+## Mettre à jour l'agenda (prochaines dates)
+
+L'agenda ne nécessite **pas** de rebuild : il est dans `public/events/events.js` (et sur le serveur dans `www/events/events.js`).
+
+- Copiez un bloc `{ … },` existant et changez les valeurs. La date s'écrit `"2026-12-31"`, l'heure `"20h00"`.
+- `publicEvent: false` pour une soirée privée (pas de lien vers la carte).
+- Affiche facultative : déposez l'image dans `public/events/` et écrivez `poster: "/events/mon-affiche.jpg"`.
+
+Sur le serveur, vous pouvez modifier directement `www/events/events.js` avec WinSCP : c'est en ligne immédiatement.
+
+## Changer un texte
+
+Cherchez la phrase dans VS Code (Ctrl+Maj+F, dans tout le projet), puis modifiez-la entre les guillemets. Repères :
+
+| Texte | Fichier |
+|---|---|
+| Accueil : quiz du haut | `src/components/led/HeroLed.jsx` |
+| Accueil : tuiles « Vos événements » | `src/components/led/LedEvents.jsx` |
+| Accueil : « Mais c'est qui Dydy Fantasy ? » | `src/components/led/LedAbout.jsx` |
+| Chiffres (soirées par mois, invités…) | `src/components/led/LedStats.jsx` |
+| Pages Mariage, Entreprise, Anniversaire, Bars | `src/pages/evenements/` |
+| Pages Blind test, Karaoké, DJ, Sur mesure | `src/pages/prestations/` |
+| Autres pages (Qui suis-je, Contact, Dydy Quiz…) | `src/pages/` |
+
+Le titre et la description vus dans Google sont dans le bloc `seo={{ … }}` (ou `<Seo … />`) en haut de chaque page : titre ~60 caractères max, description ~155 max.
+
+## Mettre en ligne
+
+1. **D'abord**, avec WinSCP, rapatriez le dossier serveur `www/events/` dans `public/events/` du projet (sinon l'envoi écrase l'agenda en ligne).
+2. `npm run build`
+3. Avec WinSCP (`ftp.cluster021.hosting.ovh.net`), envoyez **le contenu** de `build/client/` dans `www/`.
+4. Vérifiez le site sur le téléphone.
+
+## Si quelque chose casse
+
+- Le site ne s'affiche plus en `npm run dev` : le message d'erreur dans le terminal indique le fichier et la ligne (souvent une virgule ou un guillemet oublié).
+- Annuler toutes les modifications non enregistrées dans git : dans VS Code, onglet « Contrôle de code source » (icône branches), clic droit sur le fichier → « Ignorer les modifications ».
+- Le site en ligne reste celui du dernier envoi WinSCP : tant que vous n'envoyez rien, rien ne change en ligne.
