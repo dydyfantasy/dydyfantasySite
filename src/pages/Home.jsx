@@ -24,7 +24,7 @@ function Home() {
 			/>
 
 			<HeroLed />
-			<LedStats scoreboard />
+			<LedStats band />
 
 			<LedEvents />
 			<LedDivider color="var(--pink)" />

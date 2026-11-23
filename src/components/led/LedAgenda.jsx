@@ -11,6 +11,7 @@ import {
 import { useEvents } from "../../hooks/useEvents";
 import SectionTitle from "./SectionTitle";
 import ScrollReveal from "./ScrollReveal";
+import tete128 from "../../assets/brand/perso-tete-128.webp";
 
 const VISIBLE_COUNT = 4;
 
@@ -274,7 +275,12 @@ export default function LedAgenda() {
 	const shown = showAll ? others : others.slice(0, VISIBLE_COUNT);
 
 	return (
-		<section id="agenda" aria-labelledby="agenda-titre" className="scroll-mt-24 px-4 py-20">
+		<section id="agenda" aria-labelledby="agenda-titre" className="relative scroll-mt-24 px-4 py-20">
+			{/* La mascotte passe la tête par le bord de l’écran (ordinateur), décoratif */}
+			<ScrollReveal variant="right" aria-hidden="true" className="pointer-events-none absolute right-0 top-2 hidden items-center gap-3 xl:flex">
+				<p className="mascot-bubble bubble-right relative rounded-2xl px-4 py-2 text-sm font-extrabold">Psst… c’est par ici ! 👇</p>
+				<img src={tete128} alt="" width="128" height="128" loading="lazy" className="peek-head -mr-8 h-28 w-28" />
+			</ScrollReveal>
 			<div className="mx-auto max-w-6xl">
 				<SectionTitle id="agenda-titre" label="Agenda" title="Prochaines soirées blind test & karaoké" accent="autour de Toulouse">
 					Les soirées quiz, blind test et karaoké ouvertes à tous dans les bars et restaurants de la région toulousaine.

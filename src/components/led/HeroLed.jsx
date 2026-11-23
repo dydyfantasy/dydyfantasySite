@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import {
 	ArrowRightIcon,
@@ -20,6 +20,9 @@ import tete64 from "../../assets/brand/perso-tete-64.webp";
 import tete128 from "../../assets/brand/perso-tete-128.webp";
 import logo640 from "../../assets/brand/logo-texte-640.webp";
 import logo960 from "../../assets/brand/logo-texte-960.webp";
+import Spectrum from "./Spectrum";
+
+const COUNTDOWN = 10;
 
 // Les 4 réponses du quiz (textes repris des cartes d’origine).
 // Les liens pointeront vers /prestations/... quand ces pages existeront.
@@ -98,8 +101,18 @@ function ScenePhoto({ className = "" }) {
 export default function HeroLed() {
 	const [selected, setSelected] = useState(null);
 	const [burst, setBurst] = useState(null);
+	const [seconds, setSeconds] = useState(COUNTDOWN);
 	const gridRef = useRef(null);
 	const answer = ANSWERS.find((a) => a.letter === selected);
+
+	// Compte à rebours façon jeu télé (10 → 0, « Temps écoulé ! », puis ça repart) tant qu’on n’a pas répondu.
+	// Le HTML pré-rendu affiche « 10 » et la barre pleine.
+	useEffect(() => {
+		if (selected || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+		const id = window.setInterval(() => setSeconds((s) => (s <= 0 ? COUNTDOWN : s - 1)), 1000);
+		return () => window.clearInterval(id);
+	}, [selected]);
+	const timeUp = !answer && seconds === 0;
 
 	// Réponse choisie : confettis depuis le bouton cliqué (sauf si l’utilisateur limite les animations)
 	function choose(a, event) {
@@ -131,6 +144,8 @@ export default function HeroLed() {
 					aria-hidden="true"
 					className="absolute inset-0 hidden bg-[linear-gradient(180deg,rgb(5_4_10/0.5)_0%,transparent_22%,transparent_75%,rgb(5_4_10/0.9)_100%)] md:block"
 				/>
+				{/* Mobile : spectre audio qui pulse en bas de la photo (au-dessus du fondu, sous le logo) */}
+				<Spectrum className="absolute inset-x-0 bottom-0 flex h-16 md:hidden" />
 			</div>
 
 			{/* Lumières d’ambiance (dégradés fixes, pas de flou) */}
@@ -141,6 +156,8 @@ export default function HeroLed() {
 			<div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
 				<div className="light-beam h-full w-[200%] -translate-x-1/4" />
 			</div>
+			{/* Ordinateur : spectre audio sur toute la largeur, en bas du hero */}
+			<Spectrum className="absolute inset-x-0 bottom-0 -z-10 hidden h-32 md:flex" />
 
 			<div className="mx-auto max-w-6xl px-4 pb-12 md:flex md:min-h-[min(88svh,820px)] md:items-center md:py-14">
 				<div className="-mt-6 md:mt-0 md:ml-auto md:w-[50%] lg:w-[46%]">
@@ -179,17 +196,30 @@ export default function HeroLed() {
 							Question 01 / 01
 						</p>
 					</div>
-					<h2 className="mt-2 text-2xl font-extrabold leading-tight md:text-3xl">
+					<h2 className="mt-2 text-3xl font-extrabold leading-[1.05] tracking-tight md:text-4xl">
 						Quel type d’animation{" "}
-						<span className="text-[var(--cyan)]">recherchez-vous&nbsp;?</span>
+						<span className="quiz-question-accent text-[var(--cyan)]">recherchez-vous&nbsp;?</span>
 					</h2>
 
-					{/* Chrono façon jeu télé : se vide en boucle tant qu’on n’a pas répondu */}
-					<div aria-hidden="true" className="quiz-timer mt-3 h-1.5 overflow-hidden rounded-full bg-white/10">
+					{/* Compte à rebours : chiffre + barre qui se vide, remplie de la couleur de la réponse choisie */}
+					<div aria-hidden="true" className="mt-4 flex items-center gap-3">
 						<span
-							className={`quiz-timer-fill block h-full rounded-full ${answer ? "is-done" : ""}`}
-							style={answer ? { "--c": answer.color } : undefined}
-						/>
+							key={answer ? "ok" : seconds <= 3 ? `u${seconds}` : "n"}
+							className={`quiz-count flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-lg font-extrabold tabular-nums ${
+								!answer && seconds <= 3 ? "is-urgent" : ""
+							}`}
+							style={answer ? { "--c": answer.color } : undefined}>
+							{answer ? "✓" : seconds}
+						</span>
+						<span className="h-2.5 flex-1 overflow-hidden rounded-full bg-white/10">
+							<span
+								className={`quiz-timer-fill block h-full rounded-full ${answer ? "is-done" : ""}`}
+								style={{
+									transform: `scaleX(${answer ? 1 : seconds / COUNTDOWN})`,
+									...(answer ? { "--c": answer.color } : {}),
+								}}
+							/>
+						</span>
 					</div>
 
 					<div
@@ -202,7 +232,9 @@ export default function HeroLed() {
 								aria-pressed={selected === a.letter}
 								onClick={(event) => choose(a, event)}
 								style={{ "--c": a.color, "--i": i }}
-								className="answer-btn flex items-center gap-3 rounded-2xl p-2.5 text-left text-sm font-bold uppercase tracking-wide md:p-3 md:text-base">
+								className={`answer-btn answer-fill flex min-h-[4.25rem] items-center gap-3 rounded-2xl p-2.5 text-left text-sm font-extrabold uppercase tracking-wide md:p-3 md:text-base ${
+									selected && selected !== a.letter ? "is-dimmed" : ""
+								}`}>
 								<span className="answer-letter flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-lg font-extrabold md:h-11 md:w-11">
 									{a.letter}
 								</span>
@@ -228,8 +260,10 @@ export default function HeroLed() {
 						)}
 					</div>
 
-					<div className="mt-3 min-h-[9.5rem]" aria-live="polite">
-						{answer ? (
+					<div className="mt-3 min-h-[9.5rem]">
+						{/* Seul l’encart de réponse est annoncé aux lecteurs d’écran (pas le compte à rebours) */}
+						<div aria-live="polite">
+						{answer && (
 							<div
 								key={answer.letter}
 								style={{ "--c": answer.color }}
@@ -260,11 +294,18 @@ export default function HeroLed() {
 									</a>
 								</div>
 							</div>
-						) : (
-							<p className="pt-1 text-sm text-white/60">
-								👆 Choisissez une réponse pour découvrir l’expérience.
-							</p>
 						)}
+						</div>
+						{!answer &&
+							(timeUp ? (
+								<p key="time-up" className="answer-pop pt-1 text-sm font-bold text-[var(--pink)]">
+									⏰ Temps écoulé… mais vous pouvez encore répondre 😉
+								</p>
+							) : (
+								<p className="pt-1 text-sm text-white/60">
+									👆 Choisissez une réponse pour découvrir l’expérience.
+								</p>
+							))}
 					</div>
 
 					{/* Appels à l’action */}

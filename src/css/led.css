@@ -635,33 +635,127 @@ a.board-row:hover {
 	opacity: 0.5;
 }
 
-/* Chrono du quiz : se vide en boucle, se remplit de la couleur de la réponse choisie */
+/* Compte à rebours : la barre suit le chiffre (piloté par React, transition d'une seconde) */
 .quiz-timer-fill {
 	background: linear-gradient(90deg, var(--cyan), var(--pink));
 	transform-origin: left;
-	animation: quiz-timer 9s linear infinite;
+	transition: transform 1s linear;
 }
 
 .quiz-timer-fill.is-done {
 	background: var(--c);
-	animation: quiz-timer-full 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+	box-shadow: 0 0 14px var(--c);
+	transition-duration: 0.45s;
 }
 
-@keyframes quiz-timer {
+.quiz-count {
+	border: 2px solid var(--c, var(--cyan));
+	color: var(--c, var(--cyan));
+	background: rgb(5 4 10 / 0.7);
+	box-shadow: 0 0 18px -4px var(--c, var(--cyan));
+}
+
+/* 3, 2, 1… le chiffre passe au rose et « bat » */
+.quiz-count.is-urgent {
+	--c: var(--pink);
+	animation: count-beat 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes count-beat {
 	from {
-		transform: scaleX(1);
+		transform: scale(1.35);
 	}
 	to {
-		transform: scaleX(0);
+		transform: none;
 	}
 }
 
-@keyframes quiz-timer-full {
+/* Réponses en tuiles pleines, façon jeu (texte sombre sur la couleur) */
+.answer-fill {
+	border-color: transparent;
+	background: var(--c);
+	color: #05040a;
+	box-shadow: 0 6px 0 -1px color-mix(in srgb, var(--c) 45%, #05040a);
+	transition:
+		transform 0.15s ease,
+		box-shadow 0.2s ease,
+		opacity 0.3s ease;
+}
+
+.answer-fill:hover {
+	background: var(--c);
+	transform: translateY(-2px);
+	box-shadow:
+		0 8px 0 -1px color-mix(in srgb, var(--c) 45%, #05040a),
+		0 0 26px -4px var(--c);
+}
+
+.answer-fill .answer-letter {
+	background: #05040a;
+	color: var(--c);
+}
+
+.answer-fill .answer-icon {
+	color: #05040a;
+}
+
+.answer-fill[aria-pressed="true"] {
+	background: var(--c);
+	box-shadow:
+		0 0 0 3px #fff,
+		0 0 34px -2px var(--c);
+}
+
+/* Une fois la réponse choisie, les autres s'effacent (comme au moment de la révélation) */
+.answer-fill.is-dimmed {
+	opacity: 0.35;
+}
+
+.answer-fill.is-dimmed:hover {
+	opacity: 0.8;
+}
+
+/* Le halo du chenillard devient blanc sur les tuiles pleines */
+.is-chasing .answer-fill::after {
+	border-color: #fff;
+	box-shadow: 0 0 22px -2px #fff;
+}
+
+.quiz-question-accent {
+	text-shadow:
+		0 0 10px rgb(25 211 240 / 0.6),
+		0 0 30px rgb(25 211 240 / 0.35);
+}
+
+/* ---------- Spectre audio (bas du hero) ---------- */
+
+.spectrum {
+	mask-image: linear-gradient(to top, #000 35%, transparent);
+}
+
+.spectrum > span {
+	flex: 1;
+	height: 100%;
+	border-radius: 3px 3px 0 0;
+	opacity: 0.7;
+	transform-origin: bottom;
+	transform: scaleY(calc(var(--h) * 0.5));
+	animation: spectrum var(--d) ease-in-out var(--delay) infinite alternate;
+}
+
+@keyframes spectrum {
 	from {
-		transform: scaleX(0.2);
+		transform: scaleY(0.08);
 	}
 	to {
-		transform: scaleX(1);
+		transform: scaleY(var(--h));
+	}
+}
+
+/* Moins de barres sur mobile */
+@media (max-width: 767px) {
+	.spectrum > span:nth-child(n + 29) {
+		display: none;
 	}
 }
 
@@ -767,22 +861,128 @@ a.board-row:hover {
 	}
 }
 
-/* ---------- Tableau des scores (chiffres) ---------- */
+/* ---------- Bande des chiffres (inclinée, en dégradé) ---------- */
 
-.scoreboard {
-	border: 1.5px solid rgb(255 255 255 / 0.12);
-	background:
-		radial-gradient(circle, rgb(255 255 255 / 0.05) 1px, transparent 1.5px) 0 0 / 8px 8px,
-		linear-gradient(180deg, #0d0b16, #07060d);
+.stats-band {
+	position: relative;
+	overflow: hidden;
+	margin-inline: -6vw;
+	padding-inline: 6vw;
+	background: linear-gradient(100deg, var(--pink), #8b5cf6 50%, var(--cyan));
 	box-shadow:
-		inset 0 0 40px rgb(0 0 0 / 0.6),
-		0 0 40px -18px var(--cyan);
+		0 0 70px -12px rgb(255 47 174 / 0.55),
+		0 0 70px -12px rgb(25 211 240 / 0.4);
+	transform: rotate(-2.5deg);
 }
 
-@media (min-width: 768px) {
-	.scoreboard-grid > li + li {
-		border-left: 1px solid rgb(255 255 255 / 0.08);
+/* Reflet qui balaie la bande */
+.stats-band::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(100deg, transparent 35%, rgb(255 255 255 / 0.28) 50%, transparent 65%);
+	transform: translateX(-100%);
+	animation: band-shine 7s ease-in-out 1.5s infinite;
+	pointer-events: none;
+}
+
+@keyframes band-shine {
+	0%,
+	60% {
+		transform: translateX(-100%);
 	}
+	85%,
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+/* Chiffres géants, sombres sur la couleur */
+.band-value {
+	color: #05040a;
+	text-shadow: 0 2px 0 rgb(255 255 255 / 0.25);
+}
+
+/* ---------- Tuiles « Vos événements » en flyers ---------- */
+
+.flyer-card {
+	border: 1.5px solid color-mix(in srgb, var(--c) 55%, transparent);
+	background:
+		radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--c) 38%, transparent), transparent 55%),
+		linear-gradient(165deg, color-mix(in srgb, var(--c) 22%, #0b0912), #0b0912 68%);
+	transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+	transition:
+		transform 0.25s ease-out,
+		border-color 0.25s ease,
+		box-shadow 0.25s ease;
+}
+
+.flyer-card:hover {
+	border-color: var(--c);
+	box-shadow: 0 18px 50px -18px var(--c);
+}
+
+.flyer-card .event-stage {
+	background: radial-gradient(circle, rgb(255 255 255 / 0.05) 1px, transparent 1.5px) 0 0 / 10px 10px;
+}
+
+/* Mot géant en filigrane (contour seul), qui glisse au survol */
+.flyer-word::before {
+	content: attr(data-word);
+	position: absolute;
+	left: 0.4rem;
+	bottom: -0.14em;
+	font-size: clamp(3.4rem, 12vw, 6.5rem);
+	font-weight: 800;
+	line-height: 1;
+	letter-spacing: -0.03em;
+	text-transform: uppercase;
+	white-space: nowrap;
+	color: transparent;
+	-webkit-text-stroke: 1.5px color-mix(in srgb, var(--c) 60%, transparent);
+	opacity: 0.6;
+	transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+	pointer-events: none;
+}
+
+.group:hover .flyer-word::before {
+	transform: translateX(-8%);
+}
+
+/* ---------- Titres de section de l'accueil : géants et numérotés comme des pistes ---------- */
+
+.home-fun {
+	counter-reset: piste;
+}
+
+.home-fun .section-head {
+	max-width: 52rem;
+}
+
+.home-fun .section-heading {
+	font-size: clamp(2.2rem, 5.6vw, 3.75rem);
+	line-height: 1.02;
+	letter-spacing: -0.03em;
+}
+
+/* Le mot en couleur passe à la ligne, en néon */
+.home-fun .section-heading .section-accent {
+	display: block;
+}
+
+.home-fun .section-label > span:first-child {
+	display: none;
+}
+
+.home-fun .section-label::before {
+	counter-increment: piste;
+	content: counter(piste, decimal-leading-zero);
+	padding: 0.15rem 0.55rem;
+	border-radius: 9999px;
+	background: var(--pink);
+	color: #05040a;
+	font-weight: 800;
+	letter-spacing: 0.08em;
 }
 
 /* ---------- Bande LED entre les sections ---------- */
@@ -1055,31 +1255,63 @@ a.board-row:hover {
 	}
 }
 
+/* Bulle qui « parle » vers la droite (mascotte au bord de l'écran) */
+.mascot-bubble.bubble-right::after {
+	top: 50%;
+	bottom: auto;
+	left: auto;
+	right: -6px;
+	margin: -6px 0 0;
+}
+
+/* Tête de la mascotte qui dépasse du bord de l'écran et se dandine */
+.peek-head {
+	transform-origin: 70% 90%;
+	animation: peek-wiggle 2.6s ease-in-out infinite;
+	filter: drop-shadow(0 0 16px rgb(255 47 174 / 0.45));
+}
+
+@keyframes peek-wiggle {
+	0%,
+	100% {
+		transform: rotate(-14deg);
+	}
+	50% {
+		transform: rotate(-4deg) translateX(-6px);
+	}
+}
+
 /* ---------- Accessibilité : réduire les animations (accueil v3) ---------- */
 
 @media (prefers-reduced-motion: reduce) {
-	.quiz-timer-fill,
 	.good-answer,
 	.answer-btn[aria-pressed="true"],
+	.quiz-count.is-urgent,
 	.stage-cone,
 	.lb-gain,
 	.equalizer > span,
-	.mascot-bubble {
+	.mascot-bubble,
+	.peek-head,
+	.spectrum > span {
 		animation: none;
-	}
-
-	.quiz-timer-fill {
-		transform: none;
 	}
 
 	.confetti-burst,
 	.btn-shine::after,
-	.led-strip::after {
+	.led-strip::after,
+	.stats-band::after {
 		display: none;
 	}
 
+	.quiz-timer-fill,
 	.lb-row,
-	.lb-bar {
+	.lb-bar,
+	.flyer-card,
+	.flyer-word::before {
 		transition: none;
+	}
+
+	.flyer-card {
+		transform: none;
 	}
 }

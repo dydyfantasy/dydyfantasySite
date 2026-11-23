@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useEvents } from "../../hooks/useEvents";
@@ -14,9 +14,20 @@ export default function NextEventBubble() {
 	const events = useEvents();
 	const [closed, setClosed] = useState(false);
 	const { pathname } = useLocation();
+	const isHome = pathname === "/";
+	const [pastHero, setPastHero] = useState(false);
+
+	// Accueil : la bulle n’apparaît qu’une fois le hero dépassé (sur mobile, elle recouvrait le quiz)
+	useEffect(() => {
+		if (!isHome) return;
+		const onScroll = () => setPastHero(window.scrollY > window.innerHeight * 0.8);
+		onScroll();
+		window.addEventListener("scroll", onScroll, { passive: true });
+		return () => window.removeEventListener("scroll", onScroll);
+	}, [isHome]);
 
 	// Masquée sur la page Contact (elle recouvrirait le formulaire sur mobile)
-	if (!events || closed || pathname === "/contact") return null;
+	if (!events || closed || pathname === "/contact" || (isHome && !pastHero)) return null;
 
 	const today = new Date();
 	today.setHours(0, 0, 0, 0);
@@ -31,7 +42,7 @@ export default function NextEventBubble() {
 	const weekday = d.toLocaleDateString("fr-FR", { weekday: "short" }).replace(".", "");
 
 	return (
-		<div className="led next-bubble fixed bottom-4 right-4 z-50 w-[19rem] max-w-[calc(100vw-2rem)] rounded-2xl md:bottom-6 md:right-6 md:w-[25rem]">
+		<div className="led next-bubble answer-pop fixed bottom-4 right-4 z-50 w-[19rem] max-w-[calc(100vw-2rem)] rounded-2xl md:bottom-6 md:right-6 md:w-[25rem]">
 			<a
 				href="/#agenda"
 				className="flex items-center gap-3 rounded-2xl py-2 pl-2 pr-10 text-white md:gap-4 md:py-3 md:pl-3"

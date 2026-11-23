@@ -17,6 +17,7 @@ import ScrollReveal from "./ScrollReveal";
 const EVENTS = [
 	{
 		title: "Mariage",
+		word: "Mariage",
 		icon: HeartIcon,
 		color: "var(--pink)",
 		image: null,
@@ -26,6 +27,7 @@ const EVENTS = [
 	},
 	{
 		title: "Entreprise & team building",
+		word: "Entreprise",
 		icon: BriefcaseIcon,
 		color: "var(--cyan)",
 		image: null,
@@ -35,6 +37,7 @@ const EVENTS = [
 	},
 	{
 		title: "Anniversaire & soirée privée",
+		word: "Anniversaire",
 		icon: CakeIcon,
 		color: "var(--gold)",
 		image: null,
@@ -44,6 +47,7 @@ const EVENTS = [
 	},
 	{
 		title: "Bars & restaurants",
+		word: "Bars",
 		icon: BuildingStorefrontIcon,
 		color: "#7cff6b",
 		image: null,
@@ -55,6 +59,22 @@ const EVENTS = [
 
 // Place de chaque tuile dans la grille sur grand écran (même ordre que EVENTS)
 const LAYOUT = ["lg:row-span-2", "lg:col-span-2", "", ""];
+
+// Inclinaison 3D qui suit la souris (ordinateur uniquement ; rien au toucher)
+function tilt(event) {
+	if (event.pointerType !== "mouse") return;
+	const card = event.currentTarget;
+	const r = card.getBoundingClientRect();
+	const x = (event.clientX - r.left) / r.width - 0.5;
+	const y = (event.clientY - r.top) / r.height - 0.5;
+	card.style.setProperty("--ry", `${(x * 10).toFixed(2)}deg`);
+	card.style.setProperty("--rx", `${(-y * 10).toFixed(2)}deg`);
+}
+
+function untilt(event) {
+	event.currentTarget.style.setProperty("--rx", "0deg");
+	event.currentTarget.style.setProperty("--ry", "0deg");
+}
 
 export default function LedEvents() {
 	return (
@@ -76,10 +96,13 @@ export default function LedEvents() {
 							<Link
 								to={e.href}
 								style={{ "--c": e.color }}
-								className="neon-card neon-card-hover group flex h-full flex-col overflow-hidden rounded-3xl">
-								{/* Petite scène : projecteur qui balaie + icône en enseigne néon (photo plus tard) */}
+								onPointerMove={tilt}
+								onPointerLeave={untilt}
+								className="flyer-card group flex h-full flex-col overflow-hidden rounded-3xl">
+								{/* Flyer : mot géant en filigrane, projecteur qui balaie, icône en enseigne néon (photo plus tard) */}
 								<div
-									className={`event-stage relative flex h-40 items-center justify-center overflow-hidden md:h-44 ${i === 0 ? "lg:h-auto lg:flex-1" : ""}`}
+									data-word={e.word}
+									className={`event-stage flyer-word relative flex h-44 items-center justify-center overflow-hidden md:h-52 ${i === 0 ? "lg:h-auto lg:flex-1" : ""}`}
 									style={{ "--sway-delay": `${i * -1.7}s` }}>
 									{e.image ? (
 										<img src={e.image} alt={e.title} loading="lazy" className="h-full w-full object-cover" />
@@ -87,12 +110,12 @@ export default function LedEvents() {
 										<>
 											<span aria-hidden="true" className="stage-cone" />
 											<span aria-hidden="true" className="stage-floor" />
-											<e.icon aria-hidden="true" className="neon-icon relative h-16 w-16 md:h-20 md:w-20" />
+											<e.icon aria-hidden="true" className="neon-icon relative h-20 w-20 md:h-24 md:w-24" />
 										</>
 									)}
 								</div>
 								<div className={`flex flex-col p-6 ${i === 0 ? "" : "flex-1"}`}>
-									<h3 className="text-xl font-extrabold">{e.title}</h3>
+									<h3 className="text-2xl font-extrabold leading-tight">{e.title}</h3>
 									<p className="mt-2 flex-1 text-white/75">{e.text}</p>
 									<span className="mt-4 inline-flex items-center gap-1.5 font-semibold text-[var(--c)]">
 										{e.cta}
