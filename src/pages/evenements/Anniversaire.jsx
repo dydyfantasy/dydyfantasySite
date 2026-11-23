@@ -11,6 +11,7 @@ import {
 } from "@heroicons/react/24/outline";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
+import { photoFor } from "../../data/evenementsPhotos";
 
 const PATH = "/evenements/anniversaire";
 
@@ -23,7 +24,7 @@ export default function Anniversaire() {
 			seo={{
 				title: "Animation anniversaire à Toulouse & Gers | Dydy Fantasy",
 				description:
-					"Animateur pour anniversaire et soirée privée à Toulouse et dans le Gers : quiz sur la personne fêtée, blind test, karaoké et DJ. Une soirée inoubliable.",
+					"Animateur pour anniversaire et soirée privée à Toulouse et dans le Gers : quiz sur la personne fêtée, blind test, karaoké et DJ. Devis sous 24 h.",
 			}}
 			breadcrumb={[]}
 			title={
@@ -31,7 +32,8 @@ export default function Anniversaire() {
 					Animation <span className="text-[var(--gold)]">anniversaire</span> & soirée privée à Toulouse
 				</>
 			}
-			intro="30 ans, 40 ans, 50 ans ou simple envie de faire la fête : un quiz sur la personne fêtée, un blind test qui fait chanter tout le monde, du karaoké et un DJ pour danser. Une soirée dont tout le monde se souviendra."
+			intro="30 ans, 40 ans, 50 ans ou simple envie de faire la fête : un quiz sur la personne fêtée, un blind test qui fait chanter tout le monde, du karaoké et un DJ pour danser. Le cadeau, c’est la soirée."
+			photo={photoFor("anniversaire")}
 			color="var(--gold)"
 			pointsTitle={{ label: "L’idée", title: "Une soirée qui", accent: "vous ressemble" }}
 			points={[
@@ -52,7 +54,7 @@ export default function Anniversaire() {
 			faq={[
 				{ q: "Peut-on préparer une soirée surprise ?", a: "Oui, on prépare tout ensemble en toute discrétion, y compris les questions sur la personne fêtée." },
 				{ q: "Intervenez-vous à domicile ?", a: "Oui, selon la place disponible ; on fait le point ensemble sur le lieu et le matériel nécessaire." },
-				{ q: "Où intervenez-vous ?", a: "Basé à Fonsorbes, à l’ouest de Toulouse, j’interviens à Toulouse, en Haute-Garonne, dans le Gers et dans le Tarn." },
+				{ q: "Où intervenez-vous ?", a: "Basé à Fonsorbes, à l’ouest de Toulouse, j’interviens à Toulouse et partout en Occitanie : Haute-Garonne, Gers, Tarn…" },
 			]}
 		/>
 	);

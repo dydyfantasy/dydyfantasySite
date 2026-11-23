@@ -10,6 +10,7 @@ import {
 } from "@heroicons/react/24/outline";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
+import { photoFor } from "../../data/evenementsPhotos";
 
 const PATH = "/evenements/entreprise";
 
@@ -31,7 +32,8 @@ export default function Entreprise() {
 					<span className="text-[var(--cyan)]">Team building</span> & animation d’entreprise à Toulouse
 				</>
 			}
-			intro="Un quiz en équipes pour fédérer vos collaborateurs, une animation micro pour rythmer votre journée événement, puis une soirée qui marque les esprits. Des formats simples, fun et fédérateurs pour vos équipes."
+			intro="Un quiz en équipes pour fédérer vos collaborateurs, une animation micro pour rythmer votre journée, puis blind test, karaoké et DJ pour fêter ça. J’apporte tout le matériel : vous n’avez rien à gérer."
+			photo={photoFor("entreprise")}
 			color="var(--cyan)"
 			pointsTitle={{ label: "Vos besoins", title: "Un format pour chaque", accent: "objectif" }}
 			points={[
@@ -51,8 +53,8 @@ export default function Entreprise() {
 			faq={[
 				{ q: "Le quiz peut-il porter sur notre entreprise ?", a: "Oui : des manches sur votre entreprise, votre secteur ou votre actualité rendent le jeu encore plus fédérateur." },
 				{ q: "Avez-vous déjà animé des événements d’entreprise ?", a: "Oui, par exemple une journée VitalSport chez Décathlon Escalquens, en animation micro avec présentation de démonstrations." },
-				{ q: "Pouvez-vous intervenir dans nos locaux ?", a: "Oui, dans vos locaux ou dans le lieu de votre séminaire, à Toulouse et dans les départements voisins." },
-				{ q: "Établissez-vous des devis pour les entreprises ?", a: "Oui, contactez-moi avec la date, le lieu, le nombre de participants et le format souhaité." },
+				{ q: "Pouvez-vous intervenir dans nos locaux ?", a: "Oui, dans vos locaux ou dans le lieu de votre séminaire, à Toulouse et partout en Occitanie." },
+				{ q: "Établissez-vous des devis pour les entreprises ?", a: "Oui, contactez-moi avec la date, le lieu, le nombre de participants et le format souhaité : je vous réponds sous 24 h avec un devis tout compris." },
 			]}
 		/>
 	);

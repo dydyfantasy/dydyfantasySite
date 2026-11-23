@@ -10,6 +10,7 @@ import {
 } from "@heroicons/react/24/outline";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
+import { photoFor } from "../../data/evenementsPhotos";
 
 const PATH = "/evenements/bars-restaurants";
 
@@ -32,6 +33,7 @@ export default function BarsRestaurants() {
 				</>
 			}
 			intro="Des soirées régulières ou ponctuelles qui remplissent votre salle en semaine et fidélisent vos clients. C’est le cœur de mon activité : je suis animateur résident dans 3 bars autour de Toulouse, avec 12 à 15 soirées par mois."
+			photo={photoFor("bars")}
 			color="#7cff6b"
 			pointsTitle={{ label: "Pour votre établissement", title: "Une soirée qui", accent: "fait venir du monde" }}
 			points={[
