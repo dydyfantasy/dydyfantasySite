@@ -1,0 +1,17 @@
+VIDÉOS DU SITE (déposées sans code)
+
+1. dydy-quiz-accueil.mp4  -> accueil, section Dydy Quiz (remplace l'aperçu animé)
+   15 s max, SANS le son (elle tourne en boucle, muette), format paysage 16:9.
+
+2. dydy-quiz-presentation.mp4  -> page /dydy-quiz, section « C'est quoi Dydy Quiz ? »
+   ~1 min, AVEC le son, format paysage 16:9, lancée par le visiteur.
+
+Image d'attente (facultative mais conseillée) : même nom en .jpg / .png / .webp
+   ex. dydy-quiz-presentation.jpg (affichée avant la lecture et dans Google).
+
+Conseils :
+- MP4 (H.264) lu partout, iPhone compris. 720p suffit pour la boucle, 1080p pour la présentation.
+- Poids visé : boucle < 3 Mo, présentation < 15 Mo (Claude peut compresser avec ffmpeg).
+- Vie privée : partie de DÉMO avec de faux noms d'équipes, pas de visages ni de photos d'invités réels.
+- Pour Google (vidéo dans les résultats) : indiquer à Claude la date de mise en ligne et la durée
+  (PRESENTATION_META dans src/pages/DydyQuiz.jsx).

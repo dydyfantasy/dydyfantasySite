@@ -14,20 +14,25 @@ const LINKS = [
 // Page 404 (noindex) : servie par Apache pour toute adresse inconnue.
 export default function NotFound() {
 	return (
-		<div className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
+		<div className="led fun relative isolate overflow-hidden bg-[var(--ink)] text-white">
 			<Seo title="Page introuvable | Dydy Fantasy" noindex />
 			<StageLights />
 
 			<section className="mx-auto grid min-h-[75vh] max-w-5xl items-center gap-8 px-4 py-16 md:grid-cols-[16rem_minmax(0,1fr)] md:gap-12">
-				<img
-					src={perso440}
-					srcSet={`${perso240} 240w, ${perso440} 440w`}
-					sizes="(min-width: 768px) 16rem, 11rem"
-					alt="La mascotte Dydy Fantasy, perdue avec son micro"
-					width="440"
-					height="573"
-					className="mascot-bounce mx-auto h-auto w-44 md:w-64"
-				/>
+				<div className="relative mx-auto w-fit pt-12">
+					<p aria-hidden="true" className="mascot-bubble absolute left-1/2 top-0 z-10 w-max -translate-x-1/2 rounded-2xl px-4 py-2 text-sm font-extrabold">
+						Elle était là il y a 5 minutes… 🙈
+					</p>
+					<img
+						src={perso440}
+						srcSet={`${perso240} 240w, ${perso440} 440w`}
+						sizes="(min-width: 768px) 16rem, 11rem"
+						alt="La mascotte Dydy Fantasy, perdue avec son micro"
+						width="440"
+						height="573"
+						className="mascot-bounce mx-auto h-auto w-44 md:w-64"
+					/>
+				</div>
 
 				<div className="text-center md:text-left">
 					<p className="glow-cyan text-7xl font-extrabold leading-none md:text-8xl">404</p>

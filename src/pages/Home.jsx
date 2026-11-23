@@ -13,7 +13,7 @@ import LedDivider from "../components/led/LedDivider";
 
 function Home() {
 	return (
-		<div className="led home-fun relative isolate overflow-hidden bg-[var(--ink)] text-white">
+		<div className="led fun relative isolate overflow-hidden bg-[var(--ink)] text-white">
 			<StageLights />
 			<Seo
 				path="/"

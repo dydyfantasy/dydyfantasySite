@@ -133,7 +133,9 @@ function DemoScreen() {
 						aria-pressed={picked === a.letter}
 						onClick={() => setPicked(a.letter)}
 						style={{ "--c": a.color, "--i": i }}
-						className="answer-btn flex items-center gap-3 rounded-2xl p-2.5 text-left text-sm font-bold uppercase tracking-wide md:text-base">
+						className={`answer-btn answer-fill flex min-h-[3.75rem] items-center gap-3 rounded-2xl p-2.5 text-left text-sm font-extrabold uppercase tracking-wide md:text-base ${
+							picked && picked !== a.letter ? "is-dimmed" : ""
+						}`}>
 						<span className="answer-letter flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-lg font-extrabold">
 							{a.letter}
 						</span>

@@ -9,6 +9,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Seo from "../components/Seo";
 import StageLights from "../components/led/StageLights";
+import PeekingMascot from "../components/led/PeekingMascot";
 import ScrollReveal from "../components/led/ScrollReveal";
 import ContactForm from "../components/ContactForm";
 import tete64 from "../assets/brand/perso-tete-64.webp";
@@ -38,7 +39,7 @@ const DIRECT = [
 
 function Contact() {
 	return (
-		<div className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
+		<div className="led fun relative isolate overflow-hidden bg-[var(--ink)] text-white">
 			<StageLights />
 			<Seo
 				path="/contact"
@@ -49,7 +50,8 @@ function Contact() {
 			/>
 
 			{/* ---- En-tête ---- */}
-			<section className="px-4 pb-8 pt-10 md:pt-14">
+			<section className="relative px-4 pb-8 pt-10 md:pt-14">
+				<PeekingMascot text="Je vous réponds sous 24 h ! ⚡" className="top-6" />
 				<div className="mx-auto max-w-6xl">
 					<p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">
 						<span className="live-dot h-2 w-2 rounded-full bg-[var(--pink)]" aria-hidden="true" />

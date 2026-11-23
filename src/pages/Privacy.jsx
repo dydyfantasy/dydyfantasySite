@@ -3,7 +3,7 @@ import StageLights from "../components/led/StageLights";
 
 function Privacy() {
 	return (
-		<div className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
+		<div className="led fun relative isolate overflow-hidden bg-[var(--ink)] text-white">
 			<StageLights />
 			<Seo
 				path="/privacy"

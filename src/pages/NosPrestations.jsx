@@ -13,6 +13,9 @@ import StageLights from "../components/led/StageLights";
 import SectionTitle from "../components/led/SectionTitle";
 import ScrollReveal from "../components/led/ScrollReveal";
 import LedFinal from "../components/led/LedFinal";
+import Spectrum from "../components/led/Spectrum";
+import PeekingMascot from "../components/led/PeekingMascot";
+import LedDivider from "../components/led/LedDivider";
 import ClientOnlyZoneMap from "../components/ClientOnlyZoneMap";
 import { PRESTATIONS, EVENEMENTS } from "../data/navigation";
 import { STEPS } from "../data/steps";
@@ -73,7 +76,7 @@ function NosPrestations() {
 	};
 
 	return (
-		<div className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
+		<div className="led fun relative isolate overflow-hidden bg-[var(--ink)] text-white">
 			<StageLights />
 			<Seo
 				path="/prestations"
@@ -83,7 +86,8 @@ function NosPrestations() {
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
 
 			{/* ---- Hero ---- */}
-			<section className="px-4 pb-12 pt-10 md:pt-14">
+			<section className="relative px-4 pb-12 pt-10 md:pt-14">
+				<Spectrum className="absolute inset-x-0 bottom-0 -z-10 flex h-20 opacity-50 md:h-28" />
 				<div className="mx-auto max-w-6xl">
 					<p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">
 						<span className="live-dot h-2 w-2 rounded-full bg-[var(--pink)]" aria-hidden="true" />
@@ -153,7 +157,8 @@ function NosPrestations() {
 			</section>
 
 			{/* ---- Pour qui : 4 événements ---- */}
-			<section aria-labelledby="pour-qui" className="px-4 py-16">
+			<section aria-labelledby="pour-qui" className="relative px-4 py-16">
+				<PeekingMascot text="Vous hésitez ? Je vous conseille ! 💬" className="top-10" />
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="pour-qui" label="Pour qui ?" title="Des prestations adaptées à" accent="chaque événement." />
 					<ul className="mt-10 grid gap-x-12 sm:grid-cols-2">
@@ -183,6 +188,8 @@ function NosPrestations() {
 			</section>
 
 			{/* ---- Inclus ---- */}
+			<LedDivider color="var(--gold)" />
+
 			<section aria-labelledby="inclus" className="px-4 py-16">
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="inclus" label="Inclus" title="Ce que je peux inclure" accent="dans la prestation" />

@@ -312,7 +312,7 @@ export default function HeroLed() {
 					<div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
 						<a
 							href="/contact"
-							className="btn-neon btn-shine inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--pink)] px-6 py-3 font-bold text-white">
+							className="btn-neon inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--pink)] px-6 py-3 font-bold text-white">
 							Demander mon devis
 							<ArrowRightIcon className="h-5 w-5" />
 						</a>

@@ -4,6 +4,11 @@ import { QrCodeIcon, PlayCircleIcon, TrophyIcon, ShieldCheckIcon } from "@heroic
 import SectionTitle from "./SectionTitle";
 import ScrollReveal from "./ScrollReveal";
 import LiveLeaderboard from "./LiveLeaderboard";
+import LoopVideo from "./LoopVideo";
+import { getVideo } from "./videoAssets";
+
+// Vidéo de 15 s déposée dans src/assets/videos/dydy-quiz-accueil.mp4 : remplace l’aperçu animé
+const VIDEO = getVideo("dydy-quiz-accueil");
 
 const STEPS = [
 	{ icon: QrCodeIcon, color: "var(--cyan)", title: "Un QR code", text: "Chacun scanne avec son téléphone, rien à installer." },
@@ -51,7 +56,22 @@ export default function LedApp() {
 					</div>
 
 					<ScrollReveal variant="right" delay={150}>
-						<LiveLeaderboard />
+						{VIDEO ? (
+							<figure>
+								<div className="big-screen rounded-2xl p-[3px]">
+									<LoopVideo
+										video={VIDEO}
+										label="Dydy Quiz en soirée : les invités jouent sur leur téléphone, le classement s’affiche sur grand écran"
+										className="rounded-[0.9rem]"
+									/>
+								</div>
+								<figcaption className="mt-4 text-center text-sm text-white/55">
+									Dydy Quiz en vrai : vos invités jouent sur leur téléphone, le classement s’affiche en direct sur grand écran.
+								</figcaption>
+							</figure>
+						) : (
+							<LiveLeaderboard />
+						)}
 					</ScrollReveal>
 				</div>
 			</div>

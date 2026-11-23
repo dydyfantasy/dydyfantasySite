@@ -13,6 +13,9 @@ import StageLights from "./StageLights";
 import SectionTitle from "./SectionTitle";
 import ScrollReveal from "./ScrollReveal";
 import LedFinal from "./LedFinal";
+import Spectrum from "./Spectrum";
+import PeekingMascot from "./PeekingMascot";
+import LedDivider from "./LedDivider";
 import { STEPS } from "../../data/steps";
 
 const SITE = "https://dydyfantasy.fr";
@@ -89,13 +92,14 @@ export default function ServicePage({
 	];
 
 	return (
-		<div className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
+		<div className="led fun relative isolate overflow-hidden bg-[var(--ink)] text-white">
 			<Seo path={path} title={seo.title} description={seo.description} ogTitle={seo.ogTitle} />
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 			<StageLights />
 
 			{/* ---- Hero ---- */}
-			<section className="px-4 pb-16 pt-8 md:pt-12">
+			<section className="relative px-4 pb-16 pt-8 md:pt-12">
+				<Spectrum className="absolute inset-x-0 bottom-0 -z-10 flex h-20 opacity-50 md:h-28" />
 				<div className="mx-auto max-w-6xl">
 					<nav aria-label="Fil d’Ariane" className="text-sm text-white/65">
 						<ol className="flex flex-wrap items-center gap-1.5">
@@ -114,7 +118,7 @@ export default function ServicePage({
 
 					<div className="mt-8 grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
 						<div>
-							<h1 className="text-4xl font-extrabold leading-tight md:text-5xl">{title}</h1>
+							<h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight md:text-6xl">{title}</h1>
 							<p className="mt-5 text-lg leading-relaxed text-white/80">{intro}</p>
 							<div className="mt-7 flex flex-col gap-3 sm:flex-row">
 								<Link to="/contact" className="btn-neon inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--pink)] px-6 py-3.5 font-bold text-white">
@@ -141,7 +145,7 @@ export default function ServicePage({
 						<ul className="mt-10 grid gap-x-12 sm:grid-cols-2">
 							{points.map((item, i) => (
 								<ScrollReveal as="li" key={item.title} delay={(i % 2) * 90} className="flex gap-4 border-t border-white/10 py-6" style={{ "--c": item.color ?? COLORS[i % 4] }}>
-									<item.icon aria-hidden="true" className="h-8 w-8 shrink-0 text-[var(--c)]" />
+									<item.icon aria-hidden="true" className="neon-icon h-8 w-8 shrink-0" />
 									<div>
 										<h3 className="text-lg font-extrabold">{item.title}</h3>
 										<p className="mt-1 text-white/75">{item.text}</p>
@@ -168,7 +172,7 @@ export default function ServicePage({
 									<span className="w-10 shrink-0 text-3xl font-extrabold text-[var(--c)]">0{i + 1}</span>
 									<div>
 										<h3 className="flex items-center gap-2 text-xl font-extrabold">
-											{item.icon && <item.icon aria-hidden="true" className="h-6 w-6 text-[var(--c)]" />}
+											{item.icon && <item.icon aria-hidden="true" className="neon-icon h-6 w-6" />}
 											{item.title}
 										</h3>
 										<p className="mt-2 text-white/75">{item.text}</p>
@@ -179,6 +183,8 @@ export default function ServicePage({
 					</div>
 				</section>
 			)}
+
+			<LedDivider color="var(--pink)" />
 
 			{/* ---- Déroulé : frise ---- */}
 			<section aria-labelledby="deroule" className="px-4 py-16">
@@ -207,7 +213,7 @@ export default function ServicePage({
 						<ul className="mt-10 grid gap-x-12 sm:grid-cols-2">
 							{included.map((item, i) => (
 								<ScrollReveal as="li" key={item.title} delay={(i % 2) * 90} className="flex gap-4 border-t border-white/10 py-6" style={{ "--c": COLORS[i % 4] }}>
-									<item.icon aria-hidden="true" className="h-7 w-7 shrink-0 text-[var(--c)]" />
+									<item.icon aria-hidden="true" className="neon-icon h-7 w-7 shrink-0" />
 									<div>
 										<h3 className="font-extrabold">
 											{item.to ? (
@@ -227,9 +233,12 @@ export default function ServicePage({
 				</section>
 			)}
 
+			<LedDivider color="var(--cyan)" reverse />
+
 			{/* ---- FAQ ---- */}
 			{faq.length > 0 && (
-				<section aria-labelledby="faq" className="px-4 py-16">
+				<section aria-labelledby="faq" className="relative px-4 py-16">
+				<PeekingMascot text="Une question ? Je vous réponds sous 24 h !" className="top-10" />
 					<div className="mx-auto max-w-3xl">
 						<SectionTitle id="faq" label="FAQ" title="Vos" accent="questions" />
 						<div className="mt-8 space-y-3">

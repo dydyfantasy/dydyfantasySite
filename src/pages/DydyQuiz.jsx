@@ -18,6 +18,18 @@ import StageLights from "../components/led/StageLights";
 import SectionTitle from "../components/led/SectionTitle";
 import ScrollReveal from "../components/led/ScrollReveal";
 import LedFinal from "../components/led/LedFinal";
+import Spectrum from "../components/led/Spectrum";
+import PeekingMascot from "../components/led/PeekingMascot";
+import LedDivider from "../components/led/LedDivider";
+import { getVideo } from "../components/led/videoAssets";
+
+// Vidéo « C’est quoi Dydy Quiz ? » (~1 min, avec le son) : src/assets/videos/dydy-quiz-presentation.mp4
+// (+ image d’attente dydy-quiz-presentation.jpg). Section masquée tant qu’elle n’est pas déposée.
+const PRESENTATION = getVideo("dydy-quiz-presentation");
+// Données structurées VideoObject (vidéo visible dans les résultats Google) : renseigner la date
+// de mise en ligne (AAAA-MM-JJ) et la durée (ex. "PT1M05S") ; sans date ni image d’attente, rien n’est publié.
+const PRESENTATION_META = { uploadDate: "", duration: "" };
+const SITE = "https://dydyfantasy.fr";
 
 // Captures d'écran : tout fichier déposé dans src/assets/dydy-quiz/ (ordre alphabétique),
 // optimisé à la compilation. Le nom du fichier sert de description.
@@ -68,11 +80,44 @@ function PhoneSlot({ shot, i }) {
 	);
 }
 
+// Grande vidéo de présentation, dans le cadre « grand écran » ; rien n’est téléchargé avant le clic
+function PresentationVideo({ video }) {
+	return (
+		<div className="big-screen rounded-2xl p-[3px]">
+			<video
+				controls
+				playsInline
+				preload="none"
+				poster={video.poster}
+				aria-label="Vidéo : c’est quoi Dydy Quiz ?"
+				className="block aspect-video w-full rounded-[0.9rem] bg-black">
+				{video.sources.map((s) => (
+					<source key={s.src} src={s.src} type={s.type} />
+				))}
+			</video>
+		</div>
+	);
+}
+
 export default function DydyQuiz() {
 	const shots = SHOTS.length ? SHOTS : [null, null, null];
+	const videoJsonLd =
+		PRESENTATION && PRESENTATION.poster && PRESENTATION_META.uploadDate
+			? {
+					"@context": "https://schema.org",
+					"@type": "VideoObject",
+					name: "C’est quoi Dydy Quiz ?",
+					description:
+						"Dydy Quiz, l’appli développée par Dydy Fantasy : les invités scannent un QR code et jouent depuis leur téléphone, le classement s’affiche en direct sur grand écran.",
+					thumbnailUrl: SITE + PRESENTATION.poster,
+					contentUrl: SITE + PRESENTATION.sources[PRESENTATION.sources.length - 1].src,
+					uploadDate: PRESENTATION_META.uploadDate,
+					...(PRESENTATION_META.duration ? { duration: PRESENTATION_META.duration } : {}),
+				}
+			: null;
 
 	return (
-		<div className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
+		<div className="led fun relative isolate overflow-hidden bg-[var(--ink)] text-white">
 			<StageLights />
 			<Seo
 				path="/dydy-quiz"
@@ -80,9 +125,11 @@ export default function DydyQuiz() {
 				description="Dydy Quiz, l’appli maison de Dydy Fantasy : quiz, blind test, sondages et défis photo sur smartphone via QR code. Utilisée dans plus de 150 soirées."
 				ogTitle="Dydy Quiz : toute la salle joue depuis son téléphone"
 			/>
+			{videoJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoJsonLd) }} />}
 
 			{/* ---- Hero ---- */}
-			<section className="px-4 pb-16 pt-10 md:pt-14">
+			<section className="relative px-4 pb-16 pt-10 md:pt-14">
+				<Spectrum className="absolute inset-x-0 bottom-0 -z-10 flex h-20 opacity-50 md:h-28" />
 				<div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
 					<div>
 						<p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">
@@ -107,9 +154,16 @@ export default function DydyQuiz() {
 								Demander mon devis
 								<ArrowRightIcon className="h-5 w-5" />
 							</Link>
-							<a href="#modes" className="btn-outline-neon inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--cyan)] px-6 py-3.5 font-semibold text-[var(--cyan)]">
-								Voir les modes de jeu
-							</a>
+							{PRESENTATION ? (
+								<a href="#video" className="btn-outline-neon inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--cyan)] px-6 py-3.5 font-semibold text-[var(--cyan)]">
+									<PlayCircleIcon aria-hidden="true" className="h-5 w-5" />
+									Voir la vidéo
+								</a>
+							) : (
+								<a href="#modes" className="btn-outline-neon inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--cyan)] px-6 py-3.5 font-semibold text-[var(--cyan)]">
+									Voir les modes de jeu
+								</a>
+							)}
 						</div>
 					</div>
 					<ScrollReveal variant="zoom">
@@ -117,6 +171,29 @@ export default function DydyQuiz() {
 					</ScrollReveal>
 				</div>
 			</section>
+
+			{/* ---- Vidéo « C’est quoi Dydy Quiz ? » (affichée dès que le fichier est déposé) ---- */}
+			{PRESENTATION ? (
+				<section id="video" aria-labelledby="video-titre" className="scroll-mt-24 px-4 py-16">
+					<div className="mx-auto max-w-5xl">
+						<SectionTitle id="video-titre" label="En vidéo" title="C’est quoi" accent="Dydy Quiz ?" center />
+						<ScrollReveal variant="zoom" className="mt-10">
+							<PresentationVideo video={PRESENTATION} />
+						</ScrollReveal>
+					</div>
+				</section>
+			) : (
+				import.meta.env.DEV && (
+					// Rappel visible uniquement en développement (npm run dev), jamais sur le site en ligne
+					<section className="px-4 py-10">
+						<div className="mx-auto max-w-5xl rounded-2xl border-2 border-dashed border-white/25 p-8 text-center text-white/60">
+							<PlayCircleIcon aria-hidden="true" className="mx-auto h-12 w-12" />
+							<p className="mt-3 font-bold">Emplacement de la vidéo « C’est quoi Dydy Quiz ? »</p>
+							<p className="mt-1 text-sm">Déposez dydy-quiz-presentation.mp4 dans src/assets/videos/</p>
+						</div>
+					</section>
+				)
+			)}
 
 			{/* ---- Comment ça marche ---- */}
 			<section aria-labelledby="fonctionnement" className="px-4 py-16">
@@ -137,8 +214,11 @@ export default function DydyQuiz() {
 				</div>
 			</section>
 
+			<LedDivider color="var(--pink)" />
+
 			{/* ---- Modes de jeu ---- */}
-			<section id="modes" aria-labelledby="modes-titre" className="scroll-mt-24 px-4 py-16">
+			<section id="modes" aria-labelledby="modes-titre" className="relative scroll-mt-24 px-4 py-16">
+				<PeekingMascot text="Mon mode préféré ? Tous ! 😄" className="top-10" />
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="modes-titre" label="Les modes de jeu" title="Une appli," accent="mille façons de jouer" />
 					<ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -168,6 +248,8 @@ export default function DydyQuiz() {
 					</ul>
 				</div>
 			</section>
+
+			<LedDivider color="var(--gold)" reverse />
 
 			{/* ---- Rassurance ---- */}
 			<section aria-labelledby="rassurance" className="px-4 py-16">

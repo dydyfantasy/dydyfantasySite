@@ -126,7 +126,7 @@ export default function Galerie() {
 	const move = (step) => setOpened((i) => (i === null ? i : (i + step + visible.length) % visible.length));
 
 	return (
-		<div className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
+		<div className="led fun relative isolate overflow-hidden bg-[var(--ink)] text-white">
 			<Seo
 				path="/galerie"
 				title="Galerie photos et vidéos de soirées | Dydy Fantasy"

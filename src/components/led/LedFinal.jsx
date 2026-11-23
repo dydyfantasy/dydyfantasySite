@@ -19,7 +19,7 @@ const SOCIALS = [
 
 // Appel à l’action final, signé par la mascotte + liens internes (maillage SEO) + réseaux sociaux
 // title / text optionnels : permettent à une page d’utiliser sa propre conclusion
-export default function LedFinal({ title, text, bubble }) {
+export default function LedFinal({ title, text, bubble = "À vous de jouer ! 🎤" }) {
 	return (
 		<section aria-labelledby="final-titre" className="px-4 pb-24 pt-10">
 			<ScrollReveal

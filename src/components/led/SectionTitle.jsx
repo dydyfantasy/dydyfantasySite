@@ -1,6 +1,6 @@
 import ScrollReveal from "./ScrollReveal";
 // En-tête de section commun à l’accueil v2 : petit label rose + titre avec mot en cyan.
-// Classes section-head / section-label / section-heading / section-accent : sur l’accueil (.home-fun),
+// Classes section-head / section-label / section-heading / section-accent : sur les pages (.fun),
 // titres géants sur deux lignes et label numéroté comme les pistes d’un set (voir led.css).
 export default function SectionTitle({ id, label, title, accent, children, center = false }) {
 	return (

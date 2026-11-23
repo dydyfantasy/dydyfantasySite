@@ -20,6 +20,9 @@ import StageLights from "../components/led/StageLights";
 import SectionTitle from "../components/led/SectionTitle";
 import ScrollReveal from "../components/led/ScrollReveal";
 import LedFinal from "../components/led/LedFinal";
+import Spectrum from "../components/led/Spectrum";
+import PeekingMascot from "../components/led/PeekingMascot";
+import LedDivider from "../components/led/LedDivider";
 
 // Textes repris de l’ancienne page (OurApproach.jsx). Seules les étapes 02 et 03
 // ont été complétées pour souligner la co-construction (« ensemble »).
@@ -88,7 +91,7 @@ const RESULTS = [
 
 function NotreApproche() {
 	return (
-		<div className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
+		<div className="led fun relative isolate overflow-hidden bg-[var(--ink)] text-white">
 			<StageLights />
 			<Seo
 				path="/mon-approche"
@@ -99,7 +102,8 @@ function NotreApproche() {
 			/>
 
 			{/* ---- Hero ---- */}
-			<section className="px-4 pb-14 pt-10 md:pt-14">
+			<section className="relative px-4 pb-14 pt-10 md:pt-14">
+				<Spectrum className="absolute inset-x-0 bottom-0 -z-10 flex h-20 opacity-50 md:h-28" />
 				<div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)]">
 					<div>
 						<p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">
@@ -176,7 +180,8 @@ function NotreApproche() {
 			</section>
 
 			{/* ---- Engagements ---- */}
-			<section aria-labelledby="engagements" className="px-4 py-16">
+			<section aria-labelledby="engagements" className="relative px-4 py-16">
+				<PeekingMascot text="On construit ça ensemble ! 🤝" className="top-10" />
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="engagements" label="Mes engagements" title="Ce qui fait" accent="la différence" />
 					<ul className="mt-10 grid gap-x-12 sm:grid-cols-2">
@@ -194,6 +199,8 @@ function NotreApproche() {
 			</section>
 
 			{/* ---- Résultat ---- */}
+			<LedDivider color="var(--cyan)" reverse />
+
 			<section aria-labelledby="resultat" className="px-4 py-12">
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="resultat" label="Le résultat" title="Ce que vivent" accent="vos invités" />

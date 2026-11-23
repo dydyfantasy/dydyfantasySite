@@ -17,6 +17,9 @@ import StageLights from "../components/led/StageLights";
 import SectionTitle from "../components/led/SectionTitle";
 import ScrollReveal from "../components/led/ScrollReveal";
 import LedFinal from "../components/led/LedFinal";
+import Spectrum from "../components/led/Spectrum";
+import PeekingMascot from "../components/led/PeekingMascot";
+import LedDivider from "../components/led/LedDivider";
 import LedStats from "../components/led/LedStats";
 import portraitSrcSet from "../assets/PhotoPresentation.webp?w=480;900&format=webp&quality=80&as=srcset";
 import portrait from "../assets/PhotoPresentation.webp?w=900&format=webp&quality=80";
@@ -51,7 +54,7 @@ const SERVICES = [
 
 function QuiSuisje() {
 	return (
-		<div className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
+		<div className="led fun relative isolate overflow-hidden bg-[var(--ink)] text-white">
 			<StageLights />
 			<Seo
 				path="/qui-suis-je"
@@ -62,7 +65,8 @@ function QuiSuisje() {
 			/>
 
 			{/* ---- Hero : l’accroche + le portrait ---- */}
-			<section className="px-4 pb-16 pt-10 md:pt-14">
+			<section className="relative px-4 pb-16 pt-10 md:pt-14">
+				<Spectrum className="absolute inset-x-0 bottom-0 -z-10 flex h-20 opacity-50 md:h-28" />
 				<div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
 					<div>
 						<p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">
@@ -119,7 +123,7 @@ function QuiSuisje() {
 			</section>
 
 			{/* ---- Chiffres ---- */}
-			<LedStats />
+			<LedStats band />
 
 			{/* ---- Les deux casquettes ---- */}
 			<section aria-labelledby="casquettes" className="px-4 py-16">
@@ -200,7 +204,10 @@ function QuiSuisje() {
 			</section>
 
 			{/* ---- Ce que je propose (liens vers les pages détaillées) ---- */}
-			<section aria-labelledby="propose" className="px-4 py-16">
+			<LedDivider color="var(--pink)" />
+
+			<section aria-labelledby="propose" className="relative px-4 py-16">
+				<PeekingMascot text="Moi, en version mascotte 😎" className="top-10" />
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="propose" label="Ce que je propose" title="Mes" accent="animations" />
 					<ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

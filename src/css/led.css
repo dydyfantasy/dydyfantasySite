@@ -272,7 +272,9 @@
 .neon-card {
 	--c: var(--cyan);
 	border: 1.5px solid color-mix(in srgb, var(--c) 45%, transparent);
-	background: color-mix(in srgb, var(--c) 6%, #0b0912);
+	background:
+		radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--c) 16%, transparent), transparent 55%),
+		color-mix(in srgb, var(--c) 6%, #0b0912);
 }
 
 .neon-card-hover {
@@ -832,14 +834,14 @@ a.board-row:hover {
 	}
 }
 
-/* Reflet qui traverse le bouton « Demander mon devis » toutes les quelques secondes */
-.btn-shine {
+/* Reflet qui traverse les boutons principaux (« Demander mon devis »…) toutes les quelques secondes */
+.btn-neon {
 	position: relative;
 	overflow: hidden;
 	isolation: isolate;
 }
 
-.btn-shine::after {
+.btn-neon::after {
 	content: "";
 	position: absolute;
 	inset: 0;
@@ -975,30 +977,30 @@ a.board-row:hover {
 
 /* ---------- Titres de section de l'accueil : géants et numérotés comme des pistes ---------- */
 
-.home-fun {
+.fun {
 	counter-reset: piste;
 }
 
-.home-fun .section-head {
+.fun .section-head {
 	max-width: 52rem;
 }
 
-.home-fun .section-heading {
+.fun .section-heading {
 	font-size: clamp(2.2rem, 5.6vw, 3.75rem);
 	line-height: 1.02;
 	letter-spacing: -0.03em;
 }
 
 /* Le mot en couleur passe à la ligne, en néon */
-.home-fun .section-heading .section-accent {
+.fun .section-heading .section-accent {
 	display: block;
 }
 
-.home-fun .section-label > span:first-child {
+.fun .section-label > span:first-child {
 	display: none;
 }
 
-.home-fun .section-label::before {
+.fun .section-label::before {
 	counter-increment: piste;
 	content: counter(piste, decimal-leading-zero);
 	padding: 0.15rem 0.55rem;
@@ -1109,11 +1111,11 @@ a.board-row:hover {
 }
 
 /* Le néon « s’allume » en grésillant quand la tuile apparaît */
-.home-fun .reveal-out .neon-icon {
+.fun .reveal-out .neon-icon {
 	opacity: 0.12;
 }
 
-.home-fun .reveal-in .neon-icon {
+.fun .reveal-in .neon-icon {
 	animation: neon-on 1.3s linear both;
 	animation-delay: calc(var(--reveal-delay, 0ms) + 250ms);
 }
@@ -1140,14 +1142,21 @@ a.board-row:hover {
 	}
 }
 
-/* Mots en couleur des titres : néon qui s’allume (accueil uniquement) */
-.home-fun .section-accent {
+/* Mots en couleur des grands titres de page (H1) : néon */
+.fun h1 span {
+	text-shadow:
+		0 0 12px color-mix(in srgb, currentColor 70%, transparent),
+		0 0 34px color-mix(in srgb, currentColor 40%, transparent);
+}
+
+/* Mots en couleur des titres de section : néon qui s’allume */
+.fun .section-accent {
 	text-shadow:
 		0 0 8px rgb(25 211 240 / 0.55),
 		0 0 26px rgb(25 211 240 / 0.3);
 }
 
-.home-fun .reveal-in .section-accent {
+.fun .reveal-in .section-accent {
 	animation: neon-on 1.4s linear 0.35s both;
 }
 
@@ -1321,7 +1330,7 @@ a.board-row:hover {
 	}
 
 	.confetti-burst,
-	.btn-shine::after,
+	.btn-neon::after,
 	.led-strip::after,
 	.stats-band::after {
 		display: none;
