@@ -13,34 +13,9 @@ import ScrollReveal from "./ScrollReveal";
 // et prépare les futures pages « Vos événements » (/evenements/mariage, etc.).
 // Liens : vers les pages « Vos événements ».
 //
-// Photos SANS CODE : déposez dans src/assets/evenements/ un fichier dont le nom commence par
-// « mariage », « entreprise », « anniversaire » ou « bars » (ex. mariage-premiere-danse-toulouse.jpg).
-// Il est redimensionné et converti en WebP à la compilation ; le nom du fichier sert de texte
-// alternatif (SEO). Sans photo, la tuile garde son flyer coloré avec l’icône néon.
-const photoSets = import.meta.glob("../../assets/evenements/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
-	eager: true,
-	query: { w: "480;640;800;1200", format: "webp", quality: "78", as: "srcset" },
-	import: "default",
-});
-const photoFallbacks = import.meta.glob("../../assets/evenements/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
-	eager: true,
-	query: { w: "800", format: "webp", quality: "78" },
-	import: "default",
-});
-
-function photoFor(slug) {
-	const path = Object.keys(photoSets)
-		.sort()
-		.find((p) => p.split("/").pop().toLowerCase().startsWith(slug));
-	if (!path) return null;
-	// « mariage-premiere-danse-toulouse.jpg » -> « mariage premiere danse toulouse »
-	const alt = path
-		.split("/")
-		.pop()
-		.replace(/.[^.]+$/, "")
-		.replace(/[-_]+/g, " ");
-	return { srcSet: photoSets[path], src: photoFallbacks[path], alt };
-}
+// Photos SANS CODE (src/assets/evenements/, voir src/data/evenementsPhotos.js).
+// Sans photo, la tuile garde son flyer coloré avec l’icône néon.
+import { photoFor } from "../../data/evenementsPhotos";
 
 const EVENTS = [
 	{

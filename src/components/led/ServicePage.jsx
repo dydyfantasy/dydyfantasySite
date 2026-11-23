@@ -32,14 +32,25 @@ const DEFAULT_INCLUDED = [
 	{ icon: CameraIcon, title: "Contenus réseaux", text: "Selon la soirée, quelques photos ou vidéos réutilisables pour votre communication." },
 ];
 
-// Emplacement photo vide (à remplir plus tard : passer `image` à la page)
-function PhotoSlot({ image, alt, color = "var(--pink)" }) {
+// Photo du haut de page : `photo` = { src, srcSet, alt } (ex. photoFor("mariage")), sinon emplacement vide.
+// Image principale de la page : chargée en priorité (pas de lazy loading).
+function PhotoSlot({ photo, color = "var(--pink)" }) {
 	return (
 		<div className="neon-card overflow-hidden rounded-3xl" style={{ "--c": color }}>
-			{image ? (
-				<img src={image} alt={alt} className="aspect-[4/3] w-full object-cover" />
+			{photo ? (
+				<img
+					src={photo.src}
+					srcSet={photo.srcSet}
+					sizes="(min-width: 1024px) 560px, calc(100vw - 2rem)"
+					alt={photo.alt}
+					width="1200"
+					height="800"
+					fetchPriority="high"
+					decoding="async"
+					className="aspect-[3/2] w-full object-cover"
+				/>
 			) : (
-				<div aria-hidden="true" className="event-visual flex aspect-[4/3] items-center justify-center">
+				<div aria-hidden="true" className="event-visual flex aspect-[3/2] items-center justify-center">
 					<PhotoIcon className="h-14 w-14 text-[var(--c)] opacity-70" />
 				</div>
 			)}
@@ -59,7 +70,7 @@ export default function ServicePage({
 	title, // contenu JSX du H1
 	intro,
 	aside, // élément affiché à droite du hero (sinon emplacement photo)
-	image,
+	photo, // { src, srcSet, alt } : photo du haut de page (src/data/evenementsPhotos.js)
 	color = "var(--pink)",
 	points = [], // { icon, color, title, text } — « Pour qui » / « Ce que je propose »
 	pointsTitle,
@@ -130,7 +141,7 @@ export default function ServicePage({
 								</a>
 							</div>
 						</div>
-						{aside ?? <PhotoSlot image={image} alt={name} color={color} />}
+						{aside ?? <PhotoSlot photo={photo} color={color} />}
 					</div>
 				</div>
 			</section>

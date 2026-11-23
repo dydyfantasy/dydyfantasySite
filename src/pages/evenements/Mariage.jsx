@@ -11,6 +11,7 @@ import {
 } from "@heroicons/react/24/outline";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
+import { photoFor } from "../../data/evenementsPhotos";
 
 const PATH = "/evenements/mariage";
 
@@ -33,6 +34,7 @@ export default function Mariage() {
 				</>
 			}
 			intro="Un mariage où vos invités ne font pas que regarder : un quiz sur les mariés pendant le repas, un blind test qui fait chanter toutes les générations, puis un DJ pour danser jusqu’au bout de la nuit."
+			photo={photoFor("mariage")}
 			color="var(--pink)"
 			pointsTitle={{ label: "Pourquoi moi", title: "Un mariage qui", accent: "fait participer" }}
 			points={[
