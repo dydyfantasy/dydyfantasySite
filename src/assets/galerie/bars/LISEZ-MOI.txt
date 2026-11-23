@@ -1,2 +1,3 @@
 Déposez ici les photos (jpg, png, webp) et vidéos courtes (mp4, webm) de la catégorie « bars ».
 Le nom du fichier sert de description (SEO) : ex. blind-test-la-ville-en-rose-colomiers.jpg
+Vidéos : .mp4 ou .mov (iPhone), puis taper « npm run videos » pour les alléger (son gardé). Voir GUIDE.md.

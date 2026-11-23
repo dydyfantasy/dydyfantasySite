@@ -25,7 +25,7 @@ Déposez simplement les fichiers (jpg, png, webp) dans le bon dossier. Pas besoi
 |---|---|---|
 | Accueil, tuiles « Vos événements » | `src/assets/evenements/` | Commence par `mariage`, `entreprise`, `anniversaire` ou `bars` (une photo par tuile, en paysage) |
 | Accueil, carrousel « Mais c'est qui Dydy Fantasy ? » | `src/assets/carrousel/` | Ordre = ordre alphabétique : commencez par `04-`, `05-`… |
-| Page Galerie | `src/assets/galerie/mariages/`, `entreprises/`, `anniversaires/`, `bars/`, `soirees/` | Libre (descriptif) |
+| Page Galerie (photos **et vidéos**) | `src/assets/galerie/mariages/`, `entreprises/`, `anniversaires/`, `bars/`, `soirees/` | Libre (descriptif). Vidéos : voir plus bas |
 | Page Dydy Quiz, captures de l'appli | `src/assets/dydy-quiz/` | Ordre alphabétique : `01-`, `02-`… |
 
 ⚠️ Ne mettez dans ces dossiers **que** les photos à afficher (pas de brouillons ni de copies) : tout ce qui s'y trouve apparaît sur le site.
@@ -43,6 +43,14 @@ Vie privée : de dos ou de loin, c'est l'idéal. Visages reconnaissables = accor
    - Message « fichier bloqué » : arrêtez `npm run dev` (Ctrl+C) et relancez `npm run videos`.
 
 Les vidéos marchent aussi sans `npm run videos`, elles sont juste plus lourdes à charger.
+
+### Vidéos de la galerie
+
+1. Déposez la vidéo brute (`.mp4` ou `.mov` de l'iPhone) dans la bonne catégorie de `src/assets/galerie/` (`mariages/`, `bars/`…), avec un nom descriptif, ex. `karaoke-la-ville-en-rose-colomiers.mov`.
+2. Tapez `npm run videos` : la vidéo est allégée **en gardant le son**, le `.mov` devient `.mp4`, l'original est rangé dans `medias-sources/galerie/`.
+3. **Obligatoire pour les `.mov`** : sans cette étape, la galerie ne les affiche pas.
+
+Visez des vidéos courtes (15 à 60 secondes). Dans la galerie, la vidéo s'ouvre en grand au clic, avec le son et les boutons de lecture.
 
 ## Ajouter une référence client (bandeau « Ils m'ont fait confiance »)
 
