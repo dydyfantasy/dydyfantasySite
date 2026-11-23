@@ -16,6 +16,8 @@ import LedFinal from "./LedFinal";
 import Spectrum from "./Spectrum";
 import PeekingMascot from "./PeekingMascot";
 import LedDivider from "./LedDivider";
+import ConfettiRain from "./ConfettiRain";
+import Testimonial from "./Testimonial";
 import { STEPS } from "../../data/steps";
 
 const SITE = "https://dydyfantasy.fr";
@@ -81,6 +83,8 @@ export default function ServicePage({
 	related = [], // { to, label }
 	faq = [], // { q, a }
 	schemaType = "Service",
+	theme, // ambiance propre à la page : "mariage" (or champagne + confettis), voir led.css
+	testimonial, // avis client cité (voir Testimonial.jsx), affiché après les formats
 }) {
 	const url = SITE + path;
 	const crumbs = [{ name: "Accueil", to: "/" }, ...breadcrumb, { name, to: path }];
@@ -103,7 +107,7 @@ export default function ServicePage({
 	];
 
 	return (
-		<div className="led fun relative isolate overflow-hidden bg-[var(--ink)] text-white">
+		<div className={`led fun relative isolate overflow-hidden bg-[var(--ink)] text-white ${theme ? `theme-${theme}` : ""}`}>
 			<Seo path={path} title={seo.title} description={seo.description} ogTitle={seo.ogTitle} />
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 			<StageLights />
@@ -111,6 +115,7 @@ export default function ServicePage({
 			{/* ---- Hero ---- */}
 			<section className="relative px-4 pb-16 pt-8 md:pt-12">
 				<Spectrum className="absolute inset-x-0 bottom-0 -z-10 flex h-20 opacity-50 md:h-28" />
+				{theme === "mariage" && <ConfettiRain />}
 				<div className="mx-auto max-w-6xl">
 					<nav aria-label="Fil d’Ariane" className="text-sm text-white/65">
 						<ol className="flex flex-wrap items-center gap-1.5">
@@ -194,6 +199,8 @@ export default function ServicePage({
 					</div>
 				</section>
 			)}
+
+			{testimonial && <Testimonial testimonial={testimonial} />}
 
 			<LedDivider color="var(--pink)" />
 

@@ -36,6 +36,7 @@ export default function Mariage() {
 			intro="Du vin d’honneur à la dernière danse, je gère l’animation et la musique de A à Z : un quiz sur les mariés pendant le repas, un blind test qui fait chanter toutes les générations, puis un DJ pour danser jusqu’au bout de la nuit."
 			photo={photoFor("mariage")}
 			color="var(--pink)"
+			theme="mariage"
 			pointsTitle={{ label: "Pourquoi moi", title: "Un mariage qui", accent: "fait participer" }}
 			points={[
 				{ icon: UsersIcon, color: "var(--pink)", title: "Toutes les générations", text: "Des animations accessibles pour que grands-parents, amis et enfants jouent ensemble." },
@@ -52,6 +53,27 @@ export default function Mariage() {
 				{ icon: PhotoIcon, title: "Challenge Photo", text: "Le fil rouge de la soirée : des défis à relever en photo du début à la fin, avec Dydy Quiz. Les photos s’affichent sur l’écran avec les scores en direct. Des souvenirs garantis." },
 				{ icon: SparklesIcon, title: "Soirée DJ", text: "Une sélection musicale adaptée à vos invités pour danser jusqu’au bout de la nuit." },
 			]}
+			// Avis Google cité en entier, mot pour mot (ne pas le modifier)
+			testimonial={{
+				label: "Avis de mariés",
+				title: "Ils ont dit oui…",
+				accent: "à Dydy Fantasy 💍",
+				highlight: "Le jour J, nous n’avons eu à nous occuper de rien",
+				quote: [
+					"Un immense merci dydy fantasy",
+					"Nous recommandons Dylan – DYDY Fantasy – sans aucune hésitation !",
+					"Il a été présent, professionnel et disponible dès nos premiers échanges, avec un vrai suivi de nos préparatifs avant le mariage pour s’assurer que tout soit parfaitement calé.",
+					"Le jour J, nous n’avons eu à nous occuper de rien : Dylan a géré la musique, les animations et le rythme de la soirée de A à Z. Il a également utilisé ses propres outils pour récupérer les photos des invités et organiser différentes animations, notamment un blind test qui a beaucoup plu.",
+					"Mais le meilleur retour vient surtout de nos invités : tous nous ont parlé d’un DJ au top, d’une excellente sélection musicale et d’animations réalisées avec beaucoup de goût et de tact.",
+					"Il a su faire vivre notre mariage sans jamais prendre trop de place, et c’est exactement ce que nous recherchions.",
+					"Un immense merci Dylan ! Nous retravaillerions avec toi avec grand plaisir pour un prochain événement… même si, normalement, ce ne sera pas pour un deuxième mariage 😄",
+				],
+				author: "Michel",
+				rating: 5,
+				source: "Avis Google",
+				link: { href: "https://www.mariages.net/musique-mariage/dydy-fantasy--e431763", label: "Mon profil Mariages.net" },
+				mascot: "Vive les mariés ! 🥂",
+			}}
 			related={relatedTo(PATH)}
 			faq={[
 				{ q: "À quel moment du mariage intervenez-vous ?", a: "Du vin d’honneur à la fin de soirée, selon vos envies : ambiance et jeux pour briser la glace au vin d’honneur, quiz et blind test pendant le repas, puis karaoké et DJ. On construit le déroulé ensemble." },

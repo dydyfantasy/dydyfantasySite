@@ -1360,3 +1360,54 @@ a.board-row:hover {
 .anim-off *::after {
 	animation-play-state: paused !important;
 }
+
+/* ===== Page Mariage : ambiance « champagne » (ServicePage theme="mariage") ===== */
+/* Le doré remplace le cyan sur toute la page (titres, icônes, bandes LED, boutons). */
+.led.theme-mariage {
+	--cyan: #ffc93c;
+}
+
+/* Pluie de confettis (ConfettiRain.jsx) */
+.confetti-rain {
+	position: absolute;
+	inset: 0;
+	z-index: -10;
+	overflow: hidden;
+	pointer-events: none;
+}
+.confetti-rain i {
+	position: absolute;
+	top: -24px;
+	width: var(--w);
+	height: calc(var(--w) * 1.6);
+	border-radius: 2px;
+	background: var(--c);
+	opacity: 0.8;
+	animation: confetti-fall var(--d) linear var(--delay) infinite;
+}
+@keyframes confetti-fall {
+	from {
+		transform: translate3d(0, 0, 0) rotate(0deg);
+	}
+	to {
+		transform: translate3d(var(--x), 1300px, 0) rotate(var(--r));
+	}
+}
+
+/* Carte d’avis : petits cœurs néon en haut à droite */
+.testimonial-hearts {
+	position: absolute;
+	top: 1.25rem;
+	right: 1.5rem;
+	display: flex;
+	align-items: flex-start;
+	gap: 0.25rem;
+	color: var(--pink);
+	filter: drop-shadow(0 0 6px var(--pink));
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.confetti-rain {
+		display: none;
+	}
+}
