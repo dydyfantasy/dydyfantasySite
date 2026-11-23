@@ -19,14 +19,20 @@ const SOCIALS = [
 
 // Appel à l’action final, signé par la mascotte + liens internes (maillage SEO) + réseaux sociaux
 // title / text optionnels : permettent à une page d’utiliser sa propre conclusion
-export default function LedFinal({ title, text }) {
+export default function LedFinal({ title, text, bubble }) {
 	return (
 		<section aria-labelledby="final-titre" className="px-4 pb-24 pt-10">
 			<ScrollReveal
 				variant="zoom"
 				className="final-panel mx-auto grid max-w-5xl items-center gap-6 overflow-hidden rounded-[2rem] px-6 py-12 text-center md:grid-cols-[15rem_minmax(0,1fr)] md:gap-10 md:px-12 md:text-left">
-				{/* Mascotte Dydy Fantasy (signature) */}
-				<img
+				{/* Mascotte Dydy Fantasy (signature), avec sa bulle si la page en fournit une */}
+				<div className={`relative mx-auto w-fit ${bubble ? "pt-12" : ""}`}>
+					{bubble && (
+						<p aria-hidden="true" className="mascot-bubble absolute left-1/2 top-0 z-10 w-max -translate-x-1/2 rounded-2xl px-4 py-2 text-sm font-extrabold">
+							{bubble}
+						</p>
+					)}
+					<img
 					src={perso440}
 					srcSet={`${perso240} 240w, ${perso440} 440w`}
 					sizes="(min-width: 768px) 15rem, 10rem"
@@ -35,7 +41,8 @@ export default function LedFinal({ title, text }) {
 					height="573"
 					loading="lazy"
 					className="mascot-bounce mx-auto h-auto w-40 md:w-60"
-				/>
+					/>
+				</div>
 
 				<div>
 					<h2 id="final-titre" className="text-3xl font-extrabold leading-tight md:text-5xl">

@@ -90,7 +90,14 @@ function NextEvent({ event }) {
 
 			<div className="flex flex-col justify-center gap-4 p-6">
 				<div className="flex flex-wrap items-center gap-2">
-					<span className="rounded-full border border-[var(--pink)] px-3 py-1 text-xs font-bold uppercase tracking-widest text-[var(--pink)]">
+					<span className="inline-flex items-center gap-2 rounded-full border border-[var(--pink)] px-3 py-1 text-xs font-bold uppercase tracking-widest text-[var(--pink)]">
+						{/* Petit égaliseur : la musique tourne déjà */}
+						<span aria-hidden="true" className="equalizer">
+							<span />
+							<span />
+							<span />
+							<span />
+						</span>
 						Prochaine date
 					</span>
 					{event.isNew && <NewBadge />}

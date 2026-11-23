@@ -9,10 +9,11 @@ import LedClients from "../components/led/LedClients";
 import LedReviews from "../components/led/LedReviews";
 import LedAbout from "../components/led/LedAbout";
 import LedFinal from "../components/led/LedFinal";
+import LedDivider from "../components/led/LedDivider";
 
 function Home() {
 	return (
-		<div className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
+		<div className="led home-fun relative isolate overflow-hidden bg-[var(--ink)] text-white">
 			<StageLights />
 			<Seo
 				path="/"
@@ -23,15 +24,19 @@ function Home() {
 			/>
 
 			<HeroLed />
-			<LedStats />
+			<LedStats scoreboard />
 
 			<LedEvents />
+			<LedDivider color="var(--pink)" />
 			<LedApp />
+			<LedDivider color="var(--cyan)" reverse />
 			<LedAgenda />
 			<LedClients />
+			<LedDivider color="var(--gold)" />
 			<LedReviews />
 			<LedAbout />
-			<LedFinal />
+			<LedDivider color="var(--pink)" reverse />
+			<LedFinal bubble="À vous de jouer ! 🎤" />
 		</div>
 	);
 }

@@ -3,6 +3,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import { QrCodeIcon, PlayCircleIcon, TrophyIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
 import SectionTitle from "./SectionTitle";
 import ScrollReveal from "./ScrollReveal";
+import LiveLeaderboard from "./LiveLeaderboard";
 
 const STEPS = [
 	{ icon: QrCodeIcon, color: "var(--cyan)", title: "Un QR code", text: "Chacun scanne avec son téléphone, rien à installer." },
@@ -26,24 +27,33 @@ export default function LedApp() {
 					</p>
 				</div>
 
-				<ol className="mt-10 grid gap-5 md:grid-cols-3">
-					{STEPS.map((s, i) => (
-						<ScrollReveal as="li" key={s.title} delay={i * 100} className="neon-card flex items-start gap-4 rounded-3xl p-6" style={{ "--c": s.color }}>
-							<span className="menu-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-xl">
-								<s.icon aria-hidden="true" className="h-7 w-7" />
-							</span>
-							<div>
-								<h3 className="text-lg font-extrabold">{s.title}</h3>
-								<p className="mt-1 text-white/75">{s.text}</p>
-							</div>
-						</ScrollReveal>
-					))}
-				</ol>
+				{/* Les 3 étapes à gauche, l’aperçu du grand écran à droite (dessous sur mobile) */}
+				<div className="mt-10 grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
+					<div>
+						<ol className="grid gap-4">
+							{STEPS.map((s, i) => (
+								<ScrollReveal as="li" key={s.title} variant="left" delay={i * 100} className="neon-card flex items-start gap-4 rounded-3xl p-5" style={{ "--c": s.color }}>
+									<span className="menu-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-xl">
+										<s.icon aria-hidden="true" className="h-7 w-7" />
+									</span>
+									<div>
+										<h3 className="text-lg font-extrabold">{s.title}</h3>
+										<p className="mt-1 text-white/75">{s.text}</p>
+									</div>
+								</ScrollReveal>
+							))}
+						</ol>
 
-				<Link to="/dydy-quiz" className="btn-outline-neon mt-8 inline-flex items-center gap-2 rounded-xl border border-[var(--cyan)] px-6 py-3 font-semibold text-[var(--cyan)]">
-					Découvrir Dydy Quiz
-					<ArrowRightIcon className="h-4 w-4" />
-				</Link>
+						<Link to="/dydy-quiz" className="btn-outline-neon mt-8 inline-flex items-center gap-2 rounded-xl border border-[var(--cyan)] px-6 py-3 font-semibold text-[var(--cyan)]">
+							Découvrir Dydy Quiz
+							<ArrowRightIcon className="h-4 w-4" />
+						</Link>
+					</div>
+
+					<ScrollReveal variant="right" delay={150}>
+						<LiveLeaderboard />
+					</ScrollReveal>
+				</div>
 			</div>
 		</section>
 	);

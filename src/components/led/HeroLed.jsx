@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router";
 import {
 	ArrowRightIcon,
@@ -62,6 +62,19 @@ const ANSWERS = [
 	},
 ];
 
+// Confettis de la « bonne réponse » : 18 particules projetées en cercle (calcul fait une fois).
+const PARTICLES = Array.from({ length: 18 }, (_, i) => {
+	const angle = (i / 18) * Math.PI * 2 + (i % 2 ? 0.2 : -0.1);
+	const dist = 70 + (i % 3) * 28;
+	return {
+		x: Math.round(Math.cos(angle) * dist),
+		y: Math.round(Math.sin(angle) * dist * 0.75) - 20,
+		r: (i * 47) % 360,
+		white: i % 3 === 0,
+		gold: i % 5 === 0,
+	};
+});
+
 function ScenePhoto({ className = "" }) {
 	return (
 		<img
@@ -84,13 +97,31 @@ function ScenePhoto({ className = "" }) {
 // sur la zone du public. Visible dès le HTML pré-rendu pour un LCP rapide.
 export default function HeroLed() {
 	const [selected, setSelected] = useState(null);
+	const [burst, setBurst] = useState(null);
+	const gridRef = useRef(null);
 	const answer = ANSWERS.find((a) => a.letter === selected);
+
+	// Réponse choisie : confettis depuis le bouton cliqué (sauf si l’utilisateur limite les animations)
+	function choose(a, event) {
+		setSelected(a.letter);
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !gridRef.current) return;
+		const grid = gridRef.current.getBoundingClientRect();
+		const btn = event.currentTarget.getBoundingClientRect();
+		setBurst({
+			id: Date.now(),
+			x: btn.left + btn.width / 2 - grid.left,
+			y: btn.top + btn.height / 2 - grid.top,
+			color: a.color,
+		});
+	}
 
 	return (
 		<section className="led relative isolate overflow-hidden bg-[var(--ink)] text-white">
 			{/* ---- Photo : en haut sur mobile, pleine largeur en fond sur ordinateur ---- */}
 			<div className="relative aspect-[4/3] w-full md:absolute md:inset-0 md:-z-20 md:aspect-auto">
 				<ScenePhoto className="h-full w-full object-cover object-[22%_70%] saturate-[1.2] md:object-[0%_62%]" />
+				{/* Trame de pixels façon mur LED */}
+				<div aria-hidden="true" className="led-pixels absolute inset-0" />
 				{/* Mobile : fondu vers le bas ; ordinateur : assombrissement vers la droite */}
 				<div
 					aria-hidden="true"
@@ -153,14 +184,23 @@ export default function HeroLed() {
 						<span className="text-[var(--cyan)]">recherchez-vous&nbsp;?</span>
 					</h2>
 
+					{/* Chrono façon jeu télé : se vide en boucle tant qu’on n’a pas répondu */}
+					<div aria-hidden="true" className="quiz-timer mt-3 h-1.5 overflow-hidden rounded-full bg-white/10">
+						<span
+							className={`quiz-timer-fill block h-full rounded-full ${answer ? "is-done" : ""}`}
+							style={answer ? { "--c": answer.color } : undefined}
+						/>
+					</div>
+
 					<div
-						className={`mt-4 grid grid-cols-2 gap-3 ${selected ? "" : "is-chasing"}`}>
+						ref={gridRef}
+						className={`relative mt-4 grid grid-cols-2 gap-3 ${selected ? "" : "is-chasing"}`}>
 						{ANSWERS.map((a, i) => (
 							<button
 								key={a.letter}
 								type="button"
 								aria-pressed={selected === a.letter}
-								onClick={() => setSelected(a.letter)}
+								onClick={(event) => choose(a, event)}
 								style={{ "--c": a.color, "--i": i }}
 								className="answer-btn flex items-center gap-3 rounded-2xl p-2.5 text-left text-sm font-bold uppercase tracking-wide md:p-3 md:text-base">
 								<span className="answer-letter flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-lg font-extrabold md:h-11 md:w-11">
@@ -170,6 +210,22 @@ export default function HeroLed() {
 								<a.icon aria-hidden="true" className="answer-icon ml-auto hidden h-6 w-6 shrink-0 sm:block" />
 							</button>
 						))}
+						{burst && (
+							<span key={burst.id} aria-hidden="true" className="confetti-burst" style={{ left: burst.x, top: burst.y }}>
+								{PARTICLES.map((p, i) => (
+									<span
+										key={i}
+										className="confetti"
+										style={{
+											"--x": `${p.x}px`,
+											"--y": `${p.y}px`,
+											"--r": `${p.r}deg`,
+											background: p.white ? "#fff" : p.gold ? "var(--gold)" : burst.color,
+										}}
+									/>
+								))}
+							</span>
+						)}
 					</div>
 
 					<div className="mt-3 min-h-[9.5rem]" aria-live="polite">
@@ -178,8 +234,14 @@ export default function HeroLed() {
 								key={answer.letter}
 								style={{ "--c": answer.color }}
 								className="answer-pop answer-panel rounded-2xl p-4">
-								<p className="answer-title text-sm font-bold uppercase tracking-wider">
-									{answer.letter} · {answer.label}
+								{/* Clin d’œil : toutes les réponses sont bonnes */}
+								<p className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+									<span className="good-answer rounded-full px-2.5 py-0.5 text-[0.7rem] font-extrabold uppercase tracking-wider">
+										✓ Bonne réponse !
+									</span>
+									<span className="answer-title text-sm font-bold uppercase tracking-wider">
+										{answer.letter} · {answer.label}
+									</span>
 								</p>
 								<p className="mt-1.5 text-[0.95rem] leading-relaxed text-white md:text-base">
 									{answer.text}
@@ -209,7 +271,7 @@ export default function HeroLed() {
 					<div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
 						<a
 							href="/contact"
-							className="btn-neon inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--pink)] px-6 py-3 font-bold text-white">
+							className="btn-neon btn-shine inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--pink)] px-6 py-3 font-bold text-white">
 							Demander mon devis
 							<ArrowRightIcon className="h-5 w-5" />
 						</a>

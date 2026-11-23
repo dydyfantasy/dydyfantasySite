@@ -11,7 +11,7 @@ export default function SectionTitle({ id, label, title, accent, children, cente
 				{label}
 			</p>
 			<h2 id={id} className="mt-2 text-3xl font-extrabold leading-tight md:text-4xl">
-				{title} {accent && <span className="text-[var(--cyan)]">{accent}</span>}
+				{title} {accent && <span className="section-accent text-[var(--cyan)]">{accent}</span>}
 			</h2>
 			{children && <p className="mt-3 text-base leading-relaxed text-white/70">{children}</p>}
 		</ScrollReveal>

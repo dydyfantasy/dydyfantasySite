@@ -53,6 +53,9 @@ const EVENTS = [
 	},
 ];
 
+// Place de chaque tuile dans la grille sur grand écran (même ordre que EVENTS)
+const LAYOUT = ["lg:row-span-2", "lg:col-span-2", "", ""];
+
 export default function LedEvents() {
 	return (
 		<section aria-labelledby="evenements-titre" className="px-4 py-20">
@@ -66,22 +69,29 @@ export default function LedEvents() {
 					et à votre lieu, en Haute-Garonne, dans le Gers et le Tarn.
 				</SectionTitle>
 
-				<ul className="mt-10 grid gap-5 sm:grid-cols-2">
+				{/* Grille « bento » : le mariage en grande tuile, l’entreprise en tuile large */}
+				<ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 					{EVENTS.map((e, i) => (
-						<ScrollReveal as="li" key={e.title} delay={i * 90}>
+						<ScrollReveal as="li" key={e.title} delay={i * 90} className={LAYOUT[i]}>
 							<Link
 								to={e.href}
 								style={{ "--c": e.color }}
 								className="neon-card neon-card-hover group flex h-full flex-col overflow-hidden rounded-3xl">
-								{/* Emplacement photo (vide pour l’instant) */}
-								<div className="event-visual relative flex aspect-[16/7] items-center justify-center">
+								{/* Petite scène : projecteur qui balaie + icône en enseigne néon (photo plus tard) */}
+								<div
+									className={`event-stage relative flex h-40 items-center justify-center overflow-hidden md:h-44 ${i === 0 ? "lg:h-auto lg:flex-1" : ""}`}
+									style={{ "--sway-delay": `${i * -1.7}s` }}>
 									{e.image ? (
 										<img src={e.image} alt={e.title} loading="lazy" className="h-full w-full object-cover" />
 									) : (
-										<e.icon aria-hidden="true" className="h-14 w-14 text-[var(--c)] opacity-80" />
+										<>
+											<span aria-hidden="true" className="stage-cone" />
+											<span aria-hidden="true" className="stage-floor" />
+											<e.icon aria-hidden="true" className="neon-icon relative h-16 w-16 md:h-20 md:w-20" />
+										</>
 									)}
 								</div>
-								<div className="flex flex-1 flex-col p-6">
+								<div className={`flex flex-col p-6 ${i === 0 ? "" : "flex-1"}`}>
 									<h3 className="text-xl font-extrabold">{e.title}</h3>
 									<p className="mt-2 flex-1 text-white/75">{e.text}</p>
 									<span className="mt-4 inline-flex items-center gap-1.5 font-semibold text-[var(--c)]">
