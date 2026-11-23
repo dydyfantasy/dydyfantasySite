@@ -5,6 +5,7 @@ import StageLights from "../components/led/StageLights";
 import SectionTitle from "../components/led/SectionTitle";
 import ScrollReveal from "../components/led/ScrollReveal";
 import LedFinal from "../components/led/LedFinal";
+import { CATEGORY_LABELS, COLORS, describe, posterFor } from "../data/galerie";
 
 // Galerie : tout fichier déposé dans src/assets/galerie/<catégorie>/ apparaît ici.
 // Photos optimisées à la compilation (vite-imagetools) ; vidéos servies telles quelles
@@ -30,25 +31,6 @@ const videos = import.meta.glob("../assets/galerie/*/*.{mp4,webm,MP4,WEBM}", {
 	import: "default",
 });
 
-// Libellés des dossiers (sinon, nom du dossier)
-const CATEGORY_LABELS = {
-	bars: "Bars & restaurants",
-	mariages: "Mariages",
-	entreprises: "Entreprises",
-	anniversaires: "Anniversaires",
-	soirees: "Soirées",
-};
-
-function describe(path) {
-	const parts = path.split("/");
-	const folder = parts[parts.length - 2];
-	const name = parts[parts.length - 1]
-		.replace(/\.[^.]+$/, "")
-		.replace(/^\d+[-_ ]*/, "")
-		.replace(/[-_]+/g, " ");
-	return { category: folder, alt: `${name.charAt(0).toUpperCase()}${name.slice(1)} – Dydy Fantasy` };
-}
-
 const MEDIA = [
 	...Object.keys(thumbs).map((path) => ({
 		type: "image",
@@ -58,11 +40,10 @@ const MEDIA = [
 		large: larges[path],
 		...describe(path),
 	})),
-	...Object.keys(videos).map((path) => ({ type: "video", path, src: videos[path], ...describe(path) })),
+	...Object.keys(videos).map((path) => ({ type: "video", path, src: videos[path], poster: posterFor(path), ...describe(path) })),
 ].sort((a, b) => a.path.localeCompare(b.path));
 
 const CATEGORIES = [...new Set(MEDIA.map((m) => m.category))];
-const COLORS = ["var(--cyan)", "var(--pink)", "var(--gold)", "#7cff6b"];
 
 // Visionneuse plein écran (dialog natif) : flèches, clavier, Échap
 function Lightbox({ items, index, onClose, onMove }) {
@@ -97,7 +78,7 @@ function Lightbox({ items, index, onClose, onMove }) {
 				{item.type === "image" ? (
 					<img src={item.large} alt={item.alt} className="max-h-[88svh] max-w-[94vw] rounded-2xl object-contain" />
 				) : (
-					<video src={item.src} controls autoPlay playsInline className="max-h-[88svh] max-w-[94vw] rounded-2xl bg-black" />
+					<video src={item.src} poster={item.poster} controls autoPlay playsInline className="max-h-[88svh] max-w-[94vw] rounded-2xl bg-black" />
 				)}
 				<button type="button" onClick={() => ref.current.close()} aria-label="Fermer" className="gallery-btn absolute right-2 top-2">
 					<XMarkIcon className="h-6 w-6" />
@@ -121,6 +102,12 @@ function Lightbox({ items, index, onClose, onMove }) {
 export default function Galerie() {
 	const [filter, setFilter] = useState("tout");
 	const [opened, setOpened] = useState(null); // index dans `visible`
+
+	// /galerie?categorie=bars (liens de l’accueil) : appliqué après le chargement (HTML pré-rendu = « Tout »)
+	useEffect(() => {
+		const c = new URLSearchParams(window.location.search).get("categorie");
+		if (c && CATEGORIES.includes(c)) setFilter(c);
+	}, []);
 	const visible = filter === "tout" ? MEDIA : MEDIA.filter((m) => m.category === filter);
 
 	const move = (step) => setOpened((i) => (i === null ? i : (i + step + visible.length) % visible.length));
@@ -190,7 +177,11 @@ export default function Galerie() {
 											/>
 										) : (
 											<>
-												<video src={m.src} muted playsInline preload="metadata" className="w-full" />
+												{m.poster ? (
+													<img src={m.poster} alt={m.alt} loading="lazy" decoding="async" className="w-full" />
+												) : (
+													<video src={m.src} muted playsInline preload="metadata" className="w-full" />
+												)}
 												<span className="absolute inset-0 flex items-center justify-center">
 													<span className="gallery-btn">
 														<PlayIcon className="h-7 w-7" />

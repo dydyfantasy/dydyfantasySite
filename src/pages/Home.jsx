@@ -10,6 +10,7 @@ import LedReviews from "../components/led/LedReviews";
 import LedAbout from "../components/led/LedAbout";
 import LedFinal from "../components/led/LedFinal";
 import LedDivider from "../components/led/LedDivider";
+import LedGalerie from "../components/led/LedGalerie";
 
 function Home() {
 	return (
@@ -34,6 +35,7 @@ function Home() {
 			<LedClients />
 			<LedDivider color="var(--gold)" />
 			<LedReviews />
+			<LedGalerie />
 			<LedAbout />
 			<LedDivider color="var(--pink)" reverse />
 			<LedFinal bubble="À vous de jouer ! 🎤" />

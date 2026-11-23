@@ -9,7 +9,8 @@ import { useEffect, useRef, useState } from "react";
 // - si le visiteur limite les animations : pas de lecture automatique, boutons de lecture à la place.
 const MOBILE_QUERY = "(max-width: 767px)";
 
-export default function LoopVideo({ video, mobile, label, className = "" }) {
+// `aspect` : classes de format (par défaut 16:9, ou 9:16 → 16:9 si version mobile)
+export default function LoopVideo({ video, mobile, label, aspect, className = "" }) {
 	const ref = useRef(null);
 	const visible = useRef(false);
 	const [manual, setManual] = useState(false);
@@ -71,7 +72,7 @@ export default function LoopVideo({ video, mobile, label, className = "" }) {
 			controls={manual}
 			aria-label={label}
 			className={`block w-full bg-black object-cover ${
-				portrait ? "aspect-[9/16] md:aspect-video" : "aspect-video"
+				aspect ?? (portrait ? "aspect-[9/16] md:aspect-video" : "aspect-video")
 			} ${className}`}>
 			{variant &&
 				current.sources.map((s) => <source key={s.src} src={s.src} type={s.type} />)}

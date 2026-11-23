@@ -50,6 +50,16 @@ Les vidéos marchent aussi sans `npm run videos`, elles sont juste plus lourdes 
 2. Tapez `npm run videos` : la vidéo est allégée **en gardant le son**, le `.mov` devient `.mp4`, l'original est rangé dans `medias-sources/galerie/`.
 3. **Obligatoire pour les `.mov`** : sans cette étape, la galerie ne les affiche pas.
 
+La commande crée aussi, dans `src/assets/galerie-apercus/`, une image d'aperçu par vidéo (vignettes de la galerie). **Ce dossier est automatique : n'y touchez pas.**
+
+### Choisir les vidéos montrées sur l'accueil (section « En images »)
+
+Ajoutez `accueil` au début du nom de la vidéo dans la galerie, ex. `karaoke-ville-en-rose.mp4` → `accueil-karaoke-ville-en-rose.mp4`, puis tapez `npm run videos`.
+
+- L'accueil montre un extrait muet de 6 secondes de chaque vidéo choisie (6 maximum, dans l'ordre alphabétique des catégories puis des noms). Un clic mène à la galerie, sur la bonne catégorie.
+- Pour retirer une vidéo de l'accueil : enlevez `accueil-` de son nom, puis `npm run videos`.
+- Le mot « accueil » n'apparaît pas dans la description lue par Google.
+
 Visez des vidéos courtes (15 à 60 secondes). Dans la galerie, la vidéo s'ouvre en grand au clic, avec le son et les boutons de lecture.
 
 ## Ajouter une référence client (bandeau « Ils m'ont fait confiance »)
