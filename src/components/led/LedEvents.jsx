@@ -11,46 +11,74 @@ import ScrollReveal from "./ScrollReveal";
 
 // « Pour quel événement ? » : répond à « est-ce qu’il fait MON type d’événement ? »
 // et prépare les futures pages « Vos événements » (/evenements/mariage, etc.).
-// Photos : renseigner `image` (import depuis src/assets) quand elles seront prêtes ;
-// sans image, la tuile affiche un fond coloré avec l’icône.
 // Liens : vers les pages « Vos événements ».
+//
+// Photos SANS CODE : déposez dans src/assets/evenements/ un fichier dont le nom commence par
+// « mariage », « entreprise », « anniversaire » ou « bars » (ex. mariage-premiere-danse-toulouse.jpg).
+// Il est redimensionné et converti en WebP à la compilation ; le nom du fichier sert de texte
+// alternatif (SEO). Sans photo, la tuile garde son flyer coloré avec l’icône néon.
+const photoSets = import.meta.glob("../../assets/evenements/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
+	eager: true,
+	query: { w: "480;800;1200", format: "webp", quality: "78", as: "srcset" },
+	import: "default",
+});
+const photoFallbacks = import.meta.glob("../../assets/evenements/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
+	eager: true,
+	query: { w: "800", format: "webp", quality: "78" },
+	import: "default",
+});
+
+function photoFor(slug) {
+	const path = Object.keys(photoSets)
+		.sort()
+		.find((p) => p.split("/").pop().toLowerCase().startsWith(slug));
+	if (!path) return null;
+	// « mariage-premiere-danse-toulouse.jpg » -> « mariage premiere danse toulouse »
+	const alt = path
+		.split("/")
+		.pop()
+		.replace(/.[^.]+$/, "")
+		.replace(/[-_]+/g, " ");
+	return { srcSet: photoSets[path], src: photoFallbacks[path], alt };
+}
+
 const EVENTS = [
 	{
 		title: "Mariage",
+		slug: "mariage",
 		word: "Mariage",
 		icon: HeartIcon,
 		color: "var(--pink)",
-		image: null,
 		text: "Blind test et quiz pour animer le repas, karaoké et DJ pour faire danser vos invités jusqu’au bout de la nuit.",
 		href: "/evenements/mariage",
 		cta: "Parler de mon mariage",
 	},
 	{
 		title: "Entreprise & team building",
+		slug: "entreprise",
 		word: "Entreprise",
 		icon: BriefcaseIcon,
 		color: "var(--cyan)",
-		image: null,
 		text: "Team building, séminaire, soirée d’entreprise ou journée événement : quiz en équipes, animation micro et speaker, puis DJ pour la soirée dansante.",
 		href: "/evenements/entreprise",
 		cta: "Organiser mon événement pro",
 	},
 	{
 		title: "Anniversaire & soirée privée",
+		slug: "anniversaire",
 		word: "Anniversaire",
 		icon: CakeIcon,
 		color: "var(--gold)",
-		image: null,
 		text: "Un quiz ou un blind test sur mesure, du karaoké et un DJ pour faire danser : une soirée dont tout le monde se souviendra.",
 		href: "/evenements/anniversaire",
 		cta: "Préparer ma soirée",
 	},
 	{
 		title: "Bars & restaurants",
+		slug: "bars",
 		word: "Bars",
 		icon: BuildingStorefrontIcon,
 		color: "#7cff6b",
-		image: null,
 		text: "Des soirées blind test et karaoké régulières qui remplissent votre établissement, comme à La Ville en Rose ou à la Taverne Heidelberg.",
 		href: "/evenements/bars-restaurants",
 		cta: "Programmer une soirée",
@@ -91,7 +119,9 @@ export default function LedEvents() {
 
 				{/* Grille « bento » : le mariage en grande tuile, l’entreprise en tuile large */}
 				<ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-					{EVENTS.map((e, i) => (
+					{EVENTS.map((e, i) => {
+						const photo = photoFor(e.slug);
+						return (
 						<ScrollReveal as="li" key={e.title} delay={i * 90} className={LAYOUT[i]}>
 							<Link
 								to={e.href}
@@ -104,13 +134,25 @@ export default function LedEvents() {
 									data-word={e.word}
 									className={`event-stage flyer-word relative flex h-44 items-center justify-center overflow-hidden md:h-52 ${i === 0 ? "lg:h-auto lg:flex-1" : ""}`}
 									style={{ "--sway-delay": `${i * -1.7}s` }}>
-									{e.image ? (
-										<img src={e.image} alt={e.title} loading="lazy" className="h-full w-full object-cover" />
+									{photo ? (
+										<>
+											{/* Photo teintée de la couleur de l’événement, mot géant par-dessus */}
+											<img
+												src={photo.src}
+												srcSet={photo.srcSet}
+												sizes="(min-width: 640px) 50vw, 100vw"
+												alt={photo.alt}
+												loading="lazy"
+												decoding="async"
+												className="flyer-photo absolute inset-0 h-full w-full object-cover"
+											/>
+											<span aria-hidden="true" className="flyer-tint absolute inset-0" />
+										</>
 									) : (
 										<>
 											<span aria-hidden="true" className="stage-cone" />
 											<span aria-hidden="true" className="stage-floor" />
-											<e.icon aria-hidden="true" className="neon-icon relative h-20 w-20 md:h-24 md:w-24" />
+											<e.icon aria-hidden="true" className="neon-icon relative z-[2] h-20 w-20 md:h-24 md:w-24" />
 										</>
 									)}
 								</div>
@@ -124,7 +166,8 @@ export default function LedEvents() {
 								</div>
 							</Link>
 						</ScrollReveal>
-					))}
+						);
+					})}
 				</ul>
 			</div>
 		</section>

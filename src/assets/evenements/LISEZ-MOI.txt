@@ -1,0 +1,7 @@
+Déposez ici une photo par type d'événement (jpg, png, webp), en pleine qualité.
+Le nom du fichier doit COMMENCER par : mariage, entreprise, anniversaire ou bars.
+Exemples : mariage-premiere-danse-toulouse.jpg, entreprise-team-building-quiz.jpg,
+anniversaire-30-ans-karaoke.jpg, bars-blind-test-colomiers.jpg
+Le nom du fichier sert de description pour Google : soyez descriptif.
+La photo s'affiche dans la tuile de l'accueil, teintée de la couleur de l'événement.
+Photo horizontale de préférence (la tuile Mariage est haute : sujet au centre).
