@@ -1349,3 +1349,14 @@ a.board-row:hover {
 		transform: none;
 	}
 }
+
+/* Animations en pause hors de l’écran (PauseOffscreen.jsx) : rien ne change à l’œil,
+   mais le téléphone ne calcule plus les animations invisibles. */
+.anim-off,
+.anim-off *,
+.anim-off::before,
+.anim-off::after,
+.anim-off *::before,
+.anim-off *::after {
+	animation-play-state: paused !important;
+}

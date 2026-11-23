@@ -3,6 +3,7 @@ import LedHeader from "./components/led/LedHeader.jsx";
 import LedFooter from "./components/led/LedFooter.jsx";
 import NextEventBubble from "./components/led/NextEventBubble.jsx";
 import ScrollToHash from "./components/ScrollToHash.jsx";
+import PauseOffscreen from "./components/led/PauseOffscreen.jsx";
 import "@fontsource/sora/400.css";
 import "@fontsource/sora/600.css";
 import "@fontsource/sora/800.css";
@@ -123,6 +124,7 @@ export default function Root() {
 			<LedFooter />
 
 			<ScrollToHash />
+			<PauseOffscreen />
 			<NextEventBubble />
 		</>
 	);

@@ -19,7 +19,7 @@ import ScrollReveal from "./ScrollReveal";
 // alternatif (SEO). Sans photo, la tuile garde son flyer coloré avec l’icône néon.
 const photoSets = import.meta.glob("../../assets/evenements/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
 	eager: true,
-	query: { w: "480;800;1200", format: "webp", quality: "78", as: "srcset" },
+	query: { w: "480;640;800;1200", format: "webp", quality: "78", as: "srcset" },
 	import: "default",
 });
 const photoFallbacks = import.meta.glob("../../assets/evenements/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
@@ -148,7 +148,7 @@ export default function LedEvents() {
 												<img
 													src={photo.src}
 													srcSet={photo.srcSet}
-													sizes={featured ? "(min-width: 768px) 60vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 640px) 60vw, 100vw"}
+													sizes={featured ? "(min-width: 768px) 60vw, calc(100vw - 2rem)" : "(min-width: 1024px) 33vw, (min-width: 640px) 60vw, calc(100vw - 2rem)"}
 													alt={photo.alt}
 													loading="lazy"
 													decoding="async"
