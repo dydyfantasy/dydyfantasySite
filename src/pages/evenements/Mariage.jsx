@@ -40,7 +40,7 @@ export default function Mariage() {
 			points={[
 				{ icon: UsersIcon, color: "var(--pink)", title: "Toutes les générations", text: "Des animations accessibles pour que grands-parents, amis et enfants jouent ensemble." },
 				{ icon: HeartIcon, color: "var(--cyan)", title: "Votre histoire au centre", text: "Des questions sur les mariés pour un moment drôle et touchant." },
-				{ icon: ChatBubbleLeftRightIcon, color: "var(--gold)", title: "Préparé avec vous", text: "On construit le déroulé ensemble : vos envies, vos musiques, vos interdits." },
+				{ icon: ChatBubbleLeftRightIcon, color: "var(--gold)", title: "Préparé avec vous", text: "On se rencontre avant le jour J, en vrai ou en visio, et je viens repérer les lieux. Ensemble, on construit le déroulé : vos envies, vos musiques, vos interdits." },
 				{ icon: SpeakerWaveIcon, color: "#7cff6b", title: "Tout géré de A à Z", text: "Animation et musique, avec tout le matériel : micro, sono, lumières, lyres et machine à fumée." },
 			]}
 			formatsTitle={{ label: "Le déroulé", title: "Les moments", accent: "à animer", text: "À choisir et à combiner selon votre journée." }}
