@@ -12,6 +12,8 @@ import {
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 import { photoFor } from "../../data/evenementsPhotos";
+// Police calligraphiée (enseigne néon + mot « mariage » du titre), chargée sur cette page uniquement
+import "@fontsource/great-vibes/latin-400.css";
 
 const PATH = "/evenements/mariage";
 
@@ -30,13 +32,14 @@ export default function Mariage() {
 			breadcrumb={[]}
 			title={
 				<>
-					Animateur & DJ <span className="text-[var(--pink)]">mariage</span> à Toulouse
+					Animateur & DJ <span className="script-accent">mariage</span> à Toulouse
 				</>
 			}
 			intro="Du vin d’honneur à la dernière danse, je gère l’animation et la musique de A à Z : un quiz sur les mariés pendant le repas, un blind test qui fait chanter toutes les générations, puis un DJ pour danser jusqu’au bout de la nuit."
 			photo={photoFor("mariage")}
 			color="var(--pink)"
 			theme="mariage"
+			photoSign="Vive les mariés"
 			pointsTitle={{ label: "Pourquoi moi", title: "Un mariage qui", accent: "fait participer" }}
 			points={[
 				{ icon: UsersIcon, color: "var(--pink)", title: "Toutes les générations", text: "Des animations accessibles pour que grands-parents, amis et enfants jouent ensemble." },

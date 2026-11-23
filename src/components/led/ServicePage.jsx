@@ -36,9 +36,11 @@ const DEFAULT_INCLUDED = [
 
 // Photo du haut de page : `photo` = { src, srcSet, alt } (ex. photoFor("mariage")), sinon emplacement vide.
 // Image principale de la page : chargée en priorité (pas de lazy loading).
-function PhotoSlot({ photo, color = "var(--pink)" }) {
+// `sign` : enseigne néon calligraphiée posée sur la photo (décorative), ex. « Vive les mariés ».
+function PhotoSlot({ photo, color = "var(--pink)", sign }) {
 	return (
-		<div className="neon-card overflow-hidden rounded-3xl" style={{ "--c": color }}>
+		<div className="relative">
+		<div className="photo-frame neon-card overflow-hidden rounded-3xl" style={{ "--c": color }}>
 			{photo ? (
 				<img
 					src={photo.src}
@@ -56,6 +58,12 @@ function PhotoSlot({ photo, color = "var(--pink)" }) {
 					<PhotoIcon className="h-14 w-14 text-[var(--c)] opacity-70" />
 				</div>
 			)}
+		</div>
+		{sign && (
+			<span aria-hidden="true" className="neon-sign">
+				{sign}
+			</span>
+		)}
 		</div>
 	);
 }
@@ -83,6 +91,7 @@ export default function ServicePage({
 	related = [], // { to, label }
 	faq = [], // { q, a }
 	schemaType = "Service",
+	photoSign, // enseigne néon sur la photo du haut (ex. "Vive les mariés")
 	theme, // ambiance propre à la page : "mariage" (or champagne + confettis), voir led.css
 	testimonial, // avis client cité (voir Testimonial.jsx), affiché après les formats
 }) {
@@ -146,7 +155,7 @@ export default function ServicePage({
 								</a>
 							</div>
 						</div>
-						{aside ?? <PhotoSlot photo={photo} color={color} />}
+						{aside ?? <PhotoSlot photo={photo} color={color} sign={photoSign} />}
 					</div>
 				</div>
 			</section>
