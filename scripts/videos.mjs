@@ -8,8 +8,8 @@
 // Pour chaque vidéo (mp4, mov, webm, m4v) pas encore compressée :
 //   1. l’original est rangé dans medias-sources/<même chemin> (jamais publié, ignoré par git) ;
 //   2. une version MP4 (H.264, lue partout, iPhone compris) la remplace (un .mov devient .mp4).
-// Les vidéos déjà compressées sont reconnues (compressees.json dans chaque dossier d’originaux)
-// et ignorées : on peut lancer la commande autant de fois qu’on veut.
+// Les vidéos déjà compressées sont reconnues à leur contenu (compressees.json dans chaque dossier
+// d’originaux), même renommées, et ignorées : on peut lancer la commande autant de fois qu’on veut.
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import fs from "node:fs";
@@ -63,7 +63,8 @@ for (const { dossier, reglage } of DOSSIERS) {
 		const base = nom.replace(EXTENSIONS, "");
 		const sortie = path.join(DOSSIER, `${base}.mp4`);
 
-		if (registre[nom] === empreinte(source)) {
+		if (!fs.existsSync(source)) continue; // renommée ou supprimée pendant le traitement
+		if (Object.values(registre).includes(empreinte(source))) {
 			console.log(`= ${affiche} : déjà compressée, rien à faire.`);
 			continue;
 		}
@@ -108,6 +109,7 @@ for (const { dossier, reglage } of DOSSIERS) {
 			if (sortie !== source) fs.rmSync(source); // .mov / .webm remplacé par le .mp4
 			console.log(`✓ ${affiche} : ${mo(avant)} → ${mo(apres)}${sortie !== source ? ` (devient ${base}.mp4)` : ""}`);
 		}
+		if (!fs.existsSync(sortie)) continue;
 		registre[path.basename(sortie)] = empreinte(sortie);
 		fs.writeFileSync(REGISTRE, JSON.stringify(registre, null, "\t"));
 	}
