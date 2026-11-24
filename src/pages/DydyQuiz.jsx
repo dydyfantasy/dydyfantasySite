@@ -250,7 +250,7 @@ export default function DydyQuiz() {
 						<p className="mt-3 text-white/80">
 							Ingénieur développeur le jour, j’ai conçu Dydy Quiz pour qu’il soit simple, fluide et fiable. Et
 							il a fait ses preuves : <strong className="text-white">plus de 150 soirées</strong> en
-							conditions réelles, dans des bars pleins, des mariages et des événements d’entreprise.
+							conditions réelles, dans des bars, des mariages et des événements d’entreprise.
 						</p>
 						</div>
 					</ScrollReveal>
