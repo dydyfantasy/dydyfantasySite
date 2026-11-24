@@ -23,7 +23,7 @@ export default function Dj() {
 			seo={{
 				title: "DJ mariage et soirée à Toulouse & Gers | Dydy Fantasy",
 				description:
-					"DJ animateur à Toulouse, en Haute-Garonne et dans le Gers : mariages, anniversaires, soirées d’entreprise et bars. Musique adaptée à votre public, devis rapide.",
+					"DJ animateur à Toulouse, en Haute-Garonne et dans le Gers : mariages, anniversaires, soirées d’entreprise et bars. Musique adaptée, devis sous 24 h.",
 			}}
 			breadcrumb={[{ name: "Prestations", to: "/prestations" }]}
 			title={
@@ -51,8 +51,8 @@ export default function Dj() {
 			related={relatedTo(PATH)}
 			faq={[
 				{ q: "Quels styles de musique passez-vous ?", a: "Généraliste et électro, avec une sélection adaptée à votre public : on en parle ensemble avant l’événement pour lister vos incontournables et ce que vous ne voulez pas entendre." },
-				{ q: "Venez-vous avec le matériel ?", a: "Oui, toujours : sono, lumières, machine à fumée, micros, écran et vidéoprojecteur. Mes devis sont tout compris." },
-				{ q: "Intervenez-vous dans le Gers ?", a: "Oui. Basé à Fonsorbes, à l’ouest de Toulouse, j’interviens à Toulouse, en Haute-Garonne, dans le Gers et dans le Tarn." },
+				{ q: "Venez-vous avec le matériel ?", a: "Oui, toujours : sono, lumières, lyres, machine à fumée, micros, écran et vidéoprojecteur. Mes devis sont tout compris." },
+				{ q: "Intervenez-vous dans le Gers ?", a: "Oui. Basé à Fonsorbes, à l’ouest de Toulouse, j’interviens à Toulouse et partout en Occitanie : Haute-Garonne, Gers, Tarn…" },
 				{ q: "Peut-on ajouter un blind test ou un karaoké ?", a: "Oui, c’est ma spécialité : un jeu pour lancer la soirée, puis le DJ set pour faire danser tout le monde." },
 			]}
 		/>

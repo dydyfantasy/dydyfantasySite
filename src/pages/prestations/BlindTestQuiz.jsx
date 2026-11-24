@@ -86,7 +86,7 @@ const FORMATS = [
 const STEPS = [
 	{ icon: ChatBubbleLeftRightIcon, title: "On échange", text: "Vous me parlez de votre événement : lieu, public, ambiance souhaitée." },
 	{ icon: PencilSquareIcon, title: "On construit ensemble", text: "Je vous propose des manches et des thèmes, puis on les ajuste ensemble selon vos invités et vos envies." },
-	{ icon: DevicePhoneMobileIcon, title: "On joue", text: "Les joueurs répondent sur leur téléphone ou avec des buzzers, je mène le jeu au micro." },
+	{ icon: DevicePhoneMobileIcon, title: "On joue", text: "Les joueurs répondent sur leur téléphone, qui devient leur buzzer, et je mène le jeu au micro." },
 	{ icon: TrophyIcon, title: "Le podium", text: "Classement en direct, suspense jusqu’à la dernière question et victoire célébrée." },
 ];
 
@@ -94,7 +94,7 @@ const STEPS = [
 const FAQ = [
 	{
 		q: "Combien de personnes peuvent participer ?",
-		a: "Du petit groupe entre amis aux grandes salles : j’ai déjà animé des événements de 200 personnes et plus, et même des événements publics sur toute une journée. Les joueurs jouent seuls ou en équipes. Dites-moi votre nombre d’invités, je vous propose la formule adaptée.",
+		a: "Du petit groupe entre amis aux grandes salles, et même des événements publics sur toute une journée. Les joueurs jouent seuls ou en équipes. Dites-moi votre nombre d’invités, je vous propose la formule adaptée.",
 	},
 	{
 		q: "Comment les joueurs répondent-ils ?",
@@ -106,7 +106,7 @@ const FAQ = [
 	},
 	{
 		q: "Où intervenez-vous ?",
-		a: "Je suis basé à Fonsorbes, à l’ouest de Toulouse, et j’interviens à Toulouse, en Haute-Garonne, dans le Gers et dans le Tarn. Pour d’autres lieux, contactez-moi.",
+		a: "Je suis basé à Fonsorbes, à l’ouest de Toulouse, et j’interviens à Toulouse et partout en Occitanie : Haute-Garonne, Gers, Tarn… Pour d’autres lieux, contactez-moi.",
 	},
 	{
 		q: "Peut-on combiner le blind test avec un karaoké ou un DJ ?",
@@ -166,7 +166,7 @@ export default function BlindTestQuiz() {
 			seo={{
 				title: "Animation blind test & quiz à Toulouse | Dydy Fantasy",
 				description:
-					"Animateur blind test et quiz à Toulouse : soirées façon jeu télé pour bars, mariages, entreprises et anniversaires. Buzzers, scores en direct, devis rapide.",
+					"Animateur blind test et quiz à Toulouse : soirées façon jeu télé pour bars, mariages, entreprises et anniversaires. Jeu sur téléphone, devis sous 24 h.",
 				ogTitle: "Blind test & quiz façon jeu télé à Toulouse | Dydy Fantasy",
 			}}
 			breadcrumb={[{ name: "Prestations", to: "/prestations" }]}
@@ -176,7 +176,7 @@ export default function BlindTestQuiz() {
 					<span className="text-[var(--cyan)]">quiz</span> à Toulouse
 				</>
 			}
-			intro="Une soirée façon jeu télé où vos invités ne regardent pas : ils jouent. Buzzers ou téléphone, manches thématiques, scores en direct et ambiance au micro, pour un bar, un mariage, une entreprise ou un anniversaire."
+			intro="Une soirée façon jeu télé où vos invités ne regardent pas : ils jouent. Chacun joue sur son téléphone, qui devient son buzzer : manches thématiques, scores en direct et ambiance au micro, pour un bar, un mariage, une entreprise ou un anniversaire."
 			aside={<DemoScreen />}
 			pointsTitle={{ label: "Pour qui ?", title: "Un blind test pour chaque", accent: "événement", text: "Du bar de quartier au grand mariage, le quiz s’adapte à votre public et à votre lieu." }}
 			points={AUDIENCES}

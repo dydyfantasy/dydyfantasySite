@@ -51,7 +51,7 @@ export default function SurMesure() {
 			faq={[
 				{ q: "Comment se construit une animation sur mesure ?", a: "On échange sur votre événement, votre public et votre objectif ; je vous propose ensuite un format et on l’ajuste ensemble avant le jour J." },
 				{ q: "Combien de temps faut-il pour la préparer ?", a: "Cela dépend du format : contactez-moi le plus tôt possible avec votre date, je vous dirai ce qui est faisable." },
-				{ q: "Où intervenez-vous ?", a: "Basé à Fonsorbes, à l’ouest de Toulouse, j’interviens à Toulouse, en Haute-Garonne, dans le Gers et dans le Tarn." },
+				{ q: "Où intervenez-vous ?", a: "Basé à Fonsorbes, à l’ouest de Toulouse, j’interviens à Toulouse et partout en Occitanie : Haute-Garonne, Gers, Tarn…" },
 			]}
 		/>
 	);
