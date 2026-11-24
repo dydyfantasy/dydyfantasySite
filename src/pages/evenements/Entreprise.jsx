@@ -52,7 +52,7 @@ export default function Entreprise() {
 			related={relatedTo(PATH)}
 			faq={[
 				{ q: "Le quiz peut-il porter sur notre entreprise ?", a: "Oui : des manches sur votre entreprise, votre secteur ou votre actualité rendent le jeu encore plus fédérateur." },
-				{ q: "Avez-vous déjà animé des événements d’entreprise ?", a: "Oui, par exemple une journée VitalSport chez Décathlon Escalquens, en animation micro avec présentation de démonstrations." },
+				{ q: "Avez-vous déjà animé des événements d’entreprise ?", a: "Oui, régulièrement : quiz en équipes, soirées d’entreprise, karaokés entre collègues… Par exemple une journée VitalSport chez Décathlon Escalquens, en animation micro avec présentation de démonstrations." },
 				{ q: "Pouvez-vous intervenir dans nos locaux ?", a: "Oui, dans vos locaux ou dans le lieu de votre séminaire, à Toulouse et partout en Occitanie." },
 				{ q: "Établissez-vous des devis pour les entreprises ?", a: "Oui, contactez-moi avec la date, le lieu, le nombre de participants et le format souhaité : je vous réponds sous 24 h avec un devis tout compris." },
 			]}

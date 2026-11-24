@@ -53,7 +53,7 @@ export default function Anniversaire() {
 			related={relatedTo(PATH)}
 			faq={[
 				{ q: "Peut-on préparer une soirée surprise ?", a: "Oui, on prépare tout ensemble en toute discrétion, y compris les questions sur la personne fêtée." },
-				{ q: "Intervenez-vous à domicile ?", a: "Oui, selon la place disponible ; on fait le point ensemble sur le lieu et le matériel nécessaire." },
+				{ q: "Intervenez-vous à domicile ?", a: "Oui, avec tout mon matériel : sono, lumières, micros et écran. On fait le point ensemble sur la place disponible pour une installation adaptée à votre maison ou votre jardin." },
 				{ q: "Où intervenez-vous ?", a: "Basé à Fonsorbes, à l’ouest de Toulouse, j’interviens à Toulouse et partout en Occitanie : Haute-Garonne, Gers, Tarn…" },
 			]}
 		/>

@@ -6,7 +6,7 @@ const STATS = [
 	{ value: "12 à 15", label: "soirées par mois", color: "var(--pink)" },
 	{ value: "150+", label: "soirées animées", color: "var(--cyan)" },
 	{ value: "200+", label: "invités sur un même événement", color: "var(--gold)" },
-	{ value: "3", label: "bars où je suis animateur résident", color: "#7cff6b" },
+	{ value: "4", label: "bars où je suis animateur résident", color: "#7cff6b" },
 ];
 
 function Strength() {
