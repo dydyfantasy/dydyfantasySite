@@ -244,10 +244,13 @@ export default function DydyQuiz() {
 						</div>
 						<div className="p-7">
 						<CodeBracketIcon aria-hidden="true" className="h-9 w-9 text-[var(--cyan)]" />
-						<h2 id="rassurance" className="mt-4 text-2xl font-extrabold">Développée par moi, pour vos soirées</h2>
+						<h2 id="rassurance" className="mt-4 text-2xl font-extrabold">
+							Développée par moi, <span className="text-[var(--cyan)]">testée dans plus de 150 soirées</span>
+						</h2>
 						<p className="mt-3 text-white/80">
-							Ingénieur développeur le jour, j’ai conçu Dydy Quiz pour qu’il soit simple, fluide et fiable, y
-							compris dans les conditions réelles d’un événement.
+							Ingénieur développeur le jour, j’ai conçu Dydy Quiz pour qu’il soit simple, fluide et fiable. Et
+							il a fait ses preuves : <strong className="text-white">plus de 150 soirées</strong> en
+							conditions réelles, dans des bars pleins, des mariages et des événements d’entreprise.
 						</p>
 						</div>
 					</ScrollReveal>
