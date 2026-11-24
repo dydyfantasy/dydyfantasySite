@@ -8,6 +8,16 @@ import {
 	DevicePhoneMobileIcon,
 	SparklesIcon,
 } from "@heroicons/react/24/outline";
+import {
+	SpeakerWaveIcon as ISpeaker,
+	MicrophoneIcon as IMic,
+	DevicePhoneMobileIcon as IPhone,
+	CameraIcon as ICamera,
+	MusicalNoteIcon as INote,
+	HomeIcon as IHome,
+	LightBulbIcon as IBulb,
+	UserGroupIcon as IGroup,
+} from "@heroicons/react/24/outline";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 import { photoFor } from "../../data/evenementsPhotos";
@@ -49,6 +59,14 @@ export default function Entreprise() {
 				{ icon: MicrophoneIcon, title: "Animation micro & speaker", text: "Présentation de démonstrations, annonces et animation du public lors de vos événements." },
 				{ icon: MusicalNoteIcon, title: "Soirée blind test, karaoké & DJ", text: "Pour clôturer la journée dans une ambiance festive." },
 			]}
+			// « Ce que je peux apporter » propre à cette page (contenu unique pour le SEO)
+			included={[
+				{ icon: ISpeaker, title: "Installation clé en main", text: "Sono, micros, écran et vidéoprojecteur dans vos locaux ou votre salle de séminaire : vous n’avez rien à prévoir." },
+				{ icon: IMic, title: "Animation micro professionnelle", text: "Présentation, annonces et relances : je fais participer vos équipes et je tiens le rythme de la journée." },
+				{ icon: IPhone, title: "Application Dydy Quiz", text: "Quiz en équipes et sondages en direct depuis les smartphones, classement sur grand écran : rien à installer.", to: "/dydy-quiz" },
+				{ icon: ICamera, title: "Contenus pour votre communication", text: "Selon l’événement, quelques photos ou vidéos réutilisables pour votre communication interne ou vos réseaux." },
+			]}
+			gallery="entreprises"
 			related={relatedTo(PATH)}
 			faq={[
 				{ q: "Le quiz peut-il porter sur notre entreprise ?", a: "Oui : des manches sur votre entreprise, votre secteur ou votre actualité rendent le jeu encore plus fédérateur." },

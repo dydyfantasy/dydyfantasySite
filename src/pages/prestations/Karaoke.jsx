@@ -8,6 +8,16 @@ import {
 	CakeIcon,
 	BuildingStorefrontIcon,
 } from "@heroicons/react/24/outline";
+import {
+	SpeakerWaveIcon as ISpeaker,
+	MicrophoneIcon as IMic,
+	DevicePhoneMobileIcon as IPhone,
+	CameraIcon as ICamera,
+	MusicalNoteIcon as INote,
+	HomeIcon as IHome,
+	LightBulbIcon as IBulb,
+	UserGroupIcon as IGroup,
+} from "@heroicons/react/24/outline";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 
@@ -30,7 +40,7 @@ export default function Karaoke() {
 					Animation <span className="text-[var(--pink)]">karaoké</span> à Toulouse
 				</>
 			}
-			intro="Micros ouverts, duos, battles et chansons cultes : une animation conviviale où tout le monde peut participer, des plus timides aux stars de la soirée. Je gère les passages, les relances au micro et l’ambiance."
+			intro="Micros ouverts, duos, battles et chansons cultes : une animation conviviale où tout le monde peut participer, des plus timides aux stars de la soirée. Plus de 90 000 chansons avec KaraFun, choisies par vos invités depuis leur téléphone : je gère les passages, les relances au micro et l’ambiance."
 			color="var(--pink)"
 			pointsTitle={{ label: "Pour qui ?", title: "Un karaoké pour chaque", accent: "soirée" }}
 			points={[
@@ -45,6 +55,13 @@ export default function Karaoke() {
 				{ icon: UsersIcon, title: "Duos & chœurs", text: "Des chansons à chanter à plusieurs pour embarquer aussi ceux qui n’osent pas seuls." },
 				{ icon: FireIcon, title: "Battles", text: "Équipe contre équipe : l’ambiance monte d’un cran." },
 				{ icon: MusicalNoteIcon, title: "Blind’Quiz + Karaoké", text: "Le format star de mes soirées : on s’échauffe avec un blind quiz, puis karaoké géant." },
+			]}
+			// « Ce que je peux apporter » propre à cette page (contenu unique pour le SEO)
+			included={[
+				{ icon: INote, title: "Plus de 90 000 chansons", text: "Le catalogue KaraFun : des grands classiques aux tubes du moment, il y en a pour tous les goûts." },
+				{ icon: IPhone, title: "Les chansons choisies sur téléphone", text: "Vos invités choisissent leurs titres depuis leur téléphone et rejoignent la file d’attente : pas de papier, pas de bousculade." },
+				{ icon: ISpeaker, title: "Matériel professionnel", text: "Micros, sono, lumières, machine à fumée, et grand écran pour afficher les paroles." },
+				{ icon: ICamera, title: "Contenus réseaux", text: "Selon la soirée, quelques photos ou vidéos réutilisables pour votre communication." },
 			]}
 			related={relatedTo(PATH)}
 			faq={[

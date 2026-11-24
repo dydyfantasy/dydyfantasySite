@@ -9,6 +9,16 @@ import {
 	PhotoIcon,
 	SpeakerWaveIcon,
 } from "@heroicons/react/24/outline";
+import {
+	SpeakerWaveIcon as ISpeaker,
+	MicrophoneIcon as IMic,
+	DevicePhoneMobileIcon as IPhone,
+	CameraIcon as ICamera,
+	MusicalNoteIcon as INote,
+	HomeIcon as IHome,
+	LightBulbIcon as IBulb,
+	UserGroupIcon as IGroup,
+} from "@heroicons/react/24/outline";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 import { photoFor } from "../../data/evenementsPhotos";
@@ -77,6 +87,14 @@ export default function Mariage() {
 				link: { href: "https://www.mariages.net/musique-mariage/dydy-fantasy--e431763", label: "Mon profil Mariages.net" },
 				mascot: "Vive les mariés ! 🥂",
 			}}
+			// « Ce que je peux apporter » propre à cette page (contenu unique pour le SEO)
+			included={[
+				{ icon: ISpeaker, title: "Matériel pro, tout compris", text: "Sono, lumières, lyres, machine à fumée, écran et vidéoprojecteur : j’apporte et j’installe tout. Devis tout compris, sans mauvaise surprise." },
+				{ icon: IMic, title: "Un seul interlocuteur", text: "L’animation et la musique avec la même personne, du vin d’honneur à la dernière danse : rien à coordonner entre un DJ et un animateur." },
+				{ icon: IPhone, title: "Application Dydy Quiz", text: "Quiz des mariés et Challenge Photo depuis le téléphone de vos invités, résultats en direct sur grand écran.", to: "/dydy-quiz" },
+				{ icon: ICamera, title: "Souvenirs à partager", text: "Selon la soirée, quelques photos ou vidéos à garder et à partager avec vos proches." },
+			]}
+			gallery="mariages"
 			related={relatedTo(PATH)}
 			faq={[
 				{ q: "À quel moment du mariage intervenez-vous ?", a: "Du vin d’honneur à la fin de soirée, selon vos envies : ambiance et jeux pour briser la glace au vin d’honneur, quiz et blind test pendant le repas, puis karaoké et DJ. On construit le déroulé ensemble." },

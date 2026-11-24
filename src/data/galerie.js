@@ -48,7 +48,16 @@ export function describe(path) {
 	return { category, alt: `${name.charAt(0).toUpperCase()}${name.slice(1)} – Dydy Fantasy` };
 }
 
-/** Extraits choisis pour l’accueil (vidéos dont le nom contient « accueil »), triés par nom */
-export const HOME_CLIPS = Object.entries(clipFiles)
+/** Tous les extraits muets de 6 s, triés par nom */
+const ALL_CLIPS = Object.entries(clipFiles)
 	.sort(([a], [b]) => a.localeCompare(b))
 	.map(([path, src]) => ({ path, src, poster: POSTERS[key(path)], ...describe(path) }));
+
+/** Extraits choisis pour l’accueil (vidéos dont le nom contient « accueil ») */
+export const HOME_CLIPS = ALL_CLIPS.filter((c) => /accueil/i.test(c.path.split("/").pop()));
+
+/** Extraits d’une catégorie de la galerie (ex. « bars »), ceux marqués « accueil » d’abord */
+export const clipsFor = (category, max = 3) =>
+	ALL_CLIPS.filter((c) => c.category === category)
+		.sort((a, b) => Number(/accueil/i.test(b.path)) - Number(/accueil/i.test(a.path)))
+		.slice(0, max);

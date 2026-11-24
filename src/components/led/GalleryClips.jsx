@@ -9,12 +9,14 @@ import { CATEGORY_LABELS, COLORS, HOME_CLIPS } from "../../data/galerie";
 // sur la section (LoopVideo : preload="none").
 export const CLIPS = HOME_CLIPS.slice(0, 6);
 
-export default function GalleryClips() {
-	if (!CLIPS.length) return null;
+// `clips` : liste à afficher (par défaut, la sélection de l’accueil)
+
+export default function GalleryClips({ clips = CLIPS, className = "grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4" }) {
+	if (!clips.length) return null;
 
 	return (
-		<ul className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
-			{CLIPS.map((c, i) => (
+		<ul className={className}>
+			{clips.map((c, i) => (
 				<ScrollReveal as="li" key={c.path} delay={(i % 3) * 80}>
 					<Link
 						to={`/galerie?categorie=${c.category}`}

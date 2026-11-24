@@ -60,6 +60,8 @@ Ajoutez `accueil` au début du nom de la vidéo dans la galerie, ex. `karaoke-vi
 - Pour retirer une vidéo de l'accueil : enlevez `accueil-` de son nom, puis `npm run videos`.
 - Le mot « accueil » n'apparaît pas dans la description lue par Google.
 
+Les pages Mariage, Entreprise, Anniversaire et Bars montrent aussi automatiquement 4 extraits de leur catégorie de galerie (section « En images ») : ceux marqués `accueil` d'abord, puis les autres par ordre alphabétique.
+
 Visez des vidéos courtes (15 à 60 secondes). Dans la galerie, la vidéo s'ouvre en grand au clic, avec le son et les boutons de lecture.
 
 ## Ajouter une référence client (bandeau « Ils m'ont fait confiance »)

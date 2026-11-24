@@ -8,6 +8,16 @@ import {
 	MusicalNoteIcon,
 	SparklesIcon,
 } from "@heroicons/react/24/outline";
+import {
+	SpeakerWaveIcon as ISpeaker,
+	MicrophoneIcon as IMic,
+	DevicePhoneMobileIcon as IPhone,
+	CameraIcon as ICamera,
+	MusicalNoteIcon as INote,
+	HomeIcon as IHome,
+	LightBulbIcon as IBulb,
+	UserGroupIcon as IGroup,
+} from "@heroicons/react/24/outline";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 import { photoFor } from "../../data/evenementsPhotos";
@@ -24,12 +34,12 @@ export default function BarsRestaurants() {
 			seo={{
 				title: "Blind test & karaoké pour bars à Toulouse | Dydy Fantasy",
 				description:
-					"Animateur de soirées blind test, quiz et karaoké pour bars et restaurants autour de Toulouse. Des soirées régulières qui remplissent votre établissement.",
+					"Soirées blind test, quiz, karaoké, DJ ou sur mesure pour bars et restaurants autour de Toulouse : des soirées régulières qui remplissent votre salle.",
 			}}
 			breadcrumb={[]}
 			title={
 				<>
-					Soirées <span className="text-[#7cff6b]">blind test & karaoké</span> pour bars et restaurants
+					Soirées <span className="text-[#7cff6b]">blind test, karaoké & DJ</span> pour bars et restaurants
 				</>
 			}
 			intro="Des soirées régulières ou ponctuelles qui remplissent votre salle en semaine et fidélisent vos clients. C’est le cœur de mon activité : je suis animateur résident toute l’année dans 4 bars autour de Toulouse, avec 12 à 15 soirées par mois."
@@ -47,8 +57,16 @@ export default function BarsRestaurants() {
 				{ icon: TrophyIcon, title: "Blind’Quiz + Karaoké", text: "Le format star : blind test et quiz pour s’échauffer, puis karaoké géant." },
 				{ icon: MusicalNoteIcon, title: "Blind test", text: "Années 80/90/2000, chansons françaises, films et séries : des manches rapides et rythmées." },
 				{ icon: MicrophoneIcon, title: "Karaoké", text: "Micros ouverts, duos et chansons cultes pour une ambiance festive." },
-				{ icon: SparklesIcon, title: "Soirées à thème", text: "Soirée spéciale, événement saisonnier ou concept original pour votre établissement." },
+				{ icon: SparklesIcon, title: "Soirée DJ", text: "Un DJ set généraliste, des années 80 aux tubes d’aujourd’hui, pour transformer votre salle en piste de danse." },
+				{ icon: SparklesIcon, title: "Soirées sur mesure", text: "Soirée casino, soirée célibataires, escape game, murder party… un concept original pour faire parler de votre établissement." },
 			]}
+			// « Ce que je peux apporter » propre à cette page (contenu unique pour le SEO)
+			included={[
+				{ icon: ISpeaker, title: "Rien à installer de votre côté", text: "Sono, lumières, lyres, machine à fumée, micros et écran : j’arrive avec tout et je m’installe dans votre salle." },
+				{ icon: IPhone, title: "Application Dydy Quiz", text: "Les équipes jouent depuis leur téléphone avec un QR code, et le classement s’affiche en direct sur l’écran du bar.", to: "/dydy-quiz" },
+				{ icon: ICamera, title: "Contenus pour vos réseaux", text: "Quelques photos ou vidéos de la soirée pour animer vos réseaux et donner envie de venir à la prochaine." },
+			]}
+			gallery="bars"
 			related={relatedTo(PATH)}
 			faq={[
 				{ q: "Dans quels établissements animez-vous déjà ?", a: "Je suis animateur résident toute l’année dans 4 établissements : La Ville en Rose à Colomiers, la Taverne Heidelberg à Blagnac, le Biergarten by Saint-Orens à Saint-Orens-de-Gameville et La Table Ronde à Saint-Lieux-lès-Lavaur, dans le Tarn. J’anime aussi des soirées ponctuelles ailleurs, par exemple au Cul de Bouteille à Aussonne." },

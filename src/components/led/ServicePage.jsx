@@ -18,6 +18,8 @@ import PeekingMascot from "./PeekingMascot";
 import LedDivider from "./LedDivider";
 import ConfettiRain from "./ConfettiRain";
 import Testimonial from "./Testimonial";
+import GalleryClips from "./GalleryClips";
+import { clipsFor, CATEGORY_LABELS } from "../../data/galerie";
 import { STEPS } from "../../data/steps";
 
 const SITE = "https://dydyfantasy.fr";
@@ -94,7 +96,12 @@ export default function ServicePage({
 	photoSign, // enseigne néon sur la photo du haut (ex. "Vive les mariés")
 	theme, // ambiance propre à la page : "mariage" (or champagne + confettis), voir led.css
 	testimonial, // avis client cité (voir Testimonial.jsx), affiché après les formats
+	gallery, // catégorie de la galerie à montrer en extraits vidéo (ex. "bars"), voir data/galerie.js
 }) {
+	const clips = gallery ? clipsFor(gallery, 4) : [];
+	// Étapes communes (identiques sur toutes les pages) : version courte + lien vers « Mon approche »,
+	// pour que chaque page garde surtout du contenu qui lui est propre (SEO). Étapes propres : frise complète.
+	const compactSteps = steps === DEFAULT_STEPS;
 	const url = SITE + path;
 	const crumbs = [{ name: "Accueil", to: "/" }, ...breadcrumb, { name, to: path }];
 	const jsonLd = [
@@ -211,9 +218,53 @@ export default function ServicePage({
 
 			{testimonial && <Testimonial testimonial={testimonial} />}
 
+			{/* ---- En images : extraits de vraies soirées de la galerie ---- */}
+			{clips.length > 0 && (
+				<section aria-labelledby="en-images" className="px-4 py-16">
+					<div className="mx-auto max-w-6xl">
+						<div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+							<SectionTitle id="en-images" label="En images" title="L’ambiance," accent="en vrai">
+								Des extraits de vraies soirées : {(CATEGORY_LABELS[gallery] ?? gallery).toLowerCase()}.
+							</SectionTitle>
+							<Link
+								to={`/galerie?categorie=${gallery}`}
+								className="btn-outline-neon inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-[var(--cyan)] px-6 py-3 font-semibold text-[var(--cyan)]">
+								Voir la galerie
+								<ArrowRightIcon className="h-4 w-4" />
+							</Link>
+						</div>
+						<div className="mt-10">
+							<GalleryClips clips={clips} className={`grid grid-cols-2 gap-3 md:gap-4 ${clips.length > 2 ? "md:grid-cols-4" : ""}`} />
+						</div>
+					</div>
+				</section>
+			)}
+
 			<LedDivider color="var(--pink)" />
 
-			{/* ---- Déroulé : frise ---- */}
+			{/* ---- Déroulé : version courte (étapes communes) ou frise (étapes propres à la page) ---- */}
+			{compactSteps ? (
+				<section aria-labelledby="deroule" className="px-4 py-16">
+					<div className="mx-auto max-w-6xl">
+						<SectionTitle id="deroule" label="Comment ça se passe" title="De votre idée au" accent="jour J" />
+						<ol className="mt-8 flex flex-wrap items-center gap-3">
+							{steps.map((s, i) => (
+								<li key={s.title} className="flex items-center gap-3" style={{ "--c": COLORS[i % 4] }}>
+									<span className="neon-card inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold">
+										<s.icon aria-hidden="true" className="h-5 w-5 text-[var(--c)]" />
+										{s.title}
+									</span>
+									{i < steps.length - 1 && <ArrowRightIcon aria-hidden="true" className="h-4 w-4 text-white/40" />}
+								</li>
+							))}
+						</ol>
+						<Link to="/mon-approche" className="mt-6 inline-flex items-center gap-2 font-semibold text-[var(--cyan)] underline underline-offset-4">
+							Ma façon de travailler, étape par étape
+							<ArrowRightIcon className="h-4 w-4" />
+						</Link>
+					</div>
+				</section>
+			) : (
 			<section aria-labelledby="deroule" className="px-4 py-16">
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="deroule" label="Comment ça se passe" title="De votre idée au" accent="jour J" />
@@ -231,6 +282,7 @@ export default function ServicePage({
 					</ol>
 				</div>
 			</section>
+			)}
 
 			{/* ---- Inclus ---- */}
 			{included.length > 0 && (

@@ -8,6 +8,16 @@ import {
 	CakeIcon,
 	FlagIcon,
 } from "@heroicons/react/24/outline";
+import {
+	SpeakerWaveIcon as ISpeaker,
+	MicrophoneIcon as IMic,
+	DevicePhoneMobileIcon as IPhone,
+	CameraIcon as ICamera,
+	MusicalNoteIcon as INote,
+	HomeIcon as IHome,
+	LightBulbIcon as IBulb,
+	UserGroupIcon as IGroup,
+} from "@heroicons/react/24/outline";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 
@@ -30,7 +40,7 @@ export default function SurMesure() {
 					Animation <span className="text-[var(--gold)]">sur mesure</span> à Toulouse
 				</>
 			}
-			intro="Loto revisité, murder party, escape game, jeux d’équipe ou soirée à thème : je construis un format adapté à votre lieu, à votre public et à votre objectif. Ingénieur développeur le jour, j’aime créer des mécaniques de jeu originales."
+			intro="Loto revisité, soirée casino, murder party, escape game, jeux d’équipe ou soirée à thème : je construis un format adapté à votre lieu, à votre public et à votre objectif. Ingénieur le jour, je développe moi-même mon application et j’aime créer des mécaniques de jeu originales."
 			color="var(--gold)"
 			pointsTitle={{ label: "Pour qui ?", title: "Une idée ? On la", accent: "met en scène" }}
 			points={[
@@ -42,10 +52,18 @@ export default function SurMesure() {
 			formatsTitle={{ label: "Exemples", title: "Quelques", accent: "idées", text: "À mélanger, à adapter, ou à inventer ensemble." }}
 			formats={[
 				{ icon: TicketIcon, title: "Loto revisité", text: "Le loto classique, en version animée et rythmée, avec des surprises entre les tirages." },
+				{ icon: TicketIcon, title: "Soirée casino", text: "L’ambiance d’un casino le temps d’une soirée, adaptée à votre lieu et à vos invités." },
 				{ icon: PuzzlePieceIcon, title: "Murder party & escape game", text: "Une enquête ou des énigmes à résoudre en équipes pendant la soirée." },
 				{ icon: UserGroupIcon, title: "Jeux d’équipe", text: "Défis, manches et classement en direct pour créer de l’émulation." },
 				{ icon: SparklesIcon, title: "Soirée à thème", text: "Années 80, cinéma, séries… un univers complet, de la musique aux questions." },
 				{ icon: HeartIcon, title: "Soirée célibataires", text: "Avec la Match Machine de Dydy Quiz, un algorithme de rencontre qui crée des duos entre participants, puis un DJ set pour faire danser tout le monde." },
+			]}
+			// « Ce que je peux apporter » propre à cette page (contenu unique pour le SEO)
+			included={[
+				{ icon: IBulb, title: "Des jeux créés pour vous", text: "Ingénieur le jour, je développe moi-même mon application, Dydy Quiz, et j’adapte ses mécaniques à votre concept : quiz, votes, défis photo, Match Machine…", to: "/dydy-quiz" },
+				{ icon: IGroup, title: "Un maître du jeu", text: "J’explique les règles, je fais avancer l’intrigue et je garde le rythme du début à la fin." },
+				{ icon: ISpeaker, title: "Ambiance complète", text: "Sono, lumières, lyres, machine à fumée et écran pour plonger vos invités dans l’univers de la soirée." },
+				{ icon: ICamera, title: "Contenus réseaux", text: "Selon la soirée, quelques photos ou vidéos réutilisables pour votre communication." },
 			]}
 			related={relatedTo(PATH)}
 			faq={[

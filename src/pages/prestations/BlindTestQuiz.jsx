@@ -13,6 +13,16 @@ import {
 	DevicePhoneMobileIcon,
 	TrophyIcon,
 } from "@heroicons/react/24/outline";
+import {
+	SpeakerWaveIcon as ISpeaker,
+	MicrophoneIcon as IMic,
+	DevicePhoneMobileIcon as IPhone,
+	CameraIcon as ICamera,
+	MusicalNoteIcon as INote,
+	HomeIcon as IHome,
+	LightBulbIcon as IBulb,
+	UserGroupIcon as IGroup,
+} from "@heroicons/react/24/outline";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 
@@ -183,6 +193,13 @@ export default function BlindTestQuiz() {
 			formatsTitle={{ label: "Les formats", title: "Blind test, quiz ou", accent: "les deux ?", text: "Quatre façons de jouer, à mélanger selon votre soirée." }}
 			formats={FORMATS}
 			steps={STEPS}
+			// « Ce que je peux apporter » propre à cette page (contenu unique pour le SEO)
+			included={[
+				{ icon: IPhone, title: "Application Dydy Quiz", text: "Mon appli maison : questions en audio, vidéo ou image, réponses depuis le téléphone et scores en direct sur grand écran.", to: "/dydy-quiz" },
+				{ icon: ISpeaker, title: "Son et écran pro", text: "Sono, écran ou vidéoprojecteur : chaque extrait et chaque question sont vus et entendus de toute la salle." },
+				{ icon: IMic, title: "Un vrai présentateur", text: "Suspense, relances et bonne humeur au micro, comme dans un jeu télé." },
+				{ icon: ICamera, title: "Contenus réseaux", text: "Selon la soirée, quelques photos ou vidéos réutilisables pour votre communication." },
+			]}
 			related={relatedTo(PATH)}
 			faq={FAQ}
 		/>

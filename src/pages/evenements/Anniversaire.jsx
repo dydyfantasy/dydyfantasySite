@@ -9,6 +9,16 @@ import {
 	CameraIcon,
 	HomeIcon,
 } from "@heroicons/react/24/outline";
+import {
+	SpeakerWaveIcon as ISpeaker,
+	MicrophoneIcon as IMic,
+	DevicePhoneMobileIcon as IPhone,
+	CameraIcon as ICamera,
+	MusicalNoteIcon as INote,
+	HomeIcon as IHome,
+	LightBulbIcon as IBulb,
+	UserGroupIcon as IGroup,
+} from "@heroicons/react/24/outline";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 import { photoFor } from "../../data/evenementsPhotos";
@@ -50,6 +60,14 @@ export default function Anniversaire() {
 				{ icon: MicrophoneIcon, title: "Karaoké", text: "Les chansons cultes en duo ou en chœur." },
 				{ icon: SparklesIcon, title: "DJ", text: "Pour faire danser vos invités jusqu’au bout de la soirée." },
 			]}
+			// « Ce que je peux apporter » propre à cette page (contenu unique pour le SEO)
+			included={[
+				{ icon: IHome, title: "Chez vous ou en salle", text: "J’apporte sono, lumières, micros et écran, et j’adapte l’installation à la place disponible." },
+				{ icon: IMic, title: "Tout le monde embarqué", text: "Au micro, je fais participer famille et amis, des plus timides aux plus fêtards." },
+				{ icon: IPhone, title: "Application Dydy Quiz", text: "Quiz et Challenge Photo depuis le téléphone des invités, avec les photos et les scores sur grand écran.", to: "/dydy-quiz" },
+				{ icon: ICamera, title: "Des souvenirs de la fête", text: "Selon la soirée, quelques photos ou vidéos de vos invités en plein jeu, à garder." },
+			]}
+			gallery="anniversaires"
 			related={relatedTo(PATH)}
 			faq={[
 				{ q: "Peut-on préparer une soirée surprise ?", a: "Oui, on prépare tout ensemble en toute discrétion, y compris les questions sur la personne fêtée." },

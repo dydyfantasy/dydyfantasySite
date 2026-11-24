@@ -10,7 +10,7 @@
 //   2. une version MP4 (H.264, lue partout, iPhone compris) la remplace (un .mov devient .mp4).
 // Galerie : génère aussi dans src/assets/galerie-apercus/<catégorie>/ (dossier automatique, ne pas y toucher)
 //   - <nom>.jpg : image d’aperçu de chaque vidéo (vignette de la galerie, iPhone compris) ;
-//   - <nom>.mp4 : extrait muet de 6 s pour l’accueil, seulement si le nom contient « accueil ».
+//   - <nom>.mp4 : extrait muet de 6 s de chaque vidéo (accueil si le nom contient « accueil », pages événement)
 // Les vidéos déjà compressées sont reconnues à leur contenu (compressees.json dans chaque dossier
 // d’originaux), même renommées, et ignorées : on peut lancer la commande autant de fois qu’on veut.
 import { spawnSync } from "node:child_process";
@@ -118,7 +118,7 @@ for (const { dossier, reglage } of DOSSIERS) {
 	}
 }
 
-// ---- Aperçus de la galerie (images + extraits pour l’accueil) ----
+// ---- Aperçus de la galerie (images + extraits muets de 6 s) ----
 const APERCUS = path.join(ASSETS, "galerie-apercus");
 const ffmpeg = (args) =>
 	spawnSync("ffmpeg", ["-nostdin", "-v", "error", "-y", ...args], { stdio: ["ignore", "inherit", "inherit"] }).status === 0;
@@ -140,7 +140,7 @@ for (const { dossier } of DOSSIERS.filter((d) => d.dossier.startsWith("galerie/"
 			const ok = ffmpeg(["-ss", "1", "-i", source, "-frames:v", "1", "-vf", "scale=640:640:force_original_aspect_ratio=decrease", "-q:v", "4", image]);
 			console.log(ok ? `✓ aperçu ${dossier}/${base}.jpg` : `✗ aperçu ${dossier}/${base}.jpg`);
 		}
-		if (/accueil/i.test(base)) {
+		{
 			const extrait = path.join(SORTIE, `${base}.mp4`);
 			attendus.add(`${base}.mp4`);
 			if (!plusRecent(extrait, source)) {
@@ -149,7 +149,7 @@ for (const { dossier } of DOSSIERS.filter((d) => d.dossier.startsWith("galerie/"
 					"-vf", "scale=640:640:force_original_aspect_ratio=decrease:force_divisible_by=2",
 					"-c:v", "libx264", "-preset", "slow", "-crf", "28", "-pix_fmt", "yuv420p", "-movflags", "+faststart", extrait,
 				]);
-				console.log(ok ? `✓ extrait accueil ${dossier}/${base}.mp4 (${mo(fs.statSync(extrait).size)})` : `✗ extrait ${dossier}/${base}.mp4`);
+				console.log(ok ? `✓ extrait ${dossier}/${base}.mp4 (${mo(fs.statSync(extrait).size)})` : `✗ extrait ${dossier}/${base}.mp4`);
 			}
 		}
 	}
