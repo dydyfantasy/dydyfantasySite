@@ -14,6 +14,7 @@ import {
 	LightBulbIcon as IBulb,
 	UserGroupIcon as IGroup,
 } from "@heroicons/react/24/outline";
+import SurMesureScene from "../../components/scenes/SurMesureScene";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 
@@ -38,6 +39,8 @@ export default function SurMesure() {
 			}
 			intro="Loto revisité, soirée casino, murder party, escape game, jeux d’équipe ou soirée à thème : je construis un format adapté à votre lieu, à votre public et à votre objectif. Ingénieur le jour, je développe moi-même mon application et j’aime créer des mécaniques de jeu originales."
 			color="var(--gold)"
+			// Mise en scène propre à la page (points et formats), à la place des listes du modèle
+			scene={SurMesureScene}
 			pointsTitle={{ label: "Pour qui ?", title: "Une idée ? On la", accent: "met en scène" }}
 			points={[
 				{ icon: HeartIcon, color: "var(--pink)", title: "Mariages", text: "Un jeu autour de votre histoire pour impliquer tous vos invités." },

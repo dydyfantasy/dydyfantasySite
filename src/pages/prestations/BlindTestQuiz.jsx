@@ -19,6 +19,7 @@ import {
 	DevicePhoneMobileIcon as IPhone,
 	CameraIcon as ICamera,
 } from "@heroicons/react/24/outline";
+import BlindTestScene from "../../components/scenes/BlindTestScene";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 
@@ -184,6 +185,8 @@ export default function BlindTestQuiz() {
 			}
 			intro="Une soirée façon jeu télé où vos invités ne regardent pas : ils jouent. Chacun joue sur son téléphone, qui devient son buzzer : manches thématiques, scores en direct et ambiance au micro, pour un bar, un mariage, une entreprise ou un anniversaire."
 			aside={<DemoScreen />}
+			// Mise en scène propre à la page (points et formats), à la place des listes du modèle
+			scene={BlindTestScene}
 			pointsTitle={{ label: "Pour qui ?", title: "Un blind test pour chaque", accent: "événement", text: "Du bar de quartier au grand mariage, le quiz s’adapte à votre public et à votre lieu." }}
 			points={AUDIENCES}
 			formatsTitle={{ label: "Les formats", title: "Blind test, quiz ou", accent: "les deux ?", text: "Quatre façons de jouer, à mélanger selon votre soirée." }}

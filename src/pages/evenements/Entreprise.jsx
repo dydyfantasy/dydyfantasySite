@@ -14,6 +14,7 @@ import {
 	DevicePhoneMobileIcon as IPhone,
 	CameraIcon as ICamera,
 } from "@heroicons/react/24/outline";
+import EntrepriseScene from "../../components/scenes/EntrepriseScene";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 import { photoFor } from "../../data/evenementsPhotos";
@@ -41,6 +42,8 @@ export default function Entreprise() {
 			intro="Un quiz en équipes pour fédérer vos collaborateurs, une animation micro pour rythmer votre journée, puis blind test, karaoké et DJ pour fêter ça. J’apporte tout le matériel : vous n’avez rien à gérer."
 			photo={photoFor("entreprise")}
 			color="var(--cyan)"
+			// Mise en scène propre à la page (points et formats), à la place des listes du modèle
+			scene={EntrepriseScene}
 			pointsTitle={{ label: "Vos besoins", title: "Un format pour chaque", accent: "objectif" }}
 			points={[
 				{ icon: UsersIcon, color: "var(--cyan)", title: "Fédérer les équipes", text: "Un quiz en équipes où services et collègues se mélangent et s’affrontent dans la bonne humeur." },

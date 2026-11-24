@@ -97,6 +97,7 @@ export default function ServicePage({
 	theme, // ambiance propre à la page : "mariage" (or champagne + confettis), voir led.css
 	testimonial, // avis client cité (voir Testimonial.jsx), affiché après les formats
 	body, // mise en scène propre à la page, à la place des sections « points » et « formats »
+	scene: Scene, // composant de mise en scène (src/components/scenes/) qui reçoit points/formats et leurs titres
 	gallery, // catégorie de la galerie à montrer en extraits vidéo (ex. "bars"), voir data/galerie.js
 }) {
 	const clips = gallery ? clipsFor(gallery, 4) : [];
@@ -168,10 +169,10 @@ export default function ServicePage({
 				</div>
 			</section>
 
-			{body}
+			{body ?? (Scene && <Scene points={points} pointsTitle={pointsTitle} formats={formats} formatsTitle={formatsTitle} />)}
 
 			{/* ---- Points : liste aérée ---- */}
-			{!body && points.length > 0 && (
+			{!body && !Scene && points.length > 0 && (
 				<section aria-labelledby="points" className="px-4 py-16">
 					<div className="mx-auto max-w-6xl">
 						<SectionTitle id="points" label={pointsTitle?.label} title={pointsTitle?.title} accent={pointsTitle?.accent}>
@@ -193,7 +194,7 @@ export default function ServicePage({
 			)}
 
 			{/* ---- Formats : titre collant + lignes numérotées ---- */}
-			{!body && formats.length > 0 && (
+			{!body && !Scene && formats.length > 0 && (
 				<section aria-labelledby="formats" className="px-4 py-16">
 					<div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
 						<div className="lg:sticky lg:top-28 lg:self-start">

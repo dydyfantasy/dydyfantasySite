@@ -13,7 +13,6 @@ const TEAMS = [
 	{ name: "Les Collègues", emoji: "💼", color: "#7cff6b", score: 920 },
 	{ name: "Les Cousins", emoji: "🎉", color: "#8b5cf6", score: 860 },
 ];
-const START = TEAMS.map((t) => t.score);
 const GAINS = [100, 150, 200, 250, 300];
 const TICK = 1900;
 const MAX = 3200; // au-delà, la partie recommence
@@ -24,8 +23,8 @@ function rankingOf(scores) {
 }
 
 // Une équipe marque : celles de derrière marquent plus souvent, ce qui crée des dépassements
-function nextRound(scores) {
-	if (Math.max(...scores) > MAX) return { scores: START, last: null };
+function nextRound(scores, start) {
+	if (Math.max(...scores) > MAX) return { scores: start, last: null };
 	const order = rankingOf(scores);
 	const total = (order.length * (order.length + 1)) / 2;
 	let pick = Math.random() * total;
@@ -44,11 +43,15 @@ function nextRound(scores) {
 	};
 }
 
-export default function LiveLeaderboard() {
+// teams : équipes fictives (par défaut, celles de l’accueil) ; caption : légende sous l’écran
+const CAPTION = "Aperçu : vos invités jouent sur leur téléphone, le classement s’affiche en direct sur grand écran.";
+
+export default function LiveLeaderboard({ teams = TEAMS, caption = CAPTION }) {
 	const ref = useRef(null);
-	const scoresRef = useRef(START);
+	const startRef = useRef(teams.map((t) => t.score));
+	const scoresRef = useRef(startRef.current);
 	const [mounted, setMounted] = useState(false);
-	const [scores, setScores] = useState(START);
+	const [scores, setScores] = useState(startRef.current);
 	const [last, setLast] = useState(null);
 
 	useEffect(() => {
@@ -58,7 +61,7 @@ export default function LiveLeaderboard() {
 
 		let timer = 0;
 		const play = () => {
-			const round = nextRound(scoresRef.current);
+			const round = nextRound(scoresRef.current, startRef.current);
 			scoresRef.current = round.scores;
 			setScores(round.scores);
 			setLast(round.last);
@@ -93,8 +96,8 @@ export default function LiveLeaderboard() {
 						</p>
 					</div>
 
-					<ol className="relative mt-4" style={{ height: `${TEAMS.length * ROW}rem` }}>
-						{TEAMS.map((t, i) => {
+					<ol className="relative mt-4" style={{ height: `${teams.length * ROW}rem` }}>
+						{teams.map((t, i) => {
 							const rank = rankOf.get(i);
 							const score = scores[i];
 							return (
@@ -126,7 +129,7 @@ export default function LiveLeaderboard() {
 				</div>
 			</div>
 			<figcaption className="mt-4 text-center text-sm text-white/55">
-				Aperçu : vos invités jouent sur leur téléphone, le classement s’affiche en direct sur grand écran.
+				{caption}
 			</figcaption>
 		</figure>
 	);

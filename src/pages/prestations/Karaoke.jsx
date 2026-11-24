@@ -14,6 +14,7 @@ import {
 	CameraIcon as ICamera,
 	MusicalNoteIcon as INote,
 } from "@heroicons/react/24/outline";
+import KaraokeScene from "../../components/scenes/KaraokeScene";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 
@@ -38,6 +39,8 @@ export default function Karaoke() {
 			}
 			intro="Micros ouverts, duos, battles et chansons cultes : une animation conviviale où tout le monde peut participer, des plus timides aux stars de la soirée. Plus de 90 000 chansons avec KaraFun, choisies par vos invités depuis leur téléphone : je gère les passages, les relances au micro et l’ambiance."
 			color="var(--pink)"
+			// Mise en scène propre à la page (points et formats), à la place des listes du modèle
+			scene={KaraokeScene}
 			pointsTitle={{ label: "Pour qui ?", title: "Un karaoké pour chaque", accent: "soirée" }}
 			points={[
 				{ icon: BuildingStorefrontIcon, color: "#7cff6b", title: "Bars & restaurants", text: "Des soirées karaoké qui font chanter toute la salle et donnent envie de revenir." },

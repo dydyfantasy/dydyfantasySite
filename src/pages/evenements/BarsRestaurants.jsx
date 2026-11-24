@@ -13,6 +13,7 @@ import {
 	DevicePhoneMobileIcon as IPhone,
 	CameraIcon as ICamera,
 } from "@heroicons/react/24/outline";
+import BarsScene from "../../components/scenes/BarsScene";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 import { photoFor } from "../../data/evenementsPhotos";
@@ -40,6 +41,8 @@ export default function BarsRestaurants() {
 			intro="Des soirées régulières ou ponctuelles qui remplissent votre salle en semaine et fidélisent vos clients. C’est le cœur de mon activité : je suis animateur résident toute l’année dans 4 bars autour de Toulouse, avec 12 à 15 soirées par mois."
 			photo={photoFor("bars")}
 			color="#7cff6b"
+			// Mise en scène propre à la page (points et formats), à la place des listes du modèle
+			scene={BarsScene}
 			pointsTitle={{ label: "Pour votre établissement", title: "Une soirée qui", accent: "fait venir du monde" }}
 			points={[
 				{ icon: ArrowTrendingUpIcon, color: "#7cff6b", title: "Remplir les soirs calmes", text: "Un rendez-vous ludique qui donne une bonne raison de sortir en semaine." },

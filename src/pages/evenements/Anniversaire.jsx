@@ -15,6 +15,7 @@ import {
 	CameraIcon as ICamera,
 	HomeIcon as IHome,
 } from "@heroicons/react/24/outline";
+import AnniversaireScene from "../../components/scenes/AnniversaireScene";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 import { photoFor } from "../../data/evenementsPhotos";
@@ -41,6 +42,8 @@ export default function Anniversaire() {
 			intro="30 ans, 40 ans, 50 ans ou simple envie de faire la fête : un quiz sur la personne fêtée, un blind test qui fait chanter tout le monde, du karaoké et un DJ pour danser. Le cadeau, c’est la soirée."
 			photo={photoFor("anniversaire")}
 			color="var(--gold)"
+			// Mise en scène propre à la page (points et formats), à la place des listes du modèle
+			scene={AnniversaireScene}
 			pointsTitle={{ label: "L’idée", title: "Une soirée qui", accent: "vous ressemble" }}
 			points={[
 				{ icon: CakeIcon, color: "var(--gold)", title: "La personne fêtée au centre", text: "Des questions et des souvenirs que seuls les proches connaissent." },

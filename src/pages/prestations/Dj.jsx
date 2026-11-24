@@ -13,6 +13,7 @@ import {
 	CameraIcon as ICamera,
 	MusicalNoteIcon as INote,
 } from "@heroicons/react/24/outline";
+import DjScene from "../../components/scenes/DjScene";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 
@@ -39,6 +40,8 @@ export default function Dj() {
 			}
 			intro="DJ généraliste, des années 80 aux tubes d’aujourd’hui, et électro : une sélection musicale adaptée à votre public et aux temps forts de votre événement, pour faire monter l’énergie au bon moment. Et parce que je suis aussi animateur, je sais embarquer la salle au micro quand il le faut."
 			color="var(--cyan)"
+			// Mise en scène propre à la page (points et formats), à la place des listes du modèle
+			scene={DjScene}
 			pointsTitle={{ label: "Pour qui ?", title: "Un DJ pour faire danser", accent: "tout le monde" }}
 			points={[
 				{ icon: HeartIcon, color: "var(--pink)", title: "Mariages", text: "De l’entrée des mariés à la dernière danse, une ambiance qui suit le rythme de votre soirée." },

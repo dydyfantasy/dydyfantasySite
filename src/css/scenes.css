@@ -1,0 +1,820 @@
+/* Mises en scène propres aux pages prestations / événements (src/components/scenes/).
+   Animations en transform / opacity uniquement, coupées si le visiteur limite les animations,
+   en pause hors écran (PauseOffscreen). */
+
+/* ========== Bars : sous-bocks + ardoise ========== */
+.coaster {
+	display: flex;
+	width: min(17rem, 80vw);
+	aspect-ratio: 1;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border-radius: 9999px;
+	padding: 2.2rem;
+	text-align: center;
+	background:
+		repeating-radial-gradient(circle, transparent 0 9px, color-mix(in srgb, var(--c) 7%, transparent) 9px 10px),
+		color-mix(in srgb, var(--c) 10%, #120f17);
+	border: 3px dashed color-mix(in srgb, var(--c) 65%, transparent);
+	box-shadow:
+		0 0 0 6px #120f17,
+		0 0 0 8px color-mix(in srgb, var(--c) 40%, transparent),
+		0 20px 40px -20px rgb(0 0 0 / 0.9);
+	transform: rotate(var(--tilt));
+	transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.coaster:hover {
+	transform: rotate(0deg) scale(1.03);
+}
+
+.chalkboard {
+	background:
+		radial-gradient(ellipse at 30% 20%, rgb(255 255 255 / 0.06), transparent 60%),
+		radial-gradient(ellipse at 80% 90%, rgb(255 255 255 / 0.04), transparent 50%),
+		#1d2a24;
+	border: 12px solid #6b4528;
+	box-shadow:
+		inset 0 0 0 2px #4a2e19,
+		inset 0 0 40px rgb(0 0 0 / 0.5),
+		0 25px 50px -25px rgb(0 0 0 / 0.9);
+	color: #f4f1e8;
+}
+.chalk-title {
+	color: #fff;
+	text-shadow: 0 0 1px #fff, 0 0 8px rgb(255 255 255 / 0.35);
+	letter-spacing: 0.04em;
+}
+.chalk-item {
+	text-shadow: 0 0 6px rgb(255 255 255 / 0.25);
+}
+.chalk-dots {
+	border-bottom: 3px dotted rgb(255 255 255 / 0.35);
+	translate: 0 -0.3em;
+}
+.chalkboard p {
+	color: rgb(244 241 232 / 0.78);
+}
+
+/* ========== Entreprise : paperboard + post-it + ordre du jour ========== */
+.paperboard {
+	background: linear-gradient(#f4f4f0, #e9e9e2);
+	border: 10px solid #c9ccd3;
+	box-shadow: 0 25px 50px -25px rgb(0 0 0 / 0.9);
+}
+.paperboard-title {
+	color: #1d4ed8;
+	font-weight: 800;
+	font-size: 1.4rem;
+	transform: rotate(-1.5deg);
+	text-decoration: underline wavy #1d4ed8 2px;
+	text-underline-offset: 6px;
+}
+.postit {
+	position: relative;
+	min-height: 13rem;
+	padding: 1.4rem 1.2rem 1.2rem;
+	background: var(--note);
+	color: #1f1a10;
+	box-shadow: 0 14px 22px -12px rgb(0 0 0 / 0.45);
+	transform: rotate(var(--tilt));
+	transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.postit::before {
+	content: "";
+	position: absolute;
+	top: -7px;
+	left: 50%;
+	width: 14px;
+	height: 14px;
+	translate: -50% 0;
+	border-radius: 9999px;
+	background: radial-gradient(circle at 35% 35%, #ff7a7a, #c81e1e);
+	box-shadow: 0 2px 3px rgb(0 0 0 / 0.4);
+}
+.postit:hover {
+	transform: rotate(0deg) translateY(-4px);
+}
+.postit p {
+	color: #3a3222;
+}
+
+.slide {
+	border: 1.5px solid color-mix(in srgb, var(--cyan) 45%, transparent);
+	background: linear-gradient(160deg, #101526, #0b0912 60%);
+	box-shadow: 0 0 50px -18px var(--cyan);
+}
+.slide-bar {
+	background: color-mix(in srgb, var(--cyan) 14%, #0b0912);
+	border-bottom: 1px solid color-mix(in srgb, var(--cyan) 30%, transparent);
+}
+.slide-dot {
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 9999px;
+	background: rgb(255 255 255 / 0.25);
+}
+.agenda-check {
+	display: flex;
+	width: 2rem;
+	height: 2rem;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	border-radius: 0.5rem;
+	border: 2px solid var(--cyan);
+	color: var(--cyan);
+	font-weight: 900;
+	text-shadow: 0 0 8px var(--cyan);
+}
+
+/* ========== Anniversaire : gâteau, étiquettes cadeaux, polaroids ========== */
+.cake {
+	width: min(20rem, 82vw);
+	padding-top: 4.5rem;
+}
+.cake-candles {
+	position: absolute;
+	top: 0;
+	inset-inline: 0;
+	z-index: 2;
+}
+.candle {
+	position: relative;
+	width: 0.9rem;
+	height: 4.2rem;
+	border-radius: 0.3rem 0.3rem 0 0;
+	background: repeating-linear-gradient(-45deg, #fff 0 6px, var(--pink) 6px 12px);
+	cursor: pointer;
+	translate: 0 0.6rem;
+}
+.candle:disabled {
+	cursor: default;
+}
+.flame {
+	position: absolute;
+	left: 50%;
+	bottom: 100%;
+	width: 0.9rem;
+	height: 1.5rem;
+	margin-left: -0.45rem;
+	margin-bottom: 0.2rem;
+	border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+	background: radial-gradient(ellipse at 50% 70%, #fff 0 20%, #ffd23c 40%, #ff7a1a 75%, transparent 76%);
+	filter: drop-shadow(0 0 8px #ffb02e);
+	transform-origin: 50% 100%;
+	animation: flicker 0.9s ease-in-out infinite alternate;
+	animation-delay: calc(var(--i) * -0.17s);
+	transition:
+		opacity 0.25s,
+		transform 0.25s;
+}
+@keyframes flicker {
+	from {
+		transform: scale(1, 1) rotate(-3deg);
+	}
+	to {
+		transform: scale(0.88, 1.08) rotate(3deg);
+	}
+}
+.candle.is-out .flame {
+	opacity: 0;
+	transform: scale(0.2);
+	animation: none;
+}
+.smoke {
+	position: absolute;
+	left: 50%;
+	bottom: 100%;
+	width: 0.6rem;
+	height: 0.6rem;
+	margin-left: -0.3rem;
+	border-radius: 9999px;
+	background: rgb(220 220 230 / 0.7);
+	opacity: 0;
+}
+.candle.is-out .smoke {
+	animation: smoke 1.4s ease-out forwards;
+}
+@keyframes smoke {
+	0% {
+		opacity: 0.8;
+		transform: translateY(0) scale(0.6);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-3.5rem) scale(2.4);
+	}
+}
+.cake-tier {
+	position: relative;
+	margin-inline: auto;
+	border-radius: 0.8rem 0.8rem 0.4rem 0.4rem;
+	background:
+		radial-gradient(circle at 20% 40%, #ffc93c 0 3px, transparent 4px) 0 0 / 34px 26px,
+		radial-gradient(circle at 70% 70%, #19d3f0 0 3px, transparent 4px) 0 0 / 30px 30px,
+		linear-gradient(#ffd1ec, #ff8fcf);
+}
+.cake-tier::before {
+	/* glaçage qui coule */
+	content: "";
+	position: absolute;
+	inset: 0 0 auto;
+	height: 1.5rem;
+	border-radius: 0.8rem 0.8rem 0 0;
+	background:
+		radial-gradient(circle at 50% 0, #fff7fb 0 0.5rem, transparent 0.55rem) 0 0.7rem / 1.4rem 1rem repeat-x,
+		linear-gradient(#fff7fb, #fff7fb) 0 0 / 100% 0.75rem no-repeat;
+}
+.cake-top {
+	width: 64%;
+	height: 4.5rem;
+}
+.cake-bottom {
+	width: 92%;
+	height: 5.5rem;
+	margin-top: -0.2rem;
+}
+.cake-plate {
+	height: 0.8rem;
+	margin-top: -0.1rem;
+	border-radius: 9999px;
+	background: linear-gradient(#e8e8f0, #9fa0b0);
+	box-shadow: 0 0 40px -6px var(--gold);
+}
+.cake-burst {
+	position: absolute;
+	left: 50%;
+	top: 35%;
+	pointer-events: none;
+}
+.cake-burst i {
+	position: absolute;
+	width: 8px;
+	height: 12px;
+	border-radius: 2px;
+	opacity: 0;
+	animation: cake-pop 1.4s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
+}
+@keyframes cake-pop {
+	0% {
+		opacity: 1;
+		transform: translate(0, 0) scale(0.4);
+	}
+	60% {
+		opacity: 1;
+		transform: translate(var(--x), var(--y)) rotate(var(--r));
+	}
+	100% {
+		opacity: 0;
+		transform: translate(var(--x), calc(var(--y) + 60px)) rotate(var(--r));
+	}
+}
+
+.gift-tag {
+	position: relative;
+	height: 100%;
+	padding: 2.4rem 1.3rem 1.4rem;
+	border-radius: 0.6rem 0.6rem 1rem 1rem;
+	clip-path: polygon(18% 0, 82% 0, 100% 12%, 100% 100%, 0 100%, 0 12%);
+	background: linear-gradient(160deg, #e9c79c, #d6a56f);
+	color: #3b220f;
+	transform: rotate(var(--tilt));
+	transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.gift-tag p {
+	color: #5a3a1f;
+}
+.gift-tag:hover {
+	transform: rotate(0deg) translateY(-4px);
+}
+.gift-hole {
+	position: absolute;
+	top: 0.9rem;
+	left: 50%;
+	width: 0.9rem;
+	height: 0.9rem;
+	translate: -50% 0;
+	border-radius: 9999px;
+	background: var(--ink);
+	box-shadow: 0 0 0 3px #b9834b;
+}
+
+.polaroid {
+	padding: 0.8rem 0.8rem 1.2rem;
+	background: #fbfaf6;
+	color: #24201a;
+	box-shadow: 0 20px 35px -18px rgb(0 0 0 / 0.85);
+	transform: rotate(var(--tilt));
+	transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.polaroid:hover {
+	transform: rotate(0deg) translateY(-4px);
+}
+.polaroid-shot {
+	display: flex;
+	aspect-ratio: 4 / 3;
+	align-items: center;
+	justify-content: center;
+	background:
+		radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--c) 45%, transparent), transparent 70%),
+		#16121e;
+	color: var(--c);
+	filter: drop-shadow(0 0 10px var(--c));
+}
+.polaroid-caption {
+	padding: 0.9rem 0.3rem 0;
+}
+.polaroid-caption p {
+	color: #4a4236;
+}
+
+/* ========== Blind test : pupitres + plateau ========== */
+.podium {
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+.buzzer {
+	position: relative;
+	width: 5.5rem;
+	height: 2.6rem;
+	border-radius: 50% 50% 0.6rem 0.6rem / 70% 70% 0.6rem 0.6rem;
+	background: linear-gradient(#3a3348, #1e1a28);
+	cursor: pointer;
+}
+.buzzer-cap {
+	position: absolute;
+	inset: -0.9rem 0.7rem 0.9rem;
+	border-radius: 50% 50% 40% 40% / 70% 70% 30% 30%;
+	background: radial-gradient(circle at 40% 30%, #fff 0 6%, var(--c) 35%, color-mix(in srgb, var(--c) 60%, #000) 100%);
+	box-shadow: 0 0 18px -2px var(--c);
+	transition: transform 0.12s;
+}
+.buzzer:active .buzzer-cap,
+.buzzer.is-buzzed .buzzer-cap {
+	transform: translateY(0.35rem);
+	box-shadow: 0 0 40px 6px var(--c);
+}
+.buzz-pop {
+	position: absolute;
+	left: 50%;
+	bottom: 100%;
+	translate: -50% -1rem;
+	white-space: nowrap;
+	font-weight: 900;
+	color: var(--c);
+	text-shadow: 0 0 10px var(--c);
+	animation: buzz-pop 0.9s ease-out forwards;
+}
+@keyframes buzz-pop {
+	0% {
+		opacity: 0;
+		transform: scale(0.5);
+	}
+	25% {
+		opacity: 1;
+		transform: scale(1.15);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-1rem) scale(1);
+	}
+}
+.podium-desk {
+	flex: 1;
+	width: 100%;
+	margin-top: -0.2rem;
+	padding: 1.4rem 1.2rem;
+	clip-path: polygon(6% 0, 94% 0, 100% 100%, 0 100%);
+	background: linear-gradient(color-mix(in srgb, var(--c) 18%, #14101c), #0b0912);
+	border-top: 4px solid var(--c);
+}
+.podium-name {
+	color: var(--c);
+	text-shadow: 0 0 10px color-mix(in srgb, var(--c) 60%, transparent);
+}
+
+.game-board {
+	background: linear-gradient(160deg, #1b1340, #0b0912);
+	border: 2px solid color-mix(in srgb, var(--cyan) 45%, transparent);
+	box-shadow:
+		0 0 60px -20px var(--cyan),
+		inset 0 0 40px rgb(0 0 0 / 0.5);
+}
+.board-tile {
+	border: 1.5px solid color-mix(in srgb, var(--c) 55%, transparent);
+	background: radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--c) 22%, transparent), transparent 65%), #120e1f;
+	box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.04);
+	transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.board-tile:hover {
+	transform: translateY(-4px);
+}
+
+/* ========== Karaoké : écran de paroles, file d’attente, applaudimètre ========== */
+.karaoke-screen {
+	background:
+		radial-gradient(ellipse at 50% 0%, rgb(139 92 246 / 0.35), transparent 60%),
+		linear-gradient(#120b2e, #07051a);
+	border: 2px solid color-mix(in srgb, var(--pink) 40%, transparent);
+	box-shadow: 0 0 60px -20px var(--pink);
+}
+.lyric {
+	position: relative;
+	display: inline-block;
+}
+.lyric-base {
+	color: rgb(255 255 255 / 0.4);
+}
+/* Balayage de couleur : le cadre glisse vers la droite pendant que le texte coloré
+   glisse en sens inverse (deux transforms, aucun recalcul de mise en page). */
+.lyric-wipe {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	transform: translateX(-100%);
+	animation: lyric-wipe calc(var(--n) * 2.4s) linear infinite;
+	animation-delay: calc(var(--i) * 2.4s);
+}
+.lyric-fill {
+	display: block;
+	color: var(--pink);
+	text-shadow: 0 0 14px var(--pink);
+	transform: translateX(100%);
+	animation: lyric-fill calc(var(--n) * 2.4s) linear infinite;
+	animation-delay: calc(var(--i) * 2.4s);
+}
+@keyframes lyric-wipe {
+	0% {
+		transform: translateX(-100%);
+	}
+	18%,
+	100% {
+		transform: translateX(0);
+	}
+}
+@keyframes lyric-fill {
+	0% {
+		transform: translateX(100%);
+	}
+	18%,
+	100% {
+		transform: translateX(0);
+	}
+}
+
+.queue {
+	background: #0f0c18;
+	border: 1.5px solid rgb(255 255 255 / 0.1);
+}
+.queue-row {
+	background: rgb(255 255 255 / 0.03);
+	border: 1px solid rgb(255 255 255 / 0.06);
+}
+.queue-row.is-live {
+	border-color: var(--c);
+	background: color-mix(in srgb, var(--c) 10%, #0f0c18);
+	box-shadow: 0 0 26px -10px var(--c);
+}
+.queue-num {
+	background: color-mix(in srgb, var(--c) 20%, transparent);
+	color: var(--c);
+}
+.queue-badge {
+	background: rgb(255 255 255 / 0.08);
+	color: rgb(255 255 255 / 0.75);
+}
+.queue-row.is-live .queue-badge {
+	background: var(--c);
+	color: #05040a;
+}
+
+.applause-meter {
+	position: relative;
+	width: 2.6rem;
+	height: 12rem;
+	overflow: hidden;
+	border-radius: 9999px;
+	border: 2px solid rgb(255 255 255 / 0.2);
+	background: #0f0c18;
+}
+.applause-fill {
+	position: absolute;
+	inset: 0;
+	transform-origin: bottom;
+	background: linear-gradient(to top, #7cff6b, var(--gold) 55%, var(--pink));
+	box-shadow: 0 0 20px var(--pink);
+	transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ========== DJ : platine, tracklist, table de mixage, énergie ========== */
+.turntable {
+	position: relative;
+	width: min(22rem, 80vw);
+	aspect-ratio: 1.15;
+	border-radius: 1.4rem;
+	background: linear-gradient(160deg, #2a2534, #121019);
+	box-shadow:
+		inset 0 0 0 1px rgb(255 255 255 / 0.08),
+		0 30px 50px -25px rgb(0 0 0 / 0.9),
+		0 0 50px -20px var(--cyan);
+}
+.vinyl {
+	position: absolute;
+	left: 7%;
+	top: 50%;
+	width: 74%;
+	aspect-ratio: 1;
+	translate: 0 -50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 9999px;
+	background:
+		repeating-radial-gradient(circle, #0c0b10 0 2px, #1b1922 2px 3px),
+		#0c0b10;
+	box-shadow: 0 0 0 4px #000;
+	animation: spin 3.2s linear infinite;
+}
+.vinyl::after {
+	/* reflet */
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	background: conic-gradient(from 30deg, transparent 0 12%, rgb(255 255 255 / 0.08) 18%, transparent 26% 62%, rgb(255 255 255 / 0.06) 68%, transparent 75%);
+}
+.vinyl-label {
+	z-index: 1;
+	display: flex;
+	width: 36%;
+	aspect-ratio: 1;
+	align-items: center;
+	justify-content: center;
+	border-radius: 9999px;
+	background: radial-gradient(circle, #05040a 0 6%, var(--pink) 7%, #b5127a 100%);
+	text-align: center;
+	font-size: 0.6rem;
+	font-weight: 900;
+	line-height: 1.2;
+	letter-spacing: 0.1em;
+	color: #fff;
+}
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+.tonearm {
+	position: absolute;
+	right: 8%;
+	top: 10%;
+	width: 0.55rem;
+	height: 62%;
+	border-radius: 9999px;
+	background: linear-gradient(#d9d9e3, #8b8b99);
+	transform-origin: 50% 0;
+	transform: rotate(24deg);
+	box-shadow: 0 4px 8px rgb(0 0 0 / 0.5);
+}
+.tonearm::before {
+	content: "";
+	position: absolute;
+	top: -0.7rem;
+	left: 50%;
+	width: 1.8rem;
+	height: 1.8rem;
+	translate: -50% 0;
+	border-radius: 9999px;
+	background: radial-gradient(circle, #6b6b78 0 30%, #2b2a33 32%);
+}
+.track {
+	border: 1px solid rgb(255 255 255 / 0.08);
+	background: rgb(255 255 255 / 0.03);
+}
+.track-num {
+	display: flex;
+	width: 2.4rem;
+	height: 2.4rem;
+	align-items: center;
+	justify-content: center;
+	border-radius: 9999px;
+	background: color-mix(in srgb, var(--cyan) 15%, transparent);
+	color: var(--cyan);
+}
+
+.mixer {
+	background: linear-gradient(160deg, #24202e, #121019);
+	border: 1.5px solid rgb(255 255 255 / 0.08);
+	box-shadow: 0 30px 50px -30px rgb(0 0 0 / 0.9);
+}
+.channel {
+	background: rgb(0 0 0 / 0.25);
+	border: 1px solid rgb(255 255 255 / 0.06);
+}
+.fader-track {
+	position: relative;
+	width: 0.45rem;
+	min-height: 9rem;
+	flex-shrink: 0;
+	border-radius: 9999px;
+	background: #05040a;
+	box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+}
+.fader-knob {
+	position: absolute;
+	left: 50%;
+	top: var(--fader);
+	width: 1.6rem;
+	height: 0.9rem;
+	margin-left: -0.8rem;
+	border-radius: 0.25rem;
+	background: linear-gradient(#f0f0f5, #9a9aa8);
+	box-shadow: 0 0 12px -2px var(--c);
+	border-top: 2px solid var(--c);
+	animation: fader 4s ease-in-out infinite alternate;
+	animation-delay: calc(var(--i) * -1.1s);
+}
+@keyframes fader {
+	from {
+		transform: translateY(-1.2rem);
+	}
+	to {
+		transform: translateY(1.6rem);
+	}
+}
+
+.energy {
+	border: 1.5px solid color-mix(in srgb, var(--cyan) 35%, transparent);
+	background: radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--pink) 18%, transparent), transparent 65%), #0f0c18;
+}
+.energy-bar {
+	width: 0.5rem;
+	height: 100%;
+	border-radius: 9999px;
+	transform-origin: bottom;
+	transform: scaleY(var(--h));
+	background: linear-gradient(to top, var(--cyan), var(--pink));
+	animation: eq-bounce var(--d) ease-in-out infinite alternate;
+	transition: transform 0.4s;
+}
+@keyframes eq-bounce {
+	from {
+		transform: scaleY(calc(var(--h) * 0.55));
+	}
+	to {
+		transform: scaleY(var(--h));
+	}
+}
+.energy-range {
+	accent-color: var(--pink);
+	height: 2rem;
+	cursor: pointer;
+}
+
+/* ========== Sur mesure : roue, cartes à jouer, jetons ========== */
+.wheel-wrap {
+	width: min(20rem, 80vw);
+	aspect-ratio: 1;
+}
+.wheel {
+	position: absolute;
+	inset: 0;
+	border-radius: 9999px;
+	border: 6px solid #1a1622;
+	box-shadow:
+		0 0 0 3px var(--gold),
+		0 0 50px -10px var(--gold);
+	transition: transform 3.2s cubic-bezier(0.12, 0.8, 0.12, 1);
+}
+.wheel-label {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	justify-content: center;
+}
+.wheel-label > span {
+	margin-top: 9%;
+	max-height: 38%;
+	overflow: hidden;
+	writing-mode: vertical-rl;
+	font-size: 0.72rem;
+	font-weight: 900;
+	color: #05040a;
+}
+.wheel-hub {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 18%;
+	aspect-ratio: 1;
+	translate: -50% -50%;
+	border-radius: 9999px;
+	background: radial-gradient(circle at 40% 35%, #fff3c4, var(--gold) 45%, #a8781c);
+	box-shadow: 0 0 0 4px #1a1622;
+}
+.wheel-pointer {
+	position: absolute;
+	left: 50%;
+	top: -0.9rem;
+	z-index: 2;
+	width: 0;
+	height: 0;
+	translate: -50% 0;
+	border-left: 0.9rem solid transparent;
+	border-right: 0.9rem solid transparent;
+	border-top: 1.6rem solid #fff;
+	filter: drop-shadow(0 0 6px var(--gold));
+}
+
+.play-card {
+	position: relative;
+	background: #fbfaf6;
+	color: #1d1a24;
+	box-shadow: 0 18px 30px -18px rgb(0 0 0 / 0.85);
+	transition:
+		transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+		box-shadow 0.3s;
+}
+.play-card p {
+	color: #4a4552;
+}
+.play-card::after {
+	/* coin inversé, comme une vraie carte */
+	content: attr(data-suit);
+	position: absolute;
+	right: 1rem;
+	bottom: 0.6rem;
+	font-size: 1.6rem;
+	opacity: 0.15;
+	transform: rotate(180deg);
+}
+.card-suit {
+	font-size: 1.8rem;
+	line-height: 1;
+	color: #1d1a24;
+}
+.card-suit.is-red {
+	color: #d61f4f;
+}
+.play-card:hover {
+	transform: translateY(-4px) rotate(-1deg);
+}
+.play-card.is-picked {
+	transform: translateY(-6px) scale(1.03);
+	box-shadow:
+		0 0 0 4px var(--gold),
+		0 0 40px -4px var(--gold);
+}
+
+.chip {
+	display: inline-flex;
+	width: 6.5rem;
+	height: 6.5rem;
+	align-items: center;
+	justify-content: center;
+	border-radius: 9999px;
+	color: #fff;
+	background:
+		radial-gradient(circle, var(--c) 0 52%, transparent 53%),
+		repeating-conic-gradient(var(--c) 0 20deg, #fff 20deg 40deg);
+	box-shadow:
+		inset 0 0 0 5px color-mix(in srgb, var(--c) 70%, #000),
+		0 0 30px -6px var(--c);
+	transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+li:hover > .chip {
+	transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.flame,
+	.fader-knob,
+	.energy-bar,
+	.vinyl,
+	.lyric-wipe,
+	.lyric-fill {
+		animation: none;
+	}
+	.lyric-wipe,
+	.lyric-fill {
+		transform: none;
+	}
+	.cake-burst,
+	.buzz-pop {
+		display: none;
+	}
+	.wheel,
+	.coaster,
+	.postit,
+	.gift-tag,
+	.polaroid,
+	.play-card,
+	.chip,
+	.board-tile {
+		transition: none;
+	}
+}
