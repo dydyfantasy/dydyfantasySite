@@ -23,6 +23,9 @@ import LedFinal from "../components/led/LedFinal";
 import Spectrum from "../components/led/Spectrum";
 import PeekingMascot from "../components/led/PeekingMascot";
 import LedDivider from "../components/led/LedDivider";
+import LevelMap from "../components/scenes/LevelMap";
+import Achievements from "../components/scenes/Achievements";
+import ScoreScreen from "../components/scenes/ScoreScreen";
 
 // Textes repris de l’ancienne page (OurApproach.jsx). Seules les étapes 02 et 03
 // ont été complétées pour souligner la co-construction (« ensemble »).
@@ -78,7 +81,7 @@ const PROMISES = [
 	{ icon: LightBulbIcon, title: "Une animation claire", text: "Les règles sont simples, le public comprend vite et peut participer sans prise de tête." },
 	{ icon: AdjustmentsHorizontalIcon, title: "Une ambiance adaptée", text: "Je module le rythme selon le public : calme, familial, festif, compétitif ou complètement décalé." },
 	{ icon: HandRaisedIcon, title: "Une vraie interaction", text: "Le but n’est pas seulement de lancer un jeu, mais de faire vivre un moment collectif." },
-	{ icon: DevicePhoneMobileIcon, title: "Un format moderne", text: "Je peux intégrer des outils interactifs, des scores, des buzzers, des écrans et des supports personnalisés, à commencer par Dydy Quiz, l’appli que j’ai développée.", to: "/dydy-quiz" },
+	{ icon: DevicePhoneMobileIcon, title: "Un format moderne", text: "Je peux intégrer des outils interactifs, des scores, le téléphone de chaque invité transformé en buzzer, des écrans et des supports personnalisés, à commencer par Dydy Quiz, l’appli que j’ai développée.", to: "/dydy-quiz" },
 ];
 
 const RESULTS = [
@@ -151,31 +154,13 @@ function NotreApproche() {
 
 			{/* ---- Méthode : frise verticale en 6 étapes ---- */}
 			<section id="methode" aria-labelledby="methode-titre" className="scroll-mt-24 px-4 py-16">
-				<div className="mx-auto max-w-4xl">
+				<div className="mx-auto max-w-5xl">
 					<SectionTitle id="methode-titre" label="Ma méthode" title="De l’idée à l’animation" accent="le jour J.">
 						Chaque étape permet de construire une animation cohérente, adaptée et agréable à vivre pour vous
 						comme pour vos invités.
 					</SectionTitle>
 
-					<ol className="method-line relative mt-12 space-y-10">
-						{METHOD.map((step, i) => (
-							<ScrollReveal as="li" key={step.title} variant={i % 2 ? "right" : "left"} className="relative pl-20" style={{ "--c": COLORS[i] }}>
-								<span className="timeline-dot absolute left-0 top-0 flex h-14 w-14 items-center justify-center rounded-full">
-									<step.icon aria-hidden="true" className="h-7 w-7 text-[var(--c)]" />
-								</span>
-								<p className="text-sm font-bold uppercase tracking-widest text-[var(--c)]">
-									Étape 0{i + 1} · {step.subtitle}
-								</p>
-								<h3 className="mt-1 text-2xl font-extrabold">{step.title}</h3>
-								<p className="mt-2 text-white/80">{step.text}</p>
-								<ul className="mt-3 flex flex-wrap gap-2">
-									{step.tags.map((t) => (
-										<li key={t} className="rounded-full border border-white/15 px-3 py-1 text-xs text-white/70">{t}</li>
-									))}
-								</ul>
-							</ScrollReveal>
-						))}
-					</ol>
+					<LevelMap steps={METHOD} />
 				</div>
 			</section>
 
@@ -184,17 +169,7 @@ function NotreApproche() {
 				<PeekingMascot text="On construit ça ensemble ! 🤝" className="top-10" />
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="engagements" label="Mes engagements" title="Ce qui fait" accent="la différence" />
-					<ul className="mt-10 grid gap-x-12 sm:grid-cols-2">
-						{PROMISES.map((p, i) => (
-							<ScrollReveal as="li" key={p.title} delay={(i % 2) * 90} className="flex gap-4 border-t border-white/10 py-6" style={{ "--c": COLORS[i] }}>
-								<p.icon aria-hidden="true" className="h-8 w-8 shrink-0 text-[var(--c)]" />
-								<div>
-									<h3 className="text-lg font-extrabold">{p.to ? (<Link to={p.to} className="underline decoration-[var(--c)] underline-offset-4 hover:text-[var(--c)]">{p.title}</Link>) : p.title}</h3>
-									<p className="mt-1 text-white/75">{p.text}</p>
-								</div>
-							</ScrollReveal>
-						))}
-					</ul>
+					<Achievements items={PROMISES} />
 				</div>
 			</section>
 
@@ -203,17 +178,8 @@ function NotreApproche() {
 
 			<section aria-labelledby="resultat" className="px-4 py-12">
 				<div className="mx-auto max-w-6xl">
-					<SectionTitle id="resultat" label="Le résultat" title="Ce que vivent" accent="vos invités" />
-					<ul className="mt-8 flex flex-wrap gap-3">
-						{RESULTS.map((r, i) => (
-							<ScrollReveal as="li" key={r} variant="zoom" delay={i * 70}>
-								<span className="neon-card inline-flex items-center gap-2 rounded-full px-4 py-2.5 font-semibold" style={{ "--c": COLORS[i] }}>
-									<CheckCircleIcon aria-hidden="true" className="h-5 w-5 text-[var(--c)]" />
-									{r}
-								</span>
-							</ScrollReveal>
-						))}
-					</ul>
+					<SectionTitle id="resultat" label="Le résultat" title="Ce que vivent" accent="vos invités" center />
+					<ScoreScreen results={RESULTS} />
 				</div>
 			</section>
 

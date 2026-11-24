@@ -1,9 +1,7 @@
 import { Link } from "react-router";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import {
-	CodeBracketIcon,
 	MicrophoneIcon,
-	CheckIcon,
 	TrophyIcon,
 	MusicalNoteIcon,
 	PuzzlePieceIcon,
@@ -21,6 +19,9 @@ import Spectrum from "../components/led/Spectrum";
 import PeekingMascot from "../components/led/PeekingMascot";
 import LedDivider from "../components/led/LedDivider";
 import LedStats from "../components/led/LedStats";
+import DayNight from "../components/scenes/DayNight";
+import NeonIdeas from "../components/scenes/NeonIdeas";
+import ArcadeSelect from "../components/scenes/ArcadeSelect";
 import portraitSrcSet from "../assets/PhotoPresentation.webp?w=480;900&format=webp&quality=80&as=srcset";
 import portrait from "../assets/PhotoPresentation.webp?w=900&format=webp&quality=80";
 import tete64 from "../assets/brand/perso-tete-64.webp";
@@ -32,7 +33,7 @@ import videoPoster from "../assets/C'est qui dydy fantasy image.webp";
 
 const IDEAS = [
 	{ icon: LightBulbIcon, title: "Une idée simple", text: "Créer des soirées où les invités ne restent pas spectateurs, mais deviennent acteurs de l’ambiance." },
-	{ icon: BoltIcon, title: "Un univers interactif", text: "Mélanger musique, jeux, humour, micro, buzzers, scores et moments spontanés." },
+	{ icon: BoltIcon, title: "Un univers interactif", text: "Mélanger musique, jeux, humour, micro, buzzers sur téléphone, scores et moments spontanés." },
 	{ icon: ChatBubbleLeftRightIcon, title: "Une animation vivante", text: "Adapter le rythme, relancer le public, faire participer tout le monde et garder une vraie énergie." },
 ];
 
@@ -130,42 +131,11 @@ function QuiSuisje() {
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="casquettes" label="Mon histoire" title="Une animation pensée pour faire" accent="participer tout le monde." />
 
-					<div className="mt-10 grid gap-6 md:grid-cols-2">
-						<ScrollReveal variant="left" className="neon-card rounded-3xl p-7" style={{ "--c": "var(--cyan)" }}>
-							<CodeBracketIcon aria-hidden="true" className="h-9 w-9 text-[var(--cyan)]" />
-							<h3 className="mt-4 text-2xl font-extrabold">Mon côté développeur</h3>
-							<p className="mt-1 font-semibold text-[var(--cyan)]">La technologie au service de l’ambiance.</p>
-							<p className="mt-4 text-white/80">
-								Mon métier de développeur me permet d’imaginer des animations plus interactives : quiz en
-								direct, scores, buzzers, écrans, mécaniques de jeu et formats personnalisés.
-							</p>
-							<p className="mt-3 text-white/80">
-								C’est comme ça que j’ai développé moi-même{" "}
-								<Link to="/dydy-quiz" className="font-semibold text-[var(--cyan)] underline underline-offset-4 hover:text-white">
-									Dydy Quiz
-								</Link>
-								, l’appli qui fait jouer vos invités depuis leur téléphone.
-							</p>
-						</ScrollReveal>
-
-						<ScrollReveal variant="right" className="neon-card rounded-3xl p-7" style={{ "--c": "var(--pink)" }}>
-							<MicrophoneIcon aria-hidden="true" className="h-9 w-9 text-[var(--pink)]" />
-							<h3 className="mt-4 text-2xl font-extrabold">Mon côté animateur</h3>
-							<ul className="mt-4 grid gap-2 sm:grid-cols-2">
-								{STRENGTHS.map((item) => (
-									<li key={item} className="flex items-start gap-2 text-sm text-white/85">
-										<CheckIcon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-[var(--pink)]" />
-										{item}
-									</li>
-								))}
-							</ul>
-							<p className="mt-4 text-sm text-white/65">
-								Basé à Fonsorbes, à l’ouest de Toulouse, je me déplace dans un rayon d’environ 50 km :
-								Toulouse, Blagnac, Colomiers, Tournefeuille, Balma, Ramonville, Saint-Orens, le Gers et
-								le Tarn voisins.
-							</p>
-						</ScrollReveal>
-					</div>
+					{/* Le jour (développeur, code à exécuter) / le soir (animateur) */}
+					<DayNight
+						strengths={STRENGTHS}
+						zone="Basé à Fonsorbes, à l’ouest de Toulouse, je me déplace dans un rayon d’environ 50 km : Toulouse, Blagnac, Colomiers, Tournefeuille, Balma, Ramonville, Saint-Orens, le Gers et le Tarn voisins."
+					/>
 
 					{/* La synthèse = la différence Dydy Fantasy */}
 					<ScrollReveal className="mx-auto mt-12 max-w-3xl text-center">
@@ -182,24 +152,9 @@ function QuiSuisje() {
 
 			{/* ---- Philosophie en 3 idées ---- */}
 			<section aria-labelledby="idees" className="px-4 py-16">
-				<div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
-					<div className="lg:sticky lg:top-28 lg:self-start">
-						<SectionTitle id="idees" label="Ma philosophie" title="Trois idées" accent="qui guident chaque soirée" />
-					</div>
-					<ol>
-						{IDEAS.map((idea, i) => (
-							<ScrollReveal as="li" variant="right" key={idea.title} delay={i * 80} className="flex gap-5 border-b border-white/10 py-6 first:pt-0" style={{ "--c": ["var(--cyan)", "var(--pink)", "var(--gold)"][i] }}>
-								<span className="w-10 shrink-0 text-3xl font-extrabold text-[var(--c)]">0{i + 1}</span>
-								<div>
-									<h3 className="flex items-center gap-2 text-xl font-extrabold">
-										<idea.icon aria-hidden="true" className="h-6 w-6 text-[var(--c)]" />
-										{idea.title}
-									</h3>
-									<p className="mt-2 text-white/75">{idea.text}</p>
-								</div>
-							</ScrollReveal>
-						))}
-					</ol>
+				<div className="mx-auto max-w-6xl">
+					<SectionTitle id="idees" label="Ma philosophie" title="Trois idées" accent="qui guident chaque soirée" center />
+					<NeonIdeas ideas={IDEAS} />
 				</div>
 			</section>
 
@@ -210,21 +165,7 @@ function QuiSuisje() {
 				<PeekingMascot text="Moi, en version mascotte 😎" className="top-10" />
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="propose" label="Ce que je propose" title="Mes" accent="animations" />
-					<ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-						{SERVICES.map((s, i) => (
-							<ScrollReveal as="li" key={s.title} delay={i * 90}>
-								<Link to={s.to} style={{ "--c": s.color }} className="neon-card neon-card-hover group flex h-full flex-col rounded-3xl p-6">
-									<s.icon aria-hidden="true" className="h-8 w-8 text-[var(--c)]" />
-									<h3 className="mt-3 text-lg font-extrabold">{s.title}</h3>
-									<p className="mt-2 flex-1 text-white/75">{s.text}</p>
-									<span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--c)]">
-										Découvrir
-										<ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-									</span>
-								</Link>
-							</ScrollReveal>
-						))}
-					</ul>
+					<ArcadeSelect items={SERVICES} />
 				</div>
 			</section>
 

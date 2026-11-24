@@ -22,6 +22,8 @@ import Spectrum from "../components/led/Spectrum";
 import PeekingMascot from "../components/led/PeekingMascot";
 import LedDivider from "../components/led/LedDivider";
 import { getVideo } from "../components/led/videoAssets";
+import PhoneDemo from "../components/scenes/PhoneDemo";
+import ModeSelect from "../components/scenes/ModeSelect";
 
 // Vidéo « C’est quoi Dydy Quiz ? » (~1 min, avec le son) : src/assets/videos/dydy-quiz-presentation.mp4
 // (+ image d’attente dydy-quiz-presentation.jpg). Section masquée tant qu’elle n’est pas déposée.
@@ -199,18 +201,7 @@ export default function DydyQuiz() {
 			<section aria-labelledby="fonctionnement" className="px-4 py-16">
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="fonctionnement" label="Comment ça marche" title="Trois étapes," accent="zéro installation" />
-					<ol className="timeline relative mt-12 grid gap-10 md:grid-cols-3 md:gap-6">
-						{STEPS.map((s, i) => (
-							<ScrollReveal as="li" key={s.title} delay={i * 100} className="relative pl-16 md:pl-0 md:pt-16" style={{ "--c": ["var(--cyan)", "var(--pink)", "var(--gold)"][i] }}>
-								<span className="timeline-dot absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-full">
-									<s.icon aria-hidden="true" className="h-6 w-6 text-[var(--c)]" />
-								</span>
-								<p className="text-sm font-bold uppercase tracking-widest text-[var(--c)]">Étape 0{i + 1}</p>
-								<h3 className="mt-1 text-lg font-extrabold">{s.title}</h3>
-								<p className="mt-1 text-white/75">{s.text}</p>
-							</ScrollReveal>
-						))}
-					</ol>
+					<PhoneDemo steps={STEPS} />
 				</div>
 			</section>
 
@@ -221,21 +212,11 @@ export default function DydyQuiz() {
 				<PeekingMascot text="Mon mode préféré ? Tous ! 😄" className="top-10" />
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="modes-titre" label="Les modes de jeu" title="Une appli," accent="mille façons de jouer" />
-					<ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-						{MODES.map((m, i) => (
-							<ScrollReveal as="li" key={m.title} delay={(i % 3) * 90} className="neon-card rounded-3xl p-6" style={{ "--c": m.color }}>
-								<span className="menu-icon flex h-12 w-12 items-center justify-center rounded-xl">
-									<m.icon aria-hidden="true" className="h-7 w-7" />
-								</span>
-								<h3 className="mt-4 text-xl font-extrabold">{m.title}</h3>
-								<p className="mt-2 text-white/75">{m.text}</p>
-							</ScrollReveal>
-						))}
-					</ul>
+					<ModeSelect modes={MODES} />
 				</div>
 			</section>
 
-			{/* ---- Captures d'écran ---- */}
+						{/* ---- Captures d'écran ---- */}
 			<section aria-labelledby="captures" className="px-4 py-16">
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="captures" label="En images" title="Dydy Quiz" accent="en action" />
@@ -254,15 +235,24 @@ export default function DydyQuiz() {
 			{/* ---- Rassurance ---- */}
 			<section aria-labelledby="rassurance" className="px-4 py-16">
 				<div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
-					<ScrollReveal variant="left" className="neon-card rounded-3xl p-7" style={{ "--c": "var(--cyan)" }}>
+					<ScrollReveal variant="left" className="code-editor overflow-hidden rounded-3xl">
+						<div aria-hidden="true" className="code-bar flex items-center gap-1.5 px-5 py-3">
+							<i className="code-dot bg-[#ff5f57]" />
+							<i className="code-dot bg-[#febc2e]" />
+							<i className="code-dot bg-[#28c840]" />
+							<span className="ml-3 font-mono text-xs text-white/50">dydy-quiz/app.js</span>
+						</div>
+						<div className="p-7">
 						<CodeBracketIcon aria-hidden="true" className="h-9 w-9 text-[var(--cyan)]" />
 						<h2 id="rassurance" className="mt-4 text-2xl font-extrabold">Développée par moi, pour vos soirées</h2>
 						<p className="mt-3 text-white/80">
 							Ingénieur développeur le jour, j’ai conçu Dydy Quiz pour qu’il soit simple, fluide et fiable, y
 							compris dans les conditions réelles d’un événement.
 						</p>
+						</div>
 					</ScrollReveal>
-					<ScrollReveal variant="right" className="neon-card rounded-3xl p-7" style={{ "--c": "var(--gold)" }}>
+					<ScrollReveal variant="right" className="neon-card relative overflow-hidden rounded-3xl p-7" style={{ "--c": "var(--gold)" }}>
+						<span aria-hidden="true" className="level-stamp is-static">Clé en main ✓</span>
 						<ShieldCheckIcon aria-hidden="true" className="h-9 w-9 text-[var(--gold)]" />
 						<h2 className="mt-4 text-2xl font-extrabold">Rien à gérer de votre côté</h2>
 						<p className="mt-3 text-white/80">

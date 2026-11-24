@@ -19,6 +19,10 @@ import LedDivider from "../components/led/LedDivider";
 import ClientOnlyZoneMap from "../components/ClientOnlyZoneMap";
 import { PRESTATIONS, EVENEMENTS } from "../data/navigation";
 import { STEPS } from "../data/steps";
+import FestivalLineup from "../components/scenes/FestivalLineup";
+import TicketStubs from "../components/scenes/TicketStubs";
+import Rider from "../components/scenes/Rider";
+import SoireeBuilder from "../components/scenes/SoireeBuilder";
 
 // Page « sommaire » : aiguille vers les pages détaillées (le détail vit sur chaque page,
 // pour éviter le contenu en double). Textes repris de l’ancienne page Prestations.
@@ -57,7 +61,7 @@ const AUDIENCES = [
 
 const INCLUDED = [
 	{ icon: MicrophoneIcon, title: "Animation au micro", text: "Je gère le rythme, les relances, les explications et l’ambiance tout au long de la prestation." },
-	{ icon: SpeakerWaveIcon, title: "Matériel complet fourni", text: "Sono, lumières, machine à fumée, écran et vidéoprojecteur : j’apporte toujours tout. Devis tout compris, sans mauvaise surprise." },
+	{ icon: SpeakerWaveIcon, title: "Matériel complet fourni", text: "Sono, lumières, lyres, machine à fumée, écran et vidéoprojecteur : j’apporte toujours tout. Devis tout compris, sans mauvaise surprise." },
 	{ icon: DevicePhoneMobileIcon, title: "Application Dydy Quiz", text: "Pour les formats interactifs, les participants peuvent jouer directement depuis leur téléphone, grâce à l’appli que j’ai développée.", to: "/dydy-quiz" },
 	{ icon: CameraIcon, title: "Contenus réseaux", text: "Selon la soirée, je peux produire quelques photos ou vidéos réutilisables pour votre communication." },
 ];
@@ -129,30 +133,7 @@ function NosPrestations() {
 						Chaque prestation peut être adaptée selon le lieu, la durée, le nombre de participants et le type
 						de public.
 					</SectionTitle>
-					<ul className="mt-10 grid gap-5 md:grid-cols-2">
-						{FORMATS.map((f, i) => (
-							<ScrollReveal as="li" key={f.to} delay={(i % 2) * 90}>
-								<Link to={f.to} style={{ "--c": f.color }} className="neon-card neon-card-hover group flex h-full flex-col rounded-3xl p-7">
-									<div className="flex items-center gap-3">
-										<span className="menu-icon flex h-12 w-12 items-center justify-center rounded-xl">
-											<f.icon aria-hidden="true" className="h-7 w-7" />
-										</span>
-										<h3 className="text-2xl font-extrabold">{f.label}</h3>
-									</div>
-									<p className="mt-4 flex-1 text-white/80">{f.text}</p>
-									<ul className="mt-4 flex flex-wrap gap-2">
-										{f.tags.map((t) => (
-											<li key={t} className="rounded-full border border-white/15 px-3 py-1 text-xs text-white/70">{t}</li>
-										))}
-									</ul>
-									<span className="mt-5 inline-flex items-center gap-1.5 font-semibold text-[var(--c)]">
-										Découvrir
-										<ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-									</span>
-								</Link>
-							</ScrollReveal>
-						))}
-					</ul>
+					<FestivalLineup formats={FORMATS} />
 				</div>
 			</section>
 
@@ -161,22 +142,7 @@ function NosPrestations() {
 				<PeekingMascot text="Vous hésitez ? Je vous conseille ! 💬" className="top-10" />
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="pour-qui" label="Pour qui ?" title="Des prestations adaptées à" accent="chaque événement." />
-					<ul className="mt-10 grid gap-x-12 sm:grid-cols-2">
-						{AUDIENCES.map((a, i) => (
-							<ScrollReveal as="li" key={a.to} delay={(i % 2) * 90} className="border-t border-white/10">
-								<Link to={a.to} style={{ "--c": a.color }} className="group flex gap-4 py-6">
-									<a.icon aria-hidden="true" className="h-8 w-8 shrink-0 text-[var(--c)]" />
-									<div>
-										<h3 className="flex items-center gap-2 text-lg font-extrabold">
-											{a.title ?? a.label}
-											<ArrowRightIcon className="h-4 w-4 text-[var(--c)] transition-transform group-hover:translate-x-1" />
-										</h3>
-										<p className="mt-1 text-white/75">{a.text}</p>
-									</div>
-								</Link>
-							</ScrollReveal>
-						))}
-					</ul>
+					<TicketStubs items={AUDIENCES} />
 					<p className="mt-4 flex items-center gap-3 border-t border-white/10 pt-6 text-white/75">
 						<FlagIcon aria-hidden="true" className="h-6 w-6 shrink-0 text-[var(--gold)]" />
 						<span>
@@ -192,18 +158,18 @@ function NosPrestations() {
 
 			<section aria-labelledby="inclus" className="px-4 py-16">
 				<div className="mx-auto max-w-6xl">
-					<SectionTitle id="inclus" label="Inclus" title="Ce que je peux inclure" accent="dans la prestation" />
-					<ul className="mt-10 grid gap-x-12 sm:grid-cols-2">
-						{INCLUDED.map((item, i) => (
-							<ScrollReveal as="li" key={item.title} delay={(i % 2) * 90} className="flex gap-4 border-t border-white/10 py-6" style={{ "--c": COLORS[i % 4] }}>
-								<item.icon aria-hidden="true" className="h-7 w-7 shrink-0 text-[var(--c)]" />
-								<div>
-									<h3 className="font-extrabold">{item.to ? (<Link to={item.to} className="underline decoration-[var(--c)] underline-offset-4 hover:text-[var(--c)]">{item.title}</Link>) : item.title}</h3>
-									<p className="mt-1 text-white/75">{item.text}</p>
-								</div>
-							</ScrollReveal>
-						))}
-					</ul>
+					<SectionTitle id="inclus" label="Inclus" title="Ce que je peux inclure" accent="dans la prestation" center />
+					<Rider items={INCLUDED} />
+				</div>
+			</section>
+
+			{/* ---- Composez votre soirée : configurateur qui pré-remplit le formulaire de contact ---- */}
+			<section aria-labelledby="composer" className="px-4 py-16">
+				<div className="mx-auto max-w-6xl">
+					<SectionTitle id="composer" label="À vous de jouer" title="Composez" accent="votre soirée" center>
+						Choisissez votre événement et vos animations : je vous réponds sous 24 h avec une proposition.
+					</SectionTitle>
+					<SoireeBuilder />
 				</div>
 			</section>
 
@@ -211,18 +177,21 @@ function NosPrestations() {
 			<section aria-labelledby="deroule" className="px-4 py-16">
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="deroule" label="Déroulé" title="Une organisation" accent="simple et claire." />
-					<ol className="timeline relative mt-12 grid gap-10 md:grid-cols-4 md:gap-6">
+					<ol className="mt-8 flex flex-wrap items-center gap-3">
 						{STEPS.map((s, i) => (
-							<ScrollReveal as="li" key={s.title} delay={i * 100} className="relative pl-16 md:pl-0 md:pt-16" style={{ "--c": COLORS[i % 4] }}>
-								<span className="timeline-dot absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-full">
-									<s.icon aria-hidden="true" className="h-6 w-6 text-[var(--c)]" />
+							<li key={s.title} className="flex items-center gap-3" style={{ "--c": COLORS[i % 4] }}>
+								<span className="neon-card inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold">
+									<s.icon aria-hidden="true" className="h-5 w-5 text-[var(--c)]" />
+									{s.title}
 								</span>
-								<p className="text-sm font-bold uppercase tracking-widest text-[var(--c)]">Étape 0{i + 1}</p>
-								<h3 className="mt-1 text-lg font-extrabold">{s.title}</h3>
-								<p className="mt-1 text-white/75">{s.text}</p>
-							</ScrollReveal>
+								{i < STEPS.length - 1 && <ArrowRightIcon aria-hidden="true" className="h-4 w-4 text-white/40" />}
+							</li>
 						))}
 					</ol>
+					<Link to="/mon-approche" className="mt-6 inline-flex items-center gap-2 font-semibold text-[var(--cyan)] underline underline-offset-4">
+						Ma façon de travailler, étape par étape
+						<ArrowRightIcon className="h-4 w-4" />
+					</Link>
 				</div>
 			</section>
 

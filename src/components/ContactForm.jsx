@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 
 const inputClass =
@@ -6,6 +7,19 @@ const inputClass =
 const labelClass = "mb-2 block text-sm font-semibold text-white/80";
 
 export default function ContactForm() {
+	const typeRef = useRef(null);
+	const messageRef = useRef(null);
+
+	// Pré-remplissage depuis l’adresse (ex. configurateur « Composez votre soirée ») :
+	// /contact?type=Mariage&message=… — appliqué après le chargement, le HTML pré-rendu reste vide.
+	useEffect(() => {
+		const q = new URLSearchParams(window.location.search);
+		const type = q.get("type");
+		const message = q.get("message");
+		if (type && typeRef.current && [...typeRef.current.options].some((o) => o.value === type)) typeRef.current.value = type;
+		if (message && messageRef.current && !messageRef.current.value) messageRef.current.value = message;
+	}, []);
+
 	return (
 		<form
 			action="https://formspree.io/f/xrblvkvp"
@@ -89,6 +103,7 @@ export default function ContactForm() {
 						Type d’événement
 					</label>
 					<select
+						ref={typeRef}
 						id="eventType"
 						name="type_evenement"
 						className={inputClass}
@@ -138,6 +153,7 @@ export default function ContactForm() {
 					Votre message *
 				</label>
 				<textarea
+					ref={messageRef}
 					id="message"
 					name="message"
 					placeholder="Présentez-moi votre événement : nombre de personnes, ambiance souhaitée, horaires, lieu, type d’animation..."
