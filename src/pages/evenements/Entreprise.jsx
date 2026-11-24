@@ -13,10 +13,6 @@ import {
 	MicrophoneIcon as IMic,
 	DevicePhoneMobileIcon as IPhone,
 	CameraIcon as ICamera,
-	MusicalNoteIcon as INote,
-	HomeIcon as IHome,
-	LightBulbIcon as IBulb,
-	UserGroupIcon as IGroup,
 } from "@heroicons/react/24/outline";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";

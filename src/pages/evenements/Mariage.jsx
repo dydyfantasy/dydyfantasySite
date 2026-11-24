@@ -2,23 +2,18 @@ import {
 	TrophyIcon,
 	MicrophoneIcon,
 	MusicalNoteIcon,
-	UsersIcon,
-	HeartIcon,
 	SparklesIcon,
-	ChatBubbleLeftRightIcon,
-	PhotoIcon,
-	SpeakerWaveIcon,
+	UsersIcon,
 } from "@heroicons/react/24/outline";
 import {
 	SpeakerWaveIcon as ISpeaker,
 	MicrophoneIcon as IMic,
 	DevicePhoneMobileIcon as IPhone,
 	CameraIcon as ICamera,
-	MusicalNoteIcon as INote,
-	HomeIcon as IHome,
-	LightBulbIcon as IBulb,
-	UserGroupIcon as IGroup,
 } from "@heroicons/react/24/outline";
+import WeddingReasons from "../../components/mariage/WeddingReasons";
+import WeddingProgram from "../../components/mariage/WeddingProgram";
+import WeddingVote from "../../components/mariage/WeddingVote";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
 import { photoFor } from "../../data/evenementsPhotos";
@@ -27,8 +22,27 @@ import "@fontsource/great-vibes/latin-400.css";
 
 const PATH = "/evenements/mariage";
 
-// Page à fort enjeu (« animateur mariage toulouse », « dj mariage toulouse »).
-// À enrichir : photos de mariages, témoignages de mariés, déroulé type d’une soirée.
+// « Pourquoi moi » : cartons de table (WeddingReasons)
+const REASONS = [
+	{ title: "Toutes les générations", text: "Des animations accessibles pour que grands-parents, amis et enfants jouent ensemble." },
+	{ title: "Votre histoire au centre", text: "Des questions sur les mariés pour un moment drôle et touchant." },
+	{ title: "Préparé avec vous", text: "On se rencontre avant le jour J, en vrai ou en visio, et je viens repérer les lieux. Ensemble, on construit le déroulé : vos envies, vos musiques, vos interdits." },
+	{ title: "Tout géré de A à Z", text: "Animation et musique, avec tout le matériel : micro, sono, lumières, lyres et machine à fumée." },
+];
+
+// « Le programme de votre soirée » : frise façon faire-part (WeddingProgram)
+const MOMENTS = [
+	{ when: "Le vin d’honneur", icon: UsersIcon, title: "Un vin d’honneur original", text: "DJ d’ambiance, animation au micro ou jeux pour briser la glace entre les deux familles." },
+	{ when: "Entre les plats", icon: TrophyIcon, title: "Le quiz des mariés", text: "Qui connaît le mieux les mariés ? Un quiz en équipes de tables, sur le téléphone de chaque invité." },
+	{ when: "Avant la piste", icon: MusicalNoteIcon, title: "Le blind test", text: "Des tubes de toutes les époques, ou des thèmes sur mesure aux couleurs de votre mariage, pour faire chanter la salle." },
+	{ when: "La soirée", icon: MicrophoneIcon, title: "Le karaoké", text: "Duos des mariés, chansons cultes en chœur : le moment où tout le monde se lâche." },
+	{ when: "Jusqu’au bout de la nuit", icon: SparklesIcon, title: "La soirée DJ", text: "Une sélection musicale adaptée à vos invités, des années 80 aux tubes d’aujourd’hui, pour danser jusqu’à la dernière chanson." },
+];
+const THREAD = {
+	title: "Le Challenge Photo",
+	text: "Des défis à relever en photo du début à la fin, avec Dydy Quiz. Les photos s’affichent sur l’écran avec les scores en direct. Des souvenirs garantis.",
+};
+
 export default function Mariage() {
 	return (
 		<ServicePage
@@ -50,22 +64,14 @@ export default function Mariage() {
 			color="var(--pink)"
 			theme="mariage"
 			photoSign="Vive les mariés"
-			pointsTitle={{ label: "Pourquoi moi", title: "Un mariage qui", accent: "fait participer" }}
-			points={[
-				{ icon: UsersIcon, color: "var(--pink)", title: "Toutes les générations", text: "Des animations accessibles pour que grands-parents, amis et enfants jouent ensemble." },
-				{ icon: HeartIcon, color: "var(--cyan)", title: "Votre histoire au centre", text: "Des questions sur les mariés pour un moment drôle et touchant." },
-				{ icon: ChatBubbleLeftRightIcon, color: "var(--gold)", title: "Préparé avec vous", text: "On se rencontre avant le jour J, en vrai ou en visio, et je viens repérer les lieux. Ensemble, on construit le déroulé : vos envies, vos musiques, vos interdits." },
-				{ icon: SpeakerWaveIcon, color: "#7cff6b", title: "Tout géré de A à Z", text: "Animation et musique, avec tout le matériel : micro, sono, lumières, lyres et machine à fumée." },
-			]}
-			formatsTitle={{ label: "Le déroulé", title: "Les moments", accent: "à animer", text: "À choisir et à combiner selon votre journée." }}
-			formats={[
-				{ icon: UsersIcon, title: "Vin d’honneur", text: "Envie d’un vin d’honneur original ? DJ d’ambiance, animation au micro ou jeux pour briser la glace entre les deux familles." },
-				{ icon: TrophyIcon, title: "Quiz des mariés", text: "Qui connaît le mieux les mariés ? Un quiz en équipes de tables entre deux plats." },
-				{ icon: MusicalNoteIcon, title: "Blind test", text: "Des tubes de toutes les époques, ou des thèmes sur mesure aux couleurs de votre mariage, pour faire chanter la salle avant la soirée dansante." },
-				{ icon: MicrophoneIcon, title: "Karaoké", text: "Duos des mariés, chansons cultes en chœur : le moment où tout le monde se lâche." },
-				{ icon: PhotoIcon, title: "Challenge Photo", text: "Le fil rouge de la soirée : des défis à relever en photo du début à la fin, avec Dydy Quiz. Les photos s’affichent sur l’écran avec les scores en direct. Des souvenirs garantis." },
-				{ icon: SparklesIcon, title: "Soirée DJ", text: "Une sélection musicale adaptée à vos invités pour danser jusqu’au bout de la nuit." },
-			]}
+			// Mise en scène propre au mariage, à la place des listes « icône + texte » du modèle
+			body={
+				<>
+					<WeddingReasons reasons={REASONS} />
+					<WeddingProgram moments={MOMENTS} thread={THREAD} />
+					<WeddingVote />
+				</>
+			}
 			// Avis Google cité en entier, mot pour mot (ne pas le modifier)
 			testimonial={{
 				label: "Avis de mariés",
