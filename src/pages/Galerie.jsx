@@ -51,6 +51,19 @@ const MEDIA = [
 
 const CATEGORIES = [...new Set(MEDIA.map((m) => m.category))];
 
+// Mosaïque : taille de chaque case selon le format du média (dimensions connues à la compilation),
+// avec un rythme pour éviter une grille uniforme. Les trous sont comblés automatiquement (grid-flow-dense).
+// - 1 case sur 7 : mise en avant en grand (2 x 2)
+// - paysage : case large sur ordinateur
+// - portrait (vidéos de téléphone) : haute 2 fois sur 3, carrée sinon
+function tileSize(m, i) {
+	const ratio = m.width && m.height ? m.width / m.height : 1;
+	if (i % 7 === 0) return { span: "col-span-2 row-span-2", sizes: "(min-width: 768px) 50vw, 100vw" };
+	if (ratio >= 1.3) return { span: "md:col-span-2", sizes: "50vw" };
+	if (ratio <= 0.8 && i % 3 !== 2) return { span: "row-span-2", sizes: "(min-width: 768px) 25vw, 50vw" };
+	return { span: "", sizes: "(min-width: 768px) 25vw, 50vw" };
+}
+
 // Visionneuse plein écran (dialog natif) : flèches, clavier, Échap
 function Lightbox({ items, index, onClose, onMove }) {
 	const ref = useRef(null);
@@ -162,26 +175,26 @@ export default function Galerie() {
 					{visible.length === 0 ? (
 						<p className="text-white/60">Les photos arrivent bientôt !</p>
 					) : (
-						<ul className="columns-2 gap-4 md:columns-3">
+						<ul className="grid grid-flow-dense auto-rows-[9.5rem] grid-cols-2 gap-3 md:auto-rows-[13rem] md:grid-cols-4 md:gap-4">
 							{visible.map((m, i) => (
-								<ScrollReveal as="li" key={m.path} delay={(i % 3) * 80} className="mb-4 break-inside-avoid">
+								<ScrollReveal as="li" key={m.path} delay={(i % 4) * 70} className={tileSize(m, i).span}>
 									<button
 										type="button"
 										onClick={() => setOpened(i)}
 										aria-label={`Agrandir : ${m.alt}`}
 										style={{ "--c": COLORS[i % COLORS.length] }}
-										className="gallery-tile group relative block w-full overflow-hidden rounded-2xl">
+										className="gallery-tile group relative block h-full w-full overflow-hidden rounded-2xl">
 										{m.type === "image" ? (
 											<img
 												src={m.src}
 												srcSet={m.srcSet}
-												sizes="(min-width: 768px) 33vw, 50vw"
+												sizes={tileSize(m, i).sizes}
 												alt={m.alt}
 												width={m.width}
 												height={m.height}
 												loading="lazy"
 												decoding="async"
-												className="h-auto w-full transition-transform duration-500 group-hover:scale-105"
+												className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
 											/>
 										) : (
 											<>
@@ -193,10 +206,10 @@ export default function Galerie() {
 														height={m.height}
 														loading="lazy"
 														decoding="async"
-														className="h-auto w-full"
+														className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
 													/>
 												) : (
-													<video src={m.src} muted playsInline preload="metadata" className="w-full" />
+													<video src={m.src} muted playsInline preload="metadata" className="h-full w-full object-cover" />
 												)}
 												<span className="absolute inset-0 flex items-center justify-center">
 													<span className="gallery-btn">
