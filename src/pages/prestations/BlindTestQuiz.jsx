@@ -171,6 +171,7 @@ export default function BlindTestQuiz() {
 	return (
 		<ServicePage
 			path={PATH}
+			subject={{ votre: "votre blind test", sur: "le blind test et le quiz" }}
 			gallery={{ words: ["blind-test", "quiz"], label: "blind tests et quiz" }}
 			// Avis Google cité mot pour mot (sélection de Dydy, 25/11/2026)
 			testimonial={{

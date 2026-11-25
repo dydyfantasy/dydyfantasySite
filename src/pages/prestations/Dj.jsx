@@ -26,6 +26,7 @@ export default function Dj() {
 	return (
 		<ServicePage
 			path={PATH}
+			subject={{ votre: "votre soirée DJ", sur: "le DJ" }}
 			gallery={{ words: ["dj", "danse"], label: "soirées DJ" }}
 			name="DJ"
 			photo={photoFor("dj")}

@@ -26,6 +26,7 @@ export default function BarsRestaurants() {
 	return (
 		<ServicePage
 			path={PATH}
+			subject={{ votre: "vos soirées en bar", sur: "les soirées en bar", pluriel: true }}
 			name="Bars & restaurants"
 			seo={{
 				title: "Blind test & karaoké pour bars à Toulouse | Dydy Fantasy",

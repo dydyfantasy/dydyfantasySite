@@ -7,6 +7,9 @@ import {
 	DevicePhoneMobileIcon,
 	CameraIcon,
 	PhotoIcon,
+	TruckIcon,
+	ClockIcon,
+	DocumentTextIcon,
 } from "@heroicons/react/24/outline";
 import Seo from "../Seo";
 import StageLights from "./StageLights";
@@ -74,6 +77,17 @@ function PhotoSlot({ photo, color = "var(--pink)", sign }) {
 	);
 }
 
+const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
+
+// « En pratique » : infos communes à toutes les prestations (réelles, validées par Dydy le 25/11/2026).
+// Pas de prix (« sur devis ») ni de délai de réservation : ça dépend de chaque événement.
+const PRATIQUE = [
+	{ icon: TruckIcon, title: "Déplacement offert", text: "Sans frais dans un rayon de 50 km autour de Fonsorbes : Toulouse, Colomiers, Blagnac, Muret, L’Isle-Jourdain…" },
+	{ icon: SpeakerWaveIcon, title: "Matériel fourni", text: "Sono, lumières, lyres, machine à fumée, écran et vidéoprojecteur : j’apporte et j’installe tout." },
+	{ icon: ClockIcon, title: "Une durée à votre mesure", text: "Elle s’adapte à votre événement : on la cale ensemble selon votre programme." },
+	{ icon: DocumentTextIcon, title: "Devis gratuit, tout compris", text: "Sans mauvaise surprise, avec une réponse sous 24 h." },
+];
+
 /**
  * Modèle de page de prestation / d’événement (même structure SEO partout).
  * Contenu passé en props ; les sections vides ne s’affichent pas.
@@ -101,11 +115,13 @@ export default function ServicePage({
 	theme, // ambiance propre à la page : "mariage" (or champagne + confettis), voir led.css
 	testimonial, // avis client cité (voir Testimonial.jsx), affiché après les formats
 	clients = true, // bandeau des références clients (preuves), après l’avis ; false pour le masquer
+	subject, // sujet de la page pour des titres de section uniques : { votre: "votre karaoké", sur: "le karaoké", pluriel? }
 	body, // mise en scène propre à la page, à la place des sections « points » et « formats »
 	scene: Scene, // composant de mise en scène (src/components/scenes/) qui reçoit points/formats et leurs titres
 	gallery, // extraits vidéo de la galerie : une catégorie (ex. "bars") ou { words: ["karaoke"], label: "karaokés" }
 	//          = vidéos dont le nom de fichier contient l’un des mots (voir data/galerie.js)
 }) {
+	const subj = subject ?? { votre: "votre événement", sur: "l’animation" };
 	const byWords = Boolean(gallery) && typeof gallery === "object";
 	const clips = !gallery ? [] : byWords ? clipsMatching(gallery.words, 4) : clipsFor(gallery, 4);
 	const galleryLabel = byWords ? gallery.label : (CATEGORY_LABELS[gallery] ?? gallery ?? "").toLowerCase();
@@ -263,7 +279,7 @@ export default function ServicePage({
 			{compactSteps ? (
 				<section aria-labelledby="deroule" className="px-4 py-16">
 					<div className="mx-auto max-w-6xl">
-						<SectionTitle id="deroule" label="Comment ça se passe" title="De votre idée au" accent="jour J" />
+						<SectionTitle id="deroule" label="Comment ça se passe" title={`${cap(subj.votre)}, de l’idée au`} accent="jour J" />
 						<ol className="mt-8 flex flex-wrap items-center gap-3">
 							{steps.map((s, i) => (
 								<li key={s.title} className="flex items-center gap-3" style={{ "--c": COLORS[i % 4] }}>
@@ -284,7 +300,7 @@ export default function ServicePage({
 			) : (
 			<section aria-labelledby="deroule" className="px-4 py-16">
 				<div className="mx-auto max-w-6xl">
-					<SectionTitle id="deroule" label="Comment ça se passe" title="De votre idée au" accent="jour J" />
+					<SectionTitle id="deroule" label="Comment ça se passe" title={`${cap(subj.votre)}, de l’idée au`} accent="jour J" />
 					<ol className="timeline relative mt-12 grid gap-10 md:grid-cols-4 md:gap-6">
 						{steps.map((s, i) => (
 							<ScrollReveal as="li" key={s.title} delay={i * 100} className="relative pl-16 md:pl-0 md:pt-16" style={{ "--c": COLORS[i % 4] }}>
@@ -305,7 +321,7 @@ export default function ServicePage({
 			{included.length > 0 && (
 				<section aria-labelledby="inclus" className="px-4 py-16">
 					<div className="mx-auto max-w-6xl">
-						<SectionTitle id="inclus" label="Inclus" title="Ce que je peux" accent="apporter" />
+						<SectionTitle id="inclus" label="Inclus" title={subj.pluriel ? "Ce que comprennent" : "Ce que comprend"} accent={subj.votre} />
 						<ul className="mt-10 grid gap-x-12 sm:grid-cols-2">
 							{included.map((item, i) => (
 								<ScrollReveal as="li" key={item.title} delay={(i % 2) * 90} className="flex gap-4 border-t border-white/10 py-6" style={{ "--c": COLORS[i % 4] }}>
@@ -329,6 +345,22 @@ export default function ServicePage({
 				</section>
 			)}
 
+			{/* ---- En pratique : infos communes (déplacement, matériel, durée, devis) ---- */}
+			<section aria-labelledby="pratique" className="px-4 py-16">
+				<div className="mx-auto max-w-6xl">
+					<SectionTitle id="pratique" label="En pratique" title={`${cap(subj.votre)},`} accent="en pratique" />
+					<ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+						{PRATIQUE.map((item, i) => (
+							<ScrollReveal as="li" key={item.title} delay={(i % 4) * 80} className="neon-card rounded-2xl p-5" style={{ "--c": COLORS[i % 4] }}>
+								<item.icon aria-hidden="true" className="neon-icon h-7 w-7" />
+								<h3 className="mt-3 font-extrabold">{item.title}</h3>
+								<p className="mt-1 text-sm text-white/75">{item.text}</p>
+							</ScrollReveal>
+						))}
+					</ul>
+				</div>
+			</section>
+
 			<LedDivider color="var(--cyan)" reverse />
 
 			{/* ---- FAQ ---- */}
@@ -336,7 +368,7 @@ export default function ServicePage({
 				<section aria-labelledby="faq" className="relative px-4 py-16">
 				<PeekingMascot text="Une question ? Je vous réponds sous 24 h !" className="top-10" />
 					<div className="mx-auto max-w-3xl">
-						<SectionTitle id="faq" label="FAQ" title="Vos" accent="questions" />
+						<SectionTitle id="faq" label="FAQ" title="Vos questions sur" accent={subj.sur} />
 						<div className="mt-8 space-y-3">
 							{faq.map((f) => (
 								<details key={f.q} className="neon-card group rounded-2xl" style={{ "--c": "var(--cyan)" }}>

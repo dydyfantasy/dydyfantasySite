@@ -47,6 +47,7 @@ export default function Mariage() {
 	return (
 		<ServicePage
 			path={PATH}
+			subject={{ votre: "votre mariage", sur: "l’animation de mariage" }}
 			name="Mariage"
 			seo={{
 				title: "Animateur & DJ mariage à Toulouse | Dydy Fantasy",

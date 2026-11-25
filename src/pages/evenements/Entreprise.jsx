@@ -27,6 +27,7 @@ export default function Entreprise() {
 	return (
 		<ServicePage
 			path={PATH}
+			subject={{ votre: "votre événement d’entreprise", sur: "l’animation d’entreprise" }}
 			name="Entreprise & team building"
 			seo={{
 				title: "Team building & animateur micro à Toulouse | Dydy Fantasy",

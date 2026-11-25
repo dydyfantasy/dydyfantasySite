@@ -27,6 +27,7 @@ export default function Anniversaire() {
 	return (
 		<ServicePage
 			path={PATH}
+			subject={{ votre: "votre anniversaire", sur: "l’anniversaire adulte" }}
 			name="Anniversaire & soirée privée"
 			seo={{
 				title: "Animation anniversaire à Toulouse & Gers | Dydy Fantasy",
