@@ -22,8 +22,9 @@ import LedStats from "../components/led/LedStats";
 import DayNight from "../components/scenes/DayNight";
 import NeonIdeas from "../components/scenes/NeonIdeas";
 import ArcadeSelect from "../components/scenes/ArcadeSelect";
-import portraitSrcSet from "../assets/PhotoPresentation.webp?w=480;900&format=webp&quality=80&as=srcset";
-import portrait from "../assets/PhotoPresentation.webp?w=900&format=webp&quality=80";
+// Portrait recadré au format du cadre (4:5) à la compilation : aucun pixel envoyé pour rien
+import portraitSrcSet from "../assets/dydy-fantasy-animateur-dj-veste-paillettes-micro-casque.png?w=480;900&aspect=4:5&format=webp&quality=80&as=srcset";
+import portrait from "../assets/dydy-fantasy-animateur-dj-veste-paillettes-micro-casque.png?w=900&aspect=4:5&format=webp&quality=80";
 import tete64 from "../assets/brand/perso-tete-64.webp";
 import tete128 from "../assets/brand/perso-tete-128.webp";
 import videoPresentation from "../assets/C'est qui dydy fantasy.webm";
@@ -105,9 +106,9 @@ function QuiSuisje() {
 								src={portrait}
 								srcSet={portraitSrcSet}
 								sizes="(min-width: 1024px) 24rem, 80vw"
-								alt="Dydy Fantasy, animateur blind test, quiz et karaoké à Toulouse"
+								alt="Dydy Fantasy, animateur blind test, quiz, karaoké et DJ à Toulouse, en veste à paillettes avec son micro-casque"
 								width="900"
-								height="1600"
+								height="1125"
 								fetchPriority="high"
 								className="aspect-[4/5] w-full rounded-[1.85rem] object-cover"
 							/>
