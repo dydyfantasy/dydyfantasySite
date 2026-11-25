@@ -16,6 +16,7 @@
 | Images | 5 % | 66 | **88** | [performance.md](findings/performance.md) |
 
 Hors calcul : SEO local 64 → **78**, expérience de recherche (SXO) 49 → **69**, sitemap 90 → **96**, agents 96 → 96, liens entrants non notés (inchangé).
+**Mesure réelle PageSpeed Insights (propriétaire, 25/11 au soir, accueil) : Performance 98, Accessibilité 100, Bonnes pratiques 100, SEO 100** — l'estimation de 90 des agents était prudente.
 Comparaison drift (15 pages, avant/après mise en ligne) : **0 changement critique** ; titles, H1, canonicals et indexabilité inchangés.
 
 ## Corrections apportées aux rapports des agents
