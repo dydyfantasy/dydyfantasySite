@@ -3,7 +3,10 @@
 // Chaque page doit avoir exactement un <Seo />.
 
 const SITE_URL = "https://dydyfantasy.fr";
-const DEFAULT_IMAGE = `${SITE_URL}/dydy_fantasy_logo-v3.webp`;
+// Image d’aperçu des partages (WhatsApp, Facebook, Messenger, LinkedIn…) : 1200 x 630 en JPG,
+// lu par toutes les applis. Original dans medias-sources/partage-dydy-fantasy-original.jpg.
+const DEFAULT_IMAGE = `${SITE_URL}/partage-dydy-fantasy.jpg`;
+const DEFAULT_IMAGE_ALT = "Dydy Fantasy aux platines devant une salle pleine : animation interactive et DJ";
 
 export default function Seo({
 	title,
@@ -33,6 +36,11 @@ export default function Seo({
 				<meta property="og:description" content={shareDescription} />
 			)}
 			<meta property="og:image" content={DEFAULT_IMAGE} />
+			<meta property="og:image:width" content="1200" />
+			<meta property="og:image:height" content="630" />
+			<meta property="og:image:alt" content={DEFAULT_IMAGE_ALT} />
+			{/* Grand aperçu aussi sur X (Twitter) */}
+			<meta name="twitter:card" content="summary_large_image" />
 		</>
 	);
 }
