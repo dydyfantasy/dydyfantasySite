@@ -1,0 +1,238 @@
+{
+ "summary": {
+  "health_score": 72,
+  "business_type": "Service local à zone desservie (SAB)",
+  "top_findings": [
+   "Aucune preuve (photos, avis, références) sur les 8 pages prestation/événement",
+   "Pas de mentions légales ni de consentement Google Analytics",
+   "Chiffres inexacts : « 3 bars » (4 en réalité), « buzzers »",
+   "Aucun lien vers la fiche Google ni vers le dépôt d'avis ; areaServed non aligné",
+   "Aucune information pratique (budget, durée, nombre d'invités)"
+  ],
+  "quick_wins": [
+   "Logos clients en WebP 96-192 px (≈544 Ko → ≈40 Ko)",
+   "En-têtes de sécurité dans .htaccess",
+   "Lien « Laisser un avis Google » + fiche dans sameAs",
+   "Corriger « 3 bars » et « buzzers » (fait dans la refonte)",
+   "Option « DJ » dans le formulaire de contact"
+  ]
+ },
+ "categories": [
+  {
+   "name": "Technical SEO",
+   "score": 80,
+   "what_works": [
+    "HTTPS + HSTS",
+    "Redirections 301 en une étape",
+    "Vrai 404",
+    "Contenu pré-rendu",
+    "Cache immutable des assets"
+   ],
+   "findings": [
+    {
+     "title": "En-têtes de sécurité absents",
+     "severity": "High",
+     "description": "Seul HSTS est envoyé.",
+     "recommendation": "Ajouter X-Content-Type-Options, Referrer-Policy, X-Frame-Options, Permissions-Policy dans .htaccess"
+    },
+    {
+     "title": "HTML sans revalidation",
+     "severity": "Medium",
+     "description": "Cache-Control max-age=0 sans ETag/Last-Modified.",
+     "recommendation": "Activer ETag ou Last-Modified sur les .html"
+    }
+   ]
+  },
+  {
+   "name": "Content Quality",
+   "score": 62,
+   "what_works": [
+    "Titles et descriptions uniques",
+    "Un H1 par page",
+    "Références clients réelles"
+   ],
+   "findings": [
+    {
+     "title": "Mentions légales absentes",
+     "severity": "Critical",
+     "description": "Aucune page ni lien, aucun SIRET ; GA sans consentement.",
+     "recommendation": "Créer une page mentions légales + confidentialité et gérer le consentement"
+    },
+    {
+     "title": "« 3 bars » faux",
+     "severity": "High",
+     "description": "5 occurrences alors qu'il y a 4 bars résidents.",
+     "recommendation": "Corriger (fait dans la refonte)"
+    },
+    {
+     "title": "Pages de prestation proches",
+     "severity": "High",
+     "description": "48-73 % de texte unique, 5 H2 sur 7 identiques ; DJ et Mariage visent « DJ mariage ».",
+     "recommendation": "Différencier les H2 et les contenus ; séparer les intentions"
+    }
+   ]
+  },
+  {
+   "name": "On-Page SEO",
+   "score": 76,
+   "what_works": [
+    "Toulouse dans 14 titles sur 16",
+    "Maillage interne cohérent"
+   ],
+   "findings": [
+    {
+     "title": "Tarn absent des titles/H1",
+     "severity": "Low",
+     "description": "La zone Tarn n'apparaît que dans le texte.",
+     "recommendation": "Le mentionner où c'est naturel"
+    }
+   ]
+  },
+  {
+   "name": "Schema / Structured Data",
+   "score": 68,
+   "what_works": [
+    "JSON-LD valide sur 16 pages",
+    "@id stable",
+    "Pas de faux avis"
+   ],
+   "findings": [
+    {
+     "title": "areaServed non aligné sur la fiche Google",
+     "severity": "High",
+     "description": "Cercle 50 km + 3 départements.",
+     "recommendation": "Lister les villes de la fiche en City"
+    },
+    {
+     "title": "Type générique",
+     "severity": "Medium",
+     "description": "LocalBusiness.",
+     "recommendation": "EntertainmentBusiness + WebSite + Person"
+    }
+   ]
+  },
+  {
+   "name": "Performance (CWV)",
+   "score": 84,
+   "what_works": [
+    "TTFB 0,10-0,13 s",
+    "Un seul script tiers",
+    "Hero en fetchPriority high"
+   ],
+   "findings": [
+    {
+     "title": "Préchargements concurrents",
+     "severity": "High",
+     "description": "4 preloads d'images sur l'accueil.",
+     "recommendation": "fetchPriority=low sur logo du menu et mascotte"
+    },
+    {
+     "title": "Hero lourd",
+     "severity": "High",
+     "description": "314 Ko en 1536 px.",
+     "recommendation": "Recompresser en WebP q60-65 ou AVIF"
+    }
+   ]
+  },
+  {
+   "name": "AI Search Readiness",
+   "score": 65,
+   "what_works": [
+    "Robots IA autorisés",
+    "Formulaire utilisable par un agent"
+   ],
+   "findings": [
+    {
+     "title": "Pas de réponse sur les prix",
+     "severity": "High",
+     "description": "Aucun prix ni facteur de prix.",
+     "recommendation": "Bloc « En pratique » ; fourchette si le propriétaire le décide"
+    },
+    {
+     "title": "Avis absents du HTML",
+     "severity": "High",
+     "description": "Widget chargé en JS.",
+     "recommendation": "Citer 1-2 avis mot pour mot dans le HTML"
+    }
+   ]
+  },
+  {
+   "name": "Images",
+   "score": 66,
+   "what_works": [
+    "Aucun alt absent",
+    "WebP et tailles multiples pour les images importées"
+   ],
+   "findings": [
+    {
+     "title": "Logos clients surdimensionnés",
+     "severity": "High",
+     "description": "≈544 Ko pour des pastilles de 48 px.",
+     "recommendation": "WebP 96-192 px via src/assets"
+    },
+    {
+     "title": "Galerie sans dimensions",
+     "severity": "Medium",
+     "description": "Pas de width/height sur /galerie.",
+     "recommendation": "Ajouter les dimensions (fait dans la refonte)"
+    }
+   ]
+  }
+ ],
+ "action_plan": {
+  "phases": [
+   {
+    "name": "Phase 1 : avant / avec la mise en ligne",
+    "timeframe": "Semaine 1",
+    "items": [
+     "Mentions légales + consentement GA",
+     "Logos clients optimisés",
+     "Un seul preload (hero)",
+     "Option DJ dans le formulaire"
+    ]
+   },
+   {
+    "name": "Phase 2 : fort impact",
+    "timeframe": "Semaines 2-3",
+    "items": [
+     "Preuves sur chaque page de prestation",
+     "Lien avis Google + sameAs",
+     "areaServed aligné",
+     "Bloc « En pratique »",
+     "En-têtes de sécurité"
+    ]
+   },
+   {
+    "name": "Phase 3 : contenu et autorité",
+    "timeframe": "Mois 2",
+    "items": [
+     "Séparer DJ / Mariage",
+     "Avis Mariages.net",
+     "Page entreprise pratique",
+     "Pages plus uniques",
+     "Schema enrichi",
+     "lastmod"
+    ]
+   },
+   {
+    "name": "Phase 4 : suivi",
+    "timeframe": "Continu",
+    "items": [
+     "drift baseline/compare",
+     "Export Search Console mi-janvier 2027",
+     "Clé PageSpeed pour les prochains audits"
+    ]
+   }
+  ]
+ },
+ "artifacts": {
+  "findings_dir": "findings/",
+  "screenshots_dir": null
+ },
+ "limits": [
+  "Pas de Search Console / GA4 / CrUX",
+  "PageSpeed 429 sans clé : performance estimée",
+  "Pack local Google non observé",
+  "Liens entrants : données insuffisantes"
+ ]
+}

@@ -1,0 +1,571 @@
+{
+ "pages": [
+  {
+   "url": "https://dydyfantasy.fr/",
+   "status": 200,
+   "location": null,
+   "title": "Animateur blind test, quiz, karaoké & DJ à Toulouse | Dydy Fantasy",
+   "description": "Animateur à Toulouse : blind test, quiz, karaoké et DJ pour mariages, anniversaires, entreprises et bars. Plus de 70 avis Google. Demandez votre devis.",
+   "canonical": "https://dydyfantasy.fr/",
+   "robots": null,
+   "h1": [
+    "Blind test, quiz, karaoké & DJ à Toulouse"
+   ],
+   "h2_count": 8,
+   "h3_count": 7,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 760,
+   "img_count": 32,
+   "img_without_alt": 0,
+   "img_empty_alt": 2,
+   "html_bytes": 71574
+  },
+  {
+   "url": "https://dydyfantasy.fr/qui-suis-je",
+   "status": 200,
+   "location": null,
+   "title": "Qui suis-je ? Animateur et DJ à Toulouse | Dydy Fantasy",
+   "description": "Dydy Fantasy, animateur et DJ près de Toulouse : blind tests, quiz, karaokés et soirées sur mesure. Résident dans 3 bars, plus de 150 soirées animées.",
+   "canonical": "https://dydyfantasy.fr/qui-suis-je",
+   "robots": null,
+   "h1": [
+    "Ingénieur développeur le jour, animateur le soir."
+   ],
+   "h2_count": 5,
+   "h3_count": 9,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 540,
+   "img_count": 6,
+   "img_without_alt": 0,
+   "img_empty_alt": 2,
+   "html_bytes": 47048
+  },
+  {
+   "url": "https://dydyfantasy.fr/prestations",
+   "status": 200,
+   "location": null,
+   "title": "Animations et prestations à Toulouse | Dydy Fantasy",
+   "description": "Blind test, quiz, karaoké, DJ et animations sur mesure à Toulouse et dans un rayon de 50 km : mariages, entreprises, anniversaires, bars et restaurants.",
+   "canonical": "https://dydyfantasy.fr/prestations",
+   "robots": null,
+   "h1": [
+    "Des animations interactives pour faire vivre une vraie ambiance à Toulouse."
+   ],
+   "h2_count": 6,
+   "h3_count": 16,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "BreadcrumbList",
+    "ListItem",
+    "ListItem"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 690,
+   "img_count": 4,
+   "img_without_alt": 0,
+   "img_empty_alt": 1,
+   "html_bytes": 55646
+  },
+  {
+   "url": "https://dydyfantasy.fr/prestations/blind-test-quiz",
+   "status": 200,
+   "location": null,
+   "title": "Animation blind test & quiz à Toulouse | Dydy Fantasy",
+   "description": "Animateur blind test et quiz à Toulouse : soirées façon jeu télé pour bars, mariages, entreprises et anniversaires. Buzzers, scores en direct, devis rapide.",
+   "canonical": "https://dydyfantasy.fr/prestations/blind-test-quiz",
+   "robots": null,
+   "h1": [
+    "Animation blind test & quiz à Toulouse"
+   ],
+   "h2_count": 7,
+   "h3_count": 16,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "Service",
+    "BreadcrumbList",
+    "ListItem",
+    "ListItem",
+    "ListItem"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 816,
+   "img_count": 4,
+   "img_without_alt": 0,
+   "img_empty_alt": 1,
+   "html_bytes": 57448
+  },
+  {
+   "url": "https://dydyfantasy.fr/prestations/karaoke",
+   "status": 200,
+   "location": null,
+   "title": "Animation karaoké à Toulouse | Dydy Fantasy",
+   "description": "Animateur karaoké à Toulouse : micros ouverts, duos, battles et chansons cultes pour mariages, anniversaires, entreprises et bars. Ambiance garantie.",
+   "canonical": "https://dydyfantasy.fr/prestations/karaoke",
+   "robots": null,
+   "h1": [
+    "Animation karaoké à Toulouse"
+   ],
+   "h2_count": 7,
+   "h3_count": 16,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "Service",
+    "BreadcrumbList",
+    "ListItem",
+    "ListItem",
+    "ListItem"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 672,
+   "img_count": 4,
+   "img_without_alt": 0,
+   "img_empty_alt": 1,
+   "html_bytes": 54182
+  },
+  {
+   "url": "https://dydyfantasy.fr/prestations/dj",
+   "status": 200,
+   "location": null,
+   "title": "DJ mariage et soirée à Toulouse & Gers | Dydy Fantasy",
+   "description": "DJ animateur à Toulouse, en Haute-Garonne et dans le Gers : mariages, anniversaires, soirées d’entreprise et bars. Musique adaptée à votre public, devis rapide.",
+   "canonical": "https://dydyfantasy.fr/prestations/dj",
+   "robots": null,
+   "h1": [
+    "DJ à Toulouse et dans le Gers"
+   ],
+   "h2_count": 7,
+   "h3_count": 16,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "Service",
+    "BreadcrumbList",
+    "ListItem",
+    "ListItem",
+    "ListItem"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 718,
+   "img_count": 4,
+   "img_without_alt": 0,
+   "img_empty_alt": 1,
+   "html_bytes": 54162
+  },
+  {
+   "url": "https://dydyfantasy.fr/prestations/sur-mesure",
+   "status": 200,
+   "location": null,
+   "title": "Animation sur mesure à Toulouse | Dydy Fantasy",
+   "description": "Animation sur mesure à Toulouse : loto revisité, murder party, jeux d’équipe, soirée à thème. Un format créé pour votre lieu, votre public et votre objectif.",
+   "canonical": "https://dydyfantasy.fr/prestations/sur-mesure",
+   "robots": null,
+   "h1": [
+    "Animation sur mesure à Toulouse"
+   ],
+   "h2_count": 7,
+   "h3_count": 17,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "Service",
+    "BreadcrumbList",
+    "ListItem",
+    "ListItem",
+    "ListItem"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 672,
+   "img_count": 4,
+   "img_without_alt": 0,
+   "img_empty_alt": 1,
+   "html_bytes": 55560
+  },
+  {
+   "url": "https://dydyfantasy.fr/evenements/mariage",
+   "status": 200,
+   "location": null,
+   "title": "Animateur & DJ mariage à Toulouse | Dydy Fantasy",
+   "description": "Animateur et DJ pour votre mariage à Toulouse et dans le Gers : blind test et quiz des mariés pendant le repas, karaoké et DJ pour faire danser vos invités.",
+   "canonical": "https://dydyfantasy.fr/evenements/mariage",
+   "robots": null,
+   "h1": [
+    "Animateur & DJ mariage à Toulouse"
+   ],
+   "h2_count": 7,
+   "h3_count": 17,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "Service",
+    "BreadcrumbList",
+    "ListItem",
+    "ListItem"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 741,
+   "img_count": 4,
+   "img_without_alt": 0,
+   "img_empty_alt": 1,
+   "html_bytes": 55971
+  },
+  {
+   "url": "https://dydyfantasy.fr/evenements/entreprise",
+   "status": 200,
+   "location": null,
+   "title": "Team building & animateur micro à Toulouse | Dydy Fantasy",
+   "description": "Team building quiz, animation de séminaire, animateur micro et soirée d’entreprise à Toulouse. Référence : animation speaker pour Décathlon. Devis rapide.",
+   "canonical": "https://dydyfantasy.fr/evenements/entreprise",
+   "robots": null,
+   "h1": [
+    "Team building & animation d’entreprise à Toulouse"
+   ],
+   "h2_count": 7,
+   "h3_count": 16,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "Service",
+    "BreadcrumbList",
+    "ListItem",
+    "ListItem"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 672,
+   "img_count": 4,
+   "img_without_alt": 0,
+   "img_empty_alt": 1,
+   "html_bytes": 53869
+  },
+  {
+   "url": "https://dydyfantasy.fr/evenements/anniversaire",
+   "status": 200,
+   "location": null,
+   "title": "Animation anniversaire à Toulouse & Gers | Dydy Fantasy",
+   "description": "Animateur pour anniversaire et soirée privée à Toulouse et dans le Gers : quiz sur la personne fêtée, blind test, karaoké et DJ. Une soirée inoubliable.",
+   "canonical": "https://dydyfantasy.fr/evenements/anniversaire",
+   "robots": null,
+   "h1": [
+    "Animation anniversaire & soirée privée à Toulouse"
+   ],
+   "h2_count": 7,
+   "h3_count": 17,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "Service",
+    "BreadcrumbList",
+    "ListItem",
+    "ListItem"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 649,
+   "img_count": 4,
+   "img_without_alt": 0,
+   "img_empty_alt": 1,
+   "html_bytes": 54678
+  },
+  {
+   "url": "https://dydyfantasy.fr/evenements/bars-restaurants",
+   "status": 200,
+   "location": null,
+   "title": "Blind test & karaoké pour bars à Toulouse | Dydy Fantasy",
+   "description": "Animateur de soirées blind test, quiz et karaoké pour bars et restaurants autour de Toulouse. Des soirées régulières qui remplissent votre établissement.",
+   "canonical": "https://dydyfantasy.fr/evenements/bars-restaurants",
+   "robots": null,
+   "h1": [
+    "Soirées blind test & karaoké pour bars et restaurants"
+   ],
+   "h2_count": 7,
+   "h3_count": 16,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "Service",
+    "BreadcrumbList",
+    "ListItem",
+    "ListItem"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 648,
+   "img_count": 4,
+   "img_without_alt": 0,
+   "img_empty_alt": 1,
+   "html_bytes": 53681
+  },
+  {
+   "url": "https://dydyfantasy.fr/mon-approche",
+   "status": 200,
+   "location": null,
+   "title": "Mon approche de l’animation à Toulouse | Dydy Fantasy",
+   "description": "Mon approche de l’animation à Toulouse : écoute, préparation sur mesure et soirée interactive. Quiz, blind test, karaoké et DJ, tout le matériel fourni.",
+   "canonical": "https://dydyfantasy.fr/mon-approche",
+   "robots": null,
+   "h1": [
+    "Une animation réussie, ça se prépare."
+   ],
+   "h2_count": 4,
+   "h3_count": 10,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 609,
+   "img_count": 4,
+   "img_without_alt": 0,
+   "img_empty_alt": 1,
+   "html_bytes": 45723
+  },
+  {
+   "url": "https://dydyfantasy.fr/dydy-quiz",
+   "status": 200,
+   "location": null,
+   "title": "Dydy Quiz : quiz et blind test sur smartphone | Dydy Fantasy",
+   "description": "Dydy Quiz, l’appli maison de Dydy Fantasy : quiz, blind test, sondages et défis photo sur smartphone via QR code. Utilisée dans plus de 150 soirées.",
+   "canonical": "https://dydyfantasy.fr/dydy-quiz",
+   "robots": null,
+   "h1": [
+    "Dydy Quiz, l’appli qui transforme vos invités en joueurs."
+   ],
+   "h2_count": 6,
+   "h3_count": 8,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 436,
+   "img_count": 4,
+   "img_without_alt": 0,
+   "img_empty_alt": 1,
+   "html_bytes": 41298
+  },
+  {
+   "url": "https://dydyfantasy.fr/galerie",
+   "status": 200,
+   "location": null,
+   "title": "Galerie photos et vidéos de soirées | Dydy Fantasy",
+   "description": "Photos et vidéos des soirées Dydy Fantasy : blind tests, quiz, karaokés et DJ dans les bars, mariages et événements autour de Toulouse.",
+   "canonical": "https://dydyfantasy.fr/galerie",
+   "robots": null,
+   "h1": [
+    "Galerie : l’ambiance des soirées Dydy Fantasy"
+   ],
+   "h2_count": 1,
+   "h3_count": 0,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 171,
+   "img_count": 7,
+   "img_without_alt": 0,
+   "img_empty_alt": 1,
+   "html_bytes": 26500
+  },
+  {
+   "url": "https://dydyfantasy.fr/contact",
+   "status": 200,
+   "location": null,
+   "title": "Contact et devis animation à Toulouse | Dydy Fantasy",
+   "description": "Demandez votre devis d’animation à Toulouse : blind test, quiz, karaoké, DJ, mariage ou entreprise. Devis tout compris, réponse sous 24 h.",
+   "canonical": "https://dydyfantasy.fr/contact",
+   "robots": null,
+   "h1": [
+    "Parlez-moi de votre événement, je vous propose une animation adaptée."
+   ],
+   "h2_count": 2,
+   "h3_count": 0,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 289,
+   "img_count": 4,
+   "img_without_alt": 0,
+   "img_empty_alt": 2,
+   "html_bytes": 34710
+  },
+  {
+   "url": "https://dydyfantasy.fr/privacy",
+   "status": 200,
+   "location": null,
+   "title": "Confidentialité de l’appli Dydy Quiz | Dydy Fantasy",
+   "description": "Politique de confidentialité de l’application Dydy Quiz.",
+   "canonical": null,
+   "robots": "noindex",
+   "h1": [
+    "Politique de confidentialité"
+   ],
+   "h2_count": 8,
+   "h3_count": 0,
+   "jsonld_types": [
+    "LocalBusiness",
+    "PostalAddress",
+    "GeoCoordinates",
+    "GeoCircle",
+    "GeoCoordinates",
+    "City",
+    "AdministrativeArea",
+    "AdministrativeArea",
+    "AdministrativeArea"
+   ],
+   "og_image": "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+   "word_count_body": 383,
+   "img_count": 3,
+   "img_without_alt": 0,
+   "img_empty_alt": 1,
+   "html_bytes": 21227
+  }
+ ],
+ "redirect_checks": {
+  "http://dydyfantasy.fr/": {
+   "status": 301,
+   "location": null,
+   "cache": null
+  },
+  "https://www.dydyfantasy.fr/": {
+   "status": 301,
+   "location": "https://dydyfantasy.fr/",
+   "cache": "max-age=0"
+  },
+  "https://dydyfantasy.fr/qui-suis-je/": {
+   "status": 301,
+   "location": "https://dydyfantasy.fr/qui-suis-je",
+   "cache": "max-age=0"
+  },
+  "https://dydyfantasy.fr/notre-approche": {
+   "status": 301,
+   "location": "https://dydyfantasy.fr/mon-approche",
+   "cache": "max-age=0"
+  },
+  "https://dydyfantasy.fr/page-inexistante-test": {
+   "status": 404,
+   "location": null,
+   "cache": null
+  },
+  "https://dydyfantasy.fr/events/events.js": {
+   "status": 200,
+   "location": null,
+   "cache": "no-store, no-cache, must-revalidate, max-age=0"
+  }
+ }
+}
