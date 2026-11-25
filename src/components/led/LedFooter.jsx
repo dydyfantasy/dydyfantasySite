@@ -4,6 +4,7 @@ import { PhoneIcon, MapPinIcon } from "@heroicons/react/24/outline";
 import logo480 from "../../assets/brand/logo-texte-480.webp";
 import perso240 from "../../assets/brand/perso-240.webp";
 import { PRESTATIONS, EVENEMENTS } from "../../data/navigation";
+import { GOOGLE } from "../../data/avis";
 
 const SITE_LINKS = [
 	{ to: "/qui-suis-je", label: "Qui suis-je ?" },
@@ -88,6 +89,7 @@ export default function LedFooter() {
 			<div className="mx-auto mt-12 flex max-w-6xl flex-col gap-2 border-t border-white/10 pt-6 text-xs text-white/65 sm:flex-row sm:justify-between">
 				<p>© {year} Dydy Fantasy · Animation événementielle à Toulouse</p>
 				<div className="flex flex-wrap gap-x-4 gap-y-1">
+					<a href={GOOGLE.avisUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white/80">Laisser un avis Google</a>
 					<Link to="/mentions-legales" className="hover:text-white/80">Mentions légales et confidentialité</Link>
 					<Link to="/privacy" className="hover:text-white/80">Confidentialité de l’application Dydy Quiz</Link>
 				</div>

@@ -7,6 +7,8 @@ import PauseOffscreen from "./components/led/PauseOffscreen.jsx";
 import "@fontsource/sora/400.css";
 import "@fontsource/sora/600.css";
 import "@fontsource/sora/800.css";
+import { AREA_SERVED } from "./data/zone.js";
+import { GOOGLE } from "./data/avis.js";
 import "./index.css";
 import "./css/led.css";
 
@@ -15,11 +17,12 @@ import "./css/led.css";
 // À affiner : liste exacte des villes de la zone desservie de la fiche Google.
 const localBusinessJsonLd = {
 	"@context": "https://schema.org",
-	"@type": "LocalBusiness",
+	// EntertainmentBusiness = sous-type de LocalBusiness (entreprise de divertissement) : plus précis
+	"@type": "EntertainmentBusiness",
 	"@id": "https://dydyfantasy.fr/#entreprise",
 	name: "Dydy Fantasy",
 	url: "https://dydyfantasy.fr/",
-	image: "https://dydyfantasy.fr/dydy_fantasy_logo-v3.webp",
+	image: "https://dydyfantasy.fr/partage-dydy-fantasy.jpg",
 	logo: "https://dydyfantasy.fr/icon-512.png",
 	description:
 		"Animateur et DJ à Toulouse : blind tests, quiz interactifs, karaokés et animations sur mesure pour mariages, entreprises, anniversaires, bars et restaurants.",
@@ -36,19 +39,8 @@ const localBusinessJsonLd = {
 		latitude: 43.5356,
 		longitude: 1.2317,
 	},
-	areaServed: [
-		{
-			"@type": "GeoCircle",
-			geoMidpoint: { "@type": "GeoCoordinates", latitude: 43.6047, longitude: 1.4442 },
-			geoRadius: 50000,
-		},
-		{ "@type": "City", name: "Toulouse" },
-		{ "@type": "AdministrativeArea", name: "Haute-Garonne" },
-		{ "@type": "AdministrativeArea", name: "Gers" },
-		{ "@type": "AdministrativeArea", name: "Tarn" },
-	],
-	sameAs: ["https://facebook.com/profile.php?id=61578462940099", "https://www.instagram.com/dydy_fantasy"],
-	priceRange: "€",
+	areaServed: AREA_SERVED,
+	sameAs: ["https://facebook.com/profile.php?id=61578462940099", "https://www.instagram.com/dydy_fantasy", GOOGLE.ficheUrl],
 };
 
 // Squelette HTML commun à toutes les pages (remplace l’ancien index.html)

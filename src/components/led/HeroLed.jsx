@@ -20,6 +20,7 @@ import tete64 from "../../assets/brand/perso-tete-64.webp";
 import tete128 from "../../assets/brand/perso-tete-128.webp";
 import logo640 from "../../assets/brand/logo-texte-640.webp";
 import logo960 from "../../assets/brand/logo-texte-960.webp";
+import { GOOGLE } from "../../data/avis";
 import Spectrum from "./Spectrum";
 
 const COUNTDOWN = 10;
@@ -332,7 +333,7 @@ export default function HeroLed() {
 								<StarIcon key={i} className="h-4 w-4" />
 							))}
 						</span>
-						4,9/5 · +70 avis Google
+						{GOOGLE.note}/5 · {GOOGLE.nombre} avis Google
 					</a>
 				</div>
 			</div>

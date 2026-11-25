@@ -14,6 +14,9 @@ import SectionTitle from "./SectionTitle";
 import ScrollReveal from "./ScrollReveal";
 import LedFinal from "./LedFinal";
 import LedClients from "./LedClients";
+import { AREA_SERVED } from "../../data/zone";
+import GoogleRating from "./GoogleRating";
+import { GOOGLE } from "../../data/avis";
 import Spectrum from "./Spectrum";
 import PeekingMascot from "./PeekingMascot";
 import LedDivider from "./LedDivider";
@@ -121,7 +124,7 @@ export default function ServicePage({
 			url,
 			description: seo.description,
 			provider: { "@id": `${SITE}/#entreprise` },
-			areaServed: ["Toulouse", "Haute-Garonne", "Gers", "Tarn"],
+			areaServed: AREA_SERVED,
 		},
 		{
 			"@context": "https://schema.org",
@@ -169,6 +172,7 @@ export default function ServicePage({
 									Voir l’agenda
 								</a>
 							</div>
+							<GoogleRating className="mt-4" />
 						</div>
 						{aside ?? <PhotoSlot photo={photo} color={color} sign={photoSign} />}
 					</div>

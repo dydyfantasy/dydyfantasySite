@@ -12,6 +12,7 @@ import StageLights from "../components/led/StageLights";
 import PeekingMascot from "../components/led/PeekingMascot";
 import ScrollReveal from "../components/led/ScrollReveal";
 import ContactForm from "../components/ContactForm";
+import GoogleRating from "../components/led/GoogleRating";
 import tete64 from "../assets/brand/perso-tete-64.webp";
 import tete128 from "../assets/brand/perso-tete-128.webp";
 
@@ -126,6 +127,7 @@ function Contact() {
 
 						{/* Contact direct */}
 						<ScrollReveal variant="right" delay={200} className="border-t border-white/10 pt-6">
+							<GoogleRating className="mb-6" withReviewLink />
 							<p className="text-sm font-bold uppercase tracking-[0.2em] text-white/65">Ou directement</p>
 							<a href="tel:+33695953356" className="mt-3 flex items-center gap-2 text-lg font-bold hover:text-[var(--cyan)]">
 								<PhoneIcon aria-hidden="true" className="h-5 w-5 text-[var(--cyan)]" />
