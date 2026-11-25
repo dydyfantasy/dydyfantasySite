@@ -62,7 +62,7 @@ function Contact() {
 						<span className="text-[var(--cyan)]">je vous propose une animation adaptée.</span>
 					</h1>
 					<p className="mt-5 max-w-3xl text-lg leading-relaxed text-white/80">
-						Blind test, quiz interactif, karaoké, animation de bar, soirée privée, mariage ou événement
+						Blind test, quiz interactif, karaoké, DJ, animation de bar, soirée privée, mariage ou événement
 						professionnel : envoyez-moi votre demande et je vous réponds avec une proposition claire.
 					</p>
 				</div>

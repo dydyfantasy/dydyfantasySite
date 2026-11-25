@@ -120,6 +120,7 @@ export default function ContactForm() {
 						<option value="Soirée privée">Soirée privée</option>
 						<option value="Bar / restaurant">Bar / restaurant</option>
 						<option value="Événement entreprise">Événement entreprise</option>
+						<option value="Animation micro / speaker">Animation micro / speaker</option>
 						<option value="Animation sur mesure">Animation sur mesure</option>
 					</select>
 				</div>
