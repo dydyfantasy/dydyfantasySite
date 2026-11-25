@@ -13,6 +13,7 @@ import PeekingMascot from "./PeekingMascot";
  *   author, rating, source,           // ex. "Michel", 5, "Avis Google"
  *   link: { href, label },            // facultatif (ex. profil Mariages.net)
  *   mascot,                           // facultatif : bulle de la mascotte
+ *   hearts,                           // facultatif : petits cœurs sur le cadre (page Mariage)
  * }
  */
 export default function Testimonial({ testimonial: t }) {
@@ -24,10 +25,12 @@ export default function Testimonial({ testimonial: t }) {
 
 				<ScrollReveal className="mt-10">
 					<figure className="neon-card testimonial-card relative rounded-3xl p-6 md:p-10" style={{ "--c": "var(--pink)" }}>
-						<span aria-hidden="true" className="testimonial-hearts">
-							<HeartIcon className="h-6 w-6" />
-							<HeartIcon className="h-4 w-4" />
-						</span>
+						{t.hearts && (
+							<span aria-hidden="true" className="testimonial-hearts">
+								<HeartIcon className="h-6 w-6" />
+								<HeartIcon className="h-4 w-4" />
+							</span>
+						)}
 						<div className="flex gap-1 text-[var(--gold)]" aria-label={`Note : ${t.rating} sur 5`} role="img">
 							{Array.from({ length: t.rating }, (_, i) => (
 								<StarIcon key={i} aria-hidden="true" className="h-6 w-6" />

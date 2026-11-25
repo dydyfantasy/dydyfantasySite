@@ -172,6 +172,21 @@ export default function BlindTestQuiz() {
 		<ServicePage
 			path={PATH}
 			gallery={{ words: ["blind-test", "quiz"], label: "blind tests et quiz" }}
+			// Avis Google cité mot pour mot (sélection de Dydy, 25/11/2026)
+			testimonial={{
+				label: "Avis client",
+				title: "Le blind test,",
+				accent: "vu par les joueurs",
+				highlight: "Il y en a eu pour tous les styles, bonne ambiance garantie !",
+				quote: [
+					"Une superbe soirée Blind Test à Labastide-Beauvoir animée par Dydy !",
+					"Il y en a eu pour tous les styles, bonne ambiance garantie !",
+					"Merci !",
+				],
+				author: "Eve P.",
+				rating: 5,
+				source: "Avis Google",
+			}}
 			name="Blind test & quiz"
 			seo={{
 				title: "Animation blind test & quiz à Toulouse | Dydy Fantasy",

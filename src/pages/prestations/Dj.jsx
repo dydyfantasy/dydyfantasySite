@@ -29,6 +29,21 @@ export default function Dj() {
 			gallery={{ words: ["dj", "danse"], label: "soirées DJ" }}
 			name="DJ"
 			photo={photoFor("dj")}
+			// Avis Google cité mot pour mot (sélection de Dydy, 25/11/2026)
+			testimonial={{
+				label: "Avis client",
+				title: "Le DJ,",
+				accent: "vu par les organisateurs",
+				highlight: "Excellent Dj, qui a su s'occuper du bal du collège que nous organisons chaque année.",
+				quote: [
+					"Excellent Dj, qui a su s'occuper du bal du collège que nous organisons chaque année.",
+					"C'était la première année que nous travaillons ensemble et certaines pas la dernière.",
+					"Encore merci",
+				],
+				author: "Matthieu R.",
+				rating: 5,
+				source: "Avis Google",
+			}}
 			seo={{
 				title: "DJ mariage et soirée à Toulouse & Gers | Dydy Fantasy",
 				description:

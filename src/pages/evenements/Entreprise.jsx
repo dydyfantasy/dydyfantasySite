@@ -41,6 +41,20 @@ export default function Entreprise() {
 			}
 			intro="Un quiz en équipes pour fédérer vos collaborateurs, une animation micro pour rythmer votre journée, puis blind test, karaoké et DJ pour fêter ça. J’apporte tout le matériel : vous n’avez rien à gérer."
 			photo={photoFor("entreprise")}
+			// Avis Google cité mot pour mot (sélection de Dydy, 25/11/2026)
+			testimonial={{
+				label: "Avis client",
+				title: "Ils m’ont fait confiance,",
+				accent: "et ils reviennent",
+				highlight: "il est certain que nous retravaillerons ensemble",
+				quote: [
+					"Formidable !",
+					"Dylan nous a animé notre soirée blind test + karaoké à la perfection. Une superbe ambiance et le tout avec bcp de gentillesse. il est certain que nous retravaillerons ensemble :)",
+				],
+				author: "Vie Culturelle",
+				rating: 5,
+				source: "Avis Google",
+			}}
 			color="var(--cyan)"
 			// Mise en scène propre à la page (points et formats), à la place des listes du modèle
 			scene={EntrepriseScene}

@@ -92,6 +92,7 @@ export default function Mariage() {
 				source: "Avis Google",
 				link: { href: "https://www.mariages.net/musique-mariage/dydy-fantasy--e431763", label: "Mon profil Mariages.net" },
 				mascot: "Vive les mariés ! 🥂",
+				hearts: true,
 			}}
 			// « Ce que je peux apporter » propre à cette page (contenu unique pour le SEO)
 			included={[

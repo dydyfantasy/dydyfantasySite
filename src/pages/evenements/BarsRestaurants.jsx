@@ -40,6 +40,23 @@ export default function BarsRestaurants() {
 			}
 			intro="Des soirées régulières ou ponctuelles qui remplissent votre salle en semaine et fidélisent vos clients. C’est le cœur de mon activité : je suis animateur résident toute l’année dans 4 bars autour de Toulouse, avec 12 à 15 soirées par mois."
 			photo={photoFor("bars")}
+			// Avis Google cité mot pour mot (sélection de Dydy, 25/11/2026)
+			testimonial={{
+				label: "Avis d’un bar",
+				title: "Le mot du bar :",
+				accent: "La Ville en Rose",
+				highlight: "Les jeudis magiques de Dydy Fantasy à La Ville en Rose !",
+				quote: [
+					"Les jeudis magiques de Dydy Fantasy à La Ville en Rose !",
+					"Chaque semaine, Dydy Fantasy, le Prince du show, transforme La Ville en Rose en véritable royaume de bonne humeur 👑🌹.",
+					"Au programme : karaoké, quiz, et blind test explosifs où rires et chansons se mélangent dans une ambiance incroyable ! 🎶",
+					"Dydy met le feu avec son énergie débordante, son humour et sa passion pour faire passer à chacun un moment inoubliable 🔥💫.",
+					"Si tu veux chanter, jouer, rire et partager une soirée unique entre amis, ne rate surtout pas le rendez-vous du jeudi avec Dydy Fantasy",
+				],
+				author: "La Ville en Rose",
+				rating: 5,
+				source: "Avis Google",
+			}}
 			color="#7cff6b"
 			// Mise en scène propre à la page (points et formats), à la place des listes du modèle
 			scene={BarsScene}

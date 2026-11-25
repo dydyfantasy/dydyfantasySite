@@ -29,6 +29,20 @@ export default function Karaoke() {
 			gallery={{ words: ["karaoke"], label: "karaokés" }}
 			name="Karaoké"
 			photo={photoFor("karaoke")}
+			// Avis Google cité mot pour mot (sélection de Dydy, 25/11/2026)
+			testimonial={{
+				label: "Avis client",
+				title: "Le karaoké,",
+				accent: "vu par le public",
+				highlight: "tout le monde finit par chanter ensemble",
+				quote: [
+					"Dydy Fantasy est un animateur top ! J'ai passé une super soirée entre le blind test et le karaoké. Il sait mettre l'ambiance dans le bar et tout le monde finit par chanter ensemble sur les chansons qu'on choisit :)",
+					"Merci encore pour la soirée !",
+				],
+				author: "Lolalita R.",
+				rating: 5,
+				source: "Avis Google",
+			}}
 			seo={{
 				title: "Animation karaoké à Toulouse | Dydy Fantasy",
 				description:

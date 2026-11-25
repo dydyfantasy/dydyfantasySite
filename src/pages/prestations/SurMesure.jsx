@@ -29,6 +29,24 @@ export default function SurMesure() {
 			gallery={{ words: ["soiree-speciale", "fete", "chenille"], label: "fêtes de village et soirées spéciales" }}
 			name="Animation sur mesure"
 			photo={photoFor("sur-mesure")}
+			// Avis Google cité mot pour mot (sélection de Dydy, 25/11/2026)
+			testimonial={{
+				label: "Avis client",
+				title: "Une soirée à son image,",
+				accent: "racontée par l’organisatrice",
+				highlight: "C’est bien plus qu’un simple DJ : c’est un véritable animateur qui sait capter l’énergie de la salle.",
+				quote: [
+					"Une soirée mémorable, incroyable et formidable grâce à Dydy Fantasy !",
+					"On a fait appel à lui pour le Noël de nos bénévoles samedi dernier et c'était le feu !!!",
+					"C’est bien plus qu’un simple DJ : c’est un véritable animateur qui sait capter l’énergie de la salle. Le blind test était ultra bien ficelé et a mis une ambiance de dingue dès le début, il a enchaîné sur un karaoké déjanté, tout le monde se battait pour chanter, même ceux qui n'aiment pas chanter ! Puis il a enchaîné sur un set DJ festif qui a plu à toute la salle, toutes générations confondues !",
+					"Côté animation, rien à redire, tout était fluide et pro. Une réactivité et une communication aux petits oignons pour préparer le jour J en événement à votre image.",
+					"Si vous cherchez quelqu’un pour transformer votre fête en moment inoubliable, foncez les yeux fermés !",
+					"Encore MERCI Dydy Fantasy !",
+				],
+				author: "Esther G.",
+				rating: 5,
+				source: "Avis Google",
+			}}
 			seo={{
 				title: "Animation sur mesure à Toulouse | Dydy Fantasy",
 				description:
