@@ -136,8 +136,9 @@ export default function MentionsLegales() {
 								<strong>Carte de la zone d’intervention</strong> : fonds de carte OpenStreetMap.
 							</li>
 							<li>
-								<strong>Carte Google Maps de l’agenda</strong> : chargée seulement si vous cliquez sur « Afficher la
-								carte ». Google peut alors déposer ses propres cookies, selon sa politique de confidentialité.
+								<strong>Carte du lieu des soirées de l’agenda</strong> : fonds de carte OpenStreetMap ; l’adresse
+								publique de la soirée est envoyée au service de recherche d’OpenStreetMap (Nominatim) pour la placer.
+								Le bouton « Itinéraire » ouvre Google Maps, seulement si vous cliquez.
 							</li>
 							<li>
 								<strong>Liens vers WhatsApp, Facebook et Instagram</strong> : ces services ne sont contactés que si

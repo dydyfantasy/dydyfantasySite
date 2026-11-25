@@ -83,6 +83,7 @@ L'agenda ne nécessite **pas** de rebuild : il est dans `public/events/events.js
 
 - Copiez un bloc `{ … },` existant et changez les valeurs. La date s'écrit `"2026-12-31"`, l'heure `"20h00"`.
 - `publicEvent: false` pour une soirée privée (pas de lien vers la carte).
+- Carte du lieu (OpenStreetMap, affichée toute seule) : pour un repère précis, ajoutez l'adresse, ex. `address: "12 avenue …, 31770 Colomiers"`. Sans adresse, la carte montre la ville (les noms de bars sont rarement connus de la carte). Le bouton « Itinéraire » ouvre toujours Google Maps.
 - Affiche facultative : déposez l'image dans `public/events/` et écrivez `poster: "/events/mon-affiche.jpg"`.
 
 Sur le serveur, vous pouvez modifier directement `www/events/events.js` avec WinSCP : c'est en ligne immédiatement.

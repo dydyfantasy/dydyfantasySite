@@ -12,6 +12,7 @@ import { useEvents } from "../../hooks/useEvents";
 import SectionTitle from "./SectionTitle";
 import ScrollReveal from "./ScrollReveal";
 import PeekingMascot from "./PeekingMascot";
+import ClientOnlyEventMap from "./ClientOnlyEventMap";
 
 const VISIBLE_COUNT = 4;
 
@@ -36,44 +37,12 @@ function mapsUrl(event) {
 	return `https://www.google.com/maps/search/?api=1&query=${query}`;
 }
 
-function mapsEmbedUrl(event) {
-	if (event.mapEmbedUrl) return event.mapEmbedUrl;
-	const query = encodeURIComponent(event.address || `${event.place}, ${event.city}`);
-	return `https://www.google.com/maps?q=${query}&output=embed`;
-}
-
-// Carte Google Maps chargée seulement au clic : Google Maps dépose ses propres cookies, on ne
-// l’affiche donc que si le visiteur le demande (pas de cookie tiers sans action de sa part, et
-// aucun script Google téléchargé pour ceux qui ne regardent pas la carte).
-function ClickToMap({ event, className = "" }) {
-	const [shown, setShown] = useState(false);
-	if (shown)
-		return (
-			<iframe
-				title={`Carte : ${event.place}, ${event.city}`}
-				src={mapsEmbedUrl(event)}
-				referrerPolicy="no-referrer-when-downgrade"
-				className={`block w-full border-0 ${className}`}
-			/>
-		);
-	return (
-		<button
-			type="button"
-			onClick={() => setShown(true)}
-			className={`flex w-full flex-col items-center justify-center gap-2 bg-[radial-gradient(circle_at_50%_40%,rgb(25_211_240/0.16),transparent_65%)] px-4 text-center ${className}`}>
-			<MapPinIcon aria-hidden="true" className="h-8 w-8 text-[var(--cyan)]" />
-			<span className="font-bold">Afficher la carte</span>
-			<span className="text-xs text-white/55">Carte Google Maps (Google peut déposer des cookies)</span>
-		</button>
-	);
-}
-
-// Carte du lieu de la prochaine date (au clic)
+// Carte du lieu de la prochaine date (OpenStreetMap, sans cookie)
 function NextEventMap({ event }) {
 	if (!event.publicEvent || (!event.address && !event.place)) return null;
 	return (
 		<div className="neon-card mt-4 overflow-hidden rounded-3xl" style={{ "--c": "var(--cyan)" }}>
-			<ClickToMap event={event} className="h-56 md:h-64" />
+			<ClientOnlyEventMap event={event} className="h-56 md:h-64" />
 		</div>
 	);
 }
@@ -253,7 +222,7 @@ function EventDialog({ event, onClose }) {
 					{event.publicEvent ? (
 						<>
 							<div className="overflow-hidden rounded-2xl border border-white/10">
-								<ClickToMap key={event.id} event={event} className="h-56" />
+								<ClientOnlyEventMap key={event.id} event={event} className="h-56" />
 							</div>
 							<a
 								href={mapsUrl(event)}
