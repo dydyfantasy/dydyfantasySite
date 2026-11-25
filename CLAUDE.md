@@ -34,7 +34,7 @@ React 19 + Vite 7 (JSX, pas de TypeScript), Tailwind CSS v4, React Router 7 en *
 
 - `react-router.config.js` : `appDirectory: "src"`, `ssr: false`. Importer depuis `react-router` (plus `react-router-dom`).
 - `src/routes.js` : liste des routes (adresse -> fichier de `src/pages/`), dont `*` -> `NotFound.jsx`.
-- `src/root.jsx` : `Layout` = squelette HTML de toutes les pages (head commun : charset, viewport, favicon, JSON-LD `LocalBusiness`, Google Analytics, script de l’agenda) ; composant par défaut = `LedHeader` + `<Outlet />` + `LedFooter` + `ScrollToHash` + `NextEventBubble`.
+- `src/root.jsx` : `Layout` = squelette HTML de toutes les pages (head commun : charset, viewport, favicon, JSON-LD `LocalBusiness`, script de l’agenda ; pas de Google Analytics depuis le 25/11/2026 : aucun cookie de mesure, donc pas de bandeau cookies) ; composant par défaut = `LedHeader` + `<Outlet />` + `LedFooter` + `ScrollToHash` + `NextEventBubble`.
 - `src/entry.client.jsx` : hydratation (`hydrateRoot` + `HydratedRouter`).
 - `src/pages/` : pages de route, composées de sections de `src/components/`. Chaque page contient exactement un `<Seo />` (`src/components/Seo.jsx` : title, description, canonical ou `noindex`, Open Graph). Balises natives React 19, placées automatiquement dans le `<head>` : pas de `react-helmet`, et ne pas remettre de `<title>`/description dans `root.jsx` (doublons).
 - Styles : surtout des classes Tailwind inline dans le JSX. Tailwind v4 est chargé par le plugin `@tailwindcss/vite` et `@import "tailwindcss"` dans `src/index.css` (pas de `tailwind.config.js` en v4). Quelques feuilles de style spécifiques dans `src/css/`.
@@ -74,7 +74,7 @@ Champs d'un événement : `id`, `title`, `date` (`YYYY-MM-DD`, parsée en date l
 ### Services externes
 
 - Formulaire de contact (`ContactForm.jsx`) : envoi direct vers Formspree, pas de backend.
-- ID Google Analytics et données JSON-LD de l'entreprise : dans `root.jsx`.
+- Données JSON-LD de l'entreprise : dans `root.jsx`. Statistiques : Search Console (recherches, positions, clics) + statistiques de l'hébergement OVH (visites, sans cookie). Ne pas remettre d'outil qui dépose des cookies sans prévoir le consentement (bandeau CNIL) ; un outil sans cookie (Umami, Plausible…) peut s'ajouter sans bandeau.
 - `LedReviews.jsx` charge le widget `react-google-reviews` (Featurable) uniquement dans le navigateur, à l’approche de la section (`ReviewsWidget.jsx`, import différé). **Version figée à 1.7.4** par prudence. Le carrousel (react-slick) démarre à 3 avis et ne bascule à 1 sur mobile qu’au redimensionnement : `ReviewsWidget.jsx` calcule donc lui-même le nombre d’avis par écran (`maxItems`, ResizeObserver). Toute mise à jour du widget : vérifier le rendu en ouvrant directement la page sur un téléphone.
 
 ## Déploiement

@@ -110,6 +110,15 @@ Le titre et la description vus dans Google sont dans le bloc `seo={{ … }}` (ou
 3. Avec WinSCP (`ftp.cluster021.hosting.ovh.net`), envoyez **le contenu** de `build/client/` dans `www/`.
 4. Vérifiez le site sur le téléphone.
 
+## Suivre ses visiteurs et son référencement
+
+Le site n'utilise **aucun cookie** de mesure (pas de Google Analytics) : pas de bandeau cookies à afficher.
+
+- **Position sur Google, recherches tapées, clics et impressions** : Search Console (search.google.com/search-console), menu « Performances ».
+- **Nombre de visiteurs** (toutes sources : Google, Facebook, Instagram, liens directs) : espace client OVH, Hébergements, onglet « Statistiques et logs ».
+
+⚠️ Ne rajoutez pas Google Analytics (ou un autre outil qui dépose des cookies) sans bandeau de consentement : c'est obligatoire dans ce cas (règles CNIL).
+
 ## Si quelque chose casse
 
 - Le site ne s'affiche plus en `npm run dev` : le message d'erreur dans le terminal indique le fichier et la ligne (souvent une virgule ou un guillemet oublié).

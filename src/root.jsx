@@ -10,8 +10,6 @@ import "@fontsource/sora/800.css";
 import "./index.css";
 import "./css/led.css";
 
-const GA_ID = "G-3ZFS6P50ML";
-
 // Fiche entreprise unique pour Google (doit rester cohérente avec la fiche Google Business Profile :
 // zone desservie, adresse masquée -> ville seulement). Les pages de prestation y renvoient via "@id".
 // À affiner : liste exacte des villes de la zone desservie de la fiche Google.
@@ -75,25 +73,6 @@ export function Layout({ children }) {
 					}}
 				/>
 
-				{/* Google Analytics */}
-				{/* Google Analytics chargé APRÈS l'affichage de la page (ne concurrence plus la photo
-				    et le contenu). Les événements sont mis en file dans dataLayer en attendant. */}
-				<script
-					dangerouslySetInnerHTML={{
-						__html: `window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${GA_ID}');
-window.addEventListener('load', function () {
-  setTimeout(function () {
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_ID}';
-    document.head.appendChild(s);
-  }, 1500);
-});`,
-					}}
-				/>
 			</head>
 			<body>
 				{children}
