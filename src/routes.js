@@ -19,6 +19,8 @@ export default [
 	route("dydy-quiz", "pages/DydyQuiz.jsx"),
 	route("contact", "pages/Contact.jsx"),
 	route("privacy", "pages/Privacy.jsx"),
+	// noindex, hors sitemap (comme /privacy)
+	route("mentions-legales", "pages/MentionsLegales.jsx"),
 	// Toute adresse inconnue
 	route("*", "pages/NotFound.jsx"),
 ];

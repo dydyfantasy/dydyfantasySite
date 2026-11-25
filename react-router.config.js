@@ -23,6 +23,7 @@ export default {
 		"/dydy-quiz",
 		"/contact",
 		"/privacy",
+		"/mentions-legales",
 		"/404",
 	],
 	// Comportements de React Router v8 activés dès maintenant
