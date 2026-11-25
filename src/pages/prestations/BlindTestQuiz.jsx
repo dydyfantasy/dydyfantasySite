@@ -140,13 +140,15 @@ function DemoScreen() {
 						aria-pressed={picked === a.letter}
 						onClick={() => setPicked(a.letter)}
 						style={{ "--c": a.color, "--i": i }}
-						className={`answer-btn answer-fill flex min-h-[3.75rem] items-center gap-3 rounded-2xl p-2.5 text-left text-sm font-extrabold uppercase tracking-wide md:text-base ${
+						// Mobile : case étroite (~135 px), donc lettre plus petite et texte sans espacement
+						// pour que « ORELSAN » tienne ; tailles d’origine à partir de sm.
+						className={`answer-btn answer-fill flex min-h-[3.75rem] min-w-0 items-center gap-2 rounded-2xl p-2 text-left text-[0.8125rem] font-extrabold uppercase tracking-normal sm:gap-3 sm:p-2.5 sm:text-sm sm:tracking-wide md:text-base ${
 							picked && picked !== a.letter ? "is-dimmed" : ""
 						}`}>
-						<span className="answer-letter flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-lg font-extrabold">
+						<span className="answer-letter flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-base font-extrabold sm:h-10 sm:w-10 sm:rounded-xl sm:text-lg">
 							{a.letter}
 						</span>
-						{a.label}
+						<span className="min-w-0 [overflow-wrap:anywhere]">{a.label}</span>
 					</button>
 				))}
 			</div>
