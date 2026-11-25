@@ -4,10 +4,10 @@ import ScrollReveal from "../led/ScrollReveal";
 import "../../css/scenes.css";
 
 // Page Anniversaire : un gâteau dont on souffle les bougies (confettis à la fin),
-// les points en étiquettes cadeaux, les formats en polaroids.
+// les points en étiquettes cadeaux, les formats en cartes d’anniversaire.
 const CANDLES = 5;
 const TAG_TILTS = ["-3deg", "2.5deg", "-2deg", "3deg"];
-const POLA_TILTS = ["-2deg", "1.5deg", "-1deg", "2deg", "-1.5deg"];
+const CARD_TILTS = ["-2deg", "1.5deg", "-1deg", "2deg", "-1.5deg"];
 const CONFETTI = Array.from({ length: 22 }, (_, i) => {
 	const a = (i / 22) * Math.PI * 2;
 	const d = 90 + (i % 3) * 35;
@@ -105,11 +105,13 @@ export default function AnniversaireScene({ points, pointsTitle, formats, format
 					<ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 						{formats.map((f, i) => (
 							<ScrollReveal as="li" key={f.title} delay={(i % 3) * 90}>
-								<figure className="polaroid" style={{ "--tilt": POLA_TILTS[i % 5], "--c": ["#ffc93c", "#ff2fae", "#19d3f0", "#7cff6b", "#8b5cf6"][i % 5] }}>
-									<div aria-hidden="true" className="polaroid-shot">
-										<f.icon className="h-14 w-14" />
+								<figure className="bday-card" style={{ "--tilt": CARD_TILTS[i % 5], "--c": ["#ffc93c", "#ff2fae", "#19d3f0", "#7cff6b", "#8b5cf6"][i % 5] }}>
+									<div aria-hidden="true" className="bday-card-front">
+										<span className="bday-card-badge">
+											<f.icon className="h-9 w-9" />
+										</span>
 									</div>
-									<figcaption className="polaroid-caption">
+									<figcaption className="bday-card-inside">
 										<h3 className="text-lg font-extrabold">{f.title}</h3>
 										<p className="mt-1 text-sm">{f.text}</p>
 									</figcaption>

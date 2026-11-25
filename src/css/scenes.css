@@ -128,7 +128,7 @@
 	text-shadow: 0 0 8px var(--cyan);
 }
 
-/* ========== Anniversaire : gâteau, étiquettes cadeaux, polaroids ========== */
+/* ========== Anniversaire : gâteau, étiquettes cadeaux, cartes d’anniversaire ========== */
 .cake {
 	width: min(20rem, 82vw);
 	padding-top: 4.5rem;
@@ -300,32 +300,56 @@
 	box-shadow: 0 0 0 3px #b9834b;
 }
 
-.polaroid {
-	padding: 0.8rem 0.8rem 1.2rem;
+/* Formats en cartes d’anniversaire : couverture colorée à confettis + médaillon, intérieur en papier */
+.bday-card {
+	overflow: hidden;
+	border-radius: 1.1rem;
 	background: #fbfaf6;
 	color: #24201a;
 	box-shadow: 0 20px 35px -18px rgb(0 0 0 / 0.85);
 	transform: rotate(var(--tilt));
 	transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.polaroid:hover {
+.bday-card:hover {
 	transform: rotate(0deg) translateY(-4px);
 }
-.polaroid-shot {
+.bday-card-front {
+	position: relative;
 	display: flex;
-	aspect-ratio: 4 / 3;
+	aspect-ratio: 16 / 9;
 	align-items: center;
 	justify-content: center;
 	background:
-		radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--c) 45%, transparent), transparent 70%),
-		#16121e;
-	color: var(--c);
-	filter: drop-shadow(0 0 10px var(--c));
+		radial-gradient(circle, rgb(255 255 255 / 0.85) 0 2px, transparent 2.5px) 0 0 / 22px 22px,
+		radial-gradient(circle, rgb(255 255 255 / 0.4) 0 1.5px, transparent 2px) 11px 11px / 22px 22px,
+		linear-gradient(135deg, var(--c), color-mix(in srgb, var(--c) 50%, #8b5cf6));
 }
-.polaroid-caption {
-	padding: 0.9rem 0.3rem 0;
+/* Pli de la carte : liseré pointillé + ombre douce */
+.bday-card-front::after {
+	content: "";
+	position: absolute;
+	inset: auto 0 0;
+	height: 10px;
+	border-bottom: 2px dashed rgb(36 32 26 / 0.25);
+	background: linear-gradient(transparent, rgb(0 0 0 / 0.18));
 }
-.polaroid-caption p {
+.bday-card-badge {
+	display: flex;
+	height: 4.5rem;
+	width: 4.5rem;
+	align-items: center;
+	justify-content: center;
+	border-radius: 9999px;
+	background: #fbfaf6;
+	color: color-mix(in srgb, var(--c) 75%, #24201a);
+	box-shadow:
+		0 0 0 5px rgb(255 255 255 / 0.45),
+		0 10px 20px -8px rgb(0 0 0 / 0.6);
+}
+.bday-card-inside {
+	padding: 1rem 1.1rem 1.2rem;
+}
+.bday-card-inside p {
 	color: #4a4236;
 }
 
@@ -811,7 +835,7 @@ li:hover > .chip {
 	.coaster,
 	.postit,
 	.gift-tag,
-	.polaroid,
+	.bday-card,
 	.play-card,
 	.chip,
 	.board-tile {
