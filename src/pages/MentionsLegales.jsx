@@ -44,7 +44,7 @@ export default function MentionsLegales() {
 					<Section id="editeur" title="1. Éditeur du site">
 						<p>
 							Le site <strong>dydyfantasy.fr</strong> est édité par <strong>Dylan Sanson</strong>, entrepreneur
-							individuel exerçant sous le nom commercial <strong>Dydy Fantasy</strong> (animation événementielle).
+							individuel (micro-entreprise) exerçant sous le nom commercial <strong>Dydy Fantasy</strong> (animation événementielle).
 						</p>
 						<ul className="list-disc space-y-1 pl-6">
 							<li>SIRET : 991 546 730 00011</li>
