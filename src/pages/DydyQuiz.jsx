@@ -37,7 +37,7 @@ const LOOP = getVideo("dydy-quiz-accueil");
 const LOOP_MOBILE = getVideo("dydy-quiz-accueil-mobile");
 // Données structurées VideoObject (vidéo visible dans les résultats Google) : renseigner la date
 // de mise en ligne (AAAA-MM-JJ) et la durée (ex. "PT1M05S") ; sans date ni image d’attente, rien n’est publié.
-const PRESENTATION_META = { uploadDate: "", duration: "PT1M5S" }; // uploadDate : date de mise en ligne, à remplir le jour J
+const PRESENTATION_META = { uploadDate: "2026-11-25", duration: "PT1M5S" }; // date de mise en ligne de la vidéo
 const SITE = "https://dydyfantasy.fr";
 
 
