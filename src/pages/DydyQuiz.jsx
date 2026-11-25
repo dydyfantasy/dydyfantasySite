@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import { ArrowRightIcon, PlayIcon } from "@heroicons/react/24/solid";
 import {
 	QrCodeIcon,
 	PlayCircleIcon,
@@ -116,12 +116,29 @@ function PresentationVideo({ video, mobile }) {
 		return () => mq.removeEventListener("change", update);
 	}, [mobile]);
 	const v = isMobile && mobile ? mobile : video;
+	// Gros bouton lecture sur l’image d’attente (sinon on ne devine pas que c’est une vidéo) ;
+	// les commandes du lecteur apparaissent une fois la vidéo lancée.
+	const ref = useRef(null);
+	const [started, setStarted] = useState(false);
 
 	return (
-		<div className={`big-screen rounded-2xl p-[3px] ${mobile ? "mx-auto max-w-[21rem] md:max-w-none" : ""}`}>
+		<div className={`big-screen relative rounded-2xl p-[3px] ${mobile ? "mx-auto max-w-[21rem] md:max-w-none" : ""}`}>
+			{!started && (
+				<button
+					type="button"
+					onClick={() => ref.current?.play()}
+					className="group absolute inset-[3px] z-10 flex flex-col items-center justify-end gap-3 rounded-[0.9rem] bg-gradient-to-t from-black/70 via-transparent to-transparent pb-8 md:justify-center md:pb-0">
+					<span className="btn-neon flex h-20 w-20 items-center justify-center rounded-full bg-[var(--pink)] text-white shadow-[0_0_40px_-6px_var(--pink)] transition-transform group-hover:scale-110 md:h-24 md:w-24">
+						<PlayIcon aria-hidden="true" className="ml-1 h-10 w-10 md:h-12 md:w-12" />
+					</span>
+					<span className="rounded-full bg-black/60 px-4 py-1.5 text-sm font-bold">Voir la vidéo · 1 min · avec le son 🔊</span>
+				</button>
+			)}
 			<video
+				ref={ref}
 				key={isMobile ? "mobile" : "desktop"}
-				controls
+				controls={started}
+				onPlay={() => setStarted(true)}
 				playsInline
 				preload="none"
 				poster={v.poster}

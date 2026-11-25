@@ -76,37 +76,36 @@ function Preview({ slug, color }) {
 export default function ModeSelect({ modes }) {
 	const [active, setActive] = useState(0);
 	const m = modes[active];
+	const half = Math.ceil(modes.length / 2);
+	const row = (mode, i) => (
+		<ScrollReveal as="li" key={mode.title} delay={(i % half) * 70}>
+			<div
+				onMouseEnter={() => setActive(i)}
+				className={`mode-row h-full rounded-2xl p-2.5 lg:p-4 ${active === i ? "is-active" : ""}`}
+				style={{ "--c": mode.color }}>
+				<h3 className="text-xs font-extrabold sm:text-sm lg:text-base">
+					<button
+						type="button"
+						aria-pressed={active === i}
+						onFocus={() => setActive(i)}
+						onClick={() => setActive(i)}
+						className="mode-btn flex flex-col items-center gap-1.5 text-center lg:flex-row lg:gap-2 lg:text-left">
+						<mode.icon aria-hidden="true" className="h-5 w-5 shrink-0 text-[var(--c)]" />
+						{mode.title}
+					</button>
+				</h3>
+				<p className="mt-1 hidden text-sm text-white/70 lg:block">{mode.text}</p>
+			</div>
+		</ScrollReveal>
+	);
 	return (
-		<div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-			<ul className="space-y-3">
-				{modes.map((mode, i) => (
-					<ScrollReveal as="li" key={mode.title} delay={i * 70}>
-						<div
-							onMouseEnter={() => setActive(i)}
-							className={`mode-row flex w-full gap-4 rounded-2xl p-4 ${active === i ? "is-active" : ""}`}
-							style={{ "--c": mode.color }}>
-							<span className="mode-cursor shrink-0 text-lg font-extrabold text-[var(--c)]" aria-hidden="true">
-								▶
-							</span>
-							<div>
-								<h3 className="text-lg font-extrabold">
-									<button
-										type="button"
-										aria-pressed={active === i}
-										onFocus={() => setActive(i)}
-										onClick={() => setActive(i)}
-										className="mode-btn flex items-center gap-2 text-left">
-										<mode.icon aria-hidden="true" className="h-5 w-5 text-[var(--c)]" />
-										{mode.title}
-									</button>
-								</h3>
-								<p className="mt-1 text-white/75">{mode.text}</p>
-							</div>
-						</div>
-					</ScrollReveal>
-				))}
-			</ul>
-			<div className="lg:sticky lg:top-28 lg:self-start">
+		// Ordinateur : grand écran au centre, 3 modes à gauche, 3 à droite.
+		// Téléphone : écran en haut, modes en boutons compacts (2 rangées de 3), description du mode
+		// choisi sous l’écran (les descriptions restent dans le HTML : visibles dans les boutons sur ordinateur).
+		<div className="mt-10 grid items-center gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)_minmax(0,1fr)]">
+			<ul className="order-2 grid grid-cols-3 gap-2 sm:gap-3 lg:col-start-1 lg:row-start-1 lg:grid-cols-1">{modes.slice(0, half).map((mode, i) => row(mode, i))}</ul>
+			<ul className="order-3 grid grid-cols-3 gap-2 sm:gap-3 lg:col-start-3 lg:row-start-1 lg:grid-cols-1">{modes.slice(half).map((mode, i) => row(mode, i + half))}</ul>
+			<div className="order-1 lg:order-2 lg:col-start-2 lg:row-start-1">
 				<div className="big-screen rounded-2xl p-[3px]">
 					{m.clip ? (
 						<LoopVideo key={active} video={m.clip} label={`Dydy Quiz, écran de la salle : ${m.title}`} className="rounded-[0.9rem]" />
@@ -136,7 +135,10 @@ export default function ModeSelect({ modes }) {
 						</div>
 					)}
 				</div>
-				<p className="mt-3 text-center text-sm text-white/55">Survolez ou touchez un mode pour l’afficher à l’écran.</p>
+				<p className="mt-3 text-center text-sm text-white/80 lg:hidden" aria-live="polite">
+					<strong style={{ color: m.color }}>{m.title}</strong> : {m.text}
+				</p>
+				<p className="mt-3 hidden text-center text-sm text-white/55 lg:block">Survolez ou touchez un mode pour l’afficher à l’écran.</p>
 			</div>
 		</div>
 	);
