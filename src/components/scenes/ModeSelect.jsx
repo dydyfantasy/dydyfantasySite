@@ -4,9 +4,11 @@ import "../../css/pages-fun.css";
 
 // Dydy Quiz, « Les modes de jeu » : sélecteur façon menu de console. Survoler ou toucher un mode
 // l’anime sur le grand écran (aperçu décoratif). Tous les textes restent visibles dans la liste.
-// modes = [{ icon, color, title, text }] — l’ordre suit MODES de la page.
-function Preview({ index, color }) {
-	if (index === 0)
+// modes = [{ slug, icon, color, title, text, shot? }] — l’ordre suit MODES de la page.
+// shot = capture d’écran du mode (src/assets/dydy-quiz/) : affichée sur le grand écran à la place
+// de l’animation ; sans capture, l’animation décorative du mode reste.
+function Preview({ slug, color }) {
+	if (slug === "quiz")
 		return (
 			<div className="grid w-full max-w-xs grid-cols-2 gap-2">
 				{["#ff4d6d", "#3ddc84", "#19d3f0", "#ffc93c"].map((c, i) => (
@@ -14,7 +16,22 @@ function Preview({ index, color }) {
 				))}
 			</div>
 		);
-	if (index === 1)
+	if (slug === "bingo-musical")
+		return (
+			<div className="grid grid-cols-4 gap-1.5">
+				{Array.from({ length: 12 }, (_, i) => {
+					const marked = [1, 4, 6, 11].indexOf(i);
+					return marked >= 0 ? (
+						<span key={i} className="pv-tile flex h-10 w-10 items-center justify-center rounded-md text-lg" style={{ background: color, "--i": marked }}>
+							🎵
+						</span>
+					) : (
+						<span key={i} className="h-10 w-10 rounded-md bg-white/10" />
+					);
+				})}
+			</div>
+		);
+	if (slug === "sondages")
 		return (
 			<div className="w-full max-w-xs space-y-2.5">
 				{[0.72, 0.45, 0.88].map((p, i) => (
@@ -24,7 +41,7 @@ function Preview({ index, color }) {
 				))}
 			</div>
 		);
-	if (index === 2)
+	if (slug === "challenge-photo")
 		return (
 			<div className="grid grid-cols-3 gap-2">
 				{Array.from({ length: 6 }, (_, i) => (
@@ -34,7 +51,7 @@ function Preview({ index, color }) {
 				))}
 			</div>
 		);
-	if (index === 3)
+	if (slug === "match-machine")
 		return (
 			<div className="flex items-center gap-4 text-4xl">
 				<span className="pv-left">🙋‍♀️</span>
@@ -89,17 +106,31 @@ export default function ModeSelect({ modes }) {
 			</ul>
 			<div className="lg:sticky lg:top-28 lg:self-start">
 				<div className="big-screen rounded-2xl p-[3px]">
-					<div aria-hidden="true" className="screen-inner flex aspect-video flex-col rounded-[0.9rem] p-5" style={{ "--c": m.color }}>
-						<p className="flex items-center justify-between text-sm font-extrabold">
-							<span>
-								Dydy <span className="text-[var(--pink)]">Quiz</span>
-							</span>
-							<span className="text-[0.65rem] uppercase tracking-widest text-[var(--c)]">{m.title}</span>
-						</p>
-						<div key={active} className="pv-stage flex flex-1 items-center justify-center">
-							<Preview index={active} color={m.color} />
+					{m.shot ? (
+						<div key={active} className="pv-stage screen-inner flex aspect-video items-center justify-center overflow-hidden rounded-[0.9rem]" style={{ "--c": m.color }}>
+							<img
+								src={m.shot.src}
+								srcSet={m.shot.srcSet}
+								sizes="(min-width: 1024px) 36rem, 92vw"
+								alt={`Capture d’écran de Dydy Quiz : ${m.title}`}
+								loading="lazy"
+								decoding="async"
+								className="h-full w-full object-contain"
+							/>
 						</div>
-					</div>
+					) : (
+						<div aria-hidden="true" className="screen-inner flex aspect-video flex-col rounded-[0.9rem] p-5" style={{ "--c": m.color }}>
+							<p className="flex items-center justify-between text-sm font-extrabold">
+								<span>
+									Dydy <span className="text-[var(--pink)]">Quiz</span>
+								</span>
+								<span className="text-[0.65rem] uppercase tracking-widest text-[var(--c)]">{m.title}</span>
+							</p>
+							<div key={active} className="pv-stage flex flex-1 items-center justify-center">
+								<Preview slug={m.slug} color={m.color} />
+							</div>
+						</div>
+					)}
 				</div>
 				<p className="mt-3 text-center text-sm text-white/55">Survolez ou touchez un mode pour l’afficher à l’écran.</p>
 			</div>

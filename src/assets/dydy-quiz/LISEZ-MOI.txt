@@ -1,0 +1,12 @@
+Déposez ici les captures d'écran de l'appli Dydy Quiz (jpg, png, webp), une par mode de jeu.
+Elles s'affichent sur le grand écran de la section « Une appli, mille façons de jouer »
+de la page /dydy-quiz, quand on choisit le mode. Sans capture, une animation s'affiche.
+Le nom du fichier doit COMMENCER par le mode :
+  quiz-...              Quiz & blind test
+  bingo-musical-...     Bingo musical
+  sondages-...          Sondages en direct
+  challenge-photo-...   Challenge Photo
+  match-machine-...     Match Machine
+  classement-...        Classement en direct
+Exemple : bingo-musical-grille-de-jeu.png
+Capture en paysage (grand écran) de préférence ; une capture de téléphone s'affiche entière, centrée.

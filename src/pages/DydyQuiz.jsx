@@ -10,8 +10,8 @@ import {
 	HeartIcon,
 	PresentationChartLineIcon,
 	ShieldCheckIcon,
-	DevicePhoneMobileIcon,
 	CodeBracketIcon,
+	TableCellsIcon,
 } from "@heroicons/react/24/outline";
 import Seo from "../components/Seo";
 import StageLights from "../components/led/StageLights";
@@ -22,36 +22,21 @@ import Spectrum from "../components/led/Spectrum";
 import PeekingMascot from "../components/led/PeekingMascot";
 import LedDivider from "../components/led/LedDivider";
 import { getVideo } from "../components/led/videoAssets";
+import LoopVideo from "../components/led/LoopVideo";
 import PhoneDemo from "../components/scenes/PhoneDemo";
 import ModeSelect from "../components/scenes/ModeSelect";
 
 // Vidéo « C’est quoi Dydy Quiz ? » (~1 min, avec le son) : src/assets/videos/dydy-quiz-presentation.mp4
-// (+ image d’attente dydy-quiz-presentation.jpg). Section masquée tant qu’elle n’est pas déposée.
+// (+ image d’attente dydy-quiz-presentation.jpg). Affichée en grand en haut de page dès qu’elle est déposée ;
+// en attendant, la boucle muette de l’accueil (dydy-quiz-accueil.mp4 + version -mobile) prend sa place.
 const PRESENTATION = getVideo("dydy-quiz-presentation");
+const LOOP = getVideo("dydy-quiz-accueil");
+const LOOP_MOBILE = getVideo("dydy-quiz-accueil-mobile");
 // Données structurées VideoObject (vidéo visible dans les résultats Google) : renseigner la date
 // de mise en ligne (AAAA-MM-JJ) et la durée (ex. "PT1M05S") ; sans date ni image d’attente, rien n’est publié.
 const PRESENTATION_META = { uploadDate: "", duration: "" };
 const SITE = "https://dydyfantasy.fr";
 
-// Captures d'écran : tout fichier déposé dans src/assets/dydy-quiz/ (ordre alphabétique),
-// optimisé à la compilation. Le nom du fichier sert de description.
-const shotsSet = import.meta.glob("../assets/dydy-quiz/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
-	eager: true,
-	query: { w: "360;720", format: "webp", quality: "82", as: "srcset" },
-	import: "default",
-});
-const shotsSrc = import.meta.glob("../assets/dydy-quiz/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
-	eager: true,
-	query: { w: "720", format: "webp", quality: "82" },
-	import: "default",
-});
-const SHOTS = Object.keys(shotsSrc)
-	.sort()
-	.map((p) => ({
-		src: shotsSrc[p],
-		srcSet: shotsSet[p],
-		alt: `Dydy Quiz : ${p.split("/").pop().replace(/\.[^.]+$/, "").replace(/^\d+[-_ ]*/, "").replace(/[-_]+/g, " ")}`,
-	}));
 
 const STEPS = [
 	{ icon: QrCodeIcon, title: "Je scanne", text: "Un QR code s’affiche, chacun le scanne avec son téléphone. Aucune application à installer." },
@@ -59,28 +44,33 @@ const STEPS = [
 	{ icon: TrophyIcon, title: "Je vois le classement", text: "Les scores s’affichent en direct sur le grand écran : suspense jusqu’à la dernière question." },
 ];
 
-const MODES = [
-	{ icon: MusicalNoteIcon, color: "#ff4d6d", title: "Quiz & blind test", text: "Des questions en audio, vidéo ou image, à jouer en solo ou par équipes." },
-	{ icon: ChartBarIcon, color: "var(--cyan)", title: "Sondages en direct", text: "La salle vote depuis son téléphone, les résultats s’affichent instantanément à l’écran." },
-	{ icon: CameraIcon, color: "var(--gold)", title: "Challenge Photo", text: "Une liste de défis photo à relever : les photos s’affichent sur l’écran avec les scores en direct. Idéal pour les mariages." },
-	{ icon: HeartIcon, color: "var(--pink)", title: "Match Machine", text: "Un algorithme de rencontre pour animer les soirées célibataires." },
-	{ icon: PresentationChartLineIcon, color: "#7cff6b", title: "Classement en direct", text: "Sur grand écran, pour tous les modes de jeu : chaque point compte." },
-];
-
-// Emplacements vides tant que les captures ne sont pas déposées
-function PhoneSlot({ shot, i }) {
-	return (
-		<div className="phone-shot mx-auto w-full max-w-[15rem] rounded-[2rem] p-2" style={{ "--c": ["var(--cyan)", "var(--pink)", "var(--gold)"][i % 3] }}>
-			{shot ? (
-				<img src={shot.src} srcSet={shot.srcSet} sizes="15rem" alt={shot.alt} loading="lazy" className="aspect-[9/19] w-full rounded-[1.6rem] bg-black object-cover" />
-			) : (
-				<div aria-hidden="true" className="event-visual flex aspect-[9/19] w-full items-center justify-center rounded-[1.6rem]">
-					<DevicePhoneMobileIcon className="h-12 w-12 text-[var(--c)] opacity-70" />
-				</div>
-			)}
-		</div>
-	);
+// Captures d’écran des modes : déposées dans src/assets/dydy-quiz/, nom qui COMMENCE par le slug
+// du mode (ex. bingo-musical-grille.png). Optimisées à la compilation ; sans capture, animation.
+const shotSets = import.meta.glob("../assets/dydy-quiz/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
+	eager: true,
+	query: { w: "480;960", format: "webp", quality: "82", as: "srcset" },
+	import: "default",
+});
+const shotSrcs = import.meta.glob("../assets/dydy-quiz/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
+	eager: true,
+	query: { w: "960", format: "webp", quality: "82" },
+	import: "default",
+});
+function shotFor(slug) {
+	const path = Object.keys(shotSrcs)
+		.sort()
+		.find((p) => p.split("/").pop().toLowerCase().startsWith(slug));
+	return path ? { src: shotSrcs[path], srcSet: shotSets[path] } : undefined;
 }
+
+const MODES = [
+	{ slug: "quiz", icon: MusicalNoteIcon, color: "#ff4d6d", title: "Quiz & blind test", text: "Des questions en audio, vidéo ou image, à jouer en solo ou par équipes." },
+	{ slug: "bingo-musical", icon: TableCellsIcon, color: "#8b5cf6", title: "Bingo musical", text: "Le mélange d’un loto et d’un blind test : reconnaissez les morceaux pour compléter votre grille." },
+	{ slug: "sondages", icon: ChartBarIcon, color: "var(--cyan)", title: "Sondages en direct", text: "La salle vote depuis son téléphone, les résultats s’affichent instantanément à l’écran." },
+	{ slug: "challenge-photo", icon: CameraIcon, color: "var(--gold)", title: "Challenge Photo", text: "Une liste de défis photo à relever : les photos s’affichent sur l’écran avec les scores en direct. Idéal pour les mariages." },
+	{ slug: "match-machine", icon: HeartIcon, color: "var(--pink)", title: "Match Machine", text: "Un algorithme de rencontre pour animer les soirées célibataires." },
+	{ slug: "classement", icon: PresentationChartLineIcon, color: "#7cff6b", title: "Classement en direct", text: "Sur grand écran, pour tous les modes de jeu : chaque point compte." },
+].map((m) => ({ ...m, shot: shotFor(m.slug) }));
 
 // Grande vidéo de présentation, dans le cadre « grand écran » ; rien n’est téléchargé avant le clic
 function PresentationVideo({ video }) {
@@ -102,7 +92,6 @@ function PresentationVideo({ video }) {
 }
 
 export default function DydyQuiz() {
-	const shots = SHOTS.length ? SHOTS : [null, null, null];
 	const videoJsonLd =
 		PRESENTATION && PRESENTATION.poster && PRESENTATION_META.uploadDate
 			? {
@@ -132,8 +121,8 @@ export default function DydyQuiz() {
 			{/* ---- Hero ---- */}
 			<section className="relative px-4 pb-16 pt-10 md:pt-14">
 				<Spectrum className="absolute inset-x-0 bottom-0 -z-10 flex h-20 opacity-50 md:h-28" />
-				<div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
-					<div>
+				<div className="mx-auto max-w-6xl">
+					<div className="max-w-4xl">
 						<p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">
 							<span className="live-dot h-2 w-2 rounded-full bg-[var(--pink)]" aria-hidden="true" />
 							Ma marque de fabrique
@@ -168,34 +157,32 @@ export default function DydyQuiz() {
 							)}
 						</div>
 					</div>
-					<ScrollReveal variant="zoom">
-						<PhoneSlot shot={shots[0]} i={0} />
-					</ScrollReveal>
-				</div>
-			</section>
-
-			{/* ---- Vidéo « C’est quoi Dydy Quiz ? » (affichée dès que le fichier est déposé) ---- */}
-			{PRESENTATION ? (
-				<section id="video" aria-labelledby="video-titre" className="scroll-mt-24 px-4 py-16">
-					<div className="mx-auto max-w-5xl">
-						<SectionTitle id="video-titre" label="En vidéo" title="C’est quoi" accent="Dydy Quiz ?" center />
-						<ScrollReveal variant="zoom" className="mt-10">
+					{/* Vidéo en grand : la présentation avec le son si elle est déposée, sinon la boucle de l’accueil */}
+					{PRESENTATION ? (
+						<ScrollReveal id="video" variant="zoom" className="mx-auto mt-12 max-w-5xl scroll-mt-24">
 							<PresentationVideo video={PRESENTATION} />
 						</ScrollReveal>
-					</div>
-				</section>
-			) : (
-				import.meta.env.DEV && (
-					// Rappel visible uniquement en développement (npm run dev), jamais sur le site en ligne
-					<section className="px-4 py-10">
-						<div className="mx-auto max-w-5xl rounded-2xl border-2 border-dashed border-white/25 p-8 text-center text-white/60">
-							<PlayCircleIcon aria-hidden="true" className="mx-auto h-12 w-12" />
-							<p className="mt-3 font-bold">Emplacement de la vidéo « C’est quoi Dydy Quiz ? »</p>
-							<p className="mt-1 text-sm">Déposez dydy-quiz-presentation.mp4 dans src/assets/videos/</p>
-						</div>
-					</section>
-				)
-			)}
+					) : (
+						LOOP && (
+							<ScrollReveal variant="zoom" className="mx-auto mt-12 max-w-5xl">
+								<figure>
+									<div className={`big-screen rounded-2xl p-[3px] ${LOOP_MOBILE ? "mx-auto max-w-[21rem] md:max-w-none" : ""}`}>
+										<LoopVideo
+											video={LOOP}
+											mobile={LOOP_MOBILE}
+											label="Dydy Quiz en soirée : les invités jouent sur leur téléphone, le classement s’affiche sur grand écran"
+											className="rounded-[0.9rem]"
+										/>
+									</div>
+									<figcaption className="mt-4 text-center text-sm text-white/55">
+										Dydy Quiz en vrai : vos invités jouent sur leur téléphone, le classement s’affiche en direct sur grand écran.
+									</figcaption>
+								</figure>
+							</ScrollReveal>
+						)
+					)}
+				</div>
+			</section>
 
 			{/* ---- Comment ça marche ---- */}
 			<section aria-labelledby="fonctionnement" className="px-4 py-16">
@@ -213,20 +200,6 @@ export default function DydyQuiz() {
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="modes-titre" label="Les modes de jeu" title="Une appli," accent="mille façons de jouer" />
 					<ModeSelect modes={MODES} />
-				</div>
-			</section>
-
-						{/* ---- Captures d'écran ---- */}
-			<section aria-labelledby="captures" className="px-4 py-16">
-				<div className="mx-auto max-w-6xl">
-					<SectionTitle id="captures" label="En images" title="Dydy Quiz" accent="en action" />
-					<ul className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-3">
-						{shots.slice(SHOTS.length > 1 ? 1 : 0).map((shot, i) => (
-							<ScrollReveal as="li" key={shot?.src ?? `vide-${i}`} delay={(i % 3) * 90}>
-								<PhoneSlot shot={shot} i={i + 1} />
-							</ScrollReveal>
-						))}
-					</ul>
 				</div>
 			</section>
 
