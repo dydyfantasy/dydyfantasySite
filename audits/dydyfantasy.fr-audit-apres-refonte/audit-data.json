@@ -1,0 +1,80 @@
+{
+ "summary": {
+  "health_score": 82,
+  "previous_health_score": 72,
+  "business_type": "Service local à zone desservie (SAB)",
+  "top_findings": [
+   "Extraits vidéo sans image d'attente dans le HTML",
+   "Bandeau des références dupliqué dans le HTML",
+   "Agenda sans dates après le 28/11",
+   "Zone d'intervention formulée de 3 façons",
+   "Page Anniversaire la moins prouvée (pas d'avis)"
+  ],
+  "quick_wins": [
+   "Poster des extraits pré-rendu",
+   "Copie du bandeau rendue côté navigateur",
+   "Decathlon sans accent",
+   "WebSite + Facebook www + Mariages.net dans sameAs",
+   "aria-hidden sur _gotcha"
+  ]
+ },
+ "categories": [
+  {
+   "name": "Technical SEO",
+   "score": 91,
+   "previous": 80
+  },
+  {
+   "name": "Content Quality",
+   "score": 73,
+   "previous": 62
+  },
+  {
+   "name": "On-Page SEO",
+   "score": 81,
+   "previous": 76
+  },
+  {
+   "name": "Schema / Structured Data",
+   "score": 79,
+   "previous": 68
+  },
+  {
+   "name": "Performance (CWV)",
+   "score": 90,
+   "previous": 84
+  },
+  {
+   "name": "AI Search Readiness",
+   "score": 72,
+   "previous": 65
+  },
+  {
+   "name": "Images",
+   "score": 88,
+   "previous": 66
+  }
+ ],
+ "extra": {
+  "local": [
+   64,
+   78
+  ],
+  "sxo": [
+   49,
+   69
+  ],
+  "sitemap": [
+   90,
+   96
+  ],
+  "agentic": [
+   96,
+   96
+  ],
+  "drift": "0 critique sur 15 pages"
+ },
+ "artifacts": {
+  "findings_dir": "findings/"
+ }
+}
