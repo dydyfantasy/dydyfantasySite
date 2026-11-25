@@ -42,18 +42,38 @@ function mapsEmbedUrl(event) {
 	return `https://www.google.com/maps?q=${query}&output=embed`;
 }
 
-// Carte du lieu de la prochaine date, chargée seulement à l’approche (loading="lazy")
+// Carte Google Maps chargée seulement au clic : Google Maps dépose ses propres cookies, on ne
+// l’affiche donc que si le visiteur le demande (pas de cookie tiers sans action de sa part, et
+// aucun script Google téléchargé pour ceux qui ne regardent pas la carte).
+function ClickToMap({ event, className = "" }) {
+	const [shown, setShown] = useState(false);
+	if (shown)
+		return (
+			<iframe
+				title={`Carte : ${event.place}, ${event.city}`}
+				src={mapsEmbedUrl(event)}
+				referrerPolicy="no-referrer-when-downgrade"
+				className={`block w-full border-0 ${className}`}
+			/>
+		);
+	return (
+		<button
+			type="button"
+			onClick={() => setShown(true)}
+			className={`flex w-full flex-col items-center justify-center gap-2 bg-[radial-gradient(circle_at_50%_40%,rgb(25_211_240/0.16),transparent_65%)] px-4 text-center ${className}`}>
+			<MapPinIcon aria-hidden="true" className="h-8 w-8 text-[var(--cyan)]" />
+			<span className="font-bold">Afficher la carte</span>
+			<span className="text-xs text-white/55">Carte Google Maps (Google peut déposer des cookies)</span>
+		</button>
+	);
+}
+
+// Carte du lieu de la prochaine date (au clic)
 function NextEventMap({ event }) {
 	if (!event.publicEvent || (!event.address && !event.place)) return null;
 	return (
 		<div className="neon-card mt-4 overflow-hidden rounded-3xl" style={{ "--c": "var(--cyan)" }}>
-			<iframe
-				title={`Carte : ${event.place}, ${event.city}`}
-				src={mapsEmbedUrl(event)}
-				loading="lazy"
-				referrerPolicy="no-referrer-when-downgrade"
-				className="block h-56 w-full border-0 md:h-64"
-			/>
+			<ClickToMap event={event} className="h-56 md:h-64" />
 		</div>
 	);
 }
@@ -232,13 +252,9 @@ function EventDialog({ event, onClose }) {
 					{event.description && <p className="text-white/75">{event.description}</p>}
 					{event.publicEvent ? (
 						<>
-							<iframe
-								title={`Carte : ${event.place}, ${event.city}`}
-								src={mapsEmbedUrl(event)}
-								loading="lazy"
-								referrerPolicy="no-referrer-when-downgrade"
-								className="block h-56 w-full rounded-2xl border-0"
-							/>
+							<div className="overflow-hidden rounded-2xl border border-white/10">
+								<ClickToMap key={event.id} event={event} className="h-56" />
+							</div>
 							<a
 								href={mapsUrl(event)}
 								target="_blank"
