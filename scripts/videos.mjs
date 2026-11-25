@@ -35,9 +35,10 @@ const empreinte = (fichier) => createHash("md5").update(fs.readFileSync(fichier)
 const mo = (octets) => `${(octets / 1024 / 1024).toFixed(1)} Mo`;
 
 // Dossiers à traiter, avec leurs réglages
+// (présentation Dydy Quiz : 1280 px max = 1280 x 720 sur ordinateur, 720 x 1280 sur téléphone ; ~6-8 Mo pour 1 min avec le son)
 const galerie = path.join(ASSETS, "galerie");
 const DOSSIERS = [
-	{ dossier: "videos", reglage: (base) => (/presentation/i.test(base) ? { son: true, max: 1920, crf: 23 } : { son: false, max: 1280, crf: 26 }) },
+	{ dossier: "videos", reglage: (base) => (/presentation/i.test(base) ? { son: true, max: 1280, crf: 25 } : { son: false, max: 1280, crf: 26 }) },
 	...(fs.existsSync(galerie)
 		? fs
 				.readdirSync(galerie, { withFileTypes: true })
