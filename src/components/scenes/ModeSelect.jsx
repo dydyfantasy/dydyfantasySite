@@ -1,12 +1,14 @@
 import { useState } from "react";
 import ScrollReveal from "../led/ScrollReveal";
+import LoopVideo from "../led/LoopVideo";
 import "../../css/pages-fun.css";
 
 // Dydy Quiz, « Les modes de jeu » : sélecteur façon menu de console. Survoler ou toucher un mode
 // l’anime sur le grand écran (aperçu décoratif). Tous les textes restent visibles dans la liste.
-// modes = [{ slug, icon, color, title, text, shot? }] — l’ordre suit MODES de la page.
-// shot = capture de l’écran de la salle : sur le grand écran, à la place de l’animation
-// (sans elle, l’animation décorative reste). Le téléphone du joueur est montré par PhoneDemo.
+// modes = [{ slug, icon, color, title, text, clip?, shot? }] — l’ordre suit MODES de la page.
+// Sur le grand écran : clip = mini-vidéo de l’écran de la salle (5 s en boucle, chargée seulement
+// quand le mode est choisi), sinon shot = capture, sinon l’animation décorative.
+// Le téléphone du joueur est montré par PhoneDemo.
 function Preview({ slug, color }) {
 	if (slug === "quiz")
 		return (
@@ -106,7 +108,9 @@ export default function ModeSelect({ modes }) {
 			</ul>
 			<div className="lg:sticky lg:top-28 lg:self-start">
 				<div className="big-screen rounded-2xl p-[3px]">
-					{m.shot ? (
+					{m.clip ? (
+						<LoopVideo key={active} video={m.clip} label={`Dydy Quiz, écran de la salle : ${m.title}`} className="rounded-[0.9rem]" />
+					) : m.shot ? (
 						<div key={active} className="pv-stage screen-inner flex aspect-video items-center justify-center overflow-hidden rounded-[0.9rem]" style={{ "--c": m.color }}>
 							<img
 								src={m.shot.src}

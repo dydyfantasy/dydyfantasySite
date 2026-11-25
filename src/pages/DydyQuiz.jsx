@@ -47,9 +47,33 @@ const STEPS = [
 	{ icon: TrophyIcon, title: "Je vois le classement", text: "Les scores s’affichent en direct sur le grand écran : suspense jusqu’à la dernière question." },
 ];
 
-// Captures déposées dans src/assets/dydy-quiz/ (optimisées à la compilation ; sans capture, animation) :
-// - écran de la salle pour chaque mode de jeu : nom qui COMMENCE par le slug du mode (ex. bingo-musical-ecran.png)
-// - téléphone du joueur pour les 3 étapes : nom qui commence par etape-1, etape-2, etape-3
+// Démos de l’appli déposées dans src/assets/dydy-quiz/ (voir LISEZ-MOI.txt du dossier) :
+// - mini-vidéos de 5 s, muettes, en boucle : site-modes/<slug du mode>-….mp4/.webm (écran de la salle)
+//   et site-etapes/etape-1…3-….mp4/.webm (téléphone d’un joueur), image d’attente « <même nom>-poster.jpg » ;
+// - à défaut, une capture (image) à la racine du dossier, même règle de nom ;
+// - à défaut, l’animation dessinée.
+const clipFiles = import.meta.glob("../assets/dydy-quiz/site-*/*.{mp4,webm,MP4,WEBM}", {
+	eager: true,
+	query: "?url",
+	import: "default",
+});
+const clipPosters = import.meta.glob("../assets/dydy-quiz/site-*/*-poster.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
+	eager: true,
+	query: { w: "1280", withoutEnlargement: "true", format: "webp", quality: "80" },
+	import: "default",
+});
+const fileName = (p) => p.split("/").pop().toLowerCase();
+/** { sources: [{ src, type }], poster } (format attendu par LoopVideo) ou undefined */
+function clipFor(folder, prefix) {
+	const paths = Object.keys(clipFiles).filter((p) => p.includes(`/${folder}/`) && fileName(p).startsWith(prefix));
+	if (!paths.length) return undefined;
+	// WebM d’abord (plus léger), MP4 ensuite (iPhone)
+	const ext = (p) => fileName(p).split(".").pop();
+	paths.sort((a, b) => (ext(a) === "webm" ? -1 : 1) - (ext(b) === "webm" ? -1 : 1));
+	const stem = fileName(paths[0]).replace(/\.[^.]+$/, "");
+	const poster = Object.keys(clipPosters).find((p) => p.includes(`/${folder}/`) && fileName(p).startsWith(`${stem}-poster`));
+	return { sources: paths.map((p) => ({ src: clipFiles[p], type: `video/${ext(p)}` })), poster: poster && clipPosters[poster] };
+}
 const shotSets = import.meta.glob("../assets/dydy-quiz/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
 	eager: true,
 	query: { w: "480;960", format: "webp", quality: "82", as: "srcset" },
@@ -67,6 +91,7 @@ function shotFor(prefix) {
 	return path ? { src: shotSrcs[path], srcSet: shotSets[path] } : undefined;
 }
 const STEP_SHOTS = ["etape-1", "etape-2", "etape-3"].map(shotFor);
+const STEP_CLIPS = ["etape-1", "etape-2", "etape-3"].map((s) => clipFor("site-etapes", s));
 
 const MODES = [
 	{ slug: "quiz", icon: MusicalNoteIcon, color: "#ff4d6d", title: "Quiz & blind test", text: "Des questions en audio, vidéo ou image, à jouer en solo ou par équipes." },
@@ -75,7 +100,7 @@ const MODES = [
 	{ slug: "challenge-photo", icon: CameraIcon, color: "var(--gold)", title: "Challenge Photo", text: "Une liste de défis photo à relever : les photos s’affichent sur l’écran avec les scores en direct. Idéal pour les mariages." },
 	{ slug: "match-machine", icon: HeartIcon, color: "var(--pink)", title: "Match Machine", text: "Un algorithme de rencontre pour animer les soirées célibataires." },
 	{ slug: "classement", icon: PresentationChartLineIcon, color: "#7cff6b", title: "Classement en direct", text: "Sur grand écran, pour tous les modes de jeu : chaque point compte." },
-].map((m) => ({ ...m, shot: shotFor(m.slug) }));
+].map((m) => ({ ...m, clip: clipFor("site-modes", m.slug), shot: shotFor(m.slug) }));
 
 // Grande vidéo de présentation, dans le cadre « grand écran » ; rien n’est téléchargé avant le clic
 function PresentationVideo({ video, mobile }) {
@@ -207,7 +232,7 @@ export default function DydyQuiz() {
 			<section aria-labelledby="fonctionnement" className="px-4 py-16">
 				<div className="mx-auto max-w-6xl">
 					<SectionTitle id="fonctionnement" label="Comment ça marche" title="Trois étapes," accent="zéro installation" />
-					<PhoneDemo steps={STEPS} shots={STEP_SHOTS} />
+					<PhoneDemo steps={STEPS} shots={STEP_SHOTS} clips={STEP_CLIPS} />
 				</div>
 			</section>
 

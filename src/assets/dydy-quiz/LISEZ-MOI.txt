@@ -1,21 +1,17 @@
-Déposez ici les captures d'écran de l'appli Dydy Quiz (jpg, png, webp) pour la page /dydy-quiz.
-Sans capture, une animation s'affiche à la place : rien n'est vide.
+Démos de l'appli Dydy Quiz pour la page /dydy-quiz. Sans fichier, une animation s'affiche : rien n'est vide.
 
-1) « Trois étapes, zéro installation » : le TÉLÉPHONE D'UN JOUEUR (portrait).
-   Le nom doit COMMENCER par :
-     etape-1-...   Je scanne (écran d'arrivée après le QR code)
-     etape-2-...   Je joue (une question avec les réponses)
-     etape-3-...   Je vois le classement
-   Exemple : etape-2-question-blind-test.png
+MINI-VIDÉOS (recommandé) : 5 s environ, sans son, en boucle, .mp4 + .webm (+ image d'attente)
+  site-etapes/  -> « Trois étapes, zéro installation » : TÉLÉPHONE D'UN JOUEUR (portrait)
+                   nom qui COMMENCE par etape-1, etape-2 ou etape-3
+                   ex. etape-2-question.mp4, etape-2-question.webm, etape-2-question-poster.jpg
+  site-modes/   -> « Une appli, mille façons de jouer » : ÉCRAN DE LA SALLE (paysage 1280 x 720)
+                   nom qui COMMENCE par le mode : quiz, bingo-musical, sondages,
+                   challenge-photo, match-machine ou classement
+                   ex. bingo-musical-ecoute.mp4, .webm et bingo-musical-ecoute-poster.jpg
+  L'image d'attente porte le même nom que la vidéo + « -poster ».
+  Les vidéos sont publiées telles quelles : gardez-les légères (moins de 400 Ko chacune).
 
-2) « Une appli, mille façons de jouer » : l'ÉCRAN QUE VOIT LA SALLE (paysage), un par mode.
-   Le nom doit COMMENCER par :
-     quiz-...              Quiz & blind test
-     bingo-musical-...     Bingo musical
-     sondages-...          Sondages en direct
-     challenge-photo-...   Challenge Photo
-     match-machine-...     Match Machine
-     classement-...        Classement en direct
-   Exemple : bingo-musical-grille.png
+CAPTURES (si pas de vidéo) : une image à la racine de ce dossier, même règle de nom
+  (etape-1-..., quiz-..., etc.).
 
 Partie de test, noms d'équipe neutres, aucun invité reconnaissable.

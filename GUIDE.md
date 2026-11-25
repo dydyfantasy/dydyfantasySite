@@ -27,7 +27,7 @@ Déposez simplement les fichiers (jpg, png, webp) dans le bon dossier. Pas besoi
 | Haut des pages Karaoké, DJ, Sur mesure | `src/assets/prestations/` | Commence par `karaoke`, `dj` ou `sur-mesure` (en paysage de préférence : sinon recadrée au centre) |
 | Accueil, carrousel de secours de « Mais c'est qui Dydy Fantasy ? » (affiché seulement si aucune vidéo n'est marquée `accueil`) | `src/assets/carrousel/` | Ordre = ordre alphabétique : commencez par `04-`, `05-`… |
 | Page Galerie (photos **et vidéos**) | `src/assets/galerie/mariages/`, `entreprises/`, `anniversaires/`, `bars/`, `soirees/` | Libre (descriptif). Vidéos : voir plus bas |
-| Page Dydy Quiz, grand écran de « Une appli, mille façons de jouer » (une capture par mode) | `src/assets/dydy-quiz/` | Commence par le mode : `quiz`, `bingo-musical`, `sondages`, `challenge-photo`, `match-machine` ou `classement` (voir `LISEZ-MOI.txt`) |
+| Page Dydy Quiz : mini-vidéos des 3 étapes (téléphone) et des modes de jeu (grand écran) | `src/assets/dydy-quiz/site-etapes/` et `site-modes/` | `etape-1`… ou nom du mode (`quiz`, `bingo-musical`, `sondages`, `challenge-photo`, `match-machine`, `classement`) + image d'attente `-poster` : voir `LISEZ-MOI.txt` |
 
 ⚠️ Ne mettez dans ces dossiers **que** les photos à afficher (pas de brouillons ni de copies) : tout ce qui s'y trouve apparaît sur le site.
 
