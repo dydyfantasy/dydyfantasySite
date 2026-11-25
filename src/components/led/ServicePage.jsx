@@ -13,6 +13,7 @@ import StageLights from "./StageLights";
 import SectionTitle from "./SectionTitle";
 import ScrollReveal from "./ScrollReveal";
 import LedFinal from "./LedFinal";
+import LedClients from "./LedClients";
 import Spectrum from "./Spectrum";
 import PeekingMascot from "./PeekingMascot";
 import LedDivider from "./LedDivider";
@@ -96,6 +97,7 @@ export default function ServicePage({
 	photoSign, // enseigne néon sur la photo du haut (ex. "Vive les mariés")
 	theme, // ambiance propre à la page : "mariage" (or champagne + confettis), voir led.css
 	testimonial, // avis client cité (voir Testimonial.jsx), affiché après les formats
+	clients = true, // bandeau des références clients (preuves), après l’avis ; false pour le masquer
 	body, // mise en scène propre à la page, à la place des sections « points » et « formats »
 	scene: Scene, // composant de mise en scène (src/components/scenes/) qui reçoit points/formats et leurs titres
 	gallery, // catégorie de la galerie à montrer en extraits vidéo (ex. "bars"), voir data/galerie.js
@@ -221,6 +223,9 @@ export default function ServicePage({
 			)}
 
 			{testimonial && <Testimonial testimonial={testimonial} />}
+
+			{/* ---- Références clients : mêmes logos que sur l’accueil (preuve sur chaque page) ---- */}
+			{clients && <LedClients />}
 
 			{/* ---- En images : extraits de vraies soirées de la galerie ---- */}
 			{clips.length > 0 && (
