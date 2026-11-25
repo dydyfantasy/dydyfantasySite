@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import {
@@ -30,6 +31,8 @@ import ModeSelect from "../components/scenes/ModeSelect";
 // (+ image d’attente dydy-quiz-presentation.jpg). Affichée en grand en haut de page dès qu’elle est déposée ;
 // en attendant, la boucle muette de l’accueil (dydy-quiz-accueil.mp4 + version -mobile) prend sa place.
 const PRESENTATION = getVideo("dydy-quiz-presentation");
+// Version portrait (téléphone), facultative : dydy-quiz-presentation-mobile.mp4 (+ .jpg du même nom)
+const PRESENTATION_MOBILE = getVideo("dydy-quiz-presentation-mobile");
 const LOOP = getVideo("dydy-quiz-accueil");
 const LOOP_MOBILE = getVideo("dydy-quiz-accueil-mobile");
 // Données structurées VideoObject (vidéo visible dans les résultats Google) : renseigner la date
@@ -73,17 +76,31 @@ const MODES = [
 ].map((m) => ({ ...m, shot: shotFor(m.slug) }));
 
 // Grande vidéo de présentation, dans le cadre « grand écran » ; rien n’est téléchargé avant le clic
-function PresentationVideo({ video }) {
+function PresentationVideo({ video, mobile }) {
+	// Téléphone (< 768 px) : version portrait si elle existe. Choix fait dans le navigateur ;
+	// le HTML pré-rendu montre la version paysage. preload="none" : rien n’est téléchargé avant le clic.
+	const [isMobile, setIsMobile] = useState(false);
+	useEffect(() => {
+		if (!mobile) return;
+		const mq = window.matchMedia("(max-width: 767px)");
+		const update = () => setIsMobile(mq.matches);
+		update();
+		mq.addEventListener("change", update);
+		return () => mq.removeEventListener("change", update);
+	}, [mobile]);
+	const v = isMobile && mobile ? mobile : video;
+
 	return (
-		<div className="big-screen rounded-2xl p-[3px]">
+		<div className={`big-screen rounded-2xl p-[3px] ${mobile ? "mx-auto max-w-[21rem] md:max-w-none" : ""}`}>
 			<video
+				key={isMobile ? "mobile" : "desktop"}
 				controls
 				playsInline
 				preload="none"
-				poster={video.poster}
+				poster={v.poster}
 				aria-label="Vidéo : c’est quoi Dydy Quiz ?"
-				className="block aspect-video w-full rounded-[0.9rem] bg-black">
-				{video.sources.map((s) => (
+				className={`block w-full rounded-[0.9rem] bg-black ${isMobile && mobile ? "aspect-[9/16]" : "aspect-video"}`}>
+				{v.sources.map((s) => (
 					<source key={s.src} src={s.src} type={s.type} />
 				))}
 			</video>
@@ -160,7 +177,7 @@ export default function DydyQuiz() {
 					{/* Vidéo en grand : la présentation avec le son si elle est déposée, sinon la boucle de l’accueil */}
 					{PRESENTATION ? (
 						<ScrollReveal id="video" variant="zoom" className="mx-auto mt-12 max-w-5xl scroll-mt-24">
-							<PresentationVideo video={PRESENTATION} />
+							<PresentationVideo video={PRESENTATION} mobile={PRESENTATION_MOBILE} />
 						</ScrollReveal>
 					) : (
 						LOOP && (

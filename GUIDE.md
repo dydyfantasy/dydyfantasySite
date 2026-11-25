@@ -38,7 +38,8 @@ Vie privée : de dos ou de loin, c'est l'idéal. Visages reconnaissables = accor
 1. Déposez la vidéo dans `src/assets/videos/` avec **exactement** ce nom (en écrasant l'ancienne) :
    - `dydy-quiz-accueil.mp4` : boucle de l'accueil, format paysage, sans son ;
    - `dydy-quiz-accueil-mobile.mp4` : même boucle en portrait, pour les téléphones ;
-   - `dydy-quiz-presentation.mp4` : vidéo « C'est quoi Dydy Quiz ? » de la page Dydy Quiz, avec le son.
+   - `dydy-quiz-presentation.mp4` : vidéo « C'est quoi Dydy Quiz ? », en grand en haut de la page Dydy Quiz, avec le son (format paysage, pour ordinateur) ;
+   - `dydy-quiz-presentation-mobile.mp4` : même vidéo en portrait, pour les téléphones (facultatif).
 2. Image d'attente (affichée avant le chargement) : même nom en `.jpg`, ex. `dydy-quiz-accueil.jpg`.
 3. Conseillé : tapez `npm run videos`. La commande allège les nouvelles vidéos et range vos originaux dans `medias-sources/videos/` (jamais publié). On peut la relancer sans risque.
    - Message « fichier bloqué » : arrêtez `npm run dev` (Ctrl+C) et relancez `npm run videos`.
