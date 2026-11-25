@@ -8,11 +8,20 @@ const videoFiles = import.meta.glob("../../assets/videos/*.{mp4,webm,MP4,WEBM}",
 	query: "?url",
 	import: "default",
 });
-const posterFiles = import.meta.glob("../../assets/videos/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
-	eager: true,
-	query: { w: "1280", format: "webp", quality: "80" },
-	import: "default",
-});
+// Images d’attente : 1280 px pour les vidéos en paysage ; 720 px pour les versions
+// « -mobile » (portrait, affichées sur ~340 px de large), sans jamais agrandir l’original.
+const posterFiles = {
+	...import.meta.glob(["../../assets/videos/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", "!../../assets/videos/*-mobile.*"], {
+		eager: true,
+		query: { w: "1280", withoutEnlargement: "true", format: "webp", quality: "80" },
+		import: "default",
+	}),
+	...import.meta.glob("../../assets/videos/*-mobile.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
+		eager: true,
+		query: { w: "720", withoutEnlargement: "true", format: "webp", quality: "80" },
+		import: "default",
+	}),
+};
 
 const baseName = (p) => p.split("/").pop().replace(/\.[^.]+$/, "").toLowerCase();
 const extension = (p) => p.split(".").pop().toLowerCase();
