@@ -48,7 +48,9 @@ const STEPS = [
 ];
 
 // Captures d’écran des modes : déposées dans src/assets/dydy-quiz/, nom qui COMMENCE par le slug
-// du mode (ex. bingo-musical-grille.png). Optimisées à la compilation ; sans capture, animation.
+// du mode. Deux par mode possibles : l’écran de la salle (ex. bingo-musical-ecran.png) et le
+// téléphone du joueur (nom qui contient « telephone », ex. bingo-musical-telephone.png).
+// Optimisées à la compilation ; sans capture d’écran de salle, l’animation reste.
 const shotSets = import.meta.glob("../assets/dydy-quiz/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
 	eager: true,
 	query: { w: "480;960", format: "webp", quality: "82", as: "srcset" },
@@ -59,11 +61,13 @@ const shotSrcs = import.meta.glob("../assets/dydy-quiz/*.{jpg,jpeg,png,webp,JPG,
 	query: { w: "960", format: "webp", quality: "82" },
 	import: "default",
 });
-function shotFor(slug) {
-	const path = Object.keys(shotSrcs)
+function shotsFor(slug) {
+	const paths = Object.keys(shotSrcs)
 		.sort()
-		.find((p) => p.split("/").pop().toLowerCase().startsWith(slug));
-	return path ? { src: shotSrcs[path], srcSet: shotSets[path] } : undefined;
+		.filter((p) => p.split("/").pop().toLowerCase().startsWith(slug));
+	const toShot = (p) => (p ? { src: shotSrcs[p], srcSet: shotSets[p] } : undefined);
+	const isPhone = (p) => p.split("/").pop().toLowerCase().includes("telephone");
+	return { screen: toShot(paths.find((p) => !isPhone(p))), phone: toShot(paths.find(isPhone)) };
 }
 
 const MODES = [
@@ -73,7 +77,7 @@ const MODES = [
 	{ slug: "challenge-photo", icon: CameraIcon, color: "var(--gold)", title: "Challenge Photo", text: "Une liste de défis photo à relever : les photos s’affichent sur l’écran avec les scores en direct. Idéal pour les mariages." },
 	{ slug: "match-machine", icon: HeartIcon, color: "var(--pink)", title: "Match Machine", text: "Un algorithme de rencontre pour animer les soirées célibataires." },
 	{ slug: "classement", icon: PresentationChartLineIcon, color: "#7cff6b", title: "Classement en direct", text: "Sur grand écran, pour tous les modes de jeu : chaque point compte." },
-].map((m) => ({ ...m, shot: shotFor(m.slug) }));
+].map((m) => ({ ...m, shots: shotsFor(m.slug) }));
 
 // Grande vidéo de présentation, dans le cadre « grand écran » ; rien n’est téléchargé avant le clic
 function PresentationVideo({ video, mobile }) {

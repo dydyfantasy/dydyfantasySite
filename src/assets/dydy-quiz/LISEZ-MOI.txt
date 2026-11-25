@@ -8,5 +8,9 @@ Le nom du fichier doit COMMENCER par le mode :
   challenge-photo-...   Challenge Photo
   match-machine-...     Match Machine
   classement-...        Classement en direct
-Exemple : bingo-musical-grille-de-jeu.png
-Capture en paysage (grand écran) de préférence ; une capture de téléphone s'affiche entière, centrée.
+Deux captures par mode :
+  - l'écran que voit la salle (paysage), ex. bingo-musical-ecran-grille.png
+    -> affiché sur le grand écran ;
+  - le téléphone d'un joueur : le nom doit CONTENIR « telephone »,
+    ex. bingo-musical-telephone-grille.png -> affiché dans un téléphone posé devant.
+Partie de test, noms d'équipe neutres, aucun invité reconnaissable.
