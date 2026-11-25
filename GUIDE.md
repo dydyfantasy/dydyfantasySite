@@ -23,7 +23,8 @@ Déposez simplement les fichiers (jpg, png, webp) dans le bon dossier. Pas besoi
 
 | Où sur le site | Dossier | Règle de nom |
 |---|---|---|
-| Accueil, tuiles « Vos événements » | `src/assets/evenements/` | Commence par `mariage`, `entreprise`, `anniversaire` ou `bars` (une photo par tuile, en paysage) |
+| Accueil, tuiles « Vos événements » + haut des pages événement | `src/assets/evenements/` | Commence par `mariage`, `entreprise`, `anniversaire` ou `bars` (une photo par événement, en paysage de préférence : sinon recadrée au centre) |
+| Haut des pages Karaoké, DJ, Sur mesure | `src/assets/prestations/` | Commence par `karaoke`, `dj` ou `sur-mesure` (en paysage de préférence : sinon recadrée au centre) |
 | Accueil, carrousel de secours de « Mais c'est qui Dydy Fantasy ? » (affiché seulement si aucune vidéo n'est marquée `accueil`) | `src/assets/carrousel/` | Ordre = ordre alphabétique : commencez par `04-`, `05-`… |
 | Page Galerie (photos **et vidéos**) | `src/assets/galerie/mariages/`, `entreprises/`, `anniversaires/`, `bars/`, `soirees/` | Libre (descriptif). Vidéos : voir plus bas |
 | Page Dydy Quiz, captures de l'appli | `src/assets/dydy-quiz/` | Ordre alphabétique : `01-`, `02-`… |

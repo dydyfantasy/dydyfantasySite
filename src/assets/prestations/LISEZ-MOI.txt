@@ -1,0 +1,7 @@
+Déposez ici une photo par page prestation (jpg, png, webp), en pleine qualité.
+Le nom du fichier doit COMMENCER par : karaoke, dj ou sur-mesure.
+Exemples : karaoke-duo-mariage-toulouse.jpg, dj-soiree-anniversaire-gers.jpg,
+sur-mesure-loto-revisite-comite-des-fetes.jpg
+Le nom du fichier sert de description pour Google : soyez descriptif.
+La photo s'affiche en haut de la page, dans un cadre horizontal (format 3:2) :
+une photo verticale est recadrée au centre, gardez le sujet au milieu.

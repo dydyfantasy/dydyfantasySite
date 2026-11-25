@@ -15,7 +15,7 @@ import ScrollReveal from "./ScrollReveal";
 //
 // Photos SANS CODE (src/assets/evenements/, voir src/data/evenementsPhotos.js).
 // Sans photo, la tuile garde son flyer coloré avec l’icône néon.
-import { tileFor } from "../../data/evenementsPhotos";
+import { photoFor } from "../../data/evenementsPhotos";
 
 const EVENTS = [
 	{
@@ -104,7 +104,7 @@ export default function LedEvents() {
 
 				<ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 					{EVENTS.map((e, i) => {
-						const photo = tileFor(e.slug);
+						const photo = photoFor(e.slug);
 						const featured = i === 0;
 						return (
 							<ScrollReveal as="li" key={e.title} delay={i * 90} className={LAYOUT[i]}>

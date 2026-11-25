@@ -16,6 +16,7 @@ import {
 import DjScene from "../../components/scenes/DjScene";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
+import { photoFor } from "../../data/evenementsPhotos";
 
 const PATH = "/prestations/dj";
 
@@ -26,6 +27,7 @@ export default function Dj() {
 		<ServicePage
 			path={PATH}
 			name="DJ"
+			photo={photoFor("dj")}
 			seo={{
 				title: "DJ mariage et soirée à Toulouse & Gers | Dydy Fantasy",
 				description:

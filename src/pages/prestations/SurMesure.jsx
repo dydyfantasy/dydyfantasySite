@@ -17,6 +17,7 @@ import {
 import SurMesureScene from "../../components/scenes/SurMesureScene";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
+import { photoFor } from "../../data/evenementsPhotos";
 
 const PATH = "/prestations/sur-mesure";
 
@@ -26,6 +27,7 @@ export default function SurMesure() {
 		<ServicePage
 			path={PATH}
 			name="Animation sur mesure"
+			photo={photoFor("sur-mesure")}
 			seo={{
 				title: "Animation sur mesure à Toulouse | Dydy Fantasy",
 				description:

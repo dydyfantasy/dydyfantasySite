@@ -17,6 +17,7 @@ import {
 import KaraokeScene from "../../components/scenes/KaraokeScene";
 import ServicePage from "../../components/led/ServicePage";
 import { relatedTo } from "../../data/navigation";
+import { photoFor } from "../../data/evenementsPhotos";
 
 const PATH = "/prestations/karaoke";
 
@@ -26,6 +27,7 @@ export default function Karaoke() {
 		<ServicePage
 			path={PATH}
 			name="Karaoké"
+			photo={photoFor("karaoke")}
 			seo={{
 				title: "Animation karaoké à Toulouse | Dydy Fantasy",
 				description:
