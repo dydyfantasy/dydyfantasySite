@@ -1,20 +1,35 @@
 import SectionTitle from "./SectionTitle";
 
+// Logos déposés dans src/assets/clients/ : réduits à 48 et 96 px (écrans haute densité)
+// et convertis en WebP à la compilation, quel que soit le poids du fichier d’origine.
+const LOGO_SETS = import.meta.glob("../../assets/clients/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
+	eager: true,
+	query: { w: "48;96", format: "webp", quality: "80", as: "srcset" },
+	import: "default",
+});
+const LOGO_SRCS = import.meta.glob("../../assets/clients/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}", {
+	eager: true,
+	query: { w: "96", format: "webp", quality: "80" },
+	import: "default",
+});
+const logoKey = (file) => `../../assets/clients/${file}`;
+
 // Références réelles (nom + lieu, utiles au SEO local).
+// logo : nom exact du fichier déposé dans src/assets/clients/.
 const CLIENTS = [
-	{ name: "Décathlon", type: "Événement VitalSport", location: "Escalquens (31)", logo: "/clients/Decathlon.jpg" },
-	{ name: "La Ville en Rose", type: "Bar / restaurant", location: "Colomiers (31)", logo: "/clients/La ville en rose.png" },
-	{ name: "Taverne Heidelberg", type: "Taverne / bar", location: "Blagnac (31)", logo: "/clients/La taverne blagnac.jpg" },
-	{ name: "Le Cul de Bouteille", type: "Cave à vin / bar", location: "Aussonne (31)", logo: "/clients/Le cul de bouteille.jpg" },
-	{ name: "La Table Ronde", type: "Restaurant / bar", location: "Saint-Lieux-lès-Lavaur (81)", logo: "/clients/La table ronde.webp" },
-	{ name: "Le Cosy", type: "Restaurant", location: "Colomiers (31)", logo: "/clients/Cosy.jpg" },
-	{ name: "Le BBT", type: "Bar", location: "Cornebarrieu (31)", logo: "/clients/Le BBT.jpg" },
-	{ name: "Chez Granny", type: "Restaurant / bar", location: "Cornebarrieu (31)", logo: "/clients/Chez granny.png" },
-	{ name: "L’entrepotes", type: "Restaurant / bar", location: "Gratentour (31)", logo: "/clients/lentrepote.jpg" },
-	{ name: "Lias Vegas", type: "Comité des fêtes", location: "Lias (32)", logo: "/clients/liasVegas.jpg" },
-	{ name: "Comité des fêtes de Giroussens", type: "Association", location: "Giroussens (81)", logo: "/clients/girousens.jpg" },
-	{ name: "Biergarten by Saint-Orens", type: "Biergarten / bar", location: "Saint-Orens-de-Gameville (31)", logo: "/clients/biergarten.webp" },
-	{ name: "L’Fest", type: "Comité des fêtes", location: "Labastide-Beauvoir (31)", logo: "/clients/lfest.png" },
+	{ name: "Décathlon", type: "Événement VitalSport", location: "Escalquens (31)", logo: "Decathlon.jpg" },
+	{ name: "La Ville en Rose", type: "Bar / restaurant", location: "Colomiers (31)", logo: "La ville en rose.png" },
+	{ name: "Taverne Heidelberg", type: "Taverne / bar", location: "Blagnac (31)", logo: "La taverne blagnac.jpg" },
+	{ name: "Le Cul de Bouteille", type: "Cave à vin / bar", location: "Aussonne (31)", logo: "Le cul de bouteille.jpg" },
+	{ name: "La Table Ronde", type: "Restaurant / bar", location: "Saint-Lieux-lès-Lavaur (81)", logo: "La table ronde.webp" },
+	{ name: "Le Cosy", type: "Restaurant", location: "Colomiers (31)", logo: "Cosy.jpg" },
+	{ name: "Le BBT", type: "Bar", location: "Cornebarrieu (31)", logo: "Le BBT.jpg" },
+	{ name: "Chez Granny", type: "Restaurant / bar", location: "Cornebarrieu (31)", logo: "Chez granny.png" },
+	{ name: "L’entrepotes", type: "Restaurant / bar", location: "Gratentour (31)", logo: "lentrepote.jpg" },
+	{ name: "Lias Vegas", type: "Comité des fêtes", location: "Lias (32)", logo: "liasVegas.jpg" },
+	{ name: "Comité des fêtes de Giroussens", type: "Association", location: "Giroussens (81)", logo: "girousens.jpg" },
+	{ name: "Biergarten by Saint-Orens", type: "Biergarten / bar", location: "Saint-Orens-de-Gameville (31)", logo: "biergarten.webp" },
+	{ name: "L’Fest", type: "Comité des fêtes", location: "Labastide-Beauvoir (31)", logo: "lfest.png" },
 ];
 
 const COLORS = ["var(--cyan)", "var(--pink)", "var(--gold)", "#7cff6b"];
@@ -22,9 +37,11 @@ const COLORS = ["var(--cyan)", "var(--pink)", "var(--gold)", "#7cff6b"];
 function ClientChip({ client, color }) {
 	return (
 		<div className="client-chip flex shrink-0 items-center gap-3 rounded-full py-2 pl-2 pr-5" style={{ "--c": color }}>
-			{client.logo ? (
+			{client.logo && LOGO_SRCS[logoKey(client.logo)] ? (
 				<img
-					src={client.logo}
+					src={LOGO_SRCS[logoKey(client.logo)]}
+					srcSet={LOGO_SETS[logoKey(client.logo)]}
+					sizes="48px"
 					alt={`Logo ${client.name}`}
 					loading="lazy"
 					width="48"

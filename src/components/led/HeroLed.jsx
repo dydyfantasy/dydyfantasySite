@@ -188,6 +188,8 @@ export default function HeroLed() {
 							alt=""
 							width="64"
 							height="64"
+							// low : React ne la précharge plus en tête de page (sous la ligne de flottaison sur mobile)
+							fetchPriority="low"
 							className="h-12 w-12 rounded-full bg-[var(--ink)] ring-2 ring-[var(--pink)]"
 						/>
 						<p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-[var(--pink)]">

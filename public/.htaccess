@@ -34,10 +34,25 @@ Options -Indexes
 # Toute adresse inconnue : vraie page 404 (code HTTP 404)
 ErrorDocument 404 /404/index.html
 
-# Ajouter HSTS pour la sécurité
+# Pages et textes en UTF-8 (accents) annoncés dans l'en-tête HTTP
+AddDefaultCharset UTF-8
+
+# En-têtes de sécurité
 <IfModule mod_headers.c>
+  # HTTPS obligatoire pendant 1 an
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  # Le navigateur ne devine pas le type d'un fichier (ex. un texte exécuté comme script)
+  Header always set X-Content-Type-Options "nosniff"
+  # Le site ne peut pas être affiché dans un cadre sur un autre site (anti-clickjacking)
+  Header always set X-Frame-Options "SAMEORIGIN"
+  # Les autres sites voient seulement « dydyfantasy.fr » comme provenance, pas l'adresse exacte
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # Caméra, micro et position : jamais demandés par le site
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 </IfModule>
+
+# Les pages peuvent être revalidées (réponse 304 « pas changé ») au lieu d'être renvoyées en entier
+FileETag MTime Size
 
 # --- Compression Gzip ---
 <IfModule mod_deflate.c>

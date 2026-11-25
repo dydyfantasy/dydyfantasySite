@@ -98,8 +98,10 @@ window.addEventListener('load', function () {
 			<body>
 				{children}
 				<ScrollRestoration />
-				{/* Agenda : modifiable sur le serveur sans recompiler le site */}
-				<script src="/events/events.js" />
+				{/* Agenda : modifiable sur le serveur sans recompiler le site.
+				    defer : téléchargé en parallèle, sans bloquer la page, et toujours exécuté
+				    avant les scripts React ci-dessous (même file d’attente, dans l’ordre). */}
+				<script src="/events/events.js" defer />
 				<Scripts />
 			</body>
 		</html>

@@ -9,7 +9,7 @@ import "../../css/pages-fun.css";
 const EVENTS = [
 	{ label: "Mariage", emoji: "💍", type: "Mariage" },
 	{ label: "Entreprise", emoji: "💼", type: "Événement entreprise" },
-	{ label: "Anniversaire", emoji: "🎂", type: "Soirée privée" },
+	{ label: "Anniversaire", emoji: "🎂", type: "Anniversaire" },
 	{ label: "Bar / restaurant", emoji: "🍻", type: "Bar / restaurant" },
 	{ label: "Autre", emoji: "✨", type: "Animation sur mesure" },
 ];

@@ -66,11 +66,11 @@ Visez des vidéos courtes (15 à 60 secondes). Dans la galerie, la vidéo s'ouvr
 
 ## Ajouter une référence client (bandeau « Ils m'ont fait confiance »)
 
-1. Déposez le logo (carré si possible, jpg / png / webp) dans `public/clients/`, ex. `mon-client.png`.
-2. Ouvrez `src/components/led/LedClients.jsx` et ajoutez une ligne dans la liste `CLIENTS`, sur le modèle des autres :
+1. Déposez le logo (carré si possible, jpg / png / webp, peu importe son poids) dans `src/assets/clients/`, ex. `mon-client.png`. Il est réduit et converti en WebP automatiquement à la compilation.
+2. Ouvrez `src/components/led/LedClients.jsx` et ajoutez une ligne dans la liste `CLIENTS`, sur le modèle des autres (`logo` = nom exact du fichier, sans dossier) :
 
 ```js
-{ name: "Nom du client", type: "Bar / restaurant", location: "Ville (31)", logo: "/clients/mon-client.png" },
+{ name: "Nom du client", type: "Bar / restaurant", location: "Ville (31)", logo: "mon-client.png" },
 ```
 
 Gardez bien les guillemets, les virgules et l'accolade. Sans logo, supprimez simplement `logo: "…"` : l'initiale s'affiche à la place.

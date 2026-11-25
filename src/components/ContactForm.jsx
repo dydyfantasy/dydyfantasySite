@@ -114,7 +114,9 @@ export default function ContactForm() {
 						<option value="Blind test">Blind test</option>
 						<option value="Quiz interactif">Quiz interactif</option>
 						<option value="Karaoké">Karaoké</option>
+						<option value="DJ">DJ</option>
 						<option value="Mariage">Mariage</option>
+						<option value="Anniversaire">Anniversaire</option>
 						<option value="Soirée privée">Soirée privée</option>
 						<option value="Bar / restaurant">Bar / restaurant</option>
 						<option value="Événement entreprise">Événement entreprise</option>
