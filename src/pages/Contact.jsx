@@ -34,7 +34,7 @@ const INFOS = [
 
 const DIRECT = [
 	{ name: "WhatsApp", url: "https://wa.me/33695953356?text=Bonjour%20Dydy%20Fantasy%20!%20Je%20souhaite%20en%20savoir%20plus.", Icon: FaWhatsapp, color: "#3ddc84" },
-	{ name: "Facebook", url: "https://facebook.com/profile.php?id=61578462940099", Icon: FaFacebookF, color: "var(--cyan)" },
+	{ name: "Facebook", url: "https://www.facebook.com/profile.php?id=61578462940099", Icon: FaFacebookF, color: "var(--cyan)" },
 	{ name: "Instagram", url: "https://www.instagram.com/dydy_fantasy", Icon: FaInstagram, color: "var(--pink)" },
 ];
 

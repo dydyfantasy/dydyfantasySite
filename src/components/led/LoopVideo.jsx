@@ -68,7 +68,9 @@ export default function LoopVideo({ video, mobile, label, aspect, className = ""
 			loop
 			playsInline
 			preload="none"
-			poster={variant ? current.poster : undefined}
+			// Sans version mobile, l’image d’attente est connue dès la génération du HTML (pas de cadre noir) ;
+			// avec une version mobile, elle attend le choix du navigateur (pour ne pas charger les deux).
+			poster={variant ? current.poster : mobile ? undefined : video.poster}
 			controls={manual}
 			aria-label={label}
 			className={`block w-full bg-black object-cover ${

@@ -15,6 +15,17 @@ import "./css/led.css";
 // Fiche entreprise unique pour Google (doit rester cohérente avec la fiche Google Business Profile :
 // zone desservie, adresse masquée -> ville seulement). Les pages de prestation y renvoient via "@id".
 // À affiner : liste exacte des villes de la zone desservie de la fiche Google.
+// Le site lui-même (relié à l’entreprise par @id) : nom du site dans les résultats Google
+const websiteJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	"@id": "https://dydyfantasy.fr/#site",
+	url: "https://dydyfantasy.fr/",
+	name: "Dydy Fantasy",
+	inLanguage: "fr-FR",
+	publisher: { "@id": "https://dydyfantasy.fr/#entreprise" },
+};
+
 const localBusinessJsonLd = {
 	"@context": "https://schema.org",
 	// EntertainmentBusiness = sous-type de LocalBusiness (entreprise de divertissement) : plus précis
@@ -40,7 +51,7 @@ const localBusinessJsonLd = {
 		longitude: 1.2317,
 	},
 	areaServed: AREA_SERVED,
-	sameAs: ["https://facebook.com/profile.php?id=61578462940099", "https://www.instagram.com/dydy_fantasy", GOOGLE.ficheUrl],
+	sameAs: ["https://www.facebook.com/profile.php?id=61578462940099", "https://www.instagram.com/dydy_fantasy", GOOGLE.ficheUrl, "https://www.mariages.net/musique-mariage/dydy-fantasy--e431763"],
 };
 
 // Squelette HTML commun à toutes les pages (remplace l’ancien index.html)
@@ -64,6 +75,7 @@ export function Layout({ children }) {
 						__html: JSON.stringify(localBusinessJsonLd),
 					}}
 				/>
+				<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
 
 			</head>
 			<body>

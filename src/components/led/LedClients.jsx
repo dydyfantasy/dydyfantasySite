@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import SectionTitle from "./SectionTitle";
 
 // Logos déposés dans src/assets/clients/ : réduits à 48 et 96 px (écrans haute densité)
@@ -17,7 +18,7 @@ const logoKey = (file) => `../../assets/clients/${file}`;
 // Références réelles (nom + lieu, utiles au SEO local).
 // logo : nom exact du fichier déposé dans src/assets/clients/.
 const CLIENTS = [
-	{ name: "Décathlon", type: "Événement VitalSport", location: "Escalquens (31)", logo: "Decathlon.jpg" },
+	{ name: "Decathlon", type: "Événement VitalSport", location: "Escalquens (31)", logo: "Decathlon.jpg" },
 	{ name: "La Ville en Rose", type: "Bar / restaurant", location: "Colomiers (31)", logo: "La ville en rose.png" },
 	{ name: "Taverne Heidelberg", type: "Taverne / bar", location: "Blagnac (31)", logo: "La taverne blagnac.jpg" },
 	{ name: "Le Cul de Bouteille", type: "Cave à vin / bar", location: "Aussonne (31)", logo: "Le cul de bouteille.jpg" },
@@ -68,6 +69,10 @@ function ClientChip({ client, color }) {
 // Bande défilante en boucle : la 1re copie est lue par Google et les lecteurs d’écran,
 // la 2de (aria-hidden) sert seulement à boucler sans trou. Pause au survol.
 export default function LedClients() {
+	// 2de copie (boucle sans trou) ajoutée seulement dans le navigateur : le HTML lu par Google
+	// ne contient la liste qu’une fois (pas de texte en double sur chaque page).
+	const [loop, setLoop] = useState(false);
+	useEffect(() => setLoop(true), []);
 	return (
 		<section aria-labelledby="clients-titre" className="py-20">
 			<div className="mx-auto max-w-6xl px-4">
@@ -86,13 +91,15 @@ export default function LedClients() {
 							</li>
 						))}
 					</ul>
-					<ul className="flex gap-4" aria-hidden="true">
-						{CLIENTS.map((c, i) => (
-							<li key={`copie-${c.name}${c.location}`}>
-								<ClientChip client={c} color={COLORS[i % COLORS.length]} />
-							</li>
-						))}
-					</ul>
+					{loop && (
+						<ul className="flex gap-4" aria-hidden="true">
+							{CLIENTS.map((c, i) => (
+								<li key={`copie-${c.name}${c.location}`}>
+									<ClientChip client={c} color={COLORS[i % COLORS.length]} />
+								</li>
+							))}
+						</ul>
+					)}
 				</div>
 			</div>
 		</section>

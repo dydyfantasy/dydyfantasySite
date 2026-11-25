@@ -22,7 +22,7 @@ import { photoFor } from "../../data/evenementsPhotos";
 const PATH = "/evenements/entreprise";
 
 // Cible : « team building toulouse », « animateur séminaire toulouse », « animateur micro toulouse ».
-// Référence réelle : animation micro / speaker pour Décathlon (VitalSport Escalquens).
+// Référence réelle : animation micro / speaker pour Decathlon (VitalSport Escalquens).
 export default function Entreprise() {
 	return (
 		<ServicePage
@@ -63,7 +63,7 @@ export default function Entreprise() {
 			points={[
 				{ icon: UsersIcon, color: "var(--cyan)", title: "Fédérer les équipes", text: "Un quiz en équipes où services et collègues se mélangent et s’affrontent dans la bonne humeur." },
 				{ icon: PresentationChartBarIcon, color: "var(--pink)", title: "Séminaires", text: "Une pause interactive pour relancer l’énergie entre deux sessions de travail." },
-				{ icon: BuildingOffice2Icon, color: "var(--gold)", title: "Journées événement", text: "Animateur micro et speaker pour présenter, rythmer et faire participer le public toute la journée, comme pour Décathlon." },
+				{ icon: BuildingOffice2Icon, color: "var(--gold)", title: "Journées événement", text: "Animateur micro et speaker pour présenter, rythmer et faire participer le public toute la journée, comme pour Decathlon." },
 				{ icon: SparklesIcon, color: "#7cff6b", title: "Soirées d’entreprise", text: "Blind test, karaoké et DJ pour fêter une réussite ou la fin d’année." },
 			]}
 			formatsTitle={{ label: "Les formats", title: "Du quiz au", accent: "dancefloor" }}
@@ -84,7 +84,7 @@ export default function Entreprise() {
 			related={relatedTo(PATH)}
 			faq={[
 				{ q: "Le quiz peut-il porter sur notre entreprise ?", a: "Oui : des manches sur votre entreprise, votre secteur ou votre actualité rendent le jeu encore plus fédérateur." },
-				{ q: "Avez-vous déjà animé des événements d’entreprise ?", a: "Oui, régulièrement : quiz en équipes, soirées d’entreprise, karaokés entre collègues… Par exemple une journée VitalSport chez Décathlon Escalquens, en animation micro avec présentation de démonstrations." },
+				{ q: "Avez-vous déjà animé des événements d’entreprise ?", a: "Oui, régulièrement : quiz en équipes, soirées d’entreprise, karaokés entre collègues… Par exemple une journée VitalSport chez Decathlon Escalquens, en animation micro avec présentation de démonstrations." },
 				{ q: "Pouvez-vous intervenir dans nos locaux ?", a: "Oui, dans vos locaux ou dans le lieu de votre séminaire, à Toulouse et partout en Occitanie." },
 				{ q: "Établissez-vous des devis pour les entreprises ?", a: "Oui, contactez-moi avec la date, le lieu, le nombre de participants et le format souhaité : je vous réponds sous 24 h avec un devis tout compris." },
 			]}

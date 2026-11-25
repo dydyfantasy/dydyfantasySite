@@ -28,6 +28,7 @@ export default function ContactForm() {
 			<input
 				type="text"
 				name="_gotcha"
+				aria-hidden="true"
 				className="hidden"
 				tabIndex="-1"
 				autoComplete="off"
