@@ -20,7 +20,7 @@ import LedDivider from "./LedDivider";
 import ConfettiRain from "./ConfettiRain";
 import Testimonial from "./Testimonial";
 import GalleryClips from "./GalleryClips";
-import { clipsFor, CATEGORY_LABELS } from "../../data/galerie";
+import { clipsFor, clipsMatching, CATEGORY_LABELS } from "../../data/galerie";
 import { STEPS } from "../../data/steps";
 
 const SITE = "https://dydyfantasy.fr";
@@ -100,9 +100,13 @@ export default function ServicePage({
 	clients = true, // bandeau des références clients (preuves), après l’avis ; false pour le masquer
 	body, // mise en scène propre à la page, à la place des sections « points » et « formats »
 	scene: Scene, // composant de mise en scène (src/components/scenes/) qui reçoit points/formats et leurs titres
-	gallery, // catégorie de la galerie à montrer en extraits vidéo (ex. "bars"), voir data/galerie.js
+	gallery, // extraits vidéo de la galerie : une catégorie (ex. "bars") ou { words: ["karaoke"], label: "karaokés" }
+	//          = vidéos dont le nom de fichier contient l’un des mots (voir data/galerie.js)
 }) {
-	const clips = gallery ? clipsFor(gallery, 4) : [];
+	const byWords = Boolean(gallery) && typeof gallery === "object";
+	const clips = !gallery ? [] : byWords ? clipsMatching(gallery.words, 4) : clipsFor(gallery, 4);
+	const galleryLabel = byWords ? gallery.label : (CATEGORY_LABELS[gallery] ?? gallery ?? "").toLowerCase();
+	const galleryLink = byWords ? "/galerie" : `/galerie?categorie=${gallery}`;
 	// Étapes communes (identiques sur toutes les pages) : version courte + lien vers « Mon approche »,
 	// pour que chaque page garde surtout du contenu qui lui est propre (SEO). Étapes propres : frise complète.
 	const compactSteps = steps === DEFAULT_STEPS;
@@ -233,10 +237,10 @@ export default function ServicePage({
 					<div className="mx-auto max-w-6xl">
 						<div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
 							<SectionTitle id="en-images" label="En images" title="L’ambiance," accent="en vrai">
-								Des extraits de vraies soirées : {(CATEGORY_LABELS[gallery] ?? gallery).toLowerCase()}.
+								Des extraits de vraies soirées : {galleryLabel}.
 							</SectionTitle>
 							<Link
-								to={`/galerie?categorie=${gallery}`}
+								to={galleryLink}
 								className="btn-outline-neon inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-[var(--cyan)] px-6 py-3 font-semibold text-[var(--cyan)]">
 								Voir la galerie
 								<ArrowRightIcon className="h-4 w-4" />

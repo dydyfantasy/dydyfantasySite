@@ -61,3 +61,10 @@ export const clipsFor = (category, max = 3) =>
 	ALL_CLIPS.filter((c) => c.category === category)
 		.sort((a, b) => Number(/accueil/i.test(b.path)) - Number(/accueil/i.test(a.path)))
 		.slice(0, max);
+
+/** Extraits dont le NOM de fichier contient l’un des mots (toutes catégories), « accueil » d’abord.
+ *  Ex. clipsMatching(["karaoke"]) pour la page Karaoké : le nom des vidéos doit décrire ce qu’on y voit. */
+export const clipsMatching = (words, max = 4) =>
+	ALL_CLIPS.filter((c) => words.some((w) => c.path.split("/").pop().toLowerCase().includes(w)))
+		.sort((a, b) => Number(/accueil/i.test(b.path)) - Number(/accueil/i.test(a.path)))
+		.slice(0, max);

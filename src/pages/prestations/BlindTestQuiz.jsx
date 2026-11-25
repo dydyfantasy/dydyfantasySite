@@ -171,6 +171,7 @@ export default function BlindTestQuiz() {
 	return (
 		<ServicePage
 			path={PATH}
+			gallery={{ words: ["blind-test", "quiz"], label: "blind tests et quiz" }}
 			name="Blind test & quiz"
 			seo={{
 				title: "Animation blind test & quiz à Toulouse | Dydy Fantasy",

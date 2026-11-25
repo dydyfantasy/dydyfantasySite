@@ -26,6 +26,7 @@ export default function Karaoke() {
 	return (
 		<ServicePage
 			path={PATH}
+			gallery={{ words: ["karaoke"], label: "karaokés" }}
 			name="Karaoké"
 			photo={photoFor("karaoke")}
 			seo={{

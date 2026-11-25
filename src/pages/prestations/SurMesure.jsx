@@ -26,6 +26,7 @@ export default function SurMesure() {
 	return (
 		<ServicePage
 			path={PATH}
+			gallery={{ words: ["soiree-speciale", "fete", "chenille"], label: "fêtes de village et soirées spéciales" }}
 			name="Animation sur mesure"
 			photo={photoFor("sur-mesure")}
 			seo={{

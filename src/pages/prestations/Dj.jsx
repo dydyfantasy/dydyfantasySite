@@ -26,6 +26,7 @@ export default function Dj() {
 	return (
 		<ServicePage
 			path={PATH}
+			gallery={{ words: ["dj", "danse"], label: "soirées DJ" }}
 			name="DJ"
 			photo={photoFor("dj")}
 			seo={{
