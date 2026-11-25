@@ -4,7 +4,8 @@ import "../../css/pages-fun.css";
 
 // Dydy Quiz, « Comment ça marche » : un téléphone rejoue les 3 étapes (QR code → question → classement).
 // Défilement automatique quand le bloc est visible ; un clic sur une étape l’affiche.
-// steps = [{ icon, title, text }] (3 étapes)
+// steps = [{ icon, title, text }] (3 étapes) ; shots = [capture?, capture?, capture?] : vraie capture du
+// téléphone d’un joueur pour chaque étape (src/assets/dydy-quiz/etape-1…3), sinon écran dessiné.
 const QR = Array.from({ length: 81 }, (_, i) => {
 	const x = i % 9;
 	const y = Math.floor(i / 9);
@@ -65,7 +66,7 @@ function Screen({ step }) {
 	);
 }
 
-export default function PhoneDemo({ steps }) {
+export default function PhoneDemo({ steps, shots = [] }) {
 	const [step, setStep] = useState(0);
 	const [auto, setAuto] = useState(true);
 	const ref = useRef(null);
@@ -117,10 +118,21 @@ export default function PhoneDemo({ steps }) {
 				))}
 			</ol>
 			<ScrollReveal variant="zoom" className="flex justify-center">
-				<div aria-hidden="true" className="demo-phone">
+				<div aria-hidden={!shots[step]} className="demo-phone">
 					<span className="demo-notch" />
 					<div key={step} className="demo-screen">
-						<Screen step={step} />
+						{shots[step] ? (
+							<img
+								src={shots[step].src}
+								srcSet={shots[step].srcSet}
+								sizes="16rem"
+								alt={`Dydy Quiz sur le téléphone d’un joueur : ${steps[step].title}`}
+								decoding="async"
+								className="h-full w-full object-cover"
+							/>
+						) : (
+							<Screen step={step} />
+						)}
 					</div>
 				</div>
 			</ScrollReveal>

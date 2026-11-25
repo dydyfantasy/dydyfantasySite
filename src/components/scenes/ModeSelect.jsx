@@ -4,10 +4,9 @@ import "../../css/pages-fun.css";
 
 // Dydy Quiz, « Les modes de jeu » : sélecteur façon menu de console. Survoler ou toucher un mode
 // l’anime sur le grand écran (aperçu décoratif). Tous les textes restent visibles dans la liste.
-// modes = [{ slug, icon, color, title, text, shots: { screen?, phone? } }] — l’ordre suit MODES de la page.
-// shots.screen = capture de l’écran de la salle : sur le grand écran, à la place de l’animation
-// (sans elle, l’animation décorative reste) ; shots.phone = capture du téléphone d’un joueur,
-// posée devant le grand écran en bas à droite.
+// modes = [{ slug, icon, color, title, text, shot? }] — l’ordre suit MODES de la page.
+// shot = capture de l’écran de la salle : sur le grand écran, à la place de l’animation
+// (sans elle, l’animation décorative reste). Le téléphone du joueur est montré par PhoneDemo.
 function Preview({ slug, color }) {
 	if (slug === "quiz")
 		return (
@@ -106,13 +105,12 @@ export default function ModeSelect({ modes }) {
 				))}
 			</ul>
 			<div className="lg:sticky lg:top-28 lg:self-start">
-				<div className={`relative ${m.shots?.phone ? "pb-10 pr-2" : ""}`}>
 				<div className="big-screen rounded-2xl p-[3px]">
-					{m.shots?.screen ? (
+					{m.shot ? (
 						<div key={active} className="pv-stage screen-inner flex aspect-video items-center justify-center overflow-hidden rounded-[0.9rem]" style={{ "--c": m.color }}>
 							<img
-								src={m.shots.screen.src}
-								srcSet={m.shots.screen.srcSet}
+								src={m.shot.src}
+								srcSet={m.shot.srcSet}
 								sizes="(min-width: 1024px) 36rem, 92vw"
 								alt={`Dydy Quiz, écran de la salle : ${m.title}`}
 								loading="lazy"
@@ -133,23 +131,6 @@ export default function ModeSelect({ modes }) {
 							</div>
 						</div>
 					)}
-				</div>
-				{m.shots?.phone && (
-					<div
-						key={`tel-${active}`}
-						className="pv-stage phone-shot absolute bottom-0 right-0 w-[26%] min-w-[5.5rem] max-w-[9rem] rounded-[1.3rem] p-1.5"
-						style={{ "--c": m.color }}>
-						<img
-							src={m.shots.phone.src}
-							srcSet={m.shots.phone.srcSet}
-							sizes="9rem"
-							alt={`Dydy Quiz, téléphone d’un joueur : ${m.title}`}
-							loading="lazy"
-							decoding="async"
-							className="aspect-[9/19] w-full rounded-[1rem] bg-black object-cover"
-						/>
-					</div>
-				)}
 				</div>
 				<p className="mt-3 text-center text-sm text-white/55">Survolez ou touchez un mode pour l’afficher à l’écran.</p>
 			</div>
