@@ -1,7 +1,6 @@
 // Zone d’intervention déclarée à Google (données structurées areaServed) :
 // RECOPIE EXACTE des « zones desservies » de la fiche Google Business Profile (même ordre).
 // Si la fiche change, changer cette liste aussi (cohérence site / fiche, voir CLAUDE.md).
-// Quartiers (Purpan, Ramassiers) : type Place, avec leur ville.
 const CITIES = [
 	"Pibrac",
 	"Labège",
@@ -21,10 +20,10 @@ const CITIES = [
 	"L’Isle-Jourdain",
 	"Portet-sur-Garonne",
 	"Villefranche-de-Lauragais",
+	"Lavaur",
+	"Giroussens",
 ];
-const PLACES = ["Purpan, Toulouse", "Ramassiers, Colomiers"];
 
 export const AREA_SERVED = [
 	...CITIES.map((name) => ({ "@type": "City", name })),
-	...PLACES.map((name) => ({ "@type": "Place", name })),
 ];
